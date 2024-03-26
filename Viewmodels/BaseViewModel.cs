@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace Vocab.Viewmodel
+namespace AcademyManager.Viewmodel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
