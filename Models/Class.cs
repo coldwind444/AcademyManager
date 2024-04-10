@@ -18,8 +18,10 @@ namespace AcademyManager.Models
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
         public string Room {  get; set; }
+        public List<StudentRecord> Students { get; set; }
         public Class(string classID, string className, string instructorID, List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room)
         {
+            Students = new List<StudentRecord>();
             ClassID = classID;
             ClassName = className;
             InstructorID = instructorID;
@@ -33,6 +35,7 @@ namespace AcademyManager.Models
         }
         public Class(string classID, string className, string instructorID, DayOfWeek day, TimeOnly bgT, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room)
         {
+            Students = new List<StudentRecord>();
             ClassID = classID;
             ClassName = className;
             InstructorID = instructorID;

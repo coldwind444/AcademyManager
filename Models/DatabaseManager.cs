@@ -23,6 +23,7 @@ namespace AcademyManager.Models
                 App.Current.Shutdown();
             }
         }
+        #region CRUD Account
         public async Task AddAccount(Account acc)
         {
             SetResponse response = await client.SetAsync("Accounts/" + acc.Email, acc);
@@ -37,6 +38,8 @@ namespace AcademyManager.Models
             Account result = response.ResultAs<Account>();
             return result;
         }
+        #endregion
+        #region CRUD User
         public async Task AddUserAsync(User user)
         {
             SetResponse response = await client.SetAsync("Users/" + user.ID, user);
@@ -53,5 +56,18 @@ namespace AcademyManager.Models
             User result = response.ResultAs<User>();
             return result;
         }
+        #endregion
+        #region CRUD Term
+        public async Task UpdateTermAsync(Term term)
+        {
+            SetResponse response = await client.SetAsync("Terms/" + term.TermID, term);
+        }
+        public async Task<Term> GetTermAsync(string id)
+        {
+            FirebaseResponse response = await client.GetAsync("Terms/" + id);
+            Term result = response.ResultAs<Term>();
+            return result;
+        }
+        #endregion
     }
 }

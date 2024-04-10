@@ -18,9 +18,9 @@ namespace AcademyManager.Models
             Type = type;
         }
 
-        public bool Match(Account account)
+        public bool Match(string pass, string email)
         {
-            return account.Email == Email && account.Password == Password;
+            return email == Email && pass == Password;
         }
         public string HashPasswords(string password)
         {
