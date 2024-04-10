@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="UserControlViewmodels\" />
-    <Folder Include="Viewmodels\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
 
