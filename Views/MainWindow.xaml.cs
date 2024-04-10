@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AcademyManager.Viewmodels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,8 +17,10 @@ namespace AcademyManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainVM Viewmodel { get; set; }
         public MainWindow()
         {
+            this.DataContext = Viewmodel = new MainVM();
             InitializeComponent();
         }
     }
