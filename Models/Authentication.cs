@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
-
-namespace AcademyManager.Models
+﻿namespace AcademyManager.Models
 {
     public class Authentication
     {
@@ -14,5 +7,6 @@ namespace AcademyManager.Models
         public static string StorageBucket = "academymanager-5ea2b.appspot.com";
         public static string Email = "tadgroupk22@gmail.com";
         public static string Password = "academymanager_tad22";
+        public static string APIKey = "AIzaSyBqjSZ0hKy6e1WMKCThIBvmW6fU-UdpxGk";
     }
 }

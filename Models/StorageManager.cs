@@ -13,7 +13,7 @@ namespace AcademyManager.Models
             var stream = File.Open(localFilePath, FileMode.Open);
 
             // Authenticate with Firebase Authentication
-            var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBYRtGXfyYiaPdtd3FOUiSyhL9fmXaxsn4"));
+            var auth = new FirebaseAuthProvider(new FirebaseConfig(Authentication.APIKey));
             var email = Authentication.Email;
             var password = Authentication.Password;
             var authResult = await auth.SignInWithEmailAndPasswordAsync(email, password);
