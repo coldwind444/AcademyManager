@@ -1,4 +1,5 @@
-﻿using AcademyManager.Viewmodel;
+﻿using AcademyManager.Models;
+using AcademyManager.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {
-    public class AccountTypeView : BaseViewModel
+    public class AccountTypeSelectionView : BaseViewModel
     {
         #region Commands
         public ICommand InstructorCommand { get; set; }
@@ -18,20 +19,24 @@ namespace AcademyManager.Viewmodels
         #region Methods
         private void InitializeCommand()
         {
-            InstructorCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
+            InstructorCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
             {
                 MainVM vm = p.DataContext as MainVM;
                 vm.CurrentAccount.Type = 1;
+                DatabaseManager database = new DatabaseManager();
+                await database.UpdateAccount(vm.CurrentAccount);
             });
 
-            StudentCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
+            StudentCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
             {
                 MainVM vm = p.DataContext as MainVM;
                 vm.CurrentAccount.Type = 2;
+                DatabaseManager database = new DatabaseManager();
+                await database.UpdateAccount(vm.CurrentAccount);
             });
         }
         #endregion
-        public AccountTypeView()
+        public AccountTypeSelectionView()
         {
             InitializeCommand();
         }

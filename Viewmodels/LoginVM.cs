@@ -88,20 +88,20 @@ namespace AcademyManager.Viewmodels
                 DatabaseManager database = new DatabaseManager();
                 Account acc = await database.GetAccountAsync(_emailBox.Text);
                 MainVM vm = p.Viewmodel as MainVM;
-                vm.CurrentAccount = new Account(_emailBox.Text, _passwordBox.Password);
 
-                if (acc.Match(vm.CurrentAccount))
+                if (acc.Match(_passwordBox.Password, _emailBox.Text))
                 {
                     // if password is matched, continue to check account type
                     // if account type = 0 (undefined), type select view will be the next view
                     // if not, navigate to home view
                     if (acc.Type != 0)
                     {
+                        vm.CurrentAccount = acc;
                         vm.CurrentView = vm.HomeView;
                         vm.TabbarV = Visibility.Visible;
                     } else
                     {
-
+                        vm.CurrentView = vm.TypeSelectionView;
                     }
                 } else
                 {
