@@ -9,11 +9,11 @@ namespace AcademyManager.Models
     public class Term
     {
         public string TermID { get; set; }
-        public List<Course> Courses { get; set; }
+        public Dictionary<string, Course> Courses { get; set; }
         public Term(string id)
         {
             TermID = id;
-            Courses = new List<Course>();
+            Courses = new Dictionary<string, Course>();
         }
     }
 }

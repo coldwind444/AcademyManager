@@ -11,12 +11,12 @@ namespace AcademyManager.Models
         public string CourseID { get; set; }
         public string CourseName { get; set; }
         public int Credits { get; set; }
-        public List<Class> Classes { get; set; }
+        public Dictionary<string, Class> Classes { get; set; }
         public Course(string id, string name)
         {
             CourseID = id;
             CourseName = name;
-            Classes = new List<Class>();
+            Classes = new Dictionary<string, Class>();
         }
     }
 }
