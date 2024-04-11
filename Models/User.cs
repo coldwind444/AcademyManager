@@ -15,7 +15,7 @@ namespace AcademyManager.Models
         public string Faculty {  get; set; }
         public string Major { get; set; }
         public string AvatarBase64 { get; set; }
-        public List<TermSupportElement> StudyElements { get; set; }
+        public List<ClassIdentifier> StudyElements { get; set; }
         public List<Class> GetSchedule(DateOnly date)
         {
             var list = new List<Class>();
@@ -28,7 +28,7 @@ namespace AcademyManager.Models
             Email = email;
             Birthday = birthday;
             Faculty = faculty;
-            StudyElements = new List<TermSupportElement>();
+            StudyElements = new List<ClassIdentifier>();
         }
     }
 }
