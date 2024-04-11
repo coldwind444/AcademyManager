@@ -15,30 +15,23 @@ namespace AcademyManager.Models
         {
             DatabaseManager database = new DatabaseManager();
             Term term = await database.GetTermAsync(termID);
-            bool flag = false;
-            foreach (Course course in term.Courses)
-            {
-                if (course.CourseID == courseID)
-                {
-                    flag = true;
-                    foreach (Class _class in course.Classes)
-                    {
-                        if (_class.ClassID == classID)
-                        {
-                            _class.Students.Add(new StudentRecord(this.ID, 0, 0, 0, 0));
-                            TermSupportElement ele = new TermSupportElement(termID, courseID, classID);
-                            if (!StudyElements.Contains(ele)) StudyElements.Add(ele);
-                            break;
-                        }
-                    }
-                }
-                if (flag) break;
-            }
+            StudyElements.Add(new ClassIdentifier(termID, courseID, classID));
+            term.Courses[courseID].Classes[classID].Students[ID] = new StudentRecord(ID, 0, 0, 0, 0);
         }
-        public List<StudentRecord> ViewScore(string termID, string courseID, string classID)
+        public async Task<List<StudentRecord>> ViewScore()
         {
-            
-            return new List<StudentRecord>();
+            List<StudentRecord> result = new List<StudentRecord> ();
+            DatabaseManager database = new DatabaseManager();
+            Term term = null;
+            foreach (ClassIdentifier cid in StudyElements)
+            {
+                if (term != null)
+                    if (term.TermID != cid.TermID) term = await database.GetTermAsync(cid.TermID);
+                else term = await database.GetTermAsync(cid.TermID);
+                StudentRecord rc = term.Courses[cid.CourseID].Classes[cid.ClassID].Students[ID];
+                result.Add(rc);
+            }
+            return result;
         }
         public StudentUser(string id, string fullname, string email, DateOnly birthday, string faculty, double gpa, int credits, string state)
             : base(id, fullname, email, birthday, faculty)
