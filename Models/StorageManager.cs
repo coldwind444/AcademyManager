@@ -7,10 +7,11 @@ namespace AcademyManager.Models
     public class StorageManager
     {
         public StorageManager() { }
-        public async Task UploadFileToFirebaseStorage(string localFilePath)
+        public async Task UploadFileToFirebaseStorage(string localFilePath, string termID, string courseID, string classID, string title)
         {
-            // Get any Stream - it can be FileStream, MemoryStream or any other type of Stream
+            // Get a FileStream
             var stream = File.Open(localFilePath, FileMode.Open);
+            string filename = Path.GetFileName(localFilePath);
 
             // Authenticate with Firebase Authentication
             var auth = new FirebaseAuthProvider(new FirebaseConfig(Authentication.APIKey));
@@ -25,17 +26,21 @@ namespace AcademyManager.Models
                     AuthTokenAsyncFactory = () => Task.FromResult(authResult.FirebaseToken)
                 });
 
-            // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
+            // Upload file to storage
             var task = firebaseStorage
-                .Child("files")
-                .Child("auth.json")
+                .Child(termID)
+                .Child(courseID)
+                .Child(classID)
+                .Child(filename)
                 .PutAsync(stream);
 
-            // Track progress of the upload
-            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
-
-            // await the task to wait until upload completes and get the download url
+            // Await the task to wait until upload completes and get the download url
             var downloadUrl = await task;
+
+            // Update document's url and title to database
+            DatabaseManager db = new DatabaseManager();
+            Term term = await db.GetTermAsync(termID);
+            term.Courses[courseID].Classes[classID].Documents.Add(new KeyValuePair<string, string>(title, downloadUrl));
         }
     }
 }
