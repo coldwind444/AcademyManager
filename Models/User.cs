@@ -16,9 +16,31 @@ namespace AcademyManager.Models
         public string Major { get; set; }
         public string AvatarBase64 { get; set; }
         public List<ClassIdentifier> StudyElements { get; set; }
-        public List<Class> GetSchedule(DateOnly date)
+        private bool InSchedule(DateOnly date, Class cls)
+        {
+            bool inPeriod = cls.BeginDate <= date && cls.EndDate >= date;
+            bool inDate = cls.Weekday == date.DayOfWeek;
+            return inPeriod && inDate;
+        }
+        public async Task<List<Class>> GetSchedule(DateOnly date)
         {
             var list = new List<Class>();
+            DatabaseManager dbManager = new DatabaseManager();
+            Term term = null;
+            foreach (ClassIdentifier cid in StudyElements)
+            {
+                if (term != null) if (term.TermID != cid.TermID) term = await dbManager.GetTermAsync(term.TermID);
+                else term = await dbManager.GetTermAsync(term.TermID);
+                Dictionary<string,Class> classList = term.Courses[cid.CourseID].Classes;
+                foreach (KeyValuePair<string,Class> _class in classList)
+                {
+                    if (_class.Key == cid.ClassID && InSchedule(date, _class.Value))
+                    {
+                        list.Add(_class.Value);
+                        break;
+                    }
+                }
+            }
             return list;
         }
         public User(string id, string fullname, string email, DateOnly birthday, string faculty)
