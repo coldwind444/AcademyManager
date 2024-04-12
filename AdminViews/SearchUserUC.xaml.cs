@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace AcademyManager.AdminViews
 {
     /// <summary>
-    /// Interaction logic for AddCoursesUC.xaml
+    /// Interaction logic for SearchUserUC.xaml
     /// </summary>
-    public partial class AddTermsUC : UserControl
+    public partial class SearchUserUC : UserControl
     {
-        public AddTermsVM Viewmodel { get; set ; }
-        public AddTermsUC()
+        public SearchUserVM Viewmodel {  get; set; }
+        public SearchUserUC()
         {
-            this.DataContext = Viewmodel = new AddTermsVM();
+            this.DataContext = Viewmodel = new SearchUserVM();
             InitializeComponent();
         }
     }

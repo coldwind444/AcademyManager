@@ -11,6 +11,7 @@ namespace AcademyManager.Models
         public double AverageGPA { get; set; }
         public int Credits { get; set; }
         public string State { get; set; }
+        public string Major {  get; set; }
         public async Task RegisterClass(string termID, string courseID, string classID)
         {
             DatabaseManager database = new DatabaseManager();
@@ -33,7 +34,7 @@ namespace AcademyManager.Models
             }
             return result;
         }
-        public StudentUser(string id, string fullname, string email, DateOnly birthday, string faculty, double gpa, int credits, string state)
+        public StudentUser(string id, string fullname, string email, DateOnly birthday, string faculty, string major, double gpa = 0, int credits = 0, string state = null)
             : base(id, fullname, email, birthday, faculty)
         {
             AverageGPA = gpa;

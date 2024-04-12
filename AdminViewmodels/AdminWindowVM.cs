@@ -1,5 +1,6 @@
 ﻿using AcademyManager.AdminViews;
 using AcademyManager.Viewmodel;
+using OfficeOpenXml.Drawing.Slicer.Style;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,9 @@ namespace AcademyManager.AdminViewmodels
         public ICommand SearchUsersCommand { get; set; }
         #endregion
         #region Properties
-        private AddTermsUC _addtermsView;
+        private AddScheduleUC _addtermsView;
+        private AddUsersUC _addUsersView;
+        private SearchUserUC _searchUsersView;
         private UserControl _currentView;
         private string _currentUrl;
         private bool _addcourses;
@@ -72,6 +75,12 @@ namespace AcademyManager.AdminViewmodels
                 AddCourses = false;
                 SearchUsers = false;
                 CurrentUrl = "Quản trị viên" + " > Thêm người dùng";
+                if (_addUsersView == null)
+                {
+                    _addUsersView = new AddUsersUC();
+                    CurrentView = _addUsersView;
+                } else CurrentView = _addUsersView;
+                
             });
 
             SearchUsersCommand = new RelayCommand<object>(p => { return true; }, p =>
@@ -79,6 +88,12 @@ namespace AcademyManager.AdminViewmodels
                 AddUsers = false;
                 AddCourses = false;
                 CurrentUrl = "Quản trị viên" + " > Truy xuất người dùng";
+                if (_searchUsersView == null)
+                {
+                    _searchUsersView = new SearchUserUC();
+                    CurrentView = _searchUsersView;
+                }
+                else CurrentView = _searchUsersView;
             });
         }
         #endregion
@@ -86,7 +101,7 @@ namespace AcademyManager.AdminViewmodels
         {
             if (_addtermsView == null)
             {
-                _addtermsView = new AddTermsUC();
+                _addtermsView = new AddScheduleUC();
                 CurrentView = _addtermsView;
             }
             else

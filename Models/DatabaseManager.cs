@@ -41,20 +41,30 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD User
-        public async Task AddUserAsync(User user)
+        #region CRUD Student
+        public async Task UpdateStudentAsync(StudentUser user)
         {
-            SetResponse response = await client.SetAsync("Users/" + user.ID, user);
+            SetResponse response = await client.SetAsync("Students/" + user.ID, user);
         }
-        public async Task UpdateUserAsync(User user)
-        {
-            SetResponse response = await client.SetAsync("Users/" + user.ID, user);
-        }
-        public async Task<User> GetUserAsync(string email)
+        public async Task<User> GetStudentAsync(string email)
         {
             Account account = await GetAccountAsync(email);
             string uid = account.ID;
-            FirebaseResponse response = await client.GetAsync("Users/" + uid);
+            FirebaseResponse response = await client.GetAsync("Students/" + uid);
+            User result = response.ResultAs<User>();
+            return result;
+        }
+        #endregion
+        #region CRUD Instructors
+        public async Task UpdateInstructorAsync(InstructorUser user)
+        {
+            SetResponse response = await client.SetAsync("Instructors/" + user.ID, user);
+        }
+        public async Task<User> GetInstructorAsync(string email)
+        {
+            Account account = await GetAccountAsync(email);
+            string uid = account.ID;
+            FirebaseResponse response = await client.GetAsync("Instructors/" + uid);
             User result = response.ResultAs<User>();
             return result;
         }

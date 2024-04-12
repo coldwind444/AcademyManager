@@ -4,9 +4,152 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+             d:DataContext="{d:DesignInstance Type=adminviewmodels:AddUsersVM}"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="525" d:DesignWidth="580">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="Link">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="ForestGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="TextDecorations" Value="None"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="#027324"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="WhiteSmoke">
+        <Border Width="400" Height="400"
+                        Background="White"
+                        BorderThickness="1.5"
+                        BorderBrush="Black"
+                        CornerRadius="20">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Border CornerRadius="20" Height="40" Width="350"
+                        BorderBrush="Black" BorderThickness="1.5"
+                        Margin="0 0 0 10">
+                    <ComboBox Width="320" Height="30"
+                              BorderThickness="0"
+                              FontSize="16" Cursor="Hand"
+                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                              x:Name="TypeSelectionBox"
+                              materialDesign:HintAssist.Hint="Chọn loại người dùng">
+                        <ComboBoxItem Content="Sinh viên"/>
+                        <ComboBoxItem Content="Giảng viên"/>
+                    </ComboBox>
+                </Border>
+                <Border Width="350" Height="40"
+                    Background="White"
+                    CornerRadius="20"
+                    Margin="0 0 0 10"
+                    BorderBrush="Black"
+                    BorderThickness="1.5">
+                    <TextBox Width="320" Height="30"
+                             materialDesign:HintAssist.Hint="Chọn một file .xlsx"
+                         Text="{Binding Path}"
+                         x:Name="FilePathBox"
+                         BorderThickness="0"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         FontSize="16" VerticalContentAlignment="Center"/>
+                </Border>
+                <Button Grid.Row="1" Height="40" Width="350" Cursor="Hand"
+                    FontSize="16" Foreground="White"
+                    Margin="0 0 0 10"
+                    Command="{Binding BrowseCommand}"
+                    CommandParameter="{Binding ElementName=FilePathBox}">
+                    Chọn tệp tin</Button>
+                <Button Grid.Row="1" Height="40" Width="350" Cursor="Hand"
+                        FontSize="16" Foreground="White"
+                        Margin="0 0 0 10"
+                        Command="{Binding UploadCommand}"
+                        CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                    Cập nhật</Button>
+                <TextBlock Style="{StaticResource Link}"
+                           HorizontalAlignment="Center"
+                           FontSize="14">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                               CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                Nhấn vào đây để tải định dạng .xlsx
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Background="Wheat"
+                Visibility="{Binding Notice}"
+                Height="100" Width="200"
+                CornerRadius="20"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right">
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Notice}" Value="Visible">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation From="1" To="0" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Label FontSize="18"
+                   Content="{Binding Content}"
+                   HorizontalAlignment="Center"/>
+                <materialDesign:PackIcon Kind="{Binding Icon}"
+                                     HorizontalAlignment="Center"
+                                     Foreground="Green"
+                                     Height="30" Width="30"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

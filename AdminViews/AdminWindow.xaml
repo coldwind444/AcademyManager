@@ -56,7 +56,7 @@
     <Border CornerRadius="10" Background="WhiteSmoke">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
@@ -64,43 +64,43 @@
                     Margin="0">
                 <StackPanel Orientation="Vertical"
                             VerticalAlignment="Center">
-                    <Separator Background="White" Width="80" Margin="0 0 0 10"></Separator>
-                    <ToggleButton Height="80" Width="80" Margin="0 0 0 10"
-                                  ToolTip="Thêm khóa học"
+                    <Separator Background="White" Width="60" Margin="0 0 0 10"></Separator>
+                    <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
+                                  ToolTip="Thêm lịch trình"
                                   IsChecked="{Binding AddCourses}"
                                   Command="{Binding AddCoursesCommand}">
                         <materialDesign:PackIcon Kind="CalendarImport"
-                                                 Width="50" Height="50"
+                                                 Width="40" Height="40"
                                                  Foreground="White"/>
                     </ToggleButton>
-                    <Separator Background="White" Width="80" Margin="0 0 0 10"></Separator>
-                    <ToggleButton Height="80" Width="80" Margin="0 0 0 10"
+                    <Separator Background="White" Width="60" Margin="0 0 0 10"></Separator>
+                    <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                                   ToolTip="Thêm người dùng"
                                   IsChecked="{Binding AddUsers}"
                                   Command="{Binding AddUsersCommand}">
                         <materialDesign:PackIcon Kind="UserPlus"
-                                                 Width="50" Height="50"
+                                                 Width="40" Height="40"
                                                  Foreground="White"/>
                     </ToggleButton>
-                    <Separator Background="White" Width="80" Margin="0 0 0 10"></Separator>
-                    <ToggleButton Height="80" Width="80" Margin="0 0 0 10"
+                    <Separator Background="White" Width="60" Margin="0 0 0 10"></Separator>
+                    <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                                   ToolTip="Truy xuất người dùng"
                                   IsChecked="{Binding SearchUsers}"
                                   Command="{Binding SearchUsersCommand}">
                         <materialDesign:PackIcon Kind="UserSearch"
-                                                 Width="50" Height="50"
+                                                 Width="40" Height="40"
                                                  Foreground="White"/>
                     </ToggleButton>
-                    <Separator Background="White" Width="80" Margin="0 0 0 10"></Separator>
-                    <ToggleButton Height="80" Width="80" Margin="0 0 0 10"
+                    <Separator Background="White" Width="60" Margin="0 0 0 10"></Separator>
+                    <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                                   ToolTip="Đăng xuất"
                                   Command="{Binding CloseCommand}"
                                   CommandParameter="{Binding ElementName=adminWindow}">
                         <materialDesign:PackIcon Kind="ArrowRightBox"
-                                                 Width="50" Height="50"
+                                                 Width="40" Height="40"
                                                  Foreground="White"/>
                     </ToggleButton>
-                    <Separator Background="White" Width="80" Margin="0 0 0 10"></Separator>
+                    <Separator Background="White" Width="60" Margin="0 0 0 10"></Separator>
                 </StackPanel>
             </Border>
             <Grid Grid.Column="1">
@@ -111,7 +111,7 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Label Content="{Binding CurrentUrl}"
-                           FontSize="20" 
+                           FontSize="16" 
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
                            Margin="20 0 0 0"

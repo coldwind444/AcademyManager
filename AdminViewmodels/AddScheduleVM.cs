@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace AcademyManager.AdminViewmodels
 {
-    public class AddTermsVM : BaseViewModel
+    public class AddScheduleVM : BaseViewModel
     {
         #region Commands
         public ICommand UploadCommand { get; set; }
@@ -118,6 +118,8 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
+                if (colCount < 12) return null;
+
                 for (int row = 2; row <= rowCount; row++)
                 {
                     // read data as string
@@ -232,17 +234,18 @@ namespace AcademyManager.AdminViewmodels
                     Notice = Visibility.Visible;
                     await Task.Delay(2000);
                     Notice = Visibility.Hidden;
-                } 
+                }
+                Path = String.Empty;
             });
 
             DownloadCommand = new RelayCommand<object>(p => { return true; }, p => 
             {
-                string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FFormat.xlsx?alt=media&token=5ec4a3e1-e100-4bd3-b3b3-054e590540a5";
+                string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FScheduleFileFormat.xlsx?alt=media&token=9af4068f-0fc1-4e92-bff1-35bd82c690d9";
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             });
         }
         #endregion
-        public AddTermsVM()
+        public AddScheduleVM()
         {
             Notice = Visibility.Hidden;
             InitializeCommands();
