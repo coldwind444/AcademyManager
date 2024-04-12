@@ -46,7 +46,6 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="ButtonBorder" Property="Background" Value="#027324"/>
-                                <!-- Change background color when checked -->
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
