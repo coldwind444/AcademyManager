@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:AcademyManager.Viewmodels">
+                    xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
+                    xmlns:adm="clr-namespace:AcademyManager.AdminViewmodels">
     <vm:RootVM x:Key="RootVM"></vm:RootVM>
     <vm:LoginVM x:Key="LoginVM"></vm:LoginVM>
     <vm:MainVM x:Key="MainVM"></vm:MainVM>
@@ -12,4 +13,5 @@
     <vm:StudentResultSemesterSelectionVM x:Key="StdRsSemesterSelectionVM"></vm:StudentResultSemesterSelectionVM>
     <vm:StudentResultVM x:Key="StudentResultVM"></vm:StudentResultVM>
     <vm:UpdateStudentInfoVM x:Key="UpdateStudentVM"></vm:UpdateStudentInfoVM>
+    <adm:AdminWindowVM x:Key="AdminVM"></adm:AdminWindowVM>
 </ResourceDictionary>

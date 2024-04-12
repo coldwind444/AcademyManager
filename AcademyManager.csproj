@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AdminUCVm\" />
     <Folder Include="UserControlViewmodels\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
