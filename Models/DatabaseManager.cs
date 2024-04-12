@@ -2,7 +2,9 @@
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Google.Api.Gax;
 using System.Windows;
+using System.Windows.Input;
 
 namespace AcademyManager.Models
 {
@@ -66,6 +68,30 @@ namespace AcademyManager.Models
         {
             FirebaseResponse response = await client.GetAsync("Terms/" + id);
             Term result = response.ResultAs<Term>();
+            return result;
+        }
+        #endregion
+        #region CRUD Course
+        public async Task UpdateCourseAsync(string termID, Course course)
+        {
+            SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{course.CourseID}", course);
+        }
+        public async Task<Course> GetCourseAsync(string termID, string courseId)
+        {
+            FirebaseResponse response = await client.GetAsync($"Terms/{termID}/Courses/{courseId}");
+            Course result = response.ResultAs<Course>();
+            return result;
+        }
+        #endregion
+        #region CRUD Class
+        public async Task UpdateClassAsync(string termID, string courseID, Class cls)
+        {
+            SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{courseID}/Classes/{cls.ClassID}", cls);
+        }
+        public async Task<Class> GetClassAsync(string termID, string courseId, string classID)
+        {
+            FirebaseResponse response = await client.GetAsync($"Terms/{termID}/Courses/{courseId}/Classes/{classID}");
+            Class result = response.ResultAs<Class>();
             return result;
         }
         #endregion
