@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:AcademyManager.AdminViews"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" d:DataContext="{d:DesignInstance Type=adminviewmodels:AddTermsVM}"
@@ -54,7 +55,7 @@
     </UserControl.Resources>
     <Grid Background="WhiteSmoke">
         <Border Width="400" Height="400"
-                            Background="Azure"
+                            Background="White"
                             BorderThickness="1"
                             BorderBrush="Black"
                             CornerRadius="20">
@@ -71,6 +72,7 @@
                         BorderBrush="Black"
                         BorderThickness="1">
                     <TextBox Width="320" Height="30"
+                             Text="{Binding Path}"
                              x:Name="FilePathBox"
                              BorderThickness="0"
                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -90,6 +92,11 @@
                 <TextBlock Style="{StaticResource Link}"
                            HorizontalAlignment="Center"
                            FontSize="14">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     Nhấn vào đây để tải định dạng .xlsx
                 </TextBlock>
             </StackPanel>
