@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using OfficeOpenXml;
 using MaterialDesignThemes.Wpf;
+using System.Diagnostics;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -14,6 +15,7 @@ namespace AcademyManager.AdminViewmodels
         #region Commands
         public ICommand UploadCommand { get; set; }
         public ICommand BrowseCommand { get; set; }
+        public ICommand DownloadCommand { get; set; }
         #endregion
 
         #region Properties
@@ -21,7 +23,11 @@ namespace AcademyManager.AdminViewmodels
         private string _content;
         private PackIconKind _icon;
         private Visibility _notice;
-
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; OnPropertyChanged(); }
+        }
         public PackIconKind Icon
         {
             get { return _icon; }
@@ -118,19 +124,20 @@ namespace AcademyManager.AdminViewmodels
                     string? termID = worksheet.Cells[row, 1].Value.ToString();
                     string? courseID = worksheet.Cells[row, 2].Value.ToString();
                     string? courseName = worksheet.Cells[row, 3].Value.ToString();
-                    string? classID = worksheet.Cells[row, 4].Value.ToString();
-                    string? insID = worksheet.Cells[row, 5].Value.ToString();
-                    string? room = worksheet.Cells[row, 6].Value.ToString();
+                    string? crd = worksheet.Cells[row, 4].Value.ToString();
+                    string? classID = worksheet.Cells[row, 5].Value.ToString();
+                    string? insID = worksheet.Cells[row, 6].Value.ToString();
+                    string? room = worksheet.Cells[row, 7].Value.ToString();
 
                     // Check string input
                     if (NullOrEmpty(termID) || NullOrEmpty(courseID) || NullOrEmpty(courseName) || NullOrEmpty(classID)
-                        || NullOrEmpty(insID) || NullOrEmpty(room)) return null;
+                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd)) return null;
 
-                    string? day = worksheet.Cells[row, 7].Value.ToString();
-                    string? bgt = worksheet.Cells[row, 8].Value.ToString();
-                    string? et = worksheet.Cells[row, 9].Value.ToString();
-                    string? bgd = worksheet.Cells[row, 10].Value.ToString();
-                    string? ed = worksheet.Cells[row, 11].Value.ToString();
+                    string? day = worksheet.Cells[row, 8].Value.ToString();
+                    string? bgt = worksheet.Cells[row, 9].Value.ToString();
+                    string? et = worksheet.Cells[row, 10].Value.ToString();
+                    string? bgd = worksheet.Cells[row, 11].Value.ToString();
+                    string? ed = worksheet.Cells[row, 12].Value.ToString();
 
                     // try to convert some data to correct type
                     DayOfWeek dayOfWeek ;
@@ -138,6 +145,7 @@ namespace AcademyManager.AdminViewmodels
                     TimeOnly endTime;
                     DateOnly beginDate;
                     DateOnly endDate;
+                    int credits;
 
                     try
                     {
@@ -146,6 +154,7 @@ namespace AcademyManager.AdminViewmodels
                         endTime = StringToTimeOnly(et);
                         beginDate = StringToDateOnly(bgd);
                         endDate = StringToDateOnly(ed);
+                        credits = Convert.ToInt32(crd);
                     } catch 
                     {
                         return null;
@@ -168,11 +177,22 @@ namespace AcademyManager.AdminViewmodels
                                 Class cls = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                                 foreach (Class c in data[Tidx].Courses[courseID].Classes.Values)
                                 {
-                                    if (InvalidClass(cls,c)) return null;
+                                    if (InvalidClass(cls, c)) return null;
                                 }
                                 data[Tidx].Courses[courseID].Classes[classID] = cls;
                             }
+                            else return null;
+                        } else
+                        {
+                            data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
+                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                         }
+                    } else
+                    {
+                        Term term = new Term(termID);
+                        term.Courses[courseID] = new Course(courseID, courseName, credits);
+                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
+                        data.Add(term);
                     }
                 }
             }
@@ -187,12 +207,11 @@ namespace AcademyManager.AdminViewmodels
                 openFileDialog.Filter = "Excel Files|*.xls;*.xlsx";
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    p.Text = openFileDialog.FileName;
-                    _path = openFileDialog.FileName;
+                    Path = openFileDialog.FileName;
                 }
             });
 
-            UploadCommand = new RelayCommand<object>(p => { return true;/*return _path != null && _path.Length > 0; */}, async p =>
+            UploadCommand = new RelayCommand<object>(p => { return _path != null && _path.Length > 0; }, async p =>
             {
                 
                 List<Term>? terms = GetDataFromExcel();
@@ -200,17 +219,26 @@ namespace AcademyManager.AdminViewmodels
                 {
                     DatabaseManager db = new DatabaseManager();
                     foreach (Term term in terms) await db.UpdateTermAsync(term);
+                    Content = "Cập nhật thành công";
+                    Icon = PackIconKind.Check;
                     Notice = Visibility.Visible;
-
-                } else
+                    await Task.Delay(2000);
+                    Notice = Visibility.Hidden;
+                }
+                else
                 {
-
+                    Content = "Sai định dạng";
+                    Icon = PackIconKind.Cross;
+                    Notice = Visibility.Visible;
+                    await Task.Delay(2000);
+                    Notice = Visibility.Hidden;
                 } 
-                Content = "adasdasd";
-                Icon = PackIconKind.Check;
-                Notice = Visibility.Visible;
-                await Task.Delay(2000);
-                Notice = Visibility.Hidden;
+            });
+
+            DownloadCommand = new RelayCommand<object>(p => { return true; }, p => 
+            {
+                string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FFormat.xlsx?alt=media&token=5ec4a3e1-e100-4bd3-b3b3-054e590540a5";
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             });
         }
         #endregion
