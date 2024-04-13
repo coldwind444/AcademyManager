@@ -47,6 +47,7 @@ namespace AcademyManager.Models
             Account account = await GetAccountAsync(id);
             string uid = "";
             if (account != null) uid = account.UUID;
+            else return null;
             FirebaseResponse response = await client.GetAsync("Students/" + uid);
             StudentUser result = response.ResultAs<StudentUser>();
             return result;
@@ -62,6 +63,7 @@ namespace AcademyManager.Models
             Account account = await GetAccountAsync(id);
             string uid = "";
             if (account != null) uid = account.UUID;
+            else return null;
             FirebaseResponse response = await client.GetAsync("Instructors/" + uid);
             InstructorUser result = response.ResultAs<InstructorUser>();
             return result;

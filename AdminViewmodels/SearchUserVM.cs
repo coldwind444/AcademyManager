@@ -275,7 +275,7 @@ namespace AcademyManager.AdminViewmodels
                     DatabaseManager db = new DatabaseManager();
                     Loading = Visibility.Visible;
                     StudentUser user = await db.GetStudentAsync(ID);
-                    if (user.ID == null)
+                    if (user == null)
                     {
                         NotFound = Visibility.Visible;
                         DataV = Visibility.Hidden;
@@ -294,7 +294,7 @@ namespace AcademyManager.AdminViewmodels
                     DatabaseManager db = new DatabaseManager();
                     Loading = Visibility.Visible;
                     InstructorUser user = await db.GetInstructorAsync(ID);
-                    if (user.ID == null)
+                    if (user == null)
                     {
                         NotFound= Visibility.Visible;
                         DataV = Visibility.Hidden;
