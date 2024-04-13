@@ -131,10 +131,14 @@
                        Content="{Binding Content}"
                        HorizontalAlignment="Center"/>
                 <materialDesign:PackIcon Kind="{Binding Icon}"
+                                         Foreground="{Binding IconBrush}"
                                          HorizontalAlignment="Center"
-                                         Foreground="Green"
                                          Height="30" Width="30"/>
             </StackPanel>
         </Border>
+        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                     Width="50" Height="50" Foreground="Black"
+                     Margin="265,370,265,105" IsIndeterminate="True"
+                     Visibility="{Binding Loading}"></ProgressBar>
     </Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Windows.Input;
 using OfficeOpenXml;
 using MaterialDesignThemes.Wpf;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -21,17 +22,29 @@ namespace AcademyManager.AdminViewmodels
         #region Properties
         private string _path;
         private string _content;
-        private PackIconKind _icon;
+        private Visibility _loading;
         private Visibility _notice;
-        public string Path
+        private PackIconKind _icon;
+        private Brush _iconBrush;
+        public Visibility Loading
         {
-            get { return _path; }
-            set { _path = value; OnPropertyChanged(); }
+            get { return _loading; }
+            set { _loading = value; OnPropertyChanged(); }
         }
         public PackIconKind Icon
         {
             get { return _icon; }
             set { _icon = value; OnPropertyChanged(); }
+        }
+        public Brush IconBrush
+        {
+            get { return _iconBrush; }
+            set { _iconBrush = value; OnPropertyChanged(); }
+        }
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; OnPropertyChanged(); }
         }
         public string Content
         {
@@ -220,19 +233,23 @@ namespace AcademyManager.AdminViewmodels
                 if (terms != null)
                 {
                     DatabaseManager db = new DatabaseManager();
+                    Loading = Visibility.Visible;
                     foreach (Term term in terms) await db.UpdateTermAsync(term);
                     Content = "Cập nhật thành công";
-                    Icon = PackIconKind.Check;
                     Notice = Visibility.Visible;
-                    await Task.Delay(2000);
+                    Loading = Visibility.Hidden;
+                    Icon = PackIconKind.Check;
+                    IconBrush = Brushes.GreenYellow;
+                    await Task.Delay(3000);
                     Notice = Visibility.Hidden;
                 }
                 else
                 {
                     Content = "Sai định dạng";
-                    Icon = PackIconKind.Cross;
                     Notice = Visibility.Visible;
-                    await Task.Delay(2000);
+                    Icon = PackIconKind.Close;
+                    IconBrush = Brushes.OrangeRed;
+                    await Task.Delay(3000);
                     Notice = Visibility.Hidden;
                 }
                 Path = String.Empty;
@@ -248,6 +265,7 @@ namespace AcademyManager.AdminViewmodels
         public AddScheduleVM()
         {
             Notice = Visibility.Hidden;
+            Loading = Visibility.Hidden;
             InitializeCommands();
         }
     }

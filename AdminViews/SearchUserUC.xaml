@@ -140,7 +140,7 @@
                                         <Setter Property="FontSize" Value="14"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <TextBlock Text="{Binding ID}"/>
+                                <TextBlock Text="{Binding UserID}"/>
                                 <TextBlock Text="{Binding Fullname}"/>
                                 <TextBlock Text="{Binding Email}"/>
                                 <TextBlock Text="{Binding Birthday}"/>
@@ -164,6 +164,10 @@
                        Foreground="OrangeRed">
                     Không tìm thấy kết quả.
                 </Label>
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="50" Height="50" Foreground="Black"
+                             Margin="244,186,243,186" IsIndeterminate="True"
+                             Visibility="{Binding Loading}"></ProgressBar>
             </Grid>
         </Border>
     </Grid>

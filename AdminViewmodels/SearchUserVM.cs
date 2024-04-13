@@ -69,8 +69,14 @@ namespace AcademyManager.AdminViewmodels
         private string _add1;
         private string _add2;
         private string _tabheader;
+        private Visibility _loading;
         private Visibility _dataV;
         private Visibility _notfound;
+        public Visibility Loading
+        {
+            get { return _loading; }
+            set { _loading = value; OnPropertyChanged(); }
+        }
         public Visibility NotFound
         {
             get { return _notfound; }
@@ -167,7 +173,7 @@ namespace AcademyManager.AdminViewmodels
             }
             return list;
         }
-        private async Task LoadStudentDataGrid(DataGrid grid, StudentUser user)
+        private async void LoadStudentDataGrid(DataGrid grid, StudentUser user)
         {
             DataGridTextColumn courseIdCol = new DataGridTextColumn(),
                                courseNameCol = new DataGridTextColumn(),
@@ -198,7 +204,7 @@ namespace AcademyManager.AdminViewmodels
             grid.Columns.Add(finalCol);
             grid.Columns.Add(gpaCol);
         }
-        private async Task LoadInsDataGrid(DataGrid grid, InstructorUser user)
+        private async void LoadInsDataGrid(DataGrid grid, InstructorUser user)
         {
             DataGridTextColumn courseIdCol = new DataGridTextColumn(),
                                courseNameCol = new DataGridTextColumn(),
@@ -250,7 +256,7 @@ namespace AcademyManager.AdminViewmodels
         private void LoadInsPersonalInfo(InstructorUser user)
         {
             Avatar = user.AvatarBase64;
-            UserID = $"Mã số sinh viên: {user.ID}";
+            UserID = $"Mã số giảng viên: {user.ID}";
             Fullname = $"Họ và tên: {user.Fullname}";
             Email = $"Email: {user.Email}";
             string birthday = user.Birthday.ToString("dd/MM/yyyy");
@@ -264,33 +270,43 @@ namespace AcademyManager.AdminViewmodels
             SearchCommand = new RelayCommand<DataGrid>(p => { return true; }, async p =>
             {
                 if (SelectedIdx == -1 || ID == null || ID == String.Empty) return;
-
-                DataV = Visibility.Visible;
                 if (SelectedIdx == 0)
                 {
                     DatabaseManager db = new DatabaseManager();
+                    Loading = Visibility.Visible;
                     StudentUser user = await db.GetStudentAsync(ID);
-                    if (user == null)
+                    if (user.ID == null)
                     {
                         NotFound = Visibility.Visible;
+                        DataV = Visibility.Hidden;
+                        Loading = Visibility.Hidden;
                         return;
                     }
+                    DataV = Visibility.Visible;
+                    NotFound = Visibility.Hidden;
                     LoadStudentPersonalInfo(user);
-                    await LoadStudentDataGrid(p, user);
+                    LoadStudentDataGrid(p, user);
                     TabHeader = "Kết quả học tập";
+                    Loading = Visibility.Hidden;
                     
                 } else if (SelectedIdx == 1) 
                 {
                     DatabaseManager db = new DatabaseManager();
+                    Loading = Visibility.Visible;
                     InstructorUser user = await db.GetInstructorAsync(ID);
-                    if (user == null)
+                    if (user.ID == null)
                     {
                         NotFound= Visibility.Visible;
+                        DataV = Visibility.Hidden;
+                        Loading = Visibility.Hidden;
                         return;
                     }
+                    DataV = Visibility.Visible;
+                    NotFound = Visibility.Hidden;
                     LoadInsPersonalInfo(user);
-                    await LoadInsDataGrid(p, user);
+                    LoadInsDataGrid(p, user);
                     TabHeader = "Các lớp giảng dạy";
+                    Loading= Visibility.Hidden;
                 }
             });
         }
@@ -299,6 +315,7 @@ namespace AcademyManager.AdminViewmodels
         {
             InitializeCommands();
             DataV = Visibility.Hidden;
+            Loading = Visibility.Hidden;
             NotFound = Visibility.Hidden;
         }
     }

@@ -38,6 +38,7 @@ namespace AcademyManager.Models
         {
             AverageGPA = gpa;
             Credits = credits;
+            Major = major;
         }
     }
 }

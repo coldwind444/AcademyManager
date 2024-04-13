@@ -6,6 +6,7 @@ using OfficeOpenXml;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -22,8 +23,20 @@ namespace AcademyManager.AdminViewmodels
         #region Properties
         private string _path;
         private string _content;
+        private Brush _iconbrush;
         private PackIconKind _icon;
         private Visibility _notice;
+        private Visibility _loading;
+        public Visibility Loading
+        {
+            get { return _loading; }
+            set { _loading = value; OnPropertyChanged(); }
+        }
+        public Brush IconBrush
+        {
+            get { return _iconbrush; }
+            set { _iconbrush = value; OnPropertyChanged(); }
+        }
         public string Path
         {
             get { return _path; }
@@ -176,6 +189,7 @@ namespace AcademyManager.AdminViewmodels
                     if (students != null)
                     {
                         DatabaseManager db = new DatabaseManager();
+                        Loading = Visibility.Visible;
                         foreach (StudentUser std in students)
                         {
                             Account acc = new Account(std.ID, std.Email, null, 0);
@@ -185,16 +199,19 @@ namespace AcademyManager.AdminViewmodels
                         }
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
+                        IconBrush = Brushes.GreenYellow;
+                        Loading = Visibility.Hidden;
                         Notice = Visibility.Visible;
-                        await Task.Delay(2000);
+                        await Task.Delay(3000);
                         Notice = Visibility.Hidden;
                     }
                     else
                     {
                         Content = "Sai định dạng";
-                        Icon = PackIconKind.Cross;
+                        Icon = PackIconKind.Close;
+                        IconBrush = Brushes.OrangeRed;
                         Notice = Visibility.Visible;
-                        await Task.Delay(2000);
+                        await Task.Delay(3000);
                         Notice = Visibility.Hidden;
                     }
                 } else if (p.SelectedIndex == 1)
@@ -246,6 +263,7 @@ namespace AcademyManager.AdminViewmodels
         {
             InitializeCommands();
             Notice = Visibility.Hidden;
+            Loading = Visibility.Hidden;
         }
     }
 }

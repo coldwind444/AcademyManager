@@ -45,7 +45,8 @@ namespace AcademyManager.Models
         public async Task<StudentUser> GetStudentAsync(string id)
         {
             Account account = await GetAccountAsync(id);
-            string uid = account.UUID;
+            string uid = "";
+            if (account != null) uid = account.UUID;
             FirebaseResponse response = await client.GetAsync("Students/" + uid);
             StudentUser result = response.ResultAs<StudentUser>();
             return result;
@@ -59,7 +60,8 @@ namespace AcademyManager.Models
         public async Task<InstructorUser> GetInstructorAsync(string id)
         {
             Account account = await GetAccountAsync(id);
-            string uid = account.UUID;
+            string uid = "";
+            if (account != null) uid = account.UUID;
             FirebaseResponse response = await client.GetAsync("Instructors/" + uid);
             InstructorUser result = response.ResultAs<InstructorUser>();
             return result;
