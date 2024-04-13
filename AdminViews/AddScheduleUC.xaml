@@ -98,10 +98,10 @@
                 </TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="Wheat"
+        <Border Background="Black" Opacity="0.8"
                 Visibility="{Binding Notice}"
                 Height="100" Width="200"
-                CornerRadius="20"
+                CornerRadius="10"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right">
             <Border.Style>
@@ -127,7 +127,7 @@
                 </Style>
             </Border.Style>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Label FontSize="18"
+                <Label FontSize="18" Foreground="White"
                        Content="{Binding Content}"
                        HorizontalAlignment="Center"/>
                 <materialDesign:PackIcon Kind="{Binding Icon}"

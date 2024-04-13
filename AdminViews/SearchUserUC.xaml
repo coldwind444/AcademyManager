@@ -14,7 +14,8 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="525" d:DesignWidth="580">
+             d:DesignHeight="525" d:DesignWidth="580"
+             xmlns:convert="clr-namespace:AcademyManager.Models">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="SearchButton">
             <Setter Property="Cursor" Value="Hand"/>
@@ -55,6 +56,7 @@
                     Margin="15 0 10 0"
                     BorderBrush="Black">
                 <ComboBox x:Name="TypeSelectionBox"
+                          SelectedIndex="{Binding SelectedIdx, Mode=TwoWay}"
                           Height="30" Width="190"
                           BorderThickness="0"
                           FontSize="16" Cursor="Hand"
@@ -76,6 +78,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="SearchBox"
+                             Text="{Binding ID, Mode=TwoWay}"
                               Height="30" Width="220"
                               BorderThickness="0"
                               FontSize="16"
@@ -85,14 +88,16 @@
                               materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                               materialDesign:HintAssist.Hint="Nhập ID">
                     </TextBox>
-                    <Button Grid.Column="1"
+                    <Button Grid.Column="1" IsDefault="True"
                             Style="{StaticResource SearchButton}"
+                            Command="{Binding SearchCommand}"
+                            CommandParameter="{Binding ElementName=UserDataGrid}"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             Width="50" Height="30"
                             Background="Transparent"
                             BorderBrush="Transparent">
-                        <materialDesign:PackIcon Kind="Send"
+                        <materialDesign:PackIcon Kind="Send" 
                                                  Width="20" Height="20"
                                                  VerticalAlignment="Center"
                                                  HorizontalAlignment="Center"
@@ -101,34 +106,65 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <Border Grid.Row="1" Margin="20"
-                CornerRadius="20"
+        <Border Grid.Row="1" Margin="20 10 20 20"
+                CornerRadius="5"
                 BorderThickness="1.5"
                 BorderBrush="Black"
                 Background="White">
             <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border BorderThickness="1.5" Margin="30 80"
-                    CornerRadius="10"
-                    BorderBrush="Black">
-            </Border>
-            <StackPanel Grid.Column="1" Orientation="Vertical"
-                VerticalAlignment="Center">
-                <StackPanel.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Margin" Value="0 0 0 10"/>
-                    </Style>
-                </StackPanel.Resources>
-                <TextBlock FontSize="16">MSSV: 2213057</TextBlock>
-                <TextBlock FontSize="16">Họ và tên: Nguyễn Minh Tân</TextBlock>
-                <TextBlock FontSize="16">Ngành: Khoa học Máy Tính</TextBlock>
-                <TextBlock FontSize="16">Khoa: Khoa học và Kĩ thuật Máy tính</TextBlock>
-                <TextBlock FontSize="16">Ngày sinh: 14/04/2004</TextBlock>
-            </StackPanel>
-        </Grid>
+                <TabControl Visibility="{Binding DataV}">
+                    <TabItem Header="Thông tin cá nhân" 
+                             Background="Blue"
+                             Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Height="250" Width="200"
+                                    CornerRadius="10"
+                                    BorderBrush="Black"
+                                    BorderThickness="1">
+                                <Border.Resources>
+                                    <convert:ImageConverter x:Key="ImageConverter"></convert:ImageConverter>
+                                </Border.Resources>
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}"/>
+                                </Border.Background>
+                            </Border>
+                            <StackPanel Orientation="Vertical" Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="0 0 0 10"/>
+                                        <Setter Property="FontSize" Value="14"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding ID}"/>
+                                <TextBlock Text="{Binding Fullname}"/>
+                                <TextBlock Text="{Binding Email}"/>
+                                <TextBlock Text="{Binding Birthday}"/>
+                                <TextBlock Text="{Binding Faculty}"/>
+                                <TextBlock Text="{Binding Addition1}"/>
+                                <TextBlock Text="{Binding Addition2}"/>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{Binding TabHeader}"
+                             Background="Blue"
+                             Cursor="Hand">
+                        <DataGrid x:Name="UserDataGrid" >
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+                <Label VerticalAlignment="Center"
+                       Visibility="{Binding NotFound}"
+                       HorizontalAlignment="Center"
+                       FontSize="16" FontStyle="Italic"
+                       Foreground="OrangeRed">
+                    Không tìm thấy kết quả.
+                </Label>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>
