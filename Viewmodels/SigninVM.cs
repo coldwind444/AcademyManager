@@ -132,7 +132,7 @@ namespace AcademyManager.Viewmodels
                 // Switch view
                 if (ConfirmEmail() == 1) // success
                 {
-                    await database.AddAccount(vm.CurrentAccount);
+                    await database.UpdateAccountAsync(vm.CurrentAccount);
                     if (vm.SigninSuccessView != null) vm.CurrentView = vm.SigninSuccessView;
                     else
                     {

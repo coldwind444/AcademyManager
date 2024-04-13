@@ -24,7 +24,7 @@ namespace AcademyManager.Viewmodels
                 MainVM vm = p.DataContext as MainVM;
                 vm.CurrentAccount.Type = 1;
                 DatabaseManager database = new DatabaseManager();
-                await database.UpdateAccount(vm.CurrentAccount);
+                await database.UpdateAccountAsync(vm.CurrentAccount);
             });
 
             StudentCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
@@ -32,7 +32,7 @@ namespace AcademyManager.Viewmodels
                 MainVM vm = p.DataContext as MainVM;
                 vm.CurrentAccount.Type = 2;
                 DatabaseManager database = new DatabaseManager();
-                await database.UpdateAccount(vm.CurrentAccount);
+                await database.UpdateAccountAsync(vm.CurrentAccount);
             });
         }
         #endregion
