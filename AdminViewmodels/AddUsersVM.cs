@@ -247,8 +247,8 @@ namespace AcademyManager.AdminViewmodels
 
             DownloadCommand = new RelayCommand<ComboBox>(p => { return p.SelectedIndex != -1; }, p =>
             {
-                string url1 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FStudentFileFormat.xlsx?alt=media&token=2e64848f-c4b2-4866-9fa0-7697f3580618",
-                       url2 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FInstructorFileFormat.xlsx?alt=media&token=3c5674fc-be6d-4414-b791-af8f4d894a54";
+                string url1 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FStudentFileFormat.xlsx?alt=media&token=31b0bddc-9fa7-424a-a714-1fbad7a7d9e1",
+                       url2 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FInstructorFileFormat.xlsx?alt=media&token=b748facf-bdb0-4889-ada6-edb279fa2b8e";
                 if (p.SelectedIndex == 0)
                 {
                     Process.Start(new ProcessStartInfo(url1) { UseShellExecute = true });
