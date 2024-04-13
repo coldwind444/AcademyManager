@@ -19,8 +19,8 @@ namespace AcademyManager.Models
             else term.Courses[courseID].Classes[classID].Students[studentID].Final = score;
             await database.UpdateTermAsync(term);
         }
-        public InstructorUser(string id, string fullname, string email, DateOnly birthday, string faculty, string cert, string spec) 
-            : base(id, fullname, email, birthday, faculty)
+        public InstructorUser(string id, string fullname, string email, DateOnly birthday, string faculty, string avt, string cert, string spec) 
+            : base(id, fullname, email, birthday, faculty, avt)
         {
             Certificate = cert;
             Speciality = spec;

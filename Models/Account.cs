@@ -5,22 +5,27 @@ namespace AcademyManager.Models
 {
     public class Account
     {
+        public string UserID { get; set; }
+        public string UUID { get; set; }
         public string Email { get; set; }
-        public string ID { get; set; }
         public int Type { get; set; }
         private string Password { get; set; }
-        public Account(string email, string password, int type = 0)
+        public Account(string stdid, string email, string password = null, int type = 0)
         {
+            UserID = stdid;
             Email = email;
             Guid uid = Guid.NewGuid();
-            ID = uid.ToString();
-            Password = HashPasswords(password);
+            UUID = uid.ToString();
+            if (password != null) Password = HashPasswords(password);
             Type = type;
         }
-
-        public bool Match(string pass, string email)
+        public bool IsVerified(string id, string email)
         {
-            return email == Email && pass == Password;
+            return id == UserID && Email == email; 
+        }
+        public bool Match(string pass, string id)
+        {
+            return UserID == id && pass == Password;
         }
         public string HashPasswords(string password)
         {

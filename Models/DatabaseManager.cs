@@ -26,46 +26,42 @@ namespace AcademyManager.Models
             }
         }
         #region CRUD Account
-        public async Task AddAccount(Account acc)
+        public async Task UpdateAccountAsync(Account acc)
         {
-            SetResponse response = await client.SetAsync("Accounts/" + acc.Email, acc);
+            SetResponse response = await client.SetAsync("Accounts/" + acc.UserID, acc);
         }
-        public async Task UpdateAccount(Account acc)
+        public async Task<Account> GetAccountAsync(string id)
         {
-            SetResponse response = await client.SetAsync("Accounts/" + acc.Email, acc);
-        }
-        public async Task<Account> GetAccountAsync(string email)
-        {
-            FirebaseResponse response = await client.GetAsync("Accounts/" + email);
+            FirebaseResponse response = await client.GetAsync("Accounts/" + id);
             Account result = response.ResultAs<Account>();
             return result;
         }
         #endregion
         #region CRUD Student
-        public async Task UpdateStudentAsync(StudentUser user)
+        public async Task UpdateStudentAsync(string uuid, StudentUser user)
         {
-            SetResponse response = await client.SetAsync("Students/" + user.ID, user);
+            SetResponse response = await client.SetAsync("Students/" + uuid, user);
         }
-        public async Task<User> GetStudentAsync(string email)
+        public async Task<StudentUser> GetStudentAsync(string id)
         {
-            Account account = await GetAccountAsync(email);
-            string uid = account.ID;
+            Account account = await GetAccountAsync(id);
+            string uid = account.UUID;
             FirebaseResponse response = await client.GetAsync("Students/" + uid);
-            User result = response.ResultAs<User>();
+            StudentUser result = response.ResultAs<StudentUser>();
             return result;
         }
         #endregion
         #region CRUD Instructors
-        public async Task UpdateInstructorAsync(InstructorUser user)
+        public async Task UpdateInstructorAsync(string uuid, InstructorUser user)
         {
-            SetResponse response = await client.SetAsync("Instructors/" + user.ID, user);
+            SetResponse response = await client.SetAsync("Instructors/" + uuid, user);
         }
-        public async Task<User> GetInstructorAsync(string email)
+        public async Task<InstructorUser> GetInstructorAsync(string id)
         {
-            Account account = await GetAccountAsync(email);
-            string uid = account.ID;
+            Account account = await GetAccountAsync(id);
+            string uid = account.UUID;
             FirebaseResponse response = await client.GetAsync("Instructors/" + uid);
-            User result = response.ResultAs<User>();
+            InstructorUser result = response.ResultAs<InstructorUser>();
             return result;
         }
         #endregion
