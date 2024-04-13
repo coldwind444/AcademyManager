@@ -4,6 +4,7 @@ using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -70,7 +71,7 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 6) return null;
+                if (colCount < 7) return null;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
@@ -81,23 +82,29 @@ namespace AcademyManager.AdminViewmodels
                     string? email = worksheet.Cells[row, 4].Value.ToString();
                     string? faculty = worksheet.Cells[row, 5].Value.ToString();
                     string? major = worksheet.Cells[row, 6].Value.ToString();
+                    string? imgpath = worksheet.Cells[row, 7].Value.ToString();
 
                     // Check string input
                     if (NullOrEmpty(studentID) || NullOrEmpty(fullname) || NullOrEmpty(email) || NullOrEmpty(faculty)
-                        || NullOrEmpty(major)) return null;
+                        || NullOrEmpty(major) || NullOrEmpty(imgpath)) return null;
+
+                    // Image to Base64
 
                     // try to convert some data to correct type
                     DateOnly birthday;
+                    string avtbase64;
                     try
                     {
                         birthday = StringToDateOnly(bd);
+                        byte[] img = File.ReadAllBytes(imgpath);
+                        avtbase64 = Convert.ToBase64String(img);
                     }
                     catch
                     {
                         return null;
                     }
                     if (data.Any(student => student.ID == studentID)) return null;
-                    else data.Add(new StudentUser(studentID, fullname, email, birthday, faculty, major));
+                    else data.Add(new StudentUser(studentID, fullname, email, birthday, faculty, avtbase64, major));
                 }
             }
             return data;
@@ -123,6 +130,7 @@ namespace AcademyManager.AdminViewmodels
                     string? faculty = worksheet.Cells[row, 5].Value.ToString();
                     string? certificate = worksheet.Cells[row, 6].Value.ToString();
                     string? speciality = worksheet.Cells[row, 7].Value.ToString();
+                    string? imgpath = worksheet.Cells[row, 7].Value.ToString();
 
                     // Check string input
                     if (NullOrEmpty(insID) || NullOrEmpty(fullname) || NullOrEmpty(email) || NullOrEmpty(certificate)
@@ -130,16 +138,19 @@ namespace AcademyManager.AdminViewmodels
 
                     // try to convert some data to correct type
                     DateOnly birthday;
+                    string avtbase64;
                     try
                     {
                         birthday = StringToDateOnly(bd);
+                        byte[] img = File.ReadAllBytes(imgpath);
+                        avtbase64 = Convert.ToBase64String(img);
                     }
                     catch
                     {
                         return null;
                     }
                     if (data.Any(ins => ins.ID == insID)) return null;
-                    else data.Add(new InstructorUser(insID, fullname, email, birthday, faculty, certificate, speciality));
+                    else data.Add(new InstructorUser(insID, fullname, email, birthday, faculty, avtbase64, certificate, speciality));
                 }
             }
             return data;
@@ -165,7 +176,13 @@ namespace AcademyManager.AdminViewmodels
                     if (students != null)
                     {
                         DatabaseManager db = new DatabaseManager();
-                        foreach (StudentUser std in students) await db.UpdateStudentAsync(std);
+                        foreach (StudentUser std in students)
+                        {
+                            Account acc = new Account(std.ID, std.Email, null, 0);
+                            await db.UpdateAccountAsync(acc);
+                            string uuid = acc.UUID;
+                            await db.UpdateStudentAsync(uuid, std);
+                        }
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
                         Notice = Visibility.Visible;
@@ -186,7 +203,13 @@ namespace AcademyManager.AdminViewmodels
                     if (instructors != null)
                     {
                         DatabaseManager db = new DatabaseManager();
-                        foreach (InstructorUser ins in instructors) await db.UpdateInstructorAsync(ins);
+                        foreach (InstructorUser ins in instructors)
+                        {
+                            Account acc = new Account(ins.ID, ins.Email, null, 0);
+                            await db.UpdateAccountAsync(acc);
+                            string uuid = acc.UUID;
+                            await db.UpdateInstructorAsync(uuid, ins);
+                        }
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
                         Notice = Visibility.Visible;
@@ -207,8 +230,8 @@ namespace AcademyManager.AdminViewmodels
 
             DownloadCommand = new RelayCommand<ComboBox>(p => { return p.SelectedIndex != -1; }, p =>
             {
-                string url1 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FStudentFileFormat.xlsx?alt=media&token=9cb1259b-e673-4f4b-aa71-cbc73ed7c727",
-                       url2 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FInstructorFileFormat.xlsx?alt=media&token=6fc105e6-c8f1-40dd-9c08-35073a567590";
+                string url1 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FStudentFileFormat.xlsx?alt=media&token=2e64848f-c4b2-4866-9fa0-7697f3580618",
+                       url2 = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FInstructorFileFormat.xlsx?alt=media&token=3c5674fc-be6d-4414-b791-af8f4d894a54";
                 if (p.SelectedIndex == 0)
                 {
                     Process.Start(new ProcessStartInfo(url1) { UseShellExecute = true });
