@@ -1,10 +1,7 @@
-﻿using FireSharp;
-using FireSharp.Config;
+﻿using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
-using Google.Api.Gax;
 using System.Windows;
-using System.Windows.Input;
 
 namespace AcademyManager.Models
 {

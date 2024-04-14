@@ -188,15 +188,23 @@ namespace AcademyManager.AdminViewmodels
                     List<StudentUser>? students = GetStudentsDataFromExcel();
                     if (students != null)
                     {
+                        var accbatch = new List<Task>();
+                        var userbatch = new List<Task>();
                         DatabaseManager db = new DatabaseManager();
                         Loading = Visibility.Visible;
                         foreach (StudentUser std in students)
                         {
                             Account acc = new Account(std.ID, std.Email, null, 0);
-                            await db.UpdateAccountAsync(acc);
                             string uuid = acc.UUID;
-                            await db.UpdateStudentAsync(uuid, std);
+                            Task acctask = db.UpdateAccountAsync(acc);
+                            Task usertask = db.UpdateStudentAsync(uuid, std);
+                            accbatch.Add(acctask);
+                            userbatch.Add(usertask);
                         }
+                        await Task.WhenAll(accbatch);
+                        await Task.WhenAll(userbatch);
+                        accbatch.Clear();
+                        userbatch.Clear();
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
                         IconBrush = Brushes.GreenYellow;
@@ -219,16 +227,27 @@ namespace AcademyManager.AdminViewmodels
                     List<InstructorUser>? instructors = GetInstructorsDataFromExcel();
                     if (instructors != null)
                     {
+                        var accbatch = new List<Task>();
+                        var userbatch = new List<Task>();
                         DatabaseManager db = new DatabaseManager();
+                        Loading = Visibility.Visible;
                         foreach (InstructorUser ins in instructors)
                         {
                             Account acc = new Account(ins.ID, ins.Email, null, 0);
-                            await db.UpdateAccountAsync(acc);
                             string uuid = acc.UUID;
-                            await db.UpdateInstructorAsync(uuid, ins);
+                            Task acctask = db.UpdateAccountAsync(acc);
+                            Task usertask = db.UpdateInstructorAsync(uuid, ins);
+                            accbatch.Add(acctask);
+                            userbatch.Add(usertask);
                         }
+                        await Task.WhenAll(accbatch);
+                        await Task.WhenAll(userbatch);
+                        accbatch.Clear();
+                        userbatch.Clear();
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
+                        IconBrush = Brushes.GreenYellow;
+                        Loading = Visibility.Hidden;
                         Notice = Visibility.Visible;
                         await Task.Delay(2000);
                         Notice = Visibility.Hidden;
@@ -236,7 +255,7 @@ namespace AcademyManager.AdminViewmodels
                     else
                     {
                         Content = "Sai định dạng";
-                        Icon = PackIconKind.Cross;
+                        Icon = PackIconKind.Close;
                         Notice = Visibility.Visible;
                         await Task.Delay(2000);
                         Notice = Visibility.Hidden;
