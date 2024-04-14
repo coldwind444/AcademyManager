@@ -122,16 +122,21 @@ namespace AcademyManager.AdminViewmodels
             }
             return false;
         }
-        private List<Term>? GetDataFromExcel()
+        private List<Term>? GetDataFromExcel(out List<KeyValuePair<string, ClassIdentifier>>? list)
         {
             List<Term> data = new List<Term>();
+            List<KeyValuePair<string, ClassIdentifier>> insSchedule = new List<KeyValuePair<string, ClassIdentifier>>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
             using (ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(_path)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 12) return null;
+                if (colCount < 12)
+                {
+                    list = null;
+                    return null;
+                }
 
                 for (int row = 2; row <= rowCount; row++)
                 {
@@ -146,7 +151,11 @@ namespace AcademyManager.AdminViewmodels
 
                     // Check string input
                     if (NullOrEmpty(termID) || NullOrEmpty(courseID) || NullOrEmpty(courseName) || NullOrEmpty(classID)
-                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd)) return null;
+                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd))
+                    {
+                        list = null;
+                        return null;
+                    }
 
                     string? day = worksheet.Cells[row, 8].Value.ToString();
                     string? bgt = worksheet.Cells[row, 9].Value.ToString();
@@ -172,11 +181,16 @@ namespace AcademyManager.AdminViewmodels
                         credits = Convert.ToInt32(crd);
                     } catch 
                     {
+                        list = null;
                         return null;
                     }
 
                     // Check date time
-                    if (beginTime >= endTime || beginDate >= endDate) return null;
+                    if (beginTime >= endTime || beginDate >= endDate)
+                    {
+                        list = null;
+                        return null;
+                    }
 
                     int Tidx = data.FindIndex(t => t.TermID == termID);
                     if (Tidx != -1) // Check if term is contained in list
@@ -192,11 +206,19 @@ namespace AcademyManager.AdminViewmodels
                                 Class cls = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                                 foreach (Class c in data[Tidx].Courses[courseID].Classes.Values)
                                 {
-                                    if (InvalidClass(cls, c)) return null;
+                                    if (InvalidClass(cls, c))
+                                    {
+                                        list = null;
+                                        return null;
+                                    }
                                 }
                                 data[Tidx].Courses[courseID].Classes[classID] = cls;
                             }
-                            else return null;
+                            else
+                            {
+                                list = null;
+                                return null;
+                            }
                         } else
                         {
                             data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
@@ -209,9 +231,31 @@ namespace AcademyManager.AdminViewmodels
                         term.Courses[courseID].Classes[classID] = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                         data.Add(term);
                     }
+                    insSchedule.Add(new KeyValuePair<string, ClassIdentifier>(insID, new ClassIdentifier(termID, courseID, classID)));
                 }
             }
+            list = insSchedule;
             return data;
+        }
+        private async Task<bool> UploadInstructorSchedule(List<KeyValuePair<string, ClassIdentifier>> list)
+        {
+            if (list == null) return false;
+            DatabaseManager db = new DatabaseManager();
+            var batch = new List<Task>();
+            foreach (var c in list)
+            {
+                Account acc = await db.GetAccountAsync(c.Key);
+                if (acc != null)
+                {
+                    InstructorUser user = await db.GetInstructorAsync(c.Key);
+                    user.StudyElements.Add(c.Value);
+                    Task task = db.UpdateInstructorAsync(acc.UUID, user);
+                    batch.Add(task);
+                }
+                else return false;
+            }
+            await Task.WhenAll(batch);
+            return true;
         }
         private void InitializeCommands()
         {
@@ -228,13 +272,13 @@ namespace AcademyManager.AdminViewmodels
 
             UploadCommand = new RelayCommand<object>(p => { return _path != null && _path.Length > 0; }, async p =>
             {
-                
-                List<Term>? terms = GetDataFromExcel();
-                if (terms != null)
+                Loading = Visibility.Visible;
+                List<Term>? terms = GetDataFromExcel(out List<KeyValuePair<string, ClassIdentifier>>? list);
+                bool canUpload = await UploadInstructorSchedule(list);
+                if (terms != null && canUpload)
                 {
                     DatabaseManager db = new DatabaseManager();
                     var batch = new List<Task>();
-                    Loading = Visibility.Visible;
                     foreach (Term term in terms)
                     {
                         Task task = db.UpdateTermAsync(term);
@@ -244,7 +288,6 @@ namespace AcademyManager.AdminViewmodels
                     batch.Clear();
                     Content = "Cập nhật thành công";
                     Notice = Visibility.Visible;
-                    Loading = Visibility.Hidden;
                     Icon = PackIconKind.Check;
                     IconBrush = Brushes.GreenYellow;
                     await Task.Delay(3000);
@@ -252,13 +295,14 @@ namespace AcademyManager.AdminViewmodels
                 }
                 else
                 {
-                    Content = "Sai định dạng";
+                    Content = "Dữ liệu không hợp lệ";
                     Notice = Visibility.Visible;
                     Icon = PackIconKind.Close;
                     IconBrush = Brushes.OrangeRed;
                     await Task.Delay(3000);
                     Notice = Visibility.Hidden;
                 }
+                Loading = Visibility.Hidden;
                 Path = String.Empty;
             });
 

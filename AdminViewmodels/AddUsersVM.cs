@@ -131,7 +131,7 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 7) return null;
+                if (colCount < 8) return null;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
@@ -143,7 +143,7 @@ namespace AcademyManager.AdminViewmodels
                     string? faculty = worksheet.Cells[row, 5].Value.ToString();
                     string? certificate = worksheet.Cells[row, 6].Value.ToString();
                     string? speciality = worksheet.Cells[row, 7].Value.ToString();
-                    string? imgpath = worksheet.Cells[row, 7].Value.ToString();
+                    string? imgpath = worksheet.Cells[row, 8].Value.ToString();
 
                     // Check string input
                     if (NullOrEmpty(insID) || NullOrEmpty(fullname) || NullOrEmpty(email) || NullOrEmpty(certificate)
@@ -183,6 +183,7 @@ namespace AcademyManager.AdminViewmodels
 
             UploadCommand = new RelayCommand<ComboBox>(p => { return _path != null && _path.Length > 0 && p.SelectedIndex != -1; }, async p =>
             {
+                Loading = Visibility.Visible;
                 if (p.SelectedIndex == 0)
                 {
                     List<StudentUser>? students = GetStudentsDataFromExcel();
@@ -191,7 +192,6 @@ namespace AcademyManager.AdminViewmodels
                         var accbatch = new List<Task>();
                         var userbatch = new List<Task>();
                         DatabaseManager db = new DatabaseManager();
-                        Loading = Visibility.Visible;
                         foreach (StudentUser std in students)
                         {
                             Account acc = new Account(std.ID, std.Email, null, 0);
@@ -208,14 +208,13 @@ namespace AcademyManager.AdminViewmodels
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
                         IconBrush = Brushes.GreenYellow;
-                        Loading = Visibility.Hidden;
                         Notice = Visibility.Visible;
                         await Task.Delay(3000);
                         Notice = Visibility.Hidden;
                     }
                     else
                     {
-                        Content = "Sai định dạng";
+                        Content = "Dữ liệu không hợp lệ";
                         Icon = PackIconKind.Close;
                         IconBrush = Brushes.OrangeRed;
                         Notice = Visibility.Visible;
@@ -230,7 +229,6 @@ namespace AcademyManager.AdminViewmodels
                         var accbatch = new List<Task>();
                         var userbatch = new List<Task>();
                         DatabaseManager db = new DatabaseManager();
-                        Loading = Visibility.Visible;
                         foreach (InstructorUser ins in instructors)
                         {
                             Account acc = new Account(ins.ID, ins.Email, null, 0);
@@ -247,20 +245,21 @@ namespace AcademyManager.AdminViewmodels
                         Content = "Cập nhật thành công";
                         Icon = PackIconKind.Check;
                         IconBrush = Brushes.GreenYellow;
-                        Loading = Visibility.Hidden;
                         Notice = Visibility.Visible;
                         await Task.Delay(2000);
                         Notice = Visibility.Hidden;
                     }
                     else
                     {
-                        Content = "Sai định dạng";
+                        Content = "Dữ liệu không hợp lệ";
                         Icon = PackIconKind.Close;
+                        IconBrush = Brushes.OrangeRed;
                         Notice = Visibility.Visible;
                         await Task.Delay(2000);
                         Notice = Visibility.Hidden;
                     }
                 }
+                Loading = Visibility.Hidden;
                 Path = String.Empty;
             });
 

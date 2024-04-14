@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,10 @@ namespace AcademyManager.Models
             BeginDate = beginDate;
             EndDate = endDate;
             Room = room;
+        }
+        [JsonConstructor]public Class(string classID, string instructorID, List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room, Dictionary<string, StudentRecord> students) : this(classID, instructorID, documents, weekday, beginTime, endTime, beginDate, endDate, room)
+        {
+            Students = students;
         }
     }
 }

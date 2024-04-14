@@ -153,7 +153,7 @@
                     <TabItem Header="{Binding TabHeader}"
                              Background="Blue"
                              Cursor="Hand">
-                        <DataGrid x:Name="UserDataGrid" >
+                        <DataGrid x:Name="UserDataGrid" IsReadOnly="True">
                         </DataGrid>
                     </TabItem>
                 </TabControl>

@@ -163,78 +163,22 @@ namespace AcademyManager.AdminViewmodels
                 DayOfWeek day = c.Classes[cls.ClassID].Weekday;
                 TimeOnly bgt = c.Classes[cls.ClassID].BeginTime;
                 TimeOnly et = c.Classes[cls.ClassID].EndTime;
-                list.Add(new InsDataRecord(c.CourseID, c.CourseID, cls.ClassID, day, bgt, et));
+                list.Add(new InsDataRecord(c.CourseID, c.CourseName, cls.ClassID, day, bgt, et));
             }
             return list;
         }
         private async void LoadStudentDataGrid(DataGrid grid, StudentUser user)
         {
-            DataGridTextColumn courseIdCol = new DataGridTextColumn(),
-                               courseNameCol = new DataGridTextColumn(),
-                               midTCol = new DataGridTextColumn(),
-                               finalCol = new DataGridTextColumn(),
-                               gpaCol = new DataGridTextColumn();
-
-            courseIdCol.Header = "Mã môn học";
-            courseIdCol.Binding = new Binding("CourseID");
-
-            courseNameCol.Binding = new Binding("CourseName");
-            courseNameCol.Header = "Tên môn học";
-
-            midTCol.Header = "Giữa kỳ";
-            midTCol.Binding = new Binding("MidTerm");
-
-            finalCol.Header = "Cuối kỳ";
-            finalCol.Binding = new Binding("Final");
-
-            gpaCol.Header = "GPA";
-            gpaCol.Binding = new Binding("GPA");
-
-            grid.ItemsSource = await GetStudentResultData(user);
-
-            grid.Columns.Add(courseIdCol);
-            grid.Columns.Add(courseNameCol);
-            grid.Columns.Add(midTCol);
-            grid.Columns.Add(finalCol);
-            grid.Columns.Add(gpaCol);
+            grid.Columns.Clear();
+            var data = await GetStudentResultData(user);
+            grid.ItemsSource = data;
         }
         private async void LoadInsDataGrid(DataGrid grid, InstructorUser user)
         {
-            DataGridTextColumn courseIdCol = new DataGridTextColumn(),
-                               courseNameCol = new DataGridTextColumn(),
-                               cidCol = new DataGridTextColumn(),
-                               dayCol = new DataGridTextColumn(),
-                               bgtCol = new DataGridTextColumn(),
-                               etCol = new DataGridTextColumn();
-
-            courseIdCol.Header = "Mã môn học";
-            courseIdCol.Binding = new Binding("CourseID");
-
-            courseNameCol.Header = "Tên môn học";
-            courseNameCol.Binding = new Binding("CourseName");
-
-            cidCol.Header = "Lớp";
-            cidCol.Binding = new Binding("ClassID");
-
-            dayCol.Header = "Thứ";
-            Binding b = new Binding("Workday");
-            b.Converter = new DayOfWeekConverter();
-            dayCol.Binding = b;
-
-            bgtCol.Header = "Giờ bắt đầu";
-            bgtCol.Binding = new Binding("BeginTime") { StringFormat = "HH:mm" };
-
-            etCol.Header = "Giờ kết thúc";
-            etCol.Binding = new Binding("EndTime") { StringFormat = "HH:mm" };
-
-            grid.ItemsSource = await GetInsData(user);
-
-            grid.Columns.Add(courseIdCol);
-            grid.Columns.Add(courseNameCol);
-            grid.Columns.Add(cidCol);
-            grid.Columns.Add(dayCol);
-            grid.Columns.Add(bgtCol);
-            grid.Columns.Add(etCol);
+            grid.Columns.Clear();
+            var data = await GetInsData(user);
+            grid.ItemsSource = data;
+            
         }
         private void LoadStudentPersonalInfo(StudentUser user)
         {
@@ -268,6 +212,7 @@ namespace AcademyManager.AdminViewmodels
                 {
                     DatabaseManager db = new DatabaseManager();
                     Loading = Visibility.Visible;
+                    NotFound = Visibility.Hidden;
                     StudentUser user = await db.GetStudentAsync(ID);
                     if (user == null)
                     {
@@ -287,6 +232,7 @@ namespace AcademyManager.AdminViewmodels
                 {
                     DatabaseManager db = new DatabaseManager();
                     Loading = Visibility.Visible;
+                    NotFound = Visibility.Hidden;
                     InstructorUser user = await db.GetInstructorAsync(ID);
                     if (user == null)
                     {
