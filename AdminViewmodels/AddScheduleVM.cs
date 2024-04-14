@@ -233,8 +233,15 @@ namespace AcademyManager.AdminViewmodels
                 if (terms != null)
                 {
                     DatabaseManager db = new DatabaseManager();
+                    var batch = new List<Task>();
                     Loading = Visibility.Visible;
-                    foreach (Term term in terms) await db.UpdateTermAsync(term);
+                    foreach (Term term in terms)
+                    {
+                        Task task = db.UpdateTermAsync(term);
+                        batch.Add(task);
+                    }
+                    await Task.WhenAll(batch);
+                    batch.Clear();
                     Content = "Cập nhật thành công";
                     Notice = Visibility.Visible;
                     Loading = Visibility.Hidden;
