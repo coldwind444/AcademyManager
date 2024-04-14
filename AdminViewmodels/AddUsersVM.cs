@@ -21,6 +21,7 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Properties
+        private bool _inProcess;
         private string _path;
         private string _content;
         private Brush _iconbrush;
@@ -170,7 +171,7 @@ namespace AcademyManager.AdminViewmodels
         }
         private void InitializeCommands()
         {
-            BrowseCommand = new RelayCommand<TextBox>(p => { return true; }, p =>
+            BrowseCommand = new RelayCommand<TextBox>(p => { return _inProcess == false; }, p =>
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Title = "Pick a file";
@@ -181,8 +182,9 @@ namespace AcademyManager.AdminViewmodels
                 }
             });
 
-            UploadCommand = new RelayCommand<ComboBox>(p => { return _path != null && _path.Length > 0 && p.SelectedIndex != -1; }, async p =>
+            UploadCommand = new RelayCommand<ComboBox>(p => { return _path != null && _path.Length > 0 && p.SelectedIndex != -1 && _inProcess == false; }, async p =>
             {
+                _inProcess = true;
                 Loading = Visibility.Visible;
                 if (p.SelectedIndex == 0)
                 {
@@ -195,7 +197,9 @@ namespace AcademyManager.AdminViewmodels
                         foreach (StudentUser std in students)
                         {
                             Account acc = new Account(std.ID, std.Email, null, 0);
+                            Account a = await db.GetAccountAsync(std.ID);
                             string uuid = acc.UUID;
+                            if (a != null) uuid = a.UUID;
                             Task acctask = db.UpdateAccountAsync(acc);
                             Task usertask = db.UpdateStudentAsync(uuid, std);
                             accbatch.Add(acctask);
@@ -232,7 +236,9 @@ namespace AcademyManager.AdminViewmodels
                         foreach (InstructorUser ins in instructors)
                         {
                             Account acc = new Account(ins.ID, ins.Email, null, 0);
+                            Account a = await db.GetAccountAsync(ins.ID);
                             string uuid = acc.UUID;
+                            if (a != null) uuid = a.UUID;
                             Task acctask = db.UpdateAccountAsync(acc);
                             Task usertask = db.UpdateInstructorAsync(uuid, ins);
                             accbatch.Add(acctask);
@@ -261,6 +267,7 @@ namespace AcademyManager.AdminViewmodels
                 }
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
+                _inProcess = false;
             });
 
             DownloadCommand = new RelayCommand<ComboBox>(p => { return p.SelectedIndex != -1; }, p =>
@@ -280,6 +287,7 @@ namespace AcademyManager.AdminViewmodels
         public AddUsersVM()
         {
             InitializeCommands();
+            _inProcess = false;
             Notice = Visibility.Hidden;
             Loading = Visibility.Hidden;
         }

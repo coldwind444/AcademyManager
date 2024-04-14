@@ -20,6 +20,7 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Properties
+        private bool _inProcess;
         private string _path;
         private string _content;
         private Visibility _loading;
@@ -259,7 +260,7 @@ namespace AcademyManager.AdminViewmodels
         }
         private void InitializeCommands()
         {
-            BrowseCommand = new RelayCommand<TextBox>(p => { return true; }, p =>
+            BrowseCommand = new RelayCommand<TextBox>(p => { return _inProcess == false; }, p =>
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Title = "Pick a file";
@@ -270,8 +271,9 @@ namespace AcademyManager.AdminViewmodels
                 }
             });
 
-            UploadCommand = new RelayCommand<object>(p => { return _path != null && _path.Length > 0; }, async p =>
+            UploadCommand = new RelayCommand<object>(p => { return _path != null && _path.Length > 0 && _inProcess == false; }, async p =>
             {
+                _inProcess = true;
                 Loading = Visibility.Visible;
                 List<Term>? terms = GetDataFromExcel(out List<KeyValuePair<string, ClassIdentifier>>? list);
                 bool canUpload = await UploadInstructorSchedule(list);
@@ -304,6 +306,7 @@ namespace AcademyManager.AdminViewmodels
                 }
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
+                _inProcess = false;
             });
 
             DownloadCommand = new RelayCommand<object>(p => { return true; }, p => 
@@ -317,6 +320,7 @@ namespace AcademyManager.AdminViewmodels
         {
             Notice = Visibility.Hidden;
             Loading = Visibility.Hidden;
+            _inProcess = false;
             InitializeCommands();
         }
     }
