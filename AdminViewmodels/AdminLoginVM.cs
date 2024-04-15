@@ -66,13 +66,13 @@ namespace AcademyManager.AdminViewmodels
                 {
                     if (ad.Match(_uuid, _password))
                     {
-                        var w = GetWindowParent(p) as Window;
+                        Window w = GetWindowParent(p) as Window;
                         AdminWindow adwd = new AdminWindow();
                         if (w == null) return;
                         NotificationV = Visibility.Hidden;
-                        w.Visibility = Visibility.Hidden;
-                        adwd.Show();
-                        w.Visibility = Visibility.Visible;
+                        w.Hide();
+                        adwd.ShowDialog();
+                        w.Show();
                     } else
                     {
                         Notification = "Sai mật khẩu.";
