@@ -23,6 +23,7 @@ namespace AcademyManager.AdminViewmodels
         private string _password;
         private string _uuid;
         private string _notification;
+        private PasswordBox _passwordBox;
         private Visibility _notificationV;
         public Visibility NotificationV
         {
@@ -77,17 +78,24 @@ namespace AcademyManager.AdminViewmodels
                     {
                         Notification = "Sai mật khẩu.";
                         NotificationV = Visibility.Visible;
+                        await Task.Delay(1000);
+                        NotificationV = Visibility.Hidden;
                     }
                 } else
                 {
                     Notification = "Tài khoản không tồn tại.";
                     NotificationV = Visibility.Visible;
+                    await Task.Delay(1000);
+                    NotificationV = Visibility.Hidden;
                 }
+                UUID = String.Empty;
+                _passwordBox.Clear();
             });
 
             PasswordChangedCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
             {
                 _password = p.Password;
+                _passwordBox = p;
             });
         }
         #endregion

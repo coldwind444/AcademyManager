@@ -63,9 +63,15 @@ namespace AcademyManager.AdminViewmodels
         private string _add1;
         private string _add2;
         private string _tabheader;
+        private Visibility _add2V;
         private Visibility _loading;
         private Visibility _dataV;
         private Visibility _notfound;
+        public Visibility Addition2V
+        {
+            get { return _add2V; }
+            set { _add2V = value; OnPropertyChanged(); }
+        }
         public Visibility Loading
         {
             get { return _loading; }
@@ -182,6 +188,7 @@ namespace AcademyManager.AdminViewmodels
         }
         private void LoadStudentPersonalInfo(StudentUser user)
         {
+            Addition2V = Visibility.Hidden;
             Avatar = user.AvatarBase64;
             UserID = $"Mã số sinh viên: {user.ID}";
             Fullname = $"Họ và tên: {user.Fullname}";
@@ -193,6 +200,7 @@ namespace AcademyManager.AdminViewmodels
         }
         private void LoadInsPersonalInfo(InstructorUser user)
         {
+            Addition2V = Visibility.Visible;
             Avatar = user.AvatarBase64;
             UserID = $"Mã số giảng viên: {user.ID}";
             Fullname = $"Họ và tên: {user.Fullname}";

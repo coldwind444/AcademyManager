@@ -25,6 +25,7 @@ namespace AcademyManager.AdminViewmodels
         private string _passwordConfirm;
         private string _uuid;
         private string _notification;
+        private PasswordBox _passwordBox, _confirmBox;
         private Brush _foreground;
         private Visibility _notificationV;
         public Brush Foreground
@@ -59,11 +60,13 @@ namespace AcademyManager.AdminViewmodels
             PasswordChangedCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
             {
                 _password = p.Password;
+                _passwordBox = p;
             });
 
             PasswordConfirmCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
             {
                 _passwordConfirm = p.Password;
+                _confirmBox = p;
             });
 
             SigninCommand = new RelayCommand<object>(p => { return !NullOrEmpty(_password) && !NullOrEmpty(_uuid) && !NullOrEmpty(_passwordConfirm); }, async p =>
@@ -77,16 +80,22 @@ namespace AcademyManager.AdminViewmodels
                         Notification = "Tài khoản này đã được kích hoạt.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
+                        await Task.Delay(1000);
+                        NotificationV = Visibility.Hidden;
                     } else if (_password.Length < 8)
                     {
                         Notification = "Mật khẩu phải chứa ít nhất 8 kí tự.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
+                        await Task.Delay(1000);
+                        NotificationV = Visibility.Hidden;
                     } else if (_password != _passwordConfirm)
                     {
                         Notification = "Xác nhận mật khẩu không trùng khớp.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
+                        await Task.Delay(1000);
+                        NotificationV = Visibility.Hidden;
                     } else
                     {
                         Admin newadmin = new Admin(_uuid, _password);
@@ -94,7 +103,7 @@ namespace AcademyManager.AdminViewmodels
                         Notification = "Kích hoạt thành công.";
                         Foreground = Brushes.Green;
                         NotificationV = Visibility.Visible;
-                        await Task.Delay(2000);
+                        await Task.Delay(1000);
                         NotificationV = Visibility.Hidden;
                     }
                 } else
@@ -103,7 +112,12 @@ namespace AcademyManager.AdminViewmodels
                     Notification = "Tài khoản chưa được cấp quyền.";
                     Foreground = Brushes.DeepPink;
                     NotificationV = Visibility.Visible;
+                    await Task.Delay(1000);
+                    NotificationV = Visibility.Hidden;
                 }
+                UUID = String.Empty;
+                _passwordBox.Clear();
+                _confirmBox.Clear();
             });
         }
         #endregion

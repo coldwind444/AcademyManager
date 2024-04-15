@@ -147,7 +147,7 @@
                                 <TextBlock Text="{Binding Birthday}"/>
                                 <TextBlock Text="{Binding Faculty}"/>
                                 <TextBlock Text="{Binding Addition1}"/>
-                                <TextBlock Text="{Binding Addition2}"/>
+                                <TextBlock Text="{Binding Addition2}" Visibility="{Binding Addition2V}"/>
                             </StackPanel>
                         </Grid>
                     </TabItem>
