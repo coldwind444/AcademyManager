@@ -249,7 +249,7 @@ namespace AcademyManager.AdminViewmodels
                 if (acc != null)
                 {
                     InstructorUser user = await db.GetInstructorAsync(c.Key);
-                    user.StudyElements.Add(c.Value);
+                    if (!user.StudyElements.Contains(c.Value)) user.StudyElements.Add(c.Value);
                     Task task = db.UpdateInstructorAsync(acc.UUID, user);
                     batch.Add(task);
                 }

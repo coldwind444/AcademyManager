@@ -129,7 +129,8 @@
                                     <convert:ImageConverter x:Key="ImageConverter"></convert:ImageConverter>
                                 </Border.Resources>
                                 <Border.Background>
-                                    <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}"/>
+                                    <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}"
+                                                Stretch="UniformToFill"/>
                                 </Border.Background>
                             </Border>
                             <StackPanel Orientation="Vertical" Grid.Column="1"

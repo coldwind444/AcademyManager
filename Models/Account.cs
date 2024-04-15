@@ -16,7 +16,7 @@ namespace AcademyManager.Models
             Email = email;
             Guid uid = Guid.NewGuid();
             UUID = uid.ToString();
-            if (password != null) Password = HashPasswords(password);
+            if (password != null) Password = SHA256Hash(password);
             Type = type;
         }
         public bool IsVerified(string id, string email)
@@ -25,9 +25,9 @@ namespace AcademyManager.Models
         }
         public bool Match(string pass, string id)
         {
-            return UserID == id && pass == Password;
+            return UserID == id && SHA256Hash(pass) == Password;
         }
-        public string HashPasswords(string password)
+        public string SHA256Hash(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

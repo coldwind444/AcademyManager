@@ -22,7 +22,7 @@ namespace AcademyManager.Models
                 App.Current.Shutdown();
             }
         }
-        #region CRUD Account
+        #region Account
         public async Task UpdateAccountAsync(Account acc)
         {
             SetResponse response = await client.SetAsync("Accounts/" + acc.UserID, acc);
@@ -34,7 +34,7 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD Student
+        #region Student
         public async Task UpdateStudentAsync(string uuid, StudentUser user)
         {
             SetResponse response = await client.SetAsync("Students/" + uuid, user);
@@ -50,7 +50,7 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD Instructors
+        #region Instructors
         public async Task UpdateInstructorAsync(string uuid, InstructorUser user)
         {
             SetResponse response = await client.SetAsync("Instructors/" + uuid, user);
@@ -66,7 +66,7 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD Term
+        #region Term
         public async Task UpdateTermAsync(Term term)
         {
             SetResponse response = await client.SetAsync("Terms/" + term.TermID, term);
@@ -78,7 +78,7 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD Course
+        #region Course
         public async Task UpdateCourseAsync(string termID, Course course)
         {
             SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{course.CourseID}", course);
@@ -90,7 +90,7 @@ namespace AcademyManager.Models
             return result;
         }
         #endregion
-        #region CRUD Class
+        #region Class
         public async Task UpdateClassAsync(string termID, string courseID, Class cls)
         {
             SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{courseID}/Classes/{cls.ClassID}", cls);
@@ -100,6 +100,22 @@ namespace AcademyManager.Models
             FirebaseResponse response = await client.GetAsync($"Terms/{termID}/Courses/{courseId}/Classes/{classID}");
             Class result = response.ResultAs<Class>();
             return result;
+        }
+        #endregion
+        #region Admin
+        public async Task UpdateAdminAsync(Admin ad)
+        {
+            SetResponse response = await client.SetAsync($"Admin/{ad.UUID}", ad);
+        }
+        public async Task<Admin> GetAdminAsync(string uuid)
+        {
+            FirebaseResponse response = await client.GetAsync($"Admin/{uuid}");
+            Admin result = response.ResultAs<Admin>();
+            return result;
+        }
+        public async Task UpdateAdminPassword(Admin ad)
+        {
+            SetResponse response = await client.SetAsync($"Admin/{ad.UUID}/Password", ad.Password);
         }
         #endregion
     }
