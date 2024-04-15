@@ -70,7 +70,7 @@ namespace AcademyManager.AdminViewmodels
                         AdminWindow adwd = new AdminWindow();
                         if (w == null) return;
                         NotificationV = Visibility.Hidden;
-                        w.Visibility = Visibility.Collapsed;
+                        w.Visibility = Visibility.Hidden;
                         adwd.Show();
                         w.Visibility = Visibility.Visible;
                     } else

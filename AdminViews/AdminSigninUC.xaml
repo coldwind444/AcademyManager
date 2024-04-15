@@ -109,7 +109,7 @@
                 </Border>
                 <Button Height="40" Width="250"
                         Foreground="White"
-                        FontSize="16"
+                        FontSize="16" IsDefault="True"
                         Command="{Binding SigninCommand}">
                     Đăng ký
                 </Button>
