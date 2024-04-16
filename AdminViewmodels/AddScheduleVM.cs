@@ -72,7 +72,6 @@ namespace AcademyManager.AdminViewmodels
                 {"Thứ Bảy", "Saturday"},
                 {"Chủ Nhật", "Sunday"}
             };
-
             if (vietnameseToEnglishDayMapping.TryGetValue(vietnameseDay, out string englishDay))
             {
                 // Parse English day name to DayOfWeek enum
