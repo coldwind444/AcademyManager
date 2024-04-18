@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="AcademyManager.Views.NotiInvalidEmail"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:local="clr-namespace:AcademyManager.AdminViews"
+         mc:Ignorable="d" 
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="Link">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="ForestGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="TextDecorations" Value="None"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Background="WhiteSmoke" Opacity="500" Height="600" Width="1000" Margin="0,10,0,-10">
+        </Grid>
+        <Grid Background="#FFE6FFEC" Margin="300,250,300,250">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.5"/>
+            </Grid.Effect>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="Black"><Run Language="vi-vn" Text="Email không hợp lệ!"/></TextBlock>
+            <Button Command="{Binding CloseCommand}" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35"/>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

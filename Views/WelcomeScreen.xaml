@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="AcademyManager.Views.WelcomeScreen"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:local="clr-namespace:AcademyManager.AdminViews"
+         mc:Ignorable="d" 
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="Link">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="ForestGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="TextDecorations" Value="None"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="2"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="WhiteSmoke">
+        <Border Width="400" Height="400"
+                        Background="#FFABEDC6"
+                        BorderThickness="1.5"
+                        BorderBrush="Black"
+                        CornerRadius="10">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock FontSize="30" Foreground="Black" TextAlignment="Center" Height="81"><Run Text="Chào mừng"/><Run Text=" "/><Run Language="vi-vn" Text="bạn "/><Run Text="đến với"/><LineBreak/><Run Text=" "/><Run Text="T"/><Run Text="rường Đại học TAD!"/></TextBlock>
+                <Button Background="WhiteSmoke" Grid.Row="1" Height="40" Width="149" Cursor="Hand"
+                    FontSize="16" Foreground="Black"
+                    Margin="0 0 0 10"
+                    Command="{Binding BrowseCommand}"
+                    CommandParameter="{Binding ElementName=FilePathBox}" Click="Button_Click_3" Content="ĐĂNG KÝ"/>
+                <Button Background="WhiteSmoke" Grid.Row="1" Height="40" Width="149" Cursor="Hand"
+                        FontSize="16" Foreground="Black"
+                        Margin="0 0 0 10"
+                        Command="{Binding UploadCommand}" Content="ĐĂNG NHẬP" Click="Button_Click_4"/>
+            </StackPanel>
+        </Border>
+        <materialDesign:PackIcon Kind="FullscreenExit" Foreground="ForestGreen" Background="white" Height="37" Width="45" Grid.Column="1" Margin="1310,5,0,0"/>
+    </Grid>
+</UserControl>
