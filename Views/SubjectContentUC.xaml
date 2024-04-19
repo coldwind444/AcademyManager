@@ -5,19 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AcademyManager.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000">
-    <Border Margin="60,270,60,290" 
-CornerRadius="20" Opacity="0.8" Height="40">
+             d:DesignHeight="40" d:DesignWidth="880">
+    <Border Margin="0,0,0,0"
+            CornerRadius="20" 
+            Opacity="0.8" Height="40">
         <Border.Background>
             <SolidColorBrush Color="#FFE6FFEC" 
-                 Opacity="0.9"/>
+                             Opacity="0.9"/>
         </Border.Background>
         <Border.Effect>
             <DropShadowEffect Opacity="0.5" 
-                  Direction="300" 
-                  ShadowDepth="15" 
-                  BlurRadius="50"/>
+                              Direction="300"
+                              ShadowDepth="15"
+                              BlurRadius="50"/>
         </Border.Effect>
-        <TextBlock FontSize="20" Margin="10" Text="Content" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock FontSize="20" 
+                   Margin="10" 
+                   Text="Content" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"/>
     </Border>
 </UserControl>

@@ -18,11 +18,13 @@
         Height="600" Width="1000">
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter 
+                Property="Cursor" 
+                Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect 
                                     Opacity="0.5" 
@@ -33,58 +35,85 @@
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        <Trigger 
+                                            Property="IsMouseOver" 
+                                            Value="True">
+                                            <Setter 
+                                                Property="Background" 
+                                                Value="#15BF5C"/>
                                         </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#027324"/>
+                                        <Trigger 
+                                            Property="IsMouseOver" 
+                                            Value="False">
+                                            <Setter 
+                                                Property="Background" 
+                                                Value="#027324"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"></ContentPresenter>
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                            </ContentPresenter>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="TextBlock" x:Key="Link">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Foreground" Value="ForestGreen"/>
+        <Style TargetType="TextBlock" 
+               x:Key="Link">
+            <Setter Property="Cursor" 
+                    Value="Hand"/>
+            <Setter Property="Foreground" 
+                    Value="ForestGreen"/>
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
+                <Trigger Property="IsMouseOver" 
+                         Value="True">
+                    <Setter Property="TextDecorations" 
+                            Value="Underline"/>
                 </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextDecorations" Value="None"/>
+                <Trigger Property="IsMouseOver" 
+                         Value="False">
+                    <Setter Property="TextDecorations" 
+                            Value="None"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="ToggleButton">
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Cursor" 
+                    Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" CornerRadius="5">
+                        <Border x:Name="ButtonBorder" 
+                                CornerRadius="5">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="ForestGreen"/>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="True">
+                                            <Setter Property="Background" 
+                                                    Value="ForestGreen"/>
                                         </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#FF3C783C"/>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="False">
+                                            <Setter Property="Background" 
+                                                    Value="#FF3C783C"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
                             <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"></ContentPresenter>
+                                              HorizontalAlignment="Center">
+                            </ContentPresenter>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="#027324"/>
+                            <Trigger Property="IsChecked" 
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder" 
+                                        Property="Background" 
+                                        Value="#027324"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -92,7 +121,6 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -102,7 +130,9 @@
         </Grid.ColumnDefinitions>
         <Border CornerRadius="0 30 30 0"
                 Background="White"
-                Margin="0,21,40,0" Height="40" VerticalAlignment="Top">
+                Margin="0,21,40,0" 
+                Height="40" 
+                VerticalAlignment="Top">
             <Border.Effect>
                 <DropShadowEffect 
                 Opacity="0.5" 
@@ -111,93 +141,98 @@
                 BlurRadius="50"/>
             </Border.Effect>
             <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left">
-                <TextBlock 
-            Foreground="Black"
-            Style="{StaticResource Link}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="20" 
-            RenderTransformOrigin="0.5,0.5"
-            Margin="20 0 20 0">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    Trang chủ >
+                        HorizontalAlignment="Left">
+                <TextBlock Foreground="Black"
+                           Style="{StaticResource Link}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           RenderTransformOrigin="0.5,0.5"
+                           Margin="20 0 20 0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                     Trang chủ >
                 </TextBlock>
-                <TextBlock Foreground="Black" Style="{StaticResource Link}"
-           VerticalAlignment="Center"
-           FontSize="20"
-           RenderTransformOrigin="0.5,0.5"
-           Margin="-10,0,0,0" Width="167">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                  CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
-            </i:EventTrigger>
-    </i:Interaction.Triggers>
-                Thông tin cá nhân
+                <TextBlock Foreground="Black" 
+                           Style="{StaticResource Link}"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           RenderTransformOrigin="0.5,0.5"
+                           Margin="-10,0,0,0" Width="167">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                  CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                     </i:Interaction.Triggers>
+                    Thông tin cá nhân
                 </TextBlock>
             </StackPanel>
         </Border>
-
-        <Border Margin="210,110,210,110" CornerRadius="80">
+        <Border Margin="40,110,40,195" CornerRadius="20">
             <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
+                <SolidColorBrush Color="#FFE6FFEC" 
+                                 Opacity="0.9"/>
             </Border.Background>
             <Border.Effect>
-                <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
+                <DropShadowEffect Opacity="0.5"
+                                  Direction="300"
+                                  ShadowDepth="15"
+                                  BlurRadius="50"/>
             </Border.Effect>
             <StackPanel Orientation="Vertical"
-       VerticalAlignment="Center" Margin="30,10,30,10">
+                        VerticalAlignment="Center" 
+                        Margin="30,10,30,10">
                 <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      TextWrapping="Wrap"
-      Margin="0 0 0 6" Width="575" Height="39">
-Họ và tên: Nguyễn Phạm He He
+                           FontSize="30"
+                           RenderTransformOrigin="0.5,0.5"
+                           TextWrapping="Wrap"
+                           Margin="0 0 0 6" 
+                           Width="860" 
+                           Height="39">
+                    Họ và tên: Nguyễn Phạm He He
                 </TextBlock>
                 <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      TextWrapping="Wrap"
-      Margin="0 0 0 6">
-MSGV: 101124
+                           FontSize="30"
+                           RenderTransformOrigin="0.5,0.5"
+                           TextWrapping="Wrap"
+                           Margin="0 0 0 6">
+                    MSGV: 101124
                 </TextBlock>
                 <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      TextWrapping="Wrap"
-      Margin="0 0 0 6">
-Địa chỉ email: nguyenphamhehe@hcmut.edu.vn
+                           FontSize="30"
+                           RenderTransformOrigin="0.5,0.5"
+                           TextWrapping="Wrap"
+                           Margin="0 0 0 6">
+                    Địa chỉ email: nguyenphamhehe@hcmut.edu.vn
                 </TextBlock>
                 <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      Margin="0 0 0 6"
-      TextWrapping="Wrap">
-Khoa: Khoa học và Kĩ thuật Máy tính
+                           FontSize="30"
+                           RenderTransformOrigin="0.5,0.5"
+                           Margin="0 0 0 6"
+                           TextWrapping="Wrap">
+                    Khoa: Khoa học và Kĩ thuật Máy tính
+                </TextBlock>
+                <TextBlock 
+                    Style="{StaticResource Link}"
+                    FontSize="30"
+                    RenderTransformOrigin="0.5,0.5"
+                    TextWrapping="Wrap"
+                    Margin="0 0 0 6">
+                    Chuyên ngành giảng dạy: Khoa học Máy tính
                 </TextBlock>
                 <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      TextWrapping="Wrap"
-      Margin="0 0 0 6">
-Chuyên ngành giảng dạy: Khoa học Máy tính
-                </TextBlock>
-                <TextBlock Style="{StaticResource Link}"
-      FontSize="30" 
-      RenderTransformOrigin="0.5,0.5"
-      TextWrapping="Wrap"
-      Margin="0 0 0 6">
-Học vị: Tiến sĩ
+                           FontSize="30"
+                           RenderTransformOrigin="0.5,0.5"
+                           TextWrapping="Wrap"
+                           Margin="0 0 0 6">
+                    Học vị: Tiến sĩ
                 </TextBlock>
             </StackPanel>
         </Border>

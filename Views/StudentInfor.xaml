@@ -22,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect 
                                     Opacity="0.5" 
@@ -144,7 +144,7 @@
             </StackPanel>
         </Border>
 
-        <Border Margin="210,110,210,110" CornerRadius="80">
+        <Border Margin="40,110,40,190" CornerRadius="20">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -156,65 +156,49 @@
             BlurRadius="50"/>
             </Border.Effect>
         </Border>
-        <Border Margin="215,110,240,115">
+        <Border Margin="40,110,40,190">
             <StackPanel Orientation="Vertical"
-                VerticalAlignment="Center" Margin="50,0,-30,0">
+                VerticalAlignment="Center" Margin="50,0,0,0">
+                <TextBlock Style="{StaticResource Link}"
+               FontSize="30" 
+               RenderTransformOrigin="0.5,0.5"
+               TextWrapping="Wrap"><Run Text="Họ và tên: Nguyễn Phạm He He"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                FontSize="30" 
                RenderTransformOrigin="0.5,0.5"
                TextWrapping="Wrap"
-               Margin="0 0 0 6" Width="575" Height="47">
-         Họ và tên: Nguyễn Phạm He He
-                </TextBlock>
+               Margin="0 0 0 6"><Run Text="MSSV: 101124"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                FontSize="30" 
                RenderTransformOrigin="0.5,0.5"
                TextWrapping="Wrap"
-               Margin="0 0 0 6">
-         MSSV: 101124
-                </TextBlock>
-                <TextBlock Style="{StaticResource Link}"
-               FontSize="30" 
-               RenderTransformOrigin="0.5,0.5"
-               TextWrapping="Wrap"
-               Margin="0 0 0 6">
-         Địa chỉ email: nguyenphamhehe@hcmut.edu.vn
-                </TextBlock>
+               Margin="0 0 0 6"><Run Text="Địa chỉ email: nguyenphamhehe@hcmut.edu.vn"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                FontSize="30" 
                RenderTransformOrigin="0.5,0.5"
                Margin="0 0 0 6"
-               TextWrapping="Wrap">
-         Khoa: Khoa học và Kĩ thuật Máy tính
-                </TextBlock>
+               TextWrapping="Wrap"><Run Text="Khoa: Khoa học và Kĩ thuật Máy tính"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                FontSize="30" 
                RenderTransformOrigin="0.5,0.5"
                TextWrapping="Wrap"
-               Margin="0 0 0 6">
-         Ngành: Khoa học Máy tính
-                </TextBlock>
+               Margin="0 0 0 6"><Run Text="Ngành: Khoa học Máy tính"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                FontSize="30" 
                RenderTransformOrigin="0.5,0.5"
                TextWrapping="Wrap"
-               Margin="0 0 0 6">
-         Niên khóa: 2022 - 2026
-                </TextBlock>
+               Margin="0 0 0 6"><Run Text="Niên khóa: 2022 - 2026"/></TextBlock>
             </StackPanel>
         </Border>
-        <Border/>
 
-        <Border>
-            <Button 
+        <Button 
             Background="ForestGreen"
             Grid.Row="1" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
             Command="{Binding UploadCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
-                Quay lại
-            </Button>
-        </Border>
+            Quay lại
+        </Button>
     </Grid>
 </UserControl>

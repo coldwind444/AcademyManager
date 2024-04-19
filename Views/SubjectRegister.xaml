@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect Opacity="0.5" 
                                                   Direction="300" 
@@ -190,9 +190,9 @@
             </StackPanel>
         </Border>
         <TextBlock TextAlignment="Center"
-                       TextWrapping="Wrap" FontSize="50" Foreground="Black" 
+                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
                        Margin="150,100,150,440" Height="60" Width="700"><Run Text="ĐĂNG K"/><Run Language="vi-vn" Text="Ý"/><Run Text=" MÔN HỌC"/></TextBlock>
-        <Separator Background="Black" Margin="70,160,0,430" HorizontalAlignment="Left" Width="850" Height="10"/>
+        <Separator Background="Black" Margin="70,150,0,440" HorizontalAlignment="Left" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
