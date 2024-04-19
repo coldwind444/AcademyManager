@@ -35,6 +35,7 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -160,65 +161,6 @@
             Đánh dấu đã đọc
         </Button>
 
-        <Border Margin="260,360,140,120" CornerRadius="40" Height="120" Width="600">
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-                        Opacity="0.5" 
-                        Direction="300" 
-                        ShadowDepth="15" 
-                        BlurRadius="50"/>
-            </Border.Effect>
-            <TextBlock Margin="10,70,0,0" FontSize="30" Width="500">
-                    LẬP TRÌNH NÂNG CAO
-            </TextBlock>
-        </Border>
-        <Border Margin="220,295,140,185" CornerRadius="40" Height="120" Width="640">
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
-            </Border.Effect>
-            <TextBlock Margin="10,70,0,0" FontSize="30" Width="500">
-        LẬP TRÌNH NÂNG CAO
-            </TextBlock>
-        </Border>
-        <Border Margin="180,230,140,250" CornerRadius="40" Height="120" Width="680">
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-    Opacity="0.5" 
-    Direction="300" 
-    ShadowDepth="15" 
-    BlurRadius="50"/>
-            </Border.Effect>
-            <TextBlock Margin="10,70,0,0" FontSize="30" Width="500">
-LẬP TRÌNH NÂNG CAO
-            </TextBlock>
-        </Border>
-        <Border Margin="140,165,140,315" CornerRadius="40" Height="120" Width="720">
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-    Opacity="0.5" 
-    Direction="300" 
-    ShadowDepth="15" 
-    BlurRadius="50"/>
-            </Border.Effect>
-            <TextBlock Margin="10,70,0,0" FontSize="30" Width="500">
-LẬP TRÌNH NÂNG CAO
-            </TextBlock>
-        </Border>
+        
     </Grid>
 </UserControl>

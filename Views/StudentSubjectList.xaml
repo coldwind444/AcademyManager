@@ -39,6 +39,8 @@
                                                  Value="True">
                                             <Setter Property="Background" 
                                                     Value="#15BF5C"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">

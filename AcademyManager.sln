@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyManager", "AcademyManager.csproj", "{222F0381-147B-4626-AD51-B18FB88A5360}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calender", "..\..\..\..\Downloads\C-WPF-Calendar-master\C-WPF-Calendar-master\Calender.csproj", "{FA360E55-9CBE-4B05-9220-BBAAD32C8F07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calender", "..\..\..\..\Downloads\C-WPF-Calendar-master\Calender.csproj", "{FFD5F202-7608-4223-BC96-7750A35B8A51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{222F0381-147B-4626-AD51-B18FB88A5360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222F0381-147B-4626-AD51-B18FB88A5360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222F0381-147B-4626-AD51-B18FB88A5360}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA360E55-9CBE-4B05-9220-BBAAD32C8F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA360E55-9CBE-4B05-9220-BBAAD32C8F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA360E55-9CBE-4B05-9220-BBAAD32C8F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA360E55-9CBE-4B05-9220-BBAAD32C8F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD5F202-7608-4223-BC96-7750A35B8A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD5F202-7608-4223-BC96-7750A35B8A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD5F202-7608-4223-BC96-7750A35B8A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD5F202-7608-4223-BC96-7750A35B8A51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
