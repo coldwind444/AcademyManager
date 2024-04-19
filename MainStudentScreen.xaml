@@ -15,7 +15,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     FontFamily="{DynamicResource MaterialDesignFont}"
-    Height="1024" Width="1440" Loaded="adminWindow_Loaded">
+    Height="600" Width="1000">
     <UserControl.Resources>
         <Style TargetType="ToggleButton">
             <Setter Property="Cursor" Value="Hand"/>

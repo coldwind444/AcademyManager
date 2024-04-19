@@ -199,7 +199,6 @@
                  FontSize="20" 
                  Foreground="White"
                  Command="{Binding UploadCommand}" 
-                 Click="Button_Click_1" 
                  RenderTransformOrigin="0.747,0.56" 
                  Margin="740,90,60,470" 
                  Content="Danh sách sinh viên" Width="200" Height="40"/>
@@ -208,7 +207,6 @@
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
-                Click="Button_Click_1" 
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="790,135,60,425" Content="Thêm tài liệu" Height="40"/>
         <!--<ScrollViewer VerticalScrollBarVisibility="Auto"><ContentControl userControls="Nội dung"/></ScrollViewer> -->

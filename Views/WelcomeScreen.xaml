@@ -67,11 +67,11 @@
                     FontSize="16" Foreground="Black"
                     Margin="0 0 0 10"
                     Command="{Binding BrowseCommand}"
-                    CommandParameter="{Binding ElementName=FilePathBox}" Click="Button_Click_3" Content="ĐĂNG KÝ"/>
+                    CommandParameter="{Binding ElementName=FilePathBox}" Content="ĐĂNG KÝ"/>
                 <Button Background="WhiteSmoke" Grid.Row="1" Height="40" Width="149" Cursor="Hand"
                         FontSize="16" Foreground="Black"
                         Margin="0 0 0 10"
-                        Command="{Binding UploadCommand}" Content="ĐĂNG NHẬP" Click="Button_Click_4"/>
+                        Command="{Binding UploadCommand}" Content="ĐĂNG NHẬP"/>
             </StackPanel>
         </Border>
         <materialDesign:PackIcon Kind="FullscreenExit" Foreground="ForestGreen" Background="white" Height="37" Width="45" Grid.Column="1" Margin="1310,5,0,0"/>

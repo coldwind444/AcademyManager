@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AcademyManager.Views;
 using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels

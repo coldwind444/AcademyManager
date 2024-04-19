@@ -198,7 +198,7 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding UploadCommand}" 
-            Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Margin="340,516,539,30" Height="50">
+            RenderTransformOrigin="0.5,0.5" Margin="340,516,539,30" Height="50">
             Quay lại
         </Button>
         <Button 
@@ -206,7 +206,7 @@
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
-                Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50">
+                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50">
             Xác nhận đăng ký
         </Button>
         <!--<ScrollViewer Grid.Column="1"

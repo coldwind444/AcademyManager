@@ -196,7 +196,7 @@ namespace AcademyManager.AdminViewmodels
                         DatabaseManager db = new DatabaseManager();
                         foreach (StudentUser std in students)
                         {
-                            Account newacc = new Account(std.ID, std.Email, null, 0);
+                            Account newacc = new Account(std.ID, std.Email, null, 1);
                             Account existacc = await db.GetAccountAsync(std.ID);
                             if (existacc != null)
                             {
@@ -240,7 +240,7 @@ namespace AcademyManager.AdminViewmodels
                         DatabaseManager db = new DatabaseManager();
                         foreach (InstructorUser ins in instructors)
                         {
-                            Account newacc = new Account(ins.ID, ins.Email, null, 0);
+                            Account newacc = new Account(ins.ID, ins.Email, null, 2);
                             Account existacc = await db.GetAccountAsync(ins.ID);
                             if (existacc != null)
                             {

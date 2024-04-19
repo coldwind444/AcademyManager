@@ -207,7 +207,7 @@ Học vị: Tiến sĩ
             FontSize="20" 
             Foreground="White"
             Command="{Binding UploadCommand}" 
-            Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
+            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
             Quay lại
         </Button>
     </Grid>

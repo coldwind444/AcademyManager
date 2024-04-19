@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,11 @@ namespace AcademyManager.Models
         {
             TermID = id;
             Courses = new Dictionary<string, Course>();
+        }
+        [JsonConstructor]public Term(string id,  Dictionary<string, Course> c)
+        {
+            TermID = id;
+            Courses = c;
         }
     }
 }
