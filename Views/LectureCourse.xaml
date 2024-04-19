@@ -24,7 +24,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect Opacity="0.5" 
                                                   Direction="300" 
