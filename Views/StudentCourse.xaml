@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="AcademyManager.Views.StudentCourse"
- xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect Opacity="0.5" 
                                                   Direction="300" 
@@ -202,7 +202,7 @@
                  Foreground="White"
                  Command="{Binding UploadCommand}" 
                  RenderTransformOrigin="0.747,0.56" 
-                 Margin="740,90,60,470" 
+                 Margin="740,85,60,475" 
                  Content="Danh sách sinh viên" Width="200" Height="40"/>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
@@ -210,7 +210,7 @@
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
                 RenderTransformOrigin="0.747,0.56" 
-                Margin="840,135,60,425" Content="Điểm số" Height="40" Width="100"/>
+                Margin="825,135,60,425" Content="Điểm số" Height="40"/>
         <!--<ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel> <userControls:SubjectContent/></StackPanel></ScrollViewer-->
 
     </Grid>

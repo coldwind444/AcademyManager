@@ -127,7 +127,7 @@
                 <materialDesign:PackIcon Margin="0,15,0,8" Kind="Numeric9PlusBoxMultipleOutline" Foreground="White" Height="154" Width="218"/>
             </StackPanel>
         </Border>
-        <Border Margin="710,209,50,311" CornerRadius="50" Height="80">
+        <Border Margin="710,209,50,311" CornerRadius="40" Height="80">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -139,7 +139,7 @@
                 <TextBlock FontSize="30" Foreground="Black" TextAlignment="Center" Text="Lịch thi" DockPanel.Dock="Left" Width="100" Margin="-60,5,0,0"/>
             </DockPanel>
         </Border>
-        <Border Margin="710,109,50,411" CornerRadius="50" Height="80">
+        <Border Margin="710,109,50,411" CornerRadius="40" Height="80">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -151,6 +151,6 @@
                 <TextBlock FontSize="30" Foreground="Black" TextAlignment="Center" Text="Lịch học" DockPanel.Dock="Left" Width="119" Margin="-45,5,0,0"/>
             </DockPanel>
         </Border>
-        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="60" Foreground="Black" Margin="64,133,356,322"><Run Text="Mỗi ngày đ"/><Run Language="vi-vn" Text="ến trường"/><Run Text=" là một ngày vui!"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="60" Foreground="Black" Margin="26,131,295,324"><Run Text="MỖI NGÀY "/><Run Text="ĐẾN TRƯỜNG"/><LineBreak/><Run Text="LÀ MỘT "/><Run Text="NGÀY VUI!"/></TextBlock>
     </Grid>
 </UserControl>

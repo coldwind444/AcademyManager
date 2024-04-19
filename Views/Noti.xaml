@@ -22,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="40">
+                        <Border CornerRadius="20">
                             <Border.Effect>
                                 <DropShadowEffect 
                                     Opacity="0.5" 
@@ -132,14 +132,14 @@
            VerticalAlignment="Center"
            FontSize="20"
            RenderTransformOrigin="0.5,0.5"
-           Margin="-10,0,0,0" Width="167">
+           Margin="-10,0,0,0" Width="100">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding DownloadCommand}"
                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
             </i:EventTrigger>
     </i:Interaction.Triggers>
-                Thông tin cá nhân
+                Thông báo
                 </TextBlock>
             </StackPanel>
         </Border>
@@ -160,7 +160,7 @@
             Đánh dấu đã đọc
         </Button>
 
-        <Border Margin="200,360,200,120" CornerRadius="40" Height="120" Width="600">
+        <Border Margin="260,360,140,120" CornerRadius="40" Height="120" Width="600">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -175,7 +175,7 @@
                     LẬP TRÌNH NÂNG CAO
             </TextBlock>
         </Border>
-        <Border Margin="180,295,180,185" CornerRadius="40" Height="120" Width="640">
+        <Border Margin="220,295,140,185" CornerRadius="40" Height="120" Width="640">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -190,7 +190,7 @@
         LẬP TRÌNH NÂNG CAO
             </TextBlock>
         </Border>
-        <Border Margin="160,230,160,250" CornerRadius="40" Height="120" Width="680">
+        <Border Margin="180,230,140,250" CornerRadius="40" Height="120" Width="680">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
