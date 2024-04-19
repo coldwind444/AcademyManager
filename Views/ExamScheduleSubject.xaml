@@ -94,7 +94,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border Margin="0,0,0,0" CornerRadius="20" Height="106">
+        <Border CornerRadius="20" Width="360" Height="60" Margin="10,20,50,20">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -105,14 +105,18 @@
              ShadowDepth="15" 
              BlurRadius="50"/>
             </Border.Effect>
-        </Border>
-        <TextBlock FontSize="30" Margin="5, 10,0,0"
-            TextWrapping="Wrap">
+            <StackPanel>
+            <TextBlock FontSize="20"
+            TextWrapping="Wrap" Margin="20,5,0,0" Height="25">
             <Run Text="Hệ điều hành (CO2017)"/>
             <LineBreak/>
-        </TextBlock>
-        <TextBlock FontSize="20" 
-           TextWrapping="Wrap" 
-           Margin="5,50,0,0"><Run Text="Ngày thi: "/><LineBreak/><Run Text="Giờ thi: "/><Run Text="                  "/><Run Text=" "/><Run Text="Phòng thi :"/><Run Text=" "/><Run Text="04 "/></TextBlock>
+            </TextBlock>
+            <TextBlock FontSize="10" 
+   TextWrapping="Wrap" 
+   Margin="20,0,0,0" Height="30"><Run Text="Ngày thi: "/><LineBreak/><Run Text="Giờ thi: "/><Run Text="                  "/><Run Text=" "/><Run Text="Phòng thi :"/><Run Text=" "/><Run Text="04 "/></TextBlock>
+            </StackPanel>
+        </Border>
+
+        
     </Grid>
 </UserControl>
