@@ -65,7 +65,7 @@
                      Text="Email không hợp lệ!"/>
             </TextBlock>
             <Button Command="{Binding CloseCommand}" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35"/>
+                <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="35" Height="35"/>
             </Button>
         </Grid>
     </Grid>
