@@ -119,7 +119,7 @@
                     </Border.Effect>
                     <Button Height="40" Width="100" Cursor="Hand"
                             FontSize="16" Foreground="White"
-                            Command="{Binding UploadCommand}" Click="Button_Click" Content="Xác nhận"/>
+                            Command="{Binding UploadCommand}"  Content="Xác nhận"/>
                 </Border>
             </StackPanel>
         </Border>
