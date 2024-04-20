@@ -190,7 +190,6 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding UploadCommand}" 
-            Click="Button_Click_1" 
             RenderTransformOrigin="0.5,0.5" 
             Margin="440,529,440,21" Height="50">
             Quay lại
@@ -293,8 +292,7 @@
                               materialDesign:HintAssist.Hint="Học Kì" 
                               Margin="20,0,0,0" 
                               HorizontalAlignment="Left" 
-                              Width="113" 
-                              SelectionChanged="TypeSelectionBox_SelectionChanged">
+                              Width="113">
                         <ComboBoxItem Content="Học Kì 1"/>
                         <ComboBoxItem Content="Hoc Kì 2"/>
                         <ComboBoxItem Content="Hoc Kì 3"/>

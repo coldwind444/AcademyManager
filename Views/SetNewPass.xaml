@@ -105,7 +105,7 @@
                     x:Name="FilePathBox2"
                     BorderThickness="0"
                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    FontSize="16" VerticalContentAlignment="Center" TextChanged="FilePathBox2_TextChanged"/>
+                    FontSize="16" VerticalContentAlignment="Center"/>
                 </Border>
                 <Border Width="350" Height="40"
                      Background="White"
@@ -118,7 +118,7 @@
                      Text="{Binding Path}"
                      x:Name="FilePathBox3"
                      BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"                        FontSize="16" VerticalContentAlignment="Center" TextChanged="FilePathBox2_TextChanged"/>
+                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" FontSize="16" VerticalContentAlignment="Center" />
                 </Border>
                 <Border Width="100" CornerRadius="20" Margin="0 15 0 0">
                     <Border.Background>
@@ -134,7 +134,7 @@
                     <Button Grid.Row="1" Height="40" Cursor="Hand"
                 FontSize="20" Foreground="White"
                 Margin="-10,0,-10,0"
-                Command="{Binding UploadCommand}" Click="Button_Click_1">
+                Command="{Binding UploadCommand}">
                         Xác nhận</Button>
                 </Border>
             </StackPanel>

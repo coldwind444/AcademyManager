@@ -15,7 +15,7 @@
                 TextOptions.TextFormattingMode="Ideal"
                 TextOptions.TextRenderingMode="Auto"
                 FontFamily="{DynamicResource MaterialDesignFont}"
-                Height="100" Width="420">
+                Height="110" Width="420">
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>

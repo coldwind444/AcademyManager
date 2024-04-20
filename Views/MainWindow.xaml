@@ -60,7 +60,7 @@
                 <Grid>
                     <!-- Nội dung Grid bên phải -->
                     <ContentControl>
-                        <uc:LectureMainScreenxaml></uc:LectureMainScreenxaml>
+                        <uc:LectureMainScreenxaml/>
                     </ContentControl>
                 </Grid>
             </Border>
