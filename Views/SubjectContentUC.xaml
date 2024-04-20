@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AcademyManager.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="880">
-    <Border Margin="0,0,0,0"
+    <Border Margin="30,0,30,0"
             CornerRadius="20" 
             Opacity="0.8" Height="40">
         <Border.Background>
@@ -20,7 +20,7 @@
                               BlurRadius="50"/>
         </Border.Effect>
         <TextBlock FontSize="20" 
-                   Margin="10" 
+                   Margin="20" 
                    Text="Content" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"/>

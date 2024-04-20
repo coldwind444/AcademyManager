@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for ForgerPass2.xaml
+    /// Interaction logic for ExitUC.xaml
     /// </summary>
-    public partial class ForgerPass2 : UserControl
+    public partial class ExitUC : UserControl
     {
-        public ForgerPass2()
+        public ExitUC()
         {
             InitializeComponent();
         }

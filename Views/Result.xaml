@@ -38,6 +38,7 @@
                                                  Value="True">
                                             <Setter Property="Background" 
                                                     Value="#15BF5C"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">
@@ -194,71 +195,9 @@
             Margin="440,529,440,21" Height="50">
             Quay lại
         </Button>
-        <Border Margin="650,170,80,92" 
-                CornerRadius="40" 
-                RenderTransformOrigin="0.5,0.5" 
-                Height="330" 
-                Width="270">
-            <Border.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Border.RenderTransform>
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" 
-                                 Opacity="0.9"/>
-            </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5"
-                                  Direction="300"
-                                  ShadowDepth="15"
-                                  BlurRadius="50"/>
-            </Border.Effect>
-            <StackPanel Margin="2,3,0,2">
-                <TextBlock FontSize="40" 
-                           TextWrapping="Wrap" 
-                           TextAlignment="Center" 
-                           FontWeight="Bold" 
-                           TextDecorations="Underline" 
-                           Height="66">
-                    <Run Text="Học Kì"/>
-                </TextBlock>
-                <TextBlock FontSize="20" 
-                           TextWrapping="Wrap" 
-                           Margin="10,0,0,5">
-                    GPA Học kì:
-                </TextBlock>
-                <TextBlock FontSize="20" 
-                           TextWrapping="Wrap" 
-                           Margin="10,5,0,5">
-                    Tín chỉ đăng ký học kì:
-                </TextBlock>
-                <TextBlock FontSize="20" 
-                           TextWrapping="Wrap" 
-                           Margin="10,5,0,5">
-                    Tín chỉ tích lũy Học kì:
-                </TextBlock>
-                <TextBlock FontSize="20" 
-                           TextWrapping="Wrap" 
-                           Margin="10,5,0,5">
-                    GPA tích lũy ngành:
-                </TextBlock>
-                <TextBlock FontSize="20" 
-                           TextWrapping="Wrap" 
-                           Margin="10,5,0,5">
-                    Tín chỉ tích lũy ngành:
-                </TextBlock>
-            </StackPanel>
-        </Border>
         <Border Margin="80,168,400,92" 
                 CornerRadius="40">
-            <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" 
-                                 Opacity="0.9"/>
-            </Border.Background>
+            
             <Border.Effect>
                 <DropShadowEffect Opacity="0.5"
                                   Direction="300"
@@ -285,38 +224,25 @@
                 <StackPanel>
                     <ComboBox x:Name="TypeSelectionBox"
                               SelectedIndex="{Binding SelectedIdx, Mode=TwoWay}"
-                              Height="38"
+                              Height="42"
                               BorderThickness="0"
                               FontSize="30" Cursor="Hand"
                               materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                               materialDesign:HintAssist.Hint="Học Kì" 
                               Margin="20,0,0,0" 
                               HorizontalAlignment="Left" 
-                              Width="113">
+                              Width="110">
                         <ComboBoxItem Content="Học Kì 1"/>
-                        <ComboBoxItem Content="Hoc Kì 2"/>
-                        <ComboBoxItem Content="Hoc Kì 3"/>
-                        <ComboBoxItem Content="Hoc Kì 4"/>
-                        <ComboBoxItem Content="Hoc Kì 5"/>
-                        <ComboBoxItem Content="Hoc Kì 6"/>
-                        <ComboBoxItem Content="Hoc Kì 7"/>
-                        <ComboBoxItem Content="Hoc Kì 8"/>
+                        <ComboBoxItem Content="Học Kì 2"/>
+                        <ComboBoxItem Content="Học Kì 3"/>
+                        <ComboBoxItem Content="Học Kì 4"/>
+                        <ComboBoxItem Content="Học Kì 5"/>
+                        <ComboBoxItem Content="Học Kì 6"/>
+                        <ComboBoxItem Content="Học Kì 7"/>
+                        <ComboBoxItem Content="Học Kì 8"/>
                     </ComboBox>
                 </StackPanel>
             </Border>
-
         </Border>
-        <StackPanel Orientation="Horizontal" Margin="80,275,400,275">
-            <TextBlock FontSize="30" Height="50" Margin="20,0,-5,0"  ><Run Text="Hệ điều hành (CO2017)"/></TextBlock>
-            <TextBlock FontSize="20" Height="35" Width="168" Margin="40,0,0,0" ><Run Text="Số tín chỉ: 3 tín"/></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="80,350,400,200">
-            <TextBlock FontSize="30" Height="50" Margin="20,0,-5,0"  ><Run Text="Hệ điều hành (CO2017)"/></TextBlock>
-            <TextBlock FontSize="20" Height="35" Width="155" Margin="40,0,0,0" ><Run Text="Số tín chỉ: 3 tín"/></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="80,430,400,120">
-            <TextBlock FontSize="30" Height="50" Margin="20,0,-5,0"  ><Run Text="Hệ điều hành (CO2017)"/></TextBlock>
-            <TextBlock FontSize="20" Height="35" Width="155" Margin="40,0,0,0" ><Run Text="Số tín chỉ: 3 tín"/></TextBlock>
-        </StackPanel>
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
-        xmlns:userControls="clr-namespace:AcademyManager.UserControls"
+        xmlns:userControls="clr-namespace:AcademyManager.Views"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -88,8 +88,8 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="ForestGreen"/>
+                                            <Setter Property="Background" Value="ForestGreen"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">
@@ -130,7 +130,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
         </Grid.ColumnDefinitions>
-        <Border CornerRadius="0 30 30 0" 
+        <Border CornerRadius="0 20 20 0" 
         Background="White" 
         Margin="0,20,40,540">
             <Border.Effect>
@@ -206,7 +206,7 @@
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
-                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50">
+                RenderTransformOrigin="0.5,0.5" Margin="470,516,340,30" Height="50">
             Xác nhận đăng ký
         </Button>
         <!--<ScrollViewer Grid.Column="1"
@@ -218,6 +218,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </ScrollViewer> -->
+            </ScrollViewer>
+        -->
     </Grid>
 </UserControl>

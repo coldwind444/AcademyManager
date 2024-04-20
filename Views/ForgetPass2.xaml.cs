@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for WelcomeScreen.xaml
+    /// Interaction logic for ForgerPass2.xaml
     /// </summary>
-    public partial class WelcomeScreen : UserControl
+    public partial class ForgetPass2 : UserControl
     {
-        public WelcomeScreen()
+        public ForgetPass2()
         {
             InitializeComponent();
-        }
-
-        private void ExitButon_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

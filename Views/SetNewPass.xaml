@@ -118,7 +118,9 @@
                      Text="{Binding Path}"
                      x:Name="FilePathBox3"
                      BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" FontSize="16" VerticalContentAlignment="Center" />
+                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"                      
+                             FontSize="16" 
+                             VerticalContentAlignment="Center" />
                 </Border>
                 <Border Width="100" CornerRadius="20" Margin="0 15 0 0">
                     <Border.Background>
@@ -133,9 +135,9 @@
                     </Border.Effect>
                     <Button Grid.Row="1" Height="40" Cursor="Hand"
                 FontSize="20" Foreground="White"
-                Margin="-10,0,-10,0"
-                Command="{Binding UploadCommand}">
-                        Xác nhận</Button>
+                Margin="-10,0,-10,0">
+                        Xác nhận
+                    </Button>
                 </Border>
             </StackPanel>
         </Border>

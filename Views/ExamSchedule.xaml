@@ -34,7 +34,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -157,7 +158,6 @@
                 FontSize="25" 
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
-                RenderTransformOrigin="0.5,0.5" 
                 Margin="420,520,420,20" 
                 Content="Quay lại">
             </Button>

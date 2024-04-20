@@ -6,6 +6,7 @@
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
          xmlns:local="clr-namespace:AcademyManager.AdminViews"
          mc:Ignorable="d" 
+         xmlns:uc="clr-namespace:AcademyManager.Views"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
          d:DataContext="{d:DesignInstance Type=UserControl}"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -38,7 +39,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -111,10 +113,13 @@ ShadowDepth="15"
 BlurRadius="50"/>
                 </Border.Effect>
                 <Button Height="40" Width="120" Cursor="Hand"
-FontSize="16" Foreground="White" Margin="0 0 0 0"
+FontSize="20" Foreground="White" Margin="0 0 0 0"
 Command="{Binding UploadCommand}" Content="Đăng ký"/>
             </Border>
+
+            <ContentControl>
+                <uc:ExitUC Height="300" Margin="10,0,0,0"></uc:ExitUC>
+            </ContentControl>
         </StackPanel>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="37" Width="65" Margin="629,156,0,0"/>
     </Grid>
 </UserControl>

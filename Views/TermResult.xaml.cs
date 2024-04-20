@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for WelcomeScreen.xaml
+    /// Interaction logic for TermResult.xaml
     /// </summary>
-    public partial class WelcomeScreen : UserControl
+    public partial class TermResult : UserControl
     {
-        public WelcomeScreen()
+        public TermResult()
         {
             InitializeComponent();
-        }
-
-        private void ExitButon_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
