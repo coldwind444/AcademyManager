@@ -4,6 +4,7 @@
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:uc="clr-namespace:AcademyManager.Views"
          xmlns:local="clr-namespace:AcademyManager.AdminViews"
          mc:Ignorable="d" 
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
@@ -57,7 +58,7 @@
     <Grid>
         <Border Width="400"
         BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="40" Margin="300,132,300,133">
+        BorderBrush="Black" CornerRadius="20" Margin="300,160,300,155">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -68,8 +69,10 @@
             ShadowDepth="15" 
             BlurRadius="50"/>
             </Border.Effect>
-
-            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="223">
+            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="285">
+                <ContentControl Width="35" Height="35" Margin="355,5,0,0">
+                    <uc:ExitUC Height="35"/>
+                </ContentControl>
                 <TextBlock Style="{StaticResource Link}"
                     Foreground="Black"
                     HorizontalAlignment="Center"
@@ -126,11 +129,20 @@
                     FontSize="20" Foreground="White"
                     Command="{Binding UploadCommand}" Content="Xác nhận" Margin="-10,0,-10,0"/>
                 </Border>
-                <TextBlock Foreground="ForestGreen"
-                           HorizontalAlignment="Center" 
-                           TextDecorations="Underline" Height="40" Margin="0,12,0,0"><Run Text="Quên mật khẩu?"/></TextBlock>
+                <TextBlock 
+                    Foreground="ForestGreen"
+                    Style="{StaticResource Link}"
+                    HorizontalAlignment="Center"
+                    FontSize="13" 
+                    RenderTransformOrigin="0.5,0.5"
+                    Margin="20,10,20,0" Height="20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers><Run Text="Quên mật khẩu?"/></TextBlock>
             </StackPanel>
         </Border>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="37" Width="65" Margin="633,150,0,0"/>
     </Grid>
 </UserControl>

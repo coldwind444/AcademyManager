@@ -5,6 +5,7 @@
      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
      xmlns:local="clr-namespace:AcademyManager.UserControls"
+     xmlns:uc="clr-namespace:AcademyManager.Views"
      mc:Ignorable="d" 
      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
      d:DataContext="{d:DesignInstance Type=UserControl}"
@@ -38,7 +39,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -71,9 +73,9 @@
                     ShadowDepth="15" 
                     BlurRadius="50"/>
             </Border.Effect>
-
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <TextBlock Style="{StaticResource Link}"
+            <DockPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="150" Margin="25,0,-5,0">
+                    <TextBlock Style="{StaticResource Link}"
                 Foreground="Black"
                 HorizontalAlignment="Center"
                 FontSize="30" Height="43"><i:Interaction.Triggers>
@@ -81,46 +83,50 @@
             <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
             </i:EventTrigger>
             </i:Interaction.Triggers><Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/></TextBlock>
-                <Border Width="350" Height="40"
+                    <Border Width="350" Height="40"
                 Background="White"
                 CornerRadius="20"
                 Margin="0 0 0 20"
                 BorderBrush="Black"
                 BorderThickness="1.5">
-                    <TextBox Width="320" Height="30"
+                        <TextBox Width="320" Height="30"
                      materialDesign:HintAssist.Hint="UserName"
                      Text="{Binding Path}"
                      x:Name="FilePathBox"
                      BorderThickness="0"
                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                      FontSize="20" VerticalContentAlignment="Center"/>
-                </Border>
-                <Border Width="180" CornerRadius="20">
-                    <Border.Background>
-                        <SolidColorBrush Color="White" 
+                    </Border>
+                    <Border Width="180" CornerRadius="20" Height="42">
+                        <Border.Background>
+                            <SolidColorBrush Color="White" 
                             Opacity="0.9"/>
-                    </Border.Background>
-                    <Border.Effect>
-                        <DropShadowEffect Opacity="0.5"
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Opacity="0.5"
                             Direction="300"
                             ShadowDepth="15"
                             BlurRadius="50"/>
-                    </Border.Effect>
-                    <Button Height="40" Width="180" Cursor="Hand"  Margin="0 -10 0 0"
+                        </Border.Effect>
+                        <Button Width="180" Cursor="Hand"  Margin="0,-7,0,7"
                 FontSize="20" Foreground="White"
                 Command="{Binding UploadCommand}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
-                        <Button.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform/>
-                                <TranslateTransform Y="7"/>
-                            </TransformGroup>
-                        </Button.RenderTransform>
-                    </Button>
-                </Border>
-            </StackPanel>
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="7"/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                        </Button>
+                    </Border>
+                </StackPanel>
+                <ContentControl Width="35" Height="35">
+                    <uc:ExitUC Height="35" Margin="-5,-95,10,90"/>
+                </ContentControl>
+            </DockPanel>
         </Border>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="37" Width="39" Margin="653,199,0,0"/>
+
     </Grid>
 </UserControl>

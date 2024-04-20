@@ -18,9 +18,9 @@ namespace AcademyManager.Views
     /// <summary>
     /// Interaction logic for ExamScheduleSubject.xaml
     /// </summary>
-    public partial class ExamScheduleSubject : UserControl
+    public partial class ExamScheduleUC : UserControl
     {
-        public ExamScheduleSubject()
+        public ExamScheduleUC()
         {
             InitializeComponent();
         }

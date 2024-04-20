@@ -5,6 +5,7 @@
      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
      xmlns:local="clr-namespace:AcademyManager.UserControls"
+     xmlns:uc="clr-namespace:AcademyManager.Views"
      mc:Ignorable="d" 
      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
      d:DataContext="{d:DesignInstance Type=UserControl}"
@@ -38,7 +39,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -70,6 +72,10 @@
             </Border.Effect>
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <ContentControl Width="35" Height="35" Margin="360,-30,0,0">
+                    <uc:ExitUC Height="35"/>
+                </ContentControl>
+                
                 <TextBlock Style="{StaticResource Link}"
                 Foreground="Black"
                 HorizontalAlignment="Center"
@@ -123,6 +129,5 @@
                 </Border>
             </StackPanel>
         </Border>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="63" Width="34" Margin="652,170,0,0" RenderTransformOrigin="0.5,0.5" />
     </Grid>
 </UserControl>

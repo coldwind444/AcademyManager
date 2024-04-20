@@ -5,6 +5,7 @@
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
          xmlns:local="clr-namespace:AcademyManager.AdminViews"
+         xmlns:uc="clr-namespace:AcademyManager.Views"
          mc:Ignorable="d" 
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
          d:DataContext="{d:DesignInstance Type=UserControl}"
@@ -38,7 +39,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -57,7 +59,7 @@
     <Grid>
         <Border Width="400"
         BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="40" Margin="300,162,300,165">
+        BorderBrush="Black" CornerRadius="20" Margin="300,162,300,165">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
@@ -69,7 +71,10 @@
             BlurRadius="50"/>
             </Border.Effect>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="193">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="273">
+                <ContentControl Width="35" Height="35" Margin="360,5,0,0">
+                    <uc:ExitUC Height="35"/>
+                </ContentControl>
                 <TextBlock Style="{StaticResource Link}"
                     Foreground="Black"
                     HorizontalAlignment="Center"
@@ -128,6 +133,5 @@
                 </Border>
             </StackPanel>
         </Border>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="37" Width="65" Margin="631,179,0,0"/>
     </Grid>
 </UserControl>

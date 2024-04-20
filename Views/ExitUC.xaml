@@ -13,8 +13,7 @@
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      FontFamily="{DynamicResource MaterialDesignFont}"
-     d:DesignHeight="35" d:DesignWidth="35
-             ">
+     d:DesignHeight="35" d:DesignWidth="35">
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -26,7 +25,7 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFABEDC6"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
