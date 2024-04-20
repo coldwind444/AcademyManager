@@ -17,6 +17,7 @@ namespace AcademyManager.Viewmodels
         public ICommand HomeNavigateCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand NotificationCommand { get; set; }
+        public ICommand CloseCommand { get; set; }  // Thêm ExitCommand vào phần khai báo
         #endregion
 
         #region Properties
@@ -56,8 +57,8 @@ namespace AcademyManager.Viewmodels
         private string _url;
         public string URL
         {
-            get { return _url; } 
-            set { _url = value; OnPropertyChanged();}
+            get { return _url; }
+            set { _url = value; OnPropertyChanged(); }
         }
         public Visibility TabbarV
         {
@@ -69,7 +70,7 @@ namespace AcademyManager.Viewmodels
         #region Methods
         private void InitializeCommands()
         {
-            HomeNavigateCommand = new RelayCommand<object>(p => { return true; }, p =>
+            HomeNavigateCommand = new RelayCommand<object>(p => true, p =>
             {
                 if (HomeView != null) CurrentView = HomeView;
                 else
@@ -79,21 +80,26 @@ namespace AcademyManager.Viewmodels
                 }
             });
 
-            LogoutCommand = new RelayCommand<object>(p => { return true; }, p =>
+            LogoutCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = RootView;
             });
 
-            NotificationCommand = new RelayCommand<object>(p => { return true; }, p =>
-            { 
-                //
+            NotificationCommand = new RelayCommand<object>(p => true, p =>
+            {
+                // Logic for notification here
+            });
+
+            CloseCommand = new RelayCommand<object>(p => true, p =>
+            {
+                Application.Current.Shutdown();  // Lệnh để tắt ứng dụng
             });
         }
         #endregion
 
         public MainVM()
         {
-            InitializeCommands();   
+            InitializeCommands();
         }
     }
 }

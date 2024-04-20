@@ -61,7 +61,7 @@
                 <Grid>
                     <!-- Nội dung Grid bên phải -->
                     <ContentControl>
-                        <uc:Noti></uc:Noti>
+                        <uc:WelcomeScreen></uc:WelcomeScreen>
                     </ContentControl>
                 </Grid>
             </Border>
