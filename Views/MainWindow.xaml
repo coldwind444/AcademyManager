@@ -99,8 +99,10 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" CornerRadius="10 0 0 10"
-                Background="#FF3C783C" Grid.RowSpan="3">
+                <Border Grid.Column="0" 
+                        CornerRadius="10 0 0 10" 
+                        Background="#FF3C783C" 
+                        Grid.RowSpan="3">
                     <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>

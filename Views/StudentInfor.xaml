@@ -124,8 +124,8 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonDown">
                     <i:InvokeCommandAction 
-                        Command="{Binding ReturnToStudentMainScreenCommand}" 
-                                           CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                        Command="{Binding StudentMainScreenCommand}" 
+                        CommandParameter="{Binding ElementName=TypeSelectionBox}">
                         <!--
                         Command="{Binding DownloadCommand}"
                         -->
@@ -133,8 +133,8 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             Trang chủ >
-                        </TextBlock>
-                        <TextBlock Foreground="Black" Style="{StaticResource Link}"
+                </TextBlock>
+                <TextBlock Foreground="Black" Style="{StaticResource Link}"
            VerticalAlignment="Center"
            FontSize="20"
            RenderTransformOrigin="0.5,0.5"
@@ -207,7 +207,7 @@
             FontSize="20" 
             Foreground="White"
             RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50"
-            Command="{Binding ReturnToStudentMainScreenCommand}">
+            Command="{Binding StudentMainScreenCommand}">
             <!--
                         Command="{Binding UploadCommand}" 
             -->

@@ -104,8 +104,7 @@
         ShadowDepth="15"
         BlurRadius="50"/>
                 </Border.Effect>
-                <Button Command="{Binding LoginCommand}"
-                    
+                <Button Command="{Binding WelcomeTeacherCommand}"
                     Grid.Row="1" Height="40" Width="120" Cursor="Hand"
     FontSize="20" Foreground="White" Content="Giáo viên"/>
                 <!-- ="{Binding OpenLoginCommand}" -->
@@ -125,14 +124,12 @@ BlurRadius="50"/>
 
                 <Button Height="40" Width="120" Cursor="Hand"
 FontSize="20" Foreground="White" Margin="0 0 0 0"
- Content="Sinh viên" Command="{Binding RegisterCommand}"/>
+ Content="Sinh viên" Command="{Binding WelcomeCommand}"/>
                 <!--Command ="{Binding UploadCommand}"-->
 
             </Border>
 
-            <ContentControl>
-                <uc:ExitUC Height="300" Margin="10,0,0,0"></uc:ExitUC>
-            </ContentControl>
+            <ContentControl/>
         </StackPanel>
     </Grid>
 </UserControl>

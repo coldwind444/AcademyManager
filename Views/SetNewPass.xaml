@@ -1,11 +1,12 @@
 ﻿<UserControl x:Class="AcademyManager.Views.SetNewPass"
-                                                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
      xmlns:local="clr-namespace:AcademyManager.AdminViews"
      mc:Ignorable="d" 
+     xmlns:uc="clr-namespace:AcademyManager.Views"
      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
      d:DataContext="{d:DesignInstance Type=UserControl}"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -38,7 +39,8 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -55,92 +57,106 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-
         <Border Width="400"
-        BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="40" Margin="300,136,300,141">
+                BorderThickness="1.5"
+                BorderBrush="Black" 
+                CornerRadius="20" 
+                Margin="300,136,300,141">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
             <Border.Effect>
                 <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
+                    Opacity="0.5" 
+                    Direction="300" 
+                    ShadowDepth="15" 
+                    BlurRadius="50"/>
             </Border.Effect>
-
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource Link}"
-                Foreground="Black"
-                HorizontalAlignment="Center"
-                FontSize="20" Height="35"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Language="vi-vn" Text="ĐẶT LẠI MẬT KHẨU"/><LineBreak/><Run Language="vi-vn"/></TextBlock>
-                <Border Width="350" Height="40"
-                Background="White"
-                CornerRadius="20"
-                Margin="0 0 0 10"
-                BorderBrush="Black"
-                BorderThickness="1.5">
+                    Foreground="Black"
+                    HorizontalAlignment="Center"
+                    FontSize="20" Height="35"><i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Run Language="vi-vn" Text="NHẬP THÔNG TIN"/>
+                    <LineBreak/><Run/>
+                </TextBlock>
+                <Border Width="350" 
+                        Height="40"
+                        Background="White"
+                        CornerRadius="20"
+                        Margin="0 0 0 10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5">
                     <TextBox Width="320" Height="30"
-                     materialDesign:HintAssist.Hint="UserName"
-                     Text="{Binding Path}"
-                     x:Name="FilePathBox"
-                     BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                     FontSize="16" VerticalContentAlignment="Center"/>
+                         materialDesign:HintAssist.Hint="UserName"
+                         Text="{Binding Path}"
+                         x:Name="FilePathBox"
+                         BorderThickness="0"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         FontSize="16" VerticalContentAlignment="Center"/>
                 </Border>
-                <Border Width="350" Height="40"
-                 Background="White"
-                 CornerRadius="20"
-                 Margin="0 0 0 10"
-                 BorderBrush="Black"
-                 BorderThickness="1.5">
-                    <TextBox Width="320" Height="30"
-                    materialDesign:HintAssist.Hint="Mật khẩu mới"
-                    Text="{Binding Path}"
-                    x:Name="FilePathBox2"
-                    BorderThickness="0"
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    FontSize="16" VerticalContentAlignment="Center"/>
+                <Border Width="350" 
+                        Height="40"
+                        Background="White"
+                        CornerRadius="20"
+                        Margin="0 0 0 10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5">
+                    <TextBox Width="320" 
+                             Height="30"
+                             materialDesign:HintAssist.Hint="Mật khẩu mới"
+                             Text="{Binding Path}"
+                             x:Name="FilePathBox2"
+                             BorderThickness="0"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             FontSize="16" VerticalContentAlignment="Center"/>
                 </Border>
-                <Border Width="350" Height="40"
-                     Background="White"
-                     CornerRadius="20"
-                     Margin="0 0 0 10"
-                     BorderBrush="Black"
-                     BorderThickness="1.5">
-                    <TextBox Width="320" Height="30"
-                     materialDesign:HintAssist.Hint="Xác nhận lại mật khẩu mới"
-                     Text="{Binding Path}"
-                     x:Name="FilePathBox3"
-                     BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"                      
+                <Border Width="350" 
+                        Height="40"
+                        Background="White"
+                        CornerRadius="20"
+                        Margin="0 0 0 10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5">
+                    <TextBox Width="320" 
+                             Height="30"
+                             materialDesign:HintAssist.Hint="Xác nhận lại mật khẩu mới"
+                             Text="{Binding Path}"
+                             x:Name="FilePathBox3"
+                             BorderThickness="0"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"                      
                              FontSize="16" 
                              VerticalContentAlignment="Center" />
                 </Border>
-                <Border Width="100" CornerRadius="20" Margin="0 15 0 0">
+                <Border Width="120" 
+                        CornerRadius="20" 
+                        Margin="0 15 0 0">
                     <Border.Background>
-                        <SolidColorBrush Color="White" 
-        Opacity="0.9"/>
+                        <SolidColorBrush Color="White" Opacity="0.9"/>
                     </Border.Background>
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5"
-        Direction="300"
-        ShadowDepth="15"
-        BlurRadius="50"/>
+                                          Direction="300"
+                                          ShadowDepth="15"
+                                          BlurRadius="50"/>
                     </Border.Effect>
-                    <Button Grid.Row="1" Height="40" Cursor="Hand"
-                FontSize="20" Foreground="White"
-                Margin="-10,0,-10,0">
-                        Xác nhận
+                    <Button Command="{Binding ConfirmCommand}" 
+                            Grid.Row="1" Height="40" 
+                            Cursor="Hand"
+                            FontSize="20" Foreground="White" Width="120">
+                            Xác nhận
                     </Button>
                 </Border>
             </StackPanel>
         </Border>
-        <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Height="37" Width="65" Margin="633,155,0,0"/>
+        <ContentControl Width="35" 
+                        Height="35" 
+                        Margin="350,-280,0,0">
+            <uc:ExitUC Height="35"/>
+        </ContentControl>
     </Grid>
 </UserControl>

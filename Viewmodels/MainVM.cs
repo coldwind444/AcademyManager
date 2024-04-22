@@ -20,13 +20,31 @@ namespace AcademyManager.Viewmodels
         public ICommand CloseCommand { get; set; } //Close App
         public ICommand MinimizeCommand { get; set; }//Minimize App
         public ICommand LoginCommand { get; set; }//Login Screen
+        public ICommand ConfirmCommand { get; set; }//Home
+
+        // *Dung*
+        public ICommand LectureInforCommand { get; set; }//LectureInfor Screen
+        public ICommand LectureCommand { get; set; }//LectureInfor Screen
+        public ICommand LectureSubjectListCommand { get; set; }//LectureInfor Screen
+        public ICommand WelcomeCommand { get; set; } // xem Đăng ký thành công
+        public ICommand WelcomeTeacherCommand { get; set; } // xem Đăng ký thành công
+        public ICommand RegisterCommand { get; set; } // xem Đăng ký thành công
+
+
+        // sam
+        public ICommand StudentInforCommand { get; set; } // thông tin học sinh
+        public ICommand StudentMainScreenCommand { get; set; } // trở lại trang màn hình chính của hs 
+        public ICommand StudentSubjectListCommand { get; set; } // xem Danh sách môn học
+        public ICommand SubjectRegisterCommand { get; set; } // xem Đăng ký môn học
+        public ICommand RegisterSuccessCommand { get; set; } // xem Đăng ký thành công
+        public ICommand ResultCommand { get; set; } // xem Kết quả
+        public ICommand ExamScheduleCommand { get; set; } // xem lich  thi
 
         #region Properties
         // current account
         public Account CurrentAccount { get; set; }
         // authentication pages
         public UserControl RootView { get; set; }
-        public UserControl LoginView { get; set; }
         public UserControl SigninView { get; set; }
         public UserControl SigninSuccessView { get; set; }
         public UserControl SigninFailureView { get; set; }
@@ -43,6 +61,41 @@ namespace AcademyManager.Viewmodels
         public UserControl CourseView { get; set; }
         public UserControl CourseRegisterView { get; set; }
         public UserControl CourseInfoView { get; set; }
+        public UserControl LoginView { get; set; }
+        public UserControl ConfirmView { get; set; }
+
+        // *Dung*
+        public UserControl LectureInforView { get; set; }//Login Screen
+        public UserControl LectureMainScreenView { get; set; }//Login Screen
+        public UserControl LectureSubjectListView { get; set; }
+        public UserControl WelcomeView { get; set; }
+        public UserControl WelcomeTeacherView { get; set; }
+        public UserControl RegisterView { get; set; }
+
+
+        // Sam
+        public UserControl StudentInforView { get; set; } // Thông tin học sinh
+        public UserControl StudentMainScreenView { get; set; } // trở lại trang Thông tin học sinh
+        public UserControl StudentSubjectListView { get; set; } //Xem danh sách môn học
+        public UserControl SubjectRegisterView { get; set; } //Xem Đăng ký môn học
+        public UserControl RegisterSuccessView { get; set; } //Xem Đăng ký thành công
+        public UserControl ResultView { get; set; } //Xem kết quả
+        public UserControl ExamScheduleView { get; set; } // xem lich thi
+        //sam
+        //teacher
+        private bool _isTeacher;
+        public bool IsTeacher
+        {
+            get { return _isTeacher; }
+            set
+            {
+                if (_isTeacher != value)
+                {
+                    _isTeacher = value;
+                    OnPropertyChanged("IsTeacher");
+                }
+            }
+        }
         // current view
         private UserControl _currentView;
         public UserControl CurrentView
@@ -68,9 +121,25 @@ namespace AcademyManager.Viewmodels
         private void InitializeViews()
         {
             // Khởi tạo một lần và sử dụng lại các views
-            HomeView = new AcademyManager.Views.WelcomeScreen();
-            LoginView = new AcademyManager.Views.Login();  // Đảm bảo rằng bạn có UserControl này trong project của bạn
-                                                           // Khởi tạo các views khác...
+            HomeView = new AcademyManager.Views.WhoAreYou();
+            LoginView = new AcademyManager.Views.Login();
+            ConfirmView = new AcademyManager.Views.WelcomeScreen();
+            LectureInforView = new AcademyManager.Views.LectureInfor();
+            LectureMainScreenView = new AcademyManager.Views.LectureMainScreen();
+            LectureSubjectListView = new AcademyManager.Views.LectureSubjectList();
+            WelcomeView = new AcademyManager.Views.WelcomeScreen();
+            WelcomeTeacherView = new AcademyManager.Views.WelcomeScreen();
+            RegisterView = new AcademyManager.Views.SetNewPass();
+
+            //sam
+            StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
+            StudentMainScreenView = new AcademyManager.Views.StudentMainScreen(); //trở lại trang thông tin học sinh
+            StudentSubjectListView = new AcademyManager.Views.StudentSubjectList(); //Xem danh sách môn học
+            SubjectRegisterView = new AcademyManager.Views.SubjectRegister(); //xem Đăng ký môn học
+            RegisterSuccessView = new AcademyManager.Views.NotiRegisterSuccess(); //xem Đăng ký thành công
+            ResultView = new AcademyManager.Views.Result();  // xem kết quả
+            ExamScheduleView = new AcademyManager.Views.ExamSchedule();//xem lich thi
+            //sam
         }
         private void InitializeCommands()
         {
@@ -101,6 +170,83 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = LoginView;
             });
+
+            ConfirmCommand = new RelayCommand<object>(p => true, p =>
+            {
+                if (IsTeacher != true)
+                    CurrentView = StudentMainScreenView;
+                else CurrentView = LectureMainScreenView;
+            });
+
+            LectureInforCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = LectureInforView;
+            });
+
+            LectureCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = LectureMainScreenView;
+            });
+
+            LectureSubjectListCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = LectureSubjectListView;
+            });
+
+            WelcomeCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = WelcomeView;
+            });
+
+            WelcomeTeacherCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = WelcomeView;
+                IsTeacher = true;
+            });
+            RegisterCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = RegisterView;
+            });
+
+            //sam
+            StudentInforCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = StudentInforView;
+            });
+
+            StudentSubjectListCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = StudentSubjectListView;
+            });
+
+            StudentMainScreenCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = StudentMainScreenView;
+            });
+
+            SubjectRegisterCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = SubjectRegisterView;
+            });
+
+            RegisterSuccessCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = RegisterSuccessView;
+            });
+
+            ResultCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = ResultView;
+            });
+
+            ExamScheduleCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = ExamScheduleView;
+            });
+
+            // sam
+
+
         }
         #endregion
         private void MinimizeApplication()
@@ -112,13 +258,13 @@ namespace AcademyManager.Viewmodels
                 {
                     mainWindow.WindowState = WindowState.Minimized;
                 }
-            });           
+            });
         }
         public MainVM()
         {
             InitializeViews();
             InitializeCommands();
-            CurrentView = new WelcomeScreen();
+            CurrentView = HomeView;
         }
     }
 }

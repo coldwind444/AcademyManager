@@ -71,9 +71,7 @@
             BlurRadius="50"/>
             </Border.Effect>
             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="285">
-                <ContentControl Width="35" Height="35" Margin="355,5,0,0">
-                    <uc:ExitUC/>
-                </ContentControl>
+                <ContentControl Width="35" Height="35" Margin="355,5,0,0"/>
                 <TextBlock Style="{StaticResource Link}"
                     Foreground="Black"
                     HorizontalAlignment="Center"

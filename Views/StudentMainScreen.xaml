@@ -131,6 +131,9 @@
         </Button>
         <Button Margin="380,310,380,50" Width="240" Height="240"
                 Command="{Binding StudentSubjectListCommand}">
+            <!--
+                Command="{Binding StudentSubjectListCommand}"
+            -->
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
@@ -140,12 +143,16 @@
                 </Border.Effect>
 
                 <StackPanel HorizontalAlignment="Center" Height="235" VerticalAlignment="Top">
-                    <TextBlock FontSize="30" Foreground="Black" TextAlignment="Center" Text="Môn học" Height="40" Margin="15,20,0,-15"/>
+                    <TextBlock FontSize="30" 
+                               Foreground="Black" 
+                               TextAlignment="Center" 
+                               Text="Môn học" Height="40" Margin="15,20,0,-15"/>
                     <materialDesign:PackIcon Margin="0,-20,0,0" Kind="BookOpenVariant" Foreground="White" Height="210" Width="190"/>
                 </StackPanel>
             </Border>
         </Button>
-        <Button Margin="710,310,50,50" Width="240" Height="240">
+        <Button Margin="710,310,50,50" Width="240" Height="240"
+                Command="{Binding ResultCommand}">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
@@ -160,7 +167,8 @@
                 </StackPanel>
             </Border>
         </Button>
-        <Button Margin="710,207,50,313" Width="240" Height="80">
+        <Button Margin="710,207,50,313" Width="240" Height="80"
+                Command="{Binding ExamScheduleCommand}">
             <Border CornerRadius="40" Width="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>

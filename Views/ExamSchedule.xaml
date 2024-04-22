@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
+        xmlns:uc="clr-namespace:AcademyManager.Views"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -81,11 +82,15 @@
                                 </Style>
                             </Border.Style>
                             <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"></ContentPresenter>
+                                              HorizontalAlignment="Center">
+                            </ContentPresenter>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="#027324"/>
+                                <Setter 
+                                    TargetName="ButtonBorder" 
+                                    Property="Background" 
+                                    Value="#027324"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -93,13 +98,12 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
-
-    <Border CornerRadius="10" >
+    <Border CornerRadius="10">
         <Grid>
-            <Grid  Grid.Column="1" Margin="0,0,0,-16">
+            <Grid Grid.Column="1" Margin="0,0,0,-16">
                 <Border CornerRadius="0 20 20 0"
-                            Background="White" Margin="0,20,60,557">
+                        Background="White" 
+                        Margin="0,20,60,557">
                     <Border.Effect>
                         <DropShadowEffect 
                             Opacity="0.5" 
@@ -110,39 +114,40 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Left">
                         <TextBlock 
-                        Foreground="Black"
-                        Style="{StaticResource Link}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="25" 
-                        RenderTransformOrigin="0.5,0.5"
-                        Margin="20 0 20 0">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction         Command="{Binding ReturnToStudentMainScreenCommand}"
-    CommandParameter="{Binding ElementName=TypeSelectionBox}">
-</i:InvokeCommandAction>
-<!--
-Command="{Binding DownloadCommand}" 
-    -->
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                Trang chủ >
+                            Foreground="Black"
+                            Style="{StaticResource Link}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="25" 
+                            RenderTransformOrigin="0.5,0.5"
+                            Margin="20 0 20 0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction                                
+                                        Command="{Binding StudentMainScreenCommand}" 
+                                        CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                                    </i:InvokeCommandAction>
+                                    <!-- Command="{Binding DownloadCommand}" -->
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            Trang chủ >
                         </TextBlock>
-
                         <TextBlock Foreground="Black" Style="{StaticResource Link}"
-                       FontSize="25"
-                       RenderTransformOrigin="0.5,0.5"
-                       Margin="0 0 20 0" VerticalAlignment="Center"><i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                              CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                        </i:EventTrigger>
-                </i:Interaction.Triggers><Run Language="vi-vn" Text="Lịch thi"/></TextBlock>
+                                   FontSize="25"
+                                   RenderTransformOrigin="0.5,0.5"
+                                   Margin="0 0 20 0" 
+                                   VerticalAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                                           CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Run Language="vi-vn" Text="Lịch thi"/>
+                        </TextBlock>
                     </StackPanel>
                 </Border>
             </Grid>
-
             <TextBlock TextWrapping="Wrap" 
                        TextAlignment="Center" 
                        FontSize="40" 
@@ -150,21 +155,27 @@ Command="{Binding DownloadCommand}"
                        Margin="50,77,50,466" 
                        RenderTransformOrigin="0.48,-4.018" 
                        FontWeight="Medium">
-                <Run Language="vi-vn" 
-                     Text="LỊCH THI"/>
+                <Run Language="vi-vn" Text="LỊCH THI"/>
             </TextBlock>
             <Separator Background="Black" Margin="40,129,0,461" HorizontalAlignment="Left" Width="900" Height="10"/>
-
-
             <Button
                 Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="25" 
                 Foreground="White"
-                Command="{Binding UploadCommand}" 
+                Command="{Binding StudentMainScreenCommand}" 
                 Margin="420,520,420,20" 
                 Content="Quay lại">
+                <!-- Command="{Binding UploadCommand}" -->
             </Button>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="365" VerticalAlignment="Top" Margin="0,150,0,0">
+                <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black" Margin="0,-40,0,-60">
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="805" Height="84"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Border>
 </UserControl>

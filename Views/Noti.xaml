@@ -93,7 +93,6 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -114,20 +113,20 @@
             <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left">
                 <TextBlock 
-            Foreground="Black"
-            Style="{StaticResource Link}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="20" 
-            RenderTransformOrigin="0.5,0.5"
-            Margin="20 0 20 0">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    Trang chủ >
+                    Foreground="Black"
+                    Style="{StaticResource Link}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20" 
+                    RenderTransformOrigin="0.5,0.5"
+                    Margin="20 0 20 0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    Trang chủ >
                 </TextBlock>
                 <TextBlock Foreground="Black" Style="{StaticResource Link}"
            VerticalAlignment="Center"
@@ -160,7 +159,5 @@
             RenderTransformOrigin="0.5,0.5" Margin="340,520,470,30" Height="50">
             Đánh dấu đã đọc
         </Button>
-
-        
     </Grid>
 </UserControl>

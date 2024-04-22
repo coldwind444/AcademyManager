@@ -15,7 +15,7 @@
                 TextOptions.TextFormattingMode="Ideal"
                 TextOptions.TextRenderingMode="Auto"
                 FontFamily="{DynamicResource MaterialDesignFont}"
-                Height="100" Width="420">
+                Height="100" Width="800">
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -93,31 +93,32 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
-    <Grid>
-        <Border CornerRadius="20" Width="360" Height="60" Margin="10,20,50,20">
+        <Border BorderThickness="1" CornerRadius="20" BorderBrush="Black" Width="800" Margin="0,0,0,0">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-             Opacity="0.5" 
-             Direction="300" 
-             ShadowDepth="15" 
-             BlurRadius="50"/>
-            </Border.Effect>
-            <StackPanel>
-            <TextBlock FontSize="20"
-            TextWrapping="Wrap" Margin="20,5,0,0" Height="25">
-            <Run Text="Hệ điều hành (CO2017)"/>
-            <LineBreak/>
-            </TextBlock>
-            <TextBlock FontSize="10" 
-   TextWrapping="Wrap" 
-   Margin="20,0,0,0" Height="30"><Run Text="Ngày thi: "/><LineBreak/><Run Text="Giờ thi: "/><Run Text="                  "/><Run Text=" "/><Run Text="Phòng thi :"/><Run Text=" "/><Run Text="04 "/></TextBlock>
+            <StackPanel Margin="0,0,0,0">
+                <TextBlock FontSize="30"
+                           TextWrapping="Wrap" 
+                           Height="40" Width="820" Margin="20,5,0,0">
+                    <Run Text="Hệ điều hành (CO2017)"/>
+                </TextBlock>
+                <TextBlock FontSize="20"
+                       TextWrapping="Wrap" 
+                       Height="50" Margin="20,0,0,0"><Run Text="Ngày thi: "/>
+                    <LineBreak/><Run Text="Giờ thi: "/>
+                    <Run Text=" "/>
+                    <Run Text=" "/>
+                    <Run Text=" "/>
+                    <Run Language="vi-vn" Text="&#x9;&#x9;&#x9;&#x9;"/>
+                    <Run Text=" "/>
+                    <Run Text="Phòng thi :"/>
+                    <Run Text=" "/>
+                    <Run Text=" "/>
+                    <Run Text=" "/>
+                    <Run Text=" "/>
+                    <Run Text="04 "/>
+                </TextBlock>
             </StackPanel>
         </Border>
-
-        
-    </Grid>
 </UserControl>
