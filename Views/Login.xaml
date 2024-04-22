@@ -128,7 +128,7 @@
                     </Border.Effect>
                     <Button Cursor="Hand"
                     FontSize="20" Foreground="White"
-                    Command="{Binding UploadCommand}" Content="Xác nhận" Margin="0,0,0,0"/>
+                    Command="{Binding ConfirmCommand}" Content="Xác nhận" Margin="0,0,0,0"/>
                 </Border>
                 <TextBlock 
                     Foreground="ForestGreen"

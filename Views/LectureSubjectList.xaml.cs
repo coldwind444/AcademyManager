@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for StudentSubjectList.xaml
+    /// Interaction logic for LectureSubjectList.xaml
     /// </summary>
-    public partial class StudentSubjectList : UserControl
+    public partial class LectureSubjectList : UserControl
     {
-        public StudentSubjectList()
+        public LectureSubjectList()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -16,7 +16,6 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-             
         Height="600" Width="1000">
     <UserControl.Resources>
         <Style TargetType="Button">
