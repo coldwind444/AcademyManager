@@ -87,7 +87,7 @@
                 <Grid>
                     <!-- Nội dung Grid bên phải -->
                     <ContentControl Content="{Binding CurrentView}">
-                        <!-- <uc:WelcomeScreen></uc:WelcomeScreen> -->
+                        <!-- <uc:WelcomeScreen></uc:WelcomeScreen>-->
                     </ContentControl>
                 </Grid>
             </Border>
