@@ -18,11 +18,21 @@ namespace AcademyManager.Views
     /// <summary>
     /// Interaction logic for StudySchedual.xaml
     /// </summary>
-    public partial class StudySchedual : UserControl
+    public partial class StudySchedule : UserControl
     {
-        public StudySchedual()
+        public StudySchedule()
         {
             InitializeComponent();
+        }
+
+        private void Calendar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Calendar_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

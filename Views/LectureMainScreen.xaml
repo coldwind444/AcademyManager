@@ -148,7 +148,7 @@
                 </StackPanel>
             </Border>
         </Button>
-        <Button Margin="710,307,50,53" Grid.RowSpan="2" Width="240" Height="240" Grid.ColumnSpan="2">
+        <Button Command="{Binding StudyScheduleCommand}" Margin="710,307,50,53" Grid.RowSpan="2" Width="240" Height="240" Grid.ColumnSpan="2">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>

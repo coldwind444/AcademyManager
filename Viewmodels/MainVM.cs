@@ -21,24 +21,21 @@ namespace AcademyManager.Viewmodels
         public ICommand MinimizeCommand { get; set; }//Minimize App
         public ICommand LoginCommand { get; set; }//Login Screen
         public ICommand ConfirmCommand { get; set; }//Home
+        public ICommand LectureInforCommand { get; set; }//Information of lecture Screen
+        public ICommand LectureCommand { get; set; }//Lecture Home
+        public ICommand LectureSubjectListCommand { get; set; }//List Subject of lecture
+        public ICommand WelcomeCommand { get; set; } //Sign in / Sign up
+        public ICommand WelcomeTeacherCommand { get; set; } //Sign in / Sign up (IsTeacher = True)
+        public ICommand RegisterCommand { get; set; } //Sign up Screen
+        public ICommand StudentInforCommand { get; set; } //Information of Student Screen
+        public ICommand StudentMainScreenCommand { get; set; } //Student Home 
+        public ICommand StudentSubjectListCommand { get; set; } //List subject
+        public ICommand SubjectRegisterCommand { get; set; } //List subject to register
+        public ICommand RegisterSuccessCommand { get; set; } //Register successfully
+        public ICommand ResultCommand { get; set; } //Study Result
+        public ICommand ExamScheduleCommand { get; set; } //Exam schedule
+        public ICommand StudyScheduleCommand { get; set; } //Calendar
 
-        // *Dung*
-        public ICommand LectureInforCommand { get; set; }//LectureInfor Screen
-        public ICommand LectureCommand { get; set; }//LectureInfor Screen
-        public ICommand LectureSubjectListCommand { get; set; }//LectureInfor Screen
-        public ICommand WelcomeCommand { get; set; } // xem Đăng ký thành công
-        public ICommand WelcomeTeacherCommand { get; set; } // xem Đăng ký thành công
-        public ICommand RegisterCommand { get; set; } // xem Đăng ký thành công
-
-
-        // sam
-        public ICommand StudentInforCommand { get; set; } // thông tin học sinh
-        public ICommand StudentMainScreenCommand { get; set; } // trở lại trang màn hình chính của hs 
-        public ICommand StudentSubjectListCommand { get; set; } // xem Danh sách môn học
-        public ICommand SubjectRegisterCommand { get; set; } // xem Đăng ký môn học
-        public ICommand RegisterSuccessCommand { get; set; } // xem Đăng ký thành công
-        public ICommand ResultCommand { get; set; } // xem Kết quả
-        public ICommand ExamScheduleCommand { get; set; } // xem lich  thi
 
         #region Properties
         // current account
@@ -71,6 +68,7 @@ namespace AcademyManager.Viewmodels
         public UserControl WelcomeView { get; set; }
         public UserControl WelcomeTeacherView { get; set; }
         public UserControl RegisterView { get; set; }
+        public UserControl StudyScheduleView { get; set; }
 
 
         // Sam
@@ -130,6 +128,7 @@ namespace AcademyManager.Viewmodels
             WelcomeView = new AcademyManager.Views.WelcomeScreen();
             WelcomeTeacherView = new AcademyManager.Views.WelcomeScreen();
             RegisterView = new AcademyManager.Views.SetNewPass();
+            StudyScheduleView = new AcademyManager.Views.StudySchedule();
 
             //sam
             StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
@@ -244,6 +243,10 @@ namespace AcademyManager.Viewmodels
                 CurrentView = ExamScheduleView;
             });
 
+            StudyScheduleCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = StudyScheduleView;
+            });
             // sam
 
 
