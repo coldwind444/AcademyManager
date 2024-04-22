@@ -150,9 +150,13 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                <i:InvokeCommandAction 
+                    Command="{Binding ReturnToStudentMainScreenCommand}"
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
                 </i:InvokeCommandAction>
+                <!--
+                Command="{Binding DownloadCommand}" 
+                    -->
             </i:EventTrigger>
             </i:Interaction.Triggers>
             Trang chủ >
@@ -202,11 +206,14 @@
             Quay lại
         </Button>
         <Button 
-                Background="ForestGreen" Cursor="Hand"
-                FontSize="20" 
-                Foreground="White"
-                Command="{Binding UploadCommand}" 
-                RenderTransformOrigin="0.5,0.5" Margin="470,516,340,30" Height="50">
+            Background="ForestGreen" Cursor="Hand"
+            FontSize="20" 
+            Foreground="White"
+            Command="{Binding RegisterSuccessCommand}"
+            RenderTransformOrigin="0.5,0.5" Margin="470,516,340,30" Height="50">
+            <!--
+Command="{Binding UploadCommand}" 
+-->
             Xác nhận đăng ký
         </Button>
         <!--<ScrollViewer Grid.Column="1"

@@ -114,9 +114,12 @@ Direction="300"
 ShadowDepth="15"
 BlurRadius="50"/>
                 </Border.Effect>
+
                 <Button Height="40" Width="120" Cursor="Hand"
 FontSize="20" Foreground="White" Margin="0 0 0 0"
-Command="{Binding UploadCommand}" Content="Đăng ký"/>
+ Content="Đăng ký" Command="{Binding RegisterCommand}"/> 
+                <!--Command ="{Binding UploadCommand}"-->
+
             </Border>
 
             <ContentControl/>

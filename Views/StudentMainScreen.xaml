@@ -114,7 +114,7 @@
             <StackPanel
         VerticalAlignment="Center" Orientation="Vertical" Height="170"/>
         </Border>
-        <Button Margin="50,310,710,50" Width="240" Height="240">
+        <Button Margin="50,310,710,50" Width="240" Height="240" Command="{Binding StudentInforCommand}">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
@@ -129,7 +129,8 @@
                 </StackPanel>
             </Border>
         </Button>
-        <Button Margin="380,310,380,50" Width="240" Height="240">
+        <Button Margin="380,310,380,50" Width="240" Height="240"
+                Command="{Binding StudentSubjectListCommand}">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>

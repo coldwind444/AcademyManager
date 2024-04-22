@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
-        xmlns:userControls="clr-namespace:AcademyManager.UserControls"
+        xmlns:uc="clr-namespace:AcademyManager.Views"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -152,8 +152,12 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                <i:InvokeCommandAction 
+                    Command="{Binding ReturnToStudentMainScreenCommand}"
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                    <!--
+                    Command="{Binding DownloadCommand}" 
+                    -->
                 </i:InvokeCommandAction>
             </i:EventTrigger>
             </i:Interaction.Triggers>
@@ -184,27 +188,32 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding UploadCommand}" 
+            Command="{Binding ReturnToStudentMainScreenCommand}"
             RenderTransformOrigin="0.5,0.5" Margin="340,520,539,30" Height="50">
+            <!--
+            Command="{Binding UploadCommand}" 
+            -->
             Quay lại
         </Button>
         <Button 
                 Background="ForestGreen" Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
-                Command="{Binding UploadCommand}" 
+                Command ="{Binding SubjectRegisterCommand}"
                 RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50">
+                <!--
+                Command="{Binding UploadCommand}" 
+                -->
             Đăng kí môn học
         </Button>
-        <!--<ScrollViewer Grid.Column="1"
-                      VerticalScrollBarVisibility="Auto">
-                <ItemsControl x:Name="SubjectsList">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:Subject/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer> -->
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="365" VerticalAlignment="Top" Margin="0,150,0,0">
+            <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black" Margin="0,-40,0,-60">
+                <uc:SubjectUC Margin="0,0,0,0" Width="800" Height="100"/>
+                <uc:SubjectUC/>
+                <uc:SubjectUC/>
+                <uc:SubjectUC/>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

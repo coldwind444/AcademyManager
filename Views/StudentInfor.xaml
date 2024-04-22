@@ -121,23 +121,32 @@
             FontSize="20" 
             RenderTransformOrigin="0.5,0.5"
             Margin="20 0 20 0">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    Trang chủ >
-                </TextBlock>
-                <TextBlock Foreground="Black" Style="{StaticResource Link}"
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction 
+                        Command="{Binding ReturnToStudentMainScreenCommand}" 
+                                           CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                        <!--
+                        Command="{Binding DownloadCommand}"
+                        -->
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            Trang chủ >
+                        </TextBlock>
+                        <TextBlock Foreground="Black" Style="{StaticResource Link}"
            VerticalAlignment="Center"
            FontSize="20"
            RenderTransformOrigin="0.5,0.5"
            Margin="-10,0,0,0" Width="167">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                  CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
+                <i:InvokeCommandAction 
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                    <!--
+                    Command="{Binding DownloadCommand}"
+                    -->
+                </i:InvokeCommandAction>
             </i:EventTrigger>
     </i:Interaction.Triggers>
                 Thông tin cá nhân
@@ -197,8 +206,11 @@
             Grid.Row="1" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding UploadCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
+            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50"
+            Command="{Binding ReturnToStudentMainScreenCommand}">
+            <!--
+                        Command="{Binding UploadCommand}" 
+            -->
             Quay lại
         </Button>
     </Grid>
