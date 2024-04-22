@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="AcademyManager.Views.Login"
-                                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -72,7 +72,7 @@
             </Border.Effect>
             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="285">
                 <ContentControl Width="35" Height="35" Margin="355,5,0,0">
-                    <uc:ExitUC Height="35"/>
+                    <uc:ExitUC/>
                 </ContentControl>
                 <TextBlock Style="{StaticResource Link}"
                     Foreground="Black"

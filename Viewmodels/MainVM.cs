@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using AcademyManager.Views;
 
 namespace AcademyManager.Viewmodels
 {
     public class MainVM : BaseViewModel
     {
-        #region Commands
         public ICommand HomeNavigateCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand NotificationCommand { get; set; }
-        public ICommand CloseCommand { get; set; }  // Thêm ExitCommand vào phần khai báo
-        #endregion
+        public ICommand CloseCommand { get; set; } //Close App
+        public ICommand MinimizeCommand { get; set; }//Minimize App
+        public ICommand LoginCommand { get; set; }//Login Screen
 
         #region Properties
         // current account
@@ -32,7 +33,6 @@ namespace AcademyManager.Viewmodels
         public UserControl TypeSelectionView { get; set; }
         public UserControl ResetPWView { get; set; }
         public UserControl EmailExistView { get; set; }
-
         // app pages
         public UserControl HomeView { get; set; }
         public UserControl InfoView { get; set; }
@@ -43,7 +43,6 @@ namespace AcademyManager.Viewmodels
         public UserControl CourseView { get; set; }
         public UserControl CourseRegisterView { get; set; }
         public UserControl CourseInfoView { get; set; }
-
         // current view
         private UserControl _currentView;
         public UserControl CurrentView
@@ -51,7 +50,6 @@ namespace AcademyManager.Viewmodels
             get { return _currentView; }
             set { _currentView = value; OnPropertyChanged(); }
         }
-
         // Tab bar
         private Visibility _tabbarV;
         private string _url;
@@ -66,25 +64,24 @@ namespace AcademyManager.Viewmodels
             set { _tabbarV = value; OnPropertyChanged(); }
         }
         #endregion
-
         #region Methods
+        private void InitializeViews()
+        {
+            // Khởi tạo một lần và sử dụng lại các views
+            HomeView = new AcademyManager.Views.WelcomeScreen();
+            LoginView = new AcademyManager.Views.Login();  // Đảm bảo rằng bạn có UserControl này trong project của bạn
+                                                           // Khởi tạo các views khác...
+        }
         private void InitializeCommands()
         {
             HomeNavigateCommand = new RelayCommand<object>(p => true, p =>
             {
-                if (HomeView != null) CurrentView = HomeView;
-                else
-                {
-                    // create new home
-                    CurrentView = HomeView;
-                }
+                CurrentView = HomeView;
             });
-
             LogoutCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = RootView;
             });
-
             NotificationCommand = new RelayCommand<object>(p => true, p =>
             {
                 // Logic for notification here
@@ -94,12 +91,34 @@ namespace AcademyManager.Viewmodels
             {
                 Application.Current.Shutdown();  // Lệnh để tắt ứng dụng
             });
+
+            MinimizeCommand = new RelayCommand<object>(p => true, p =>
+            {
+                MinimizeApplication();
+            });
+
+            LoginCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = LoginView;
+            });
         }
         #endregion
-
+        private void MinimizeApplication()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var mainWindow = Application.Current.MainWindow;
+                if (mainWindow != null)
+                {
+                    mainWindow.WindowState = WindowState.Minimized;
+                }
+            });           
+        }
         public MainVM()
         {
+            InitializeViews();
             InitializeCommands();
+            CurrentView = new WelcomeScreen();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="AcademyManager.Views.WelcomeScreen"
-                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -7,6 +7,7 @@
          xmlns:local="clr-namespace:AcademyManager.AdminViews"
          mc:Ignorable="d" 
          xmlns:uc="clr-namespace:AcademyManager.Views"
+         xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
          d:DataContext="{d:DesignInstance Type=UserControl}"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -97,7 +98,8 @@
         ShadowDepth="15"
         BlurRadius="50"/>
                 </Border.Effect>
-                <Button Grid.Row="1" Height="40" Width="120" Cursor="Hand"
+                <Button Command="{Binding LoginCommand}"
+                    Grid.Row="1" Height="40" Width="120" Cursor="Hand"
     FontSize="20" Foreground="White" Content="Đăng nhập"/>
 
             </Border>
@@ -117,9 +119,7 @@ FontSize="20" Foreground="White" Margin="0 0 0 0"
 Command="{Binding UploadCommand}" Content="Đăng ký"/>
             </Border>
 
-            <ContentControl>
-                <uc:ExitUC Height="300" Margin="10,0,0,0"></uc:ExitUC>
-            </ContentControl>
+            <ContentControl/>
         </StackPanel>
     </Grid>
 </UserControl>
