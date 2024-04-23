@@ -127,7 +127,7 @@
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
 						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Đăng xuất"
-                              Command="{Binding LoginCommand}"
+                              Command="{Binding WhoAreYouCommand}"
                               CommandParameter="{Binding ElementName=adminWindow}">
 							<materialDesign:PackIcon Kind="LogoutVariant"
                                              Width="40" Height="40"

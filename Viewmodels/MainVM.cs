@@ -41,10 +41,7 @@ namespace AcademyManager.Viewmodels
         public ICommand HomeViewCommand { get; set; } //Calendar
         public ICommand CloseUserControlCommand { get; set; }
         public ICommand InformationCommand { get; set; }
-
-
-        
-
+        public ICommand WhoAreYouCommand { get; set; }
         #region Properties
         // current account
         public Account CurrentAccount { get; set; }
@@ -91,6 +88,8 @@ namespace AcademyManager.Viewmodels
         public UserControl ExamScheduleView { get; set; } // xem lich thi
         public UserControl NotificationView { get; set; } // xem lich thi
         public UserControl InformationView { get; set; } // xem lich thi
+        public UserControl WhoAreYouView { get; set; } // xem lich thi
+
 
 
         //sam
@@ -147,6 +146,7 @@ namespace AcademyManager.Viewmodels
             ForgetPass2View = new AcademyManager.Views.ForgetPass2();
             SetNewPassView = new AcademyManager.Views.SetNewPass();
             NotificationView = new AcademyManager.Views.Noti();
+            WhoAreYouView = new AcademyManager.Views.WhoAreYou();
             //sam
             StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
             StudentMainScreenView = new AcademyManager.Views.StudentMainScreen(); //trở lại trang thông tin học sinh
@@ -259,6 +259,11 @@ namespace AcademyManager.Viewmodels
                 if (IsTeacher != true)
                     CurrentView = StudentInforView;
                 else CurrentView = LectureInforView;
+            });
+            WhoAreYouCommand = SetNewPassCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = WhoAreYouView;
+                IsTeacher = false;
             });
 
             //sam
