@@ -40,8 +40,8 @@ namespace AcademyManager.Viewmodels
         public ICommand SetNewPassCommand { get; set; } //Calendar
         public ICommand HomeViewCommand { get; set; } //Calendar
         public ICommand CloseUserControlCommand { get; set; }
-
-
+        public ICommand InformationCommand { get; set; }
+        public ICommand WhoAreYouCommand { get; set; }
         #region Properties
         // current account
         public Account CurrentAccount { get; set; }
@@ -86,6 +86,12 @@ namespace AcademyManager.Viewmodels
         public UserControl RegisterSuccessView { get; set; } //Xem Đăng ký thành công
         public UserControl ResultView { get; set; } //Xem kết quả
         public UserControl ExamScheduleView { get; set; } // xem lich thi
+        public UserControl NotificationView { get; set; } // xem lich thi
+        public UserControl InformationView { get; set; } // xem lich thi
+        public UserControl WhoAreYouView { get; set; } // xem lich thi
+
+
+
         //sam
         //teacher
         private bool _isTeacher;
@@ -139,6 +145,8 @@ namespace AcademyManager.Viewmodels
             ForgetPassView = new AcademyManager.Views.ForgetPass();
             ForgetPass2View = new AcademyManager.Views.ForgetPass2();
             SetNewPassView = new AcademyManager.Views.SetNewPass();
+            NotificationView = new AcademyManager.Views.Noti();
+            WhoAreYouView = new AcademyManager.Views.WhoAreYou();
             //sam
             StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
             StudentMainScreenView = new AcademyManager.Views.StudentMainScreen(); //trở lại trang thông tin học sinh
@@ -153,7 +161,15 @@ namespace AcademyManager.Viewmodels
         {
             HomeNavigateCommand = new RelayCommand<object>(p => true, p =>
             {
-                CurrentView = HomeView;
+                if (IsTeacher != true)
+                {
+                    HomeView = StudentMainScreenView;
+                    CurrentView = StudentMainScreenView;
+                }
+                else {
+                    HomeView = StudentMainScreenView;
+                    CurrentView = LectureMainScreenView;
+                }      
             });
 
             HomeViewCommand = new RelayCommand<object>(p => true, p =>
@@ -170,7 +186,7 @@ namespace AcademyManager.Viewmodels
 
             NotificationCommand = new RelayCommand<object>(p => true, p =>
             {
-                // Logic for notification here
+                CurrentView = NotificationView;
             });
 
             CloseCommand = new RelayCommand<object>(p => true, p =>
@@ -237,6 +253,17 @@ namespace AcademyManager.Viewmodels
             SetNewPassCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = SetNewPassView;
+            });
+            InformationCommand = new RelayCommand<object>(p => true, p =>
+            {
+                if (IsTeacher != true)
+                    CurrentView = StudentInforView;
+                else CurrentView = LectureInforView;
+            });
+            WhoAreYouCommand = SetNewPassCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = WhoAreYouView;
+                IsTeacher = false;
             });
 
             //sam
