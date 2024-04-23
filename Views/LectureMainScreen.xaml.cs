@@ -18,9 +18,9 @@ namespace AcademyManager.Views
     /// <summary>
     /// Interaction logic for LectureMainScreenxaml.xaml
     /// </summary>
-    public partial class LectureMainScreenxaml : UserControl
+    public partial class LectureMainScreen : UserControl
     {
-        public LectureMainScreenxaml()
+        public LectureMainScreen()
         {
             InitializeComponent();
         }

@@ -58,73 +58,81 @@
     </UserControl.Resources>
     <Grid >
         <Border Width="400"
-        BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="10" Margin="300,170,300,170">
+                BorderThickness="1.5"
+                BorderBrush="Black" 
+                CornerRadius="10" 
+                Margin="300,170,300,170">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
             <Border.Effect>
                 <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
+                    Opacity="0.5" 
+                    Direction="300" 
+                    ShadowDepth="15" 
+                    BlurRadius="50"/>
             </Border.Effect>
-
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <ContentControl Width="35" Height="35" Margin="360,-30,0,0">
                     <uc:ExitUC Height="35"/>
                 </ContentControl>
-                
                 <TextBlock Style="{StaticResource Link}"
-                Foreground="Black"
-                HorizontalAlignment="Center"
-                FontSize="30" Height="50"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/></TextBlock>
+                    Foreground="Black"
+                    HorizontalAlignment="Center"
+                    FontSize="30" 
+                    Height="50">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/>
+                </TextBlock>
                 <Border Width="350" Height="40"
-                Background="White"
-                CornerRadius="20"
-                Margin="0 0 0 10"
-                BorderBrush="Black"
-                BorderThickness="1.5">
+                        Background="White"
+                        CornerRadius="20"
+                        Margin="0 0 0 10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5">
                     <TextBox Width="320" Height="30"
-                     materialDesign:HintAssist.Hint="UserName"
-                     Text="{Binding Path}"
-                     x:Name="FilePathBox"
-                     BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                     FontSize="16" VerticalContentAlignment="Center"/>
+                             materialDesign:HintAssist.Hint="UserName"
+                             Text="{Binding Path}"
+                             x:Name="FilePathBox"
+                             BorderThickness="0"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             FontSize="16" VerticalContentAlignment="Center"/>
                 </Border>
-                <Border Width="350" Height="40"
-                 Background="White"
-                 CornerRadius="20"
-                 Margin="0 0 0 10"
-                 BorderBrush="Black"
-                 BorderThickness="1.5">
-                    <TextBox Width="320" Height="30"
-                    materialDesign:HintAssist.Hint="Mã xác nhận"
-                    Text="{Binding Path}"
-                    x:Name="FilePathBox2"
-                    BorderThickness="0"
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    FontSize="16" VerticalContentAlignment="Center"/>
+                <Border Width="350" 
+                        Height="40"
+                        Background="White"
+                        CornerRadius="20"
+                        Margin="0 0 0 10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5">
+                    <TextBox Width="320" 
+                             Height="30"
+                             materialDesign:HintAssist.Hint="Mã xác nhận"
+                             Text="{Binding Path}"
+                             x:Name="FilePathBox2"
+                             BorderThickness="0"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             FontSize="16" VerticalContentAlignment="Center"/>
                 </Border>
                 <Border Width="100" CornerRadius="20">
                     <Border.Background>
-                        <SolidColorBrush Color="White" 
-                        Opacity="0.9"/>
+                        <SolidColorBrush Color="White" Opacity="0.9"/>
                     </Border.Background>
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5"
-                        Direction="300"
-                        ShadowDepth="15"
-                        BlurRadius="50"/>
+                                          Direction="300"
+                                          ShadowDepth="15"
+                                          BlurRadius="50"/>
                     </Border.Effect>
-                    <Button Height="40" Width="100" Cursor="Hand"
-                            FontSize="16" Foreground="White"
+                    <Button Height="40" 
+                            Width="100" 
+                            Cursor="Hand"
+                            FontSize="16" 
+                            Foreground="White"
                             Command="{Binding UploadCommand}"  Content="Xác nhận"/>
                 </Border>
             </StackPanel>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AcademyManager.Views
+namespace AcademyManager.Viewmodels
 {
     /// <summary>
-    /// Interaction logic for InputInfor.xaml
+    /// Interaction logic for SubjectResgisterUC.xaml
     /// </summary>
-    public partial class InputInfor : UserControl
+    public partial class SubjectResgisterUC : UserControl
     {
-        public InputInfor()
+        public SubjectResgisterUC()
         {
             InitializeComponent();
         }

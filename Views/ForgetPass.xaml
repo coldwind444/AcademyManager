@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="AcademyManager.Views.ForgetPass"
-                                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -57,7 +57,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-
         <Border Width="400"
                 BorderThickness="1.5"
                 BorderBrush="Black" 
@@ -76,41 +75,45 @@
             <DockPanel>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="150" Margin="25,0,-5,0">
                     <TextBlock Style="{StaticResource Link}"
-                Foreground="Black"
-                HorizontalAlignment="Center"
-                FontSize="30" Height="43"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/></TextBlock>
+                               Foreground="Black"
+                               HorizontalAlignment="Center"
+                               FontSize="30" Height="43"><i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        <Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/>
+                    </TextBlock>
                     <Border Width="350" Height="40"
-                Background="White"
-                CornerRadius="20"
-                Margin="0 0 0 20"
-                BorderBrush="Black"
-                BorderThickness="1.5">
-                        <TextBox Width="320" Height="30"
-                     materialDesign:HintAssist.Hint="UserName"
-                     Text="{Binding Path}"
-                     x:Name="FilePathBox"
-                     BorderThickness="0"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                     FontSize="20" VerticalContentAlignment="Center"/>
+                            Background="White"
+                            CornerRadius="20"
+                            Margin="0 0 0 20"
+                            BorderBrush="Black"
+                            BorderThickness="1.5">
+                        <TextBox Width="320" 
+                                 Height="30"
+                                 materialDesign:HintAssist.Hint="UserName"
+                                 Text="{Binding Path}"
+                                 x:Name="FilePathBox"
+                                 BorderThickness="0"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 FontSize="20" VerticalContentAlignment="Center"/>
                     </Border>
                     <Border Width="180" CornerRadius="20" Height="42">
                         <Border.Background>
-                            <SolidColorBrush Color="White" 
-                            Opacity="0.9"/>
+                            <SolidColorBrush Color="White" Opacity="0.9"/>
                         </Border.Background>
                         <Border.Effect>
                             <DropShadowEffect Opacity="0.5"
-                            Direction="300"
-                            ShadowDepth="15"
-                            BlurRadius="50"/>
+                                              Direction="300"
+                                              ShadowDepth="15"
+                                              BlurRadius="50"/>
                         </Border.Effect>
-                        <Button Width="180" Cursor="Hand"  Margin="0,-7,0,7"
-                FontSize="20" Foreground="White"
-                Command="{Binding UploadCommand}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
+                        <Button Width="180" 
+                                Cursor="Hand"  
+                                Margin="0,-7,0,7"
+                                FontSize="20" Foreground="White"
+                                Command="{Binding UploadCommand}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
                             <Button.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -127,6 +130,5 @@
                 </ContentControl>
             </DockPanel>
         </Border>
-
     </Grid>
 </UserControl>

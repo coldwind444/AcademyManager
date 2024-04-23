@@ -150,9 +150,9 @@
                            Margin="20 0 20 0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                            <i:InvokeCommandAction Command="{Binding LectureCommand}"
                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                            </i:InvokeCommandAction>
+                            </i:InvokeCommandAction> <!-- Command="{Binding DownloadCommand}"-->
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                      Trang chủ >
@@ -167,7 +167,7 @@
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding DownloadCommand}"
                                   CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                            </i:InvokeCommandAction>
+                            </i:InvokeCommandAction> <!-- Command="{Binding DownloadCommand}"-->
                         </i:EventTrigger>
                      </i:Interaction.Triggers>
                     Thông tin cá nhân
@@ -236,13 +236,14 @@
             </StackPanel>
         </Border>
         <Button 
+            Command="{Binding LectureCommand}" 
             Background="ForestGreen"
             Grid.Row="1" Cursor="Hand"
             FontSize="20" 
-            Foreground="White"
-            Command="{Binding UploadCommand}" 
+            Foreground="White"  
             RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
             Quay lại
         </Button>
+        <!-- Command="{Binding UploadCommand}" -->
     </Grid>
 </UserControl>

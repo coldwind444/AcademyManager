@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
+        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:AcademyManager.Views"
         x:Name="adminWindow"
@@ -28,13 +29,12 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" CornerRadius="10">
+                        <Border x:Name="ButtonBorder" CornerRadius="20 0 0 20">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Opacity" Value="0.5"/>
-                                            <Setter Property="Background" Value="#FF3C783C"/>
+                                            <Setter Property="Background" Value="#FFABEDC6"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#FF3C783C"/>
@@ -47,9 +47,35 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="#027324"/>
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#FFABEDC6"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" 
+             Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" 
+                                          Value="True">
+                                            <Setter Property="Background" 
+                                             Value="#FFABEDC6"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -60,8 +86,8 @@
             <Border DockPanel.Dock="Right" Background="#FFABEDC6" CornerRadius="10" Height="600" Width="1000">
                 <Grid>
                     <!-- Nội dung Grid bên phải -->
-                    <ContentControl>
-                        <uc:StudentMainScreen></uc:StudentMainScreen>
+                    <ContentControl Content="{Binding CurrentView}">
+                        <!-- <uc:WelcomeScreen></uc:WelcomeScreen>-->
                     </ContentControl>
                 </Grid>
             </Border>
@@ -73,8 +99,10 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" CornerRadius="10 0 0 10"
-                Background="#FF3C783C" Grid.RowSpan="3">
+                <Border Grid.Column="0" 
+                        CornerRadius="10 0 0 10" 
+                        Background="#FF3C783C" 
+                        Grid.RowSpan="3">
                     <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
@@ -98,8 +126,8 @@
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Màn hình chính"
-                              IsChecked="{Binding SearchUsers}"
-                              Command="{Binding SearchUsersCommand}">
+                              IsChecked="{Binding CurrentView}"
+                              Command="{Binding HomeNavigateCommand}">
                             <materialDesign:PackIcon Kind="Home"
                                              Width="40" Height="40"
                                              Foreground="White"/>
@@ -116,23 +144,23 @@
                         <Separator Background="White" Width="40" Margin="0 0 0 10" Height="1"></Separator>
                     </StackPanel>
                 </Border>
-                <ToggleButton
+                <Button
                     ToolTip="Thoát"
                     Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding ElementName=adminWindow}" Margin="0,527,0,0" Grid.Row="2">
+                    CommandParameter="{Binding ElementName=adminWindow}" Margin="0,540,0,0" Height="50" Width="50">
                     <materialDesign:PackIcon Kind="Power"
                                    Width="40" Height="40"
                                    Foreground="White"/>
-                </ToggleButton>
-                <ToggleButton
+                </Button>
+                <Button
                     ToolTip="Thu nhỏ"
-                    Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding ElementName=adminWindow}" Margin="0,0,0,550" Grid.Row="1" Grid.RowSpan="2">
+                    Command="{Binding MinimizeCommand}"
+                    CommandParameter="{Binding ElementName=adminWindow}" Margin="5,5,5,545" Height="50" Width="50">
                     <materialDesign:PackIcon Kind="FullscreenExit"
                                    Width="30" Height="30"
                                    Foreground="White"/>
-                </ToggleButton>
+                </Button>
             </Grid>
         </DockPanel>
     </Border>
- </Window>
+</Window>

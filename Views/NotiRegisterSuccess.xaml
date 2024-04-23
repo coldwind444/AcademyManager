@@ -57,7 +57,7 @@
             <Grid.Effect>
                 <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.5"/>
             </Grid.Effect>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="Black" Margin="0,0,0,0"><Run Language="vi-vn" Text="Tạo tài khoản thành công!"/></TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="Black" Margin="0,0,0,0"><Run Language="vi-vn" Text="Đăng ký thành công!"/></TextBlock>
             <Button Command="{Binding CloseCommand}" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35"/>
             </Button>

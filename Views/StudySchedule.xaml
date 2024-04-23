@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="AcademyManager.Views.StudySchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:AcademyManager.AdminViews"
+        xmlns:uc="clr-namespace:AcademyManager.Views"
+        mc:Ignorable="d"
+        x:Name="adminWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Height="600" Width="1000">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" 
+                    Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect Opacity="0.5" 
+                                                  Direction="300" 
+                                                  ShadowDepth="15" 
+                                                  BlurRadius="50"/>
+                            </Border.Effect>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="True">
+                                            <Setter Property="Background" 
+                                                    Value="#15BF5C"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="False">
+                                            <Setter Property="Background" 
+                                                    Value="#027324"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock" 
+               x:Key="Link">
+            <Setter Property="Cursor" 
+                    Value="Hand"/>
+            <Setter Property="Foreground" 
+                    Value="ForestGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" 
+                         Value="True">
+                    <Setter Property="TextDecorations" 
+                            Value="Underline"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" 
+                         Value="False">
+                    <Setter Property="TextDecorations" 
+                            Value="None"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Cursor" 
+                    Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="ButtonBorder" 
+                                CornerRadius="10">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="True">
+                                            <Setter Property="Background" Value="ForestGreen"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" 
+                                                 Value="False">
+                                            <Setter Property="Background" 
+                                                    Value="#FF3C783C"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" 
+                                     Value="True">
+                                <Setter TargetName="ButtonBorder" 
+                                        Property="Background" Value="#027324"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Separator">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Separator">
+                        <Border Background="Black" Height="1" Margin="0"/>
+                        <!-- Điều chỉnh độ cao ở đây -->
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1000"/>
+        </Grid.ColumnDefinitions>
+        <Border CornerRadius="0 20 20 0" 
+        Background="White" 
+        Margin="0,20,40,540">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.5" 
+                          Direction="300" 
+                          ShadowDepth="15" 
+                          BlurRadius="50"/>
+            </Border.Effect>
+            <StackPanel Orientation="Horizontal" 
+                HorizontalAlignment="Left">
+                <TextBlock Foreground="Black" 
+                   Style="{StaticResource Link}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   RenderTransformOrigin="0.5,0.5" 
+                   Margin="20 0 20 0">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction 
+                            Command="{Binding StudentMainScreenCommand}"
+                            CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                        </i:InvokeCommandAction>
+                        <!--
+                        Command="{Binding DownloadCommand}" 
+                            -->
+                        </i:EventTrigger>
+                        </i:Interaction.Triggers>
+            Trang chủ >
+                </TextBlock>
+                <TextBlock Foreground="Black" 
+                   Style="{StaticResource Link}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" 
+                   RenderTransformOrigin="0.5,0.5" 
+                   Margin="0 0 20 0"><i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction 
+                    Command="{Binding StudentSubjectListCommand}"
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
+            </i:EventTrigger>
+                <!--
+                    Command="{Binding DownloadCommand}" 
+                -->
+            </i:Interaction.Triggers><Run Language="vi-vn" Text="Lịch"/></TextBlock>
+            </StackPanel>
+        </Border>
+        <TextBlock TextAlignment="Center"
+                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
+                       Margin="150,85,150,455" Height="60" Width="700" Text="LỊCH"/>
+        <Separator Background="Black" Margin="55,135,0,455" HorizontalAlignment="Left" Width="850" Height="10"/>
+        <Button 
+            Background="ForestGreen" Cursor="Hand"
+            FontSize="20" 
+            Foreground="White"
+            Command="{Binding StudentSubjectListCommand}" 
+            RenderTransformOrigin="0.5,0.5" Margin="440,540,440,10" Height="50">
+            Quay lại
+        </Button>
+        <!--
+            Command="{Binding UploadCommand}" 
+        -->
+        <Border Width="900" Margin="75,125,75,60" VerticalAlignment="Center" HorizontalAlignment="Center" Height="400">
+            <uc:Calendar Margin="25,10,25,16" Loaded="Calendar_Loaded_1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="360"/>
+        </Border>
+    </Grid>
+</UserControl>

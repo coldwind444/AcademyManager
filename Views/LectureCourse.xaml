@@ -150,9 +150,12 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                </i:InvokeCommandAction>
+                <i:InvokeCommandAction     Command="{Binding StudentMainScreenCommand}"
+    CommandParameter="{Binding ElementName=TypeSelectionBox}">
+</i:InvokeCommandAction>
+<!--
+Command="{Binding DownloadCommand}" 
+    -->
             </i:EventTrigger>
             </i:Interaction.Triggers>
             Trang chủ >

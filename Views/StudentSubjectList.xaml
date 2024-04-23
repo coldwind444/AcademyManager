@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
-        xmlns:userControls="clr-namespace:AcademyManager.UserControls"
+        xmlns:uc="clr-namespace:AcademyManager.Views"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -16,7 +16,6 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-             
         Height="600" Width="1000">
     <UserControl.Resources>
         <Style TargetType="Button">
@@ -77,45 +76,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="ToggleButton">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" 
-                                CornerRadius="10">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="ForestGreen"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="#FF3C783C"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" 
-                                     Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" Value="#027324"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style TargetType="Separator">
             <Setter Property="Template">
                 <Setter.Value>
@@ -127,7 +87,6 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
@@ -152,9 +111,13 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                <i:InvokeCommandAction 
+                    Command="{Binding StudentMainScreenCommand}" 
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
                 </i:InvokeCommandAction>
+                 <!--
+                    Command="{Binding DownloadCommand}" 
+                  -->
             </i:EventTrigger>
             </i:Interaction.Triggers>
             Trang chủ >
@@ -180,31 +143,36 @@
                        TextWrapping="Wrap" FontSize="40" Foreground="Black" 
                        Margin="150,100,150,440" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
         <Separator Background="Black" Margin="70,150,0,440" HorizontalAlignment="Left" Width="850" Height="10"/>
+        <Separator Background="Black" Margin="70,490,0,100" HorizontalAlignment="Left" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding UploadCommand}" 
+            Command="{Binding StudentMainScreenCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="340,520,539,30" Height="50">
             Quay lại
         </Button>
+        <!--
+            Command="{Binding UploadCommand}" 
+        -->
         <Button 
                 Background="ForestGreen" Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
-                Command="{Binding UploadCommand}" 
-                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50">
+                Command="{Binding SubjectRegisterCommand}"
+                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50" Click="Button_Click">
             Đăng kí môn học
         </Button>
-        <!--<ScrollViewer Grid.Column="1"
-                      VerticalScrollBarVisibility="Auto">
-                <ItemsControl x:Name="SubjectsList">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:Subject/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer> -->
+        <!--
+                Command="{Binding UploadCommand}" 
+        -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="365" VerticalAlignment="Top" Margin="0,150,0,0">
+            <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black" Margin="0,-40,0,-60">
+                <uc:SubjectUC Margin="0,0,0,0" Width="800" Height="100"/>
+                <uc:SubjectUC/>
+                <uc:SubjectUC/>
+                <uc:SubjectUC/>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

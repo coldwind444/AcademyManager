@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for SubjectRegisterUC.xaml
+    /// Interaction logic for StudySchedual.xaml
     /// </summary>
-    public partial class SubjectRegisterUC : UserControl
+    public partial class StudySchedule : UserControl
     {
-        public SubjectRegisterUC()
+        public StudySchedule()
         {
             InitializeComponent();
+        }
+
+        private void Calendar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Calendar_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
