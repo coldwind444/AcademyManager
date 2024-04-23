@@ -39,7 +39,10 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Button Command="{Binding CloseCommand}" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Button Command="{Binding CloseUserControlCommand}"
+            CommandParameter="{Binding ElementName=userControlInstance}"
+                
+                Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35"/>
         </Button>
     </Grid>

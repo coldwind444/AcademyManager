@@ -35,6 +35,11 @@ namespace AcademyManager.Viewmodels
         public ICommand ResultCommand { get; set; } //Study Result
         public ICommand ExamScheduleCommand { get; set; } //Exam schedule
         public ICommand StudyScheduleCommand { get; set; } //Calendar
+        public ICommand ForgetPassCommand { get; set; } //Calendar
+        public ICommand ForgetPass2Command { get; set; } //Calendar
+        public ICommand SetNewPassCommand { get; set; } //Calendar
+        public ICommand HomeViewCommand { get; set; } //Calendar
+        public ICommand CloseUserControlCommand { get; set; }
 
 
         #region Properties
@@ -69,7 +74,9 @@ namespace AcademyManager.Viewmodels
         public UserControl WelcomeTeacherView { get; set; }
         public UserControl RegisterView { get; set; }
         public UserControl StudyScheduleView { get; set; }
-
+        public UserControl ForgetPassView { get; set; }
+        public UserControl ForgetPass2View { get; set; }
+        public UserControl SetNewPassView { get; set; }
 
         // Sam
         public UserControl StudentInforView { get; set; } // Thông tin học sinh
@@ -129,7 +136,9 @@ namespace AcademyManager.Viewmodels
             WelcomeTeacherView = new AcademyManager.Views.WelcomeScreen();
             RegisterView = new AcademyManager.Views.SetNewPass();
             StudyScheduleView = new AcademyManager.Views.StudySchedule();
-
+            ForgetPassView = new AcademyManager.Views.ForgetPass();
+            ForgetPass2View = new AcademyManager.Views.ForgetPass2();
+            SetNewPassView = new AcademyManager.Views.SetNewPass();
             //sam
             StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
             StudentMainScreenView = new AcademyManager.Views.StudentMainScreen(); //trở lại trang thông tin học sinh
@@ -146,10 +155,19 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = HomeView;
             });
+
+            HomeViewCommand = new RelayCommand<object>(p => true, p =>
+            {
+                if (IsTeacher != true)
+                    CurrentView = StudentMainScreenView;
+                else CurrentView = LectureMainScreenView;
+            });
+
             LogoutCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = RootView;
             });
+
             NotificationCommand = new RelayCommand<object>(p => true, p =>
             {
                 // Logic for notification here
@@ -206,6 +224,20 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = RegisterView;
             });
+            ForgetPassCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = ForgetPassView;
+            });
+
+            ForgetPass2Command = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = ForgetPass2View;
+            });
+
+            SetNewPassCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = SetNewPassView;
+            });
 
             //sam
             StudentInforCommand = new RelayCommand<object>(p => true, p =>
@@ -247,11 +279,18 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = StudyScheduleView;
             });
-            // sam
-
+            CloseUserControlCommand = new RelayCommand<object>(
+                execute: p => CloseUserControl(p as UserControl),
+                canExecute: p => true
+            );
 
         }
         #endregion
+        private void CloseUserControl(UserControl controlToClose)
+        {
+            if (controlToClose != null)
+                controlToClose.Visibility = Visibility.Collapsed;
+        }
         private void MinimizeApplication()
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -267,7 +306,7 @@ namespace AcademyManager.Viewmodels
         {
             InitializeViews();
             InitializeCommands();
-            CurrentView = HomeView;
+            CurrentView = new AcademyManager.Views.WhoAreYou();
         }
     }
 }
