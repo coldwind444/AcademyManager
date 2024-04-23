@@ -22,145 +22,137 @@
         WindowStyle="None"
         Background="Transparent"
         ResizeMode="NoResize">
-    <Window.Resources>
-        <DropShadowEffect x:Key="MyShadowEffect" Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="0"/>
-        <Style TargetType="ToggleButton">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" CornerRadius="20 0 0 20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFABEDC6"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#FF3C783C"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="#FFABEDC6"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" 
+	<Window.Resources>
+		<DropShadowEffect x:Key="MyShadowEffect" Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="0"/>
+		<Style TargetType="ToggleButton">
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ToggleButton">
+						<Border x:Name="ButtonBorder" CornerRadius="20 0 0 20">
+							<ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
+							</ContentPresenter>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsChecked" Value="True">
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="Button">
+			<Setter Property="Cursor" 
              Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border CornerRadius="20">
+							<Border.Style>
+								<Style TargetType="Border">
+									<Style.Triggers>
+										<Trigger Property="IsMouseOver" 
                                           Value="True">
-                                            <Setter Property="Background" 
+											<Setter Property="Background" 
                                              Value="#FFABEDC6"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</Border.Style>
+							<ContentPresenter VerticalAlignment="Center" 
                                        HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-    <Border CornerRadius="10" Background="#FFABEDC6" Effect="{StaticResource MyShadowEffect}">
-        <DockPanel>
-            <Border DockPanel.Dock="Right" Background="#FFABEDC6" CornerRadius="10" Height="600" Width="1000">
-                <Grid>
-                    <!-- Nội dung Grid bên phải -->
-                    <ContentControl Content="{Binding CurrentView}">
-                        <!-- <uc:WelcomeScreen></uc:WelcomeScreen>-->
-                    </ContentControl>
-                </Grid>
-            </Border>
-            <Grid DockPanel.Dock="Left" Height="600" Width="60">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="576*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" 
+							</ContentPresenter>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Border CornerRadius="10" Background="#FFABEDC6" Effect="{StaticResource MyShadowEffect}">
+		<DockPanel>
+			<Border DockPanel.Dock="Right" Background="#FFABEDC6" CornerRadius="10" Height="600" Width="1000">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="43*"/>
+						<RowDefinition/>
+						<RowDefinition Height="16*"/>
+					</Grid.RowDefinitions>
+					<!-- Nội dung Grid bên phải -->
+					<ContentControl Content="{Binding CurrentView}" Grid.RowSpan="3">
+						<!-- <uc:WelcomeScreen></uc:WelcomeScreen>-->
+					</ContentControl>
+				</Grid>
+			</Border>
+			<Grid DockPanel.Dock="Left" Height="600" Width="60">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="576*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="60"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Border Grid.Column="0" 
                         CornerRadius="10 0 0 10" 
                         Background="#FF3C783C" 
                         Grid.RowSpan="3">
-                    <StackPanel Orientation="Vertical"
+					<StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">
-                        <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
-                        <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
+						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
+						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Thông báo"
                               IsChecked="{Binding AddCourses}"
-                              Command="{Binding AddCoursesCommand}">
-                            <materialDesign:PackIcon Kind="BellRing"
+                              Command="{Binding NotificationCommand}">
+							<materialDesign:PackIcon Kind="BellRing"
                                              Width="40" Height="40"
                                              Foreground="White"/>
-                        </ToggleButton>
-                        <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
-                        <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
+						</ToggleButton>
+						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
+						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Thông tin cá nhân"
                               IsChecked="{Binding AddUsers}"
-                              Command="{Binding AddUsersCommand}">
-                            <materialDesign:PackIcon Kind="AccountCircle"
+                              Command="{Binding InformationCommand}">
+							<materialDesign:PackIcon Kind="AccountCircle"
                                              Width="40" Height="40"
                                              Foreground="White"/>
-                        </ToggleButton>
-                        <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
-                        <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
+						</ToggleButton>
+						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
+						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Màn hình chính"
                               IsChecked="{Binding CurrentView}"
                               Command="{Binding HomeNavigateCommand}">
-                            <materialDesign:PackIcon Kind="Home"
+							<materialDesign:PackIcon Kind="Home"
                                              Width="40" Height="40"
                                              Foreground="White"/>
-                        </ToggleButton>
-                        <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
-                        <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
+						</ToggleButton>
+						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
+						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
                               ToolTip="Đăng xuất"
-                              Command="{Binding CloseCommand}"
+                              Command="{Binding LoginCommand}"
                               CommandParameter="{Binding ElementName=adminWindow}">
-                            <materialDesign:PackIcon Kind="LogoutVariant"
+							<materialDesign:PackIcon Kind="LogoutVariant"
                                              Width="40" Height="40"
                                              Foreground="White"/>
-                        </ToggleButton>
-                        <Separator Background="White" Width="40" Margin="0 0 0 10" Height="1"></Separator>
-                    </StackPanel>
-                </Border>
-                <Button
+						</ToggleButton>
+						<Separator Background="White" Width="40" Margin="0 0 0 10" Height="1"></Separator>
+					</StackPanel>
+				</Border>
+				<Button
                     ToolTip="Thoát"
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=adminWindow}" Margin="0,540,0,0" Height="50" Width="50">
-                    <materialDesign:PackIcon Kind="Power"
+					<materialDesign:PackIcon Kind="Power"
                                    Width="40" Height="40"
                                    Foreground="White"/>
-                </Button>
-                <Button
+				</Button>
+				<Button
                     ToolTip="Thu nhỏ"
                     Command="{Binding MinimizeCommand}"
                     CommandParameter="{Binding ElementName=adminWindow}" Margin="5,5,5,545" Height="50" Width="50">
-                    <materialDesign:PackIcon Kind="FullscreenExit"
+					<materialDesign:PackIcon Kind="FullscreenExit"
                                    Width="30" Height="30"
                                    Foreground="White"/>
-                </Button>
-            </Grid>
-        </DockPanel>
-    </Border>
+				</Button>
+			</Grid>
+		</DockPanel>
+	</Border>
 </Window>
