@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:AcademyManager.Views"
         FontFamily="Trebuchet MS" mc:Ignorable="d" 
-        Background="Transparent" Height="320" Width="800">
+        Background="Transparent" Height="350" Width="800">
     <UserControl.Resources>
         <Style x:Key="button" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />

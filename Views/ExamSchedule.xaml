@@ -169,8 +169,16 @@
                 <!-- Command="{Binding UploadCommand}" -->
             </Button>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="365" VerticalAlignment="Top" Margin="0,150,0,0">
-                <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black" Margin="0,-40,0,-60">
-                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="805" Height="100"/>
+                <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black">
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
+                    <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
                     <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
                     <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>
                     <uc:ExamScheduleUC Margin="0,0,0,0" Width="800" Height="100"/>

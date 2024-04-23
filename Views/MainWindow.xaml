@@ -69,6 +69,11 @@
                                             <Setter Property="Background" 
                                              Value="#FFABEDC6"/>
                                         </Trigger>
+                                        <Trigger Property="IsMouseOver" 
+                                                Value="False">
+                                            <Setter Property="Background" 
+                                                        Value="Transparent"/>
+                                        </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
@@ -86,8 +91,9 @@
             <Border DockPanel.Dock="Right" Background="#FFABEDC6" CornerRadius="10" Height="600" Width="1000">
                 <Grid>
                     <!-- Nội dung Grid bên phải -->
-                    <ContentControl Content="{Binding CurrentView}">
+                    <ContentControl>
                         <!-- <uc:WelcomeScreen></uc:WelcomeScreen>-->
+                        <uc:StudentMainScreen></uc:StudentMainScreen>
                     </ContentControl>
                 </Grid>
             </Border>
