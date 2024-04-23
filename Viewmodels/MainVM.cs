@@ -14,6 +14,7 @@ namespace AcademyManager.Viewmodels
 {
     public class MainVM : BaseViewModel
     {
+        #region Commands
         public ICommand HomeNavigateCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand NotificationCommand { get; set; }
@@ -42,6 +43,7 @@ namespace AcademyManager.Viewmodels
         public ICommand CloseUserControlCommand { get; set; }
         public ICommand InformationCommand { get; set; }
         public ICommand WhoAreYouCommand { get; set; }
+        #endregion
         #region Properties
         // current account
         public Account CurrentAccount { get; set; }
@@ -103,12 +105,42 @@ namespace AcademyManager.Viewmodels
                 if (_isTeacher != value)
                 {
                     _isTeacher = value;
-                    OnPropertyChanged("IsTeacher");
+                    OnPropertyChanged();
                 }
             }
         }
         // current view
         private UserControl _currentView;
+        private Visibility _navBtnV;
+        private bool _atnoticficationpage;
+        private bool _atinfopage;
+        private bool _athomepage;
+        private bool _islogout;
+        public Visibility NavigationButtonV
+        {
+            get { return _navBtnV; }
+            set { _navBtnV = value; OnPropertyChanged(); }
+        }
+        public bool IsLogout
+        {
+            get { return _islogout; }
+            set { _islogout = value; OnPropertyChanged(); }
+        }
+        public bool AtNotificationPage
+        {
+            get { return _atnoticficationpage; }
+            set { _atnoticficationpage = value; OnPropertyChanged(); }
+        }
+        public bool AtInfoPage
+        {
+            get { return _atinfopage; }
+            set { _atinfopage = value; OnPropertyChanged(); }
+        }
+        public bool AtHomePage
+        {
+            get { return _athomepage; }
+            set { _athomepage = value; OnPropertyChanged(); }
+        }
         public UserControl CurrentView
         {
             get { return _currentView; }
@@ -159,8 +191,11 @@ namespace AcademyManager.Viewmodels
         }
         private void InitializeCommands()
         {
-            HomeNavigateCommand = new RelayCommand<object>(p => true, p =>
+            HomeNavigateCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                AtHomePage = true;
+                AtInfoPage = false;
+                AtNotificationPage = false;
                 if (IsTeacher != true)
                 {
                     HomeView = StudentMainScreenView;
@@ -181,22 +216,26 @@ namespace AcademyManager.Viewmodels
 
             LogoutCommand = new RelayCommand<object>(p => true, p =>
             {
+                NavigationButtonV = Visibility.Hidden;
                 CurrentView = RootView;
             });
 
-            NotificationCommand = new RelayCommand<object>(p => true, p =>
+            NotificationCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                AtHomePage = false;
+                AtInfoPage = false;
+                AtNotificationPage = true;
                 CurrentView = NotificationView;
             });
 
-            CloseCommand = new RelayCommand<object>(p => true, p =>
+            CloseCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
-                Application.Current.Shutdown();  // Lệnh để tắt ứng dụng
+                p.Close();
             });
 
-            MinimizeCommand = new RelayCommand<object>(p => true, p =>
+            MinimizeCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
-                MinimizeApplication();
+                p.WindowState = WindowState.Minimized;
             });
 
             LoginCommand = new RelayCommand<object>(p => true, p =>
@@ -236,10 +275,12 @@ namespace AcademyManager.Viewmodels
                 CurrentView = WelcomeView;
                 IsTeacher = true;
             });
+
             RegisterCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = RegisterView;
             });
+
             ForgetPassCommand = new RelayCommand<object>(p => true, p =>
             {
                 CurrentView = ForgetPassView;
@@ -254,8 +295,11 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = SetNewPassView;
             });
-            InformationCommand = new RelayCommand<object>(p => true, p =>
+            InformationCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                AtInfoPage = true;
+                AtHomePage = false;
+                AtNotificationPage = false;
                 if (IsTeacher != true)
                     CurrentView = StudentInforView;
                 else CurrentView = LectureInforView;
@@ -306,6 +350,7 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = StudyScheduleView;
             });
+
             CloseUserControlCommand = new RelayCommand<object>(
                 execute: p => CloseUserControl(p as UserControl),
                 canExecute: p => true
@@ -318,22 +363,15 @@ namespace AcademyManager.Viewmodels
             if (controlToClose != null)
                 controlToClose.Visibility = Visibility.Collapsed;
         }
-        private void MinimizeApplication()
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var mainWindow = Application.Current.MainWindow;
-                if (mainWindow != null)
-                {
-                    mainWindow.WindowState = WindowState.Minimized;
-                }
-            });
-        }
         public MainVM()
         {
             InitializeViews();
             InitializeCommands();
             CurrentView = new AcademyManager.Views.WhoAreYou();
+            AtNotificationPage = false;
+            AtHomePage = false;
+            AtInfoPage = false;
+            NavigationButtonV = Visibility.Hidden;
         }
     }
 }

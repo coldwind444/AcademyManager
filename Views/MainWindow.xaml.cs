@@ -27,10 +27,5 @@ namespace AcademyManager.Views
             this.DataContext = Viewmodel = new MainVM();
             InitializeComponent();
         }
-
-        private void WelcomeScreen_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -84,10 +84,10 @@
                     TextWrapping="Wrap" Height="60" 
                     TextAlignment="Center" Margin="0,10,0,0"><Run Text="CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!"/></TextBlock>
                 <TextBlock
-    Foreground="Black"
-    FontSize="20"
-    TextWrapping="Wrap" Height="30" 
-    TextAlignment="Center" Margin="0,15,0,0" Width="400"><Run Language="vi-vn" Text="Đăng nhập với tư cách:"/></TextBlock>
+                    Foreground="Black"
+                    FontSize="20"
+                    TextWrapping="Wrap" Height="30" 
+                    TextAlignment="Center" Margin="0,15,0,0" Width="400"><Run Language="vi-vn" Text="Đăng nhập với tư cách:"/></TextBlock>
 
             </StackPanel>
         </Border>
@@ -96,35 +96,35 @@
             <Border Width="120" Height="40" CornerRadius="20" Margin="359,100,0,0">
                 <Border.Background>
                     <SolidColorBrush Color="White" 
-        Opacity="0.9"/>
+                                     Opacity="0.9"/>
                 </Border.Background>
                 <Border.Effect>
                     <DropShadowEffect Opacity="0.5"
-        Direction="300"
-        ShadowDepth="15"
-        BlurRadius="50"/>
+                                        Direction="300"
+                                        ShadowDepth="15"
+                                        BlurRadius="50"/>
                 </Border.Effect>
                 <Button Command="{Binding WelcomeTeacherCommand}"
-                    Grid.Row="1" Height="40" Width="120" Cursor="Hand"
-    FontSize="20" Foreground="White" Content="Giáo viên"/>
+                        Grid.Row="1" Height="40" Width="120" Cursor="Hand"
+                        FontSize="20" Foreground="White" Content="Giáo viên"/>
                 <!-- ="{Binding OpenLoginCommand}" -->
 
             </Border>
             <Border Width="120" Height="40" CornerRadius="20" Margin="40,100,0,0" >
                 <Border.Background>
                     <SolidColorBrush Color="White" 
-Opacity="0.9"/>
+                                    Opacity="0.9"/>
                 </Border.Background>
                 <Border.Effect>
                     <DropShadowEffect Opacity="0.5"
-Direction="300"
-ShadowDepth="15"
-BlurRadius="50"/>
+                                        Direction="300"
+                                        ShadowDepth="15"
+                                        BlurRadius="50"/>
                 </Border.Effect>
 
                 <Button Height="40" Width="120" Cursor="Hand"
-FontSize="20" Foreground="White" Margin="0 0 0 0"
- Content="Sinh viên" Command="{Binding WelcomeCommand}"/>
+                        FontSize="20" Foreground="White" Margin="0 0 0 0"
+                         Content="Sinh viên" Command="{Binding WelcomeCommand}"/>
                 <!--Command ="{Binding UploadCommand}"-->
 
             </Border>
