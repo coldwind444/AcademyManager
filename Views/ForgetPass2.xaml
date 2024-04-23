@@ -133,7 +133,9 @@
                             Cursor="Hand"
                             FontSize="16" 
                             Foreground="White"
-                            Command="{Binding UploadCommand}"  Content="Xác nhận"/>
+                            Command="{Binding SetNewPassCommand}"  
+                            Content="Xác nhận"/>
+                    <!-- Command="{Binding UploadCommand}"-->
                 </Border>
             </StackPanel>
         </Border>

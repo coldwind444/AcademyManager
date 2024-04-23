@@ -144,7 +144,7 @@
                                           ShadowDepth="15"
                                           BlurRadius="50"/>
                     </Border.Effect>
-                    <Button Command="{Binding ConfirmCommand}" 
+                    <Button Command="{Binding LoginCommand}" 
                             Grid.Row="1" Height="40" 
                             Cursor="Hand"
                             FontSize="20" Foreground="White" Width="120">

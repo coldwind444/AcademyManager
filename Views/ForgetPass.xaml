@@ -113,7 +113,7 @@
                                 Cursor="Hand"  
                                 Margin="0,-7,0,7"
                                 FontSize="20" Foreground="White"
-                                Command="{Binding UploadCommand}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
+                                Command="{Binding ForgetPass2Command}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
                             <Button.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -123,6 +123,7 @@
                                 </TransformGroup>
                             </Button.RenderTransform>
                         </Button>
+                        <!--  Command="{Binding UploadCommand}"-->
                     </Border>
                 </StackPanel>
                 <ContentControl Width="35" Height="35">

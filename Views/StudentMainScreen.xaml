@@ -182,7 +182,7 @@
                 </DockPanel>
             </Border>
         </Button>
-        <Button Margin="710,105,50,415" Width="240" Height="80">
+        <Button Command="{Binding StudyScheduleCommand}"  Margin="710,105,50,415" Width="240" Height="80">
             <Border CornerRadius="40" Width="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>

@@ -137,10 +137,11 @@
                     Margin="20,10,20,0" Height="20">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding DownloadCommand}"
+                            <i:InvokeCommandAction Command="{Binding ForgetPassCommand}"
                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers><Run Text="Quên mật khẩu?"/></TextBlock>
+                <!-- Command="{Binding DownloadCommand}"-->
             </StackPanel>
         </Border>
     </Grid>

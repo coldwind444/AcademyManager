@@ -186,7 +186,7 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding StudentSubjectListCommand}" 
+            Command="{Binding HomeViewCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="440,540,440,10" Height="50">
             Quay lại
         </Button>
