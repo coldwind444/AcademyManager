@@ -36,13 +36,13 @@ namespace AcademyManager.Viewmodels
         public ICommand ResultCommand { get; set; } //Study Result
         public ICommand ExamScheduleCommand { get; set; } //Exam schedule
         public ICommand StudyScheduleCommand { get; set; } //Calendar
-        public ICommand ForgetPassCommand { get; set; } //Calendar
-        public ICommand ForgetPass2Command { get; set; } //Calendar
-        public ICommand SetNewPassCommand { get; set; } //Calendar
-        public ICommand HomeViewCommand { get; set; } //Calendar
-        public ICommand CloseUserControlCommand { get; set; }
-        public ICommand InformationCommand { get; set; }
-        public ICommand WhoAreYouCommand { get; set; }
+        public ICommand ForgetPassCommand { get; set; } //Forget Password
+        public ICommand ForgetPass2Command { get; set; } //Input code
+        public ICommand SetNewPassCommand { get; set; } //Set new password
+        public ICommand HomeViewCommand { get; set; } //HomeView
+        public ICommand CloseUserControlCommand { get; set; } //Close UserControl
+        public ICommand InformationCommand { get; set; } //Information
+        public ICommand WhoAreYouCommand { get; set; }// Lecture or student
         #endregion
         #region Properties
         // current account
@@ -67,10 +67,8 @@ namespace AcademyManager.Viewmodels
         public UserControl CourseInfoView { get; set; }
         public UserControl LoginView { get; set; }
         public UserControl ConfirmView { get; set; }
-
-        // *Dung*
-        public UserControl LectureInforView { get; set; }//Login Screen
-        public UserControl LectureMainScreenView { get; set; }//Login Screen
+        public UserControl LectureInforView { get; set; }//Information
+        public UserControl LectureMainScreenView { get; set; }//Lecture HomeView
         public UserControl LectureSubjectListView { get; set; }
         public UserControl WelcomeView { get; set; }
         public UserControl WelcomeTeacherView { get; set; }
@@ -79,8 +77,6 @@ namespace AcademyManager.Viewmodels
         public UserControl ForgetPassView { get; set; }
         public UserControl ForgetPass2View { get; set; }
         public UserControl SetNewPassView { get; set; }
-
-        // Sam
         public UserControl StudentInforView { get; set; } // Thông tin học sinh
         public UserControl StudentMainScreenView { get; set; } // trở lại trang Thông tin học sinh
         public UserControl StudentSubjectListView { get; set; } //Xem danh sách môn học
@@ -91,12 +87,16 @@ namespace AcademyManager.Viewmodels
         public UserControl NotificationView { get; set; } // xem lich thi
         public UserControl InformationView { get; set; } // xem lich thi
         public UserControl WhoAreYouView { get; set; } // xem lich thi
-
-
-
-        //sam
-        //teacher
+        
+        // current view
+        private UserControl _currentView;
+        private Visibility _navBtnV;
+        private bool _atnoticficationpage;
+        private bool _atinfopage;
+        private bool _athomepage;
+        private bool _islogout;
         private bool _isTeacher;
+
         public bool IsTeacher
         {
             get { return _isTeacher; }
@@ -109,14 +109,7 @@ namespace AcademyManager.Viewmodels
                 }
             }
         }
-        // current view
-        private UserControl _currentView;
-        private Visibility _navBtnV;
-        private bool _atnoticficationpage;
-        private bool _atinfopage;
-        private bool _athomepage;
-        private bool _islogout;
-        public Visibility NavigationButtonV
+                public Visibility NavigationButtonV
         {
             get { return _navBtnV; }
             set { _navBtnV = value; OnPropertyChanged(); }
@@ -179,7 +172,6 @@ namespace AcademyManager.Viewmodels
             SetNewPassView = new AcademyManager.Views.SetNewPass();
             NotificationView = new AcademyManager.Views.Noti();
             WhoAreYouView = new AcademyManager.Views.WhoAreYou();
-            //sam
             StudentInforView = new AcademyManager.Views.StudentInfor(); //thông tin học sinh
             StudentMainScreenView = new AcademyManager.Views.StudentMainScreen(); //trở lại trang thông tin học sinh
             StudentSubjectListView = new AcademyManager.Views.StudentSubjectList(); //Xem danh sách môn học
@@ -187,7 +179,6 @@ namespace AcademyManager.Viewmodels
             RegisterSuccessView = new AcademyManager.Views.NotiRegisterSuccess(); //xem Đăng ký thành công
             ResultView = new AcademyManager.Views.Result();  // xem kết quả
             ExamScheduleView = new AcademyManager.Views.ExamSchedule();//xem lich thi
-            //sam
         }
         private void InitializeCommands()
         {
@@ -196,6 +187,7 @@ namespace AcademyManager.Viewmodels
                 AtHomePage = true;
                 AtInfoPage = false;
                 AtNotificationPage = false;
+                IsLogout = false;
                 if (IsTeacher != true)
                 {
                     HomeView = StudentMainScreenView;
@@ -216,14 +208,19 @@ namespace AcademyManager.Viewmodels
 
             LogoutCommand = new RelayCommand<object>(p => true, p =>
             {
-                NavigationButtonV = Visibility.Hidden;
-                CurrentView = RootView;
+                AtHomePage = false;
+                AtInfoPage = false;
+                IsTeacher = false;
+                AtNotificationPage = false;
+                IsLogout = true;
+                CurrentView = WhoAreYouView;
             });
 
             NotificationCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
                 AtHomePage = false;
                 AtInfoPage = false;
+                IsLogout = false;
                 AtNotificationPage = true;
                 CurrentView = NotificationView;
             });
@@ -300,6 +297,7 @@ namespace AcademyManager.Viewmodels
                 AtInfoPage = true;
                 AtHomePage = false;
                 AtNotificationPage = false;
+                IsLogout = false;
                 if (IsTeacher != true)
                     CurrentView = StudentInforView;
                 else CurrentView = LectureInforView;
@@ -371,6 +369,7 @@ namespace AcademyManager.Viewmodels
             AtNotificationPage = false;
             AtHomePage = false;
             AtInfoPage = false;
+            IsLogout = false;
             NavigationButtonV = Visibility.Hidden;
         }
     }
