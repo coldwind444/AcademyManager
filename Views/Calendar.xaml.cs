@@ -50,5 +50,10 @@ namespace AcademyManager.Views
             else
                 lblTime.Visibility = Visibility.Visible;
         }
+
+        private void CalendarUC_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

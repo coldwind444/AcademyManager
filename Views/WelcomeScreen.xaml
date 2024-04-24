@@ -107,14 +107,13 @@
             </Border>
             <Border Width="120" Height="40" CornerRadius="20" Margin="40,100,0,0" >
                 <Border.Background>
-                    <SolidColorBrush Color="White" 
-Opacity="0.9"/>
+                    <SolidColorBrush Color="White" Opacity="0.9"/>
                 </Border.Background>
                 <Border.Effect>
                     <DropShadowEffect Opacity="0.5"
-Direction="300"
-ShadowDepth="15"
-BlurRadius="50"/>
+                                      Direction="300"
+                                      ShadowDepth="15"
+                                      BlurRadius="50"/>
                 </Border.Effect>
 
                 <Button Height="40" Width="120" Cursor="Hand"

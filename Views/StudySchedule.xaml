@@ -36,8 +36,9 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="#15BF5C"/>
+                                            <Setter Property="Background" Value="#027324"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">
@@ -181,20 +182,20 @@
         <TextBlock TextAlignment="Center"
                        TextWrapping="Wrap" FontSize="40" Foreground="Black" 
                        Margin="150,85,150,455" Height="60" Width="700" Text="LỊCH"/>
-        <Separator Background="Black" Margin="55,135,0,455" HorizontalAlignment="Left" Width="850" Height="10"/>
+        <Separator Background="Black" Margin="75,135,0,455" HorizontalAlignment="Left" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
             Command="{Binding HomeViewCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="440,540,440,10" Height="50">
+            RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="50">
             Quay lại
         </Button>
         <!--
             Command="{Binding UploadCommand}" 
         -->
         <Border Width="900" Margin="75,125,75,60" VerticalAlignment="Center" HorizontalAlignment="Center" Height="400">
-            <uc:Calendar Margin="25,10,25,16" Loaded="Calendar_Loaded_1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="360"/>
+            <uc:Calendar Loaded="Calendar_Loaded_1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="351"/>
         </Border>
     </Grid>
 </UserControl>
