@@ -116,7 +116,7 @@
                         Grid.RowSpan="3">
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Center"
-                                Visibility="{Binding NavigationButtonV}">
+                                >
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
 						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
 									  ToolTip="Thông báo"
