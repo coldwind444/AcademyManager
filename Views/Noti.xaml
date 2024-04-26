@@ -6,7 +6,6 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
         mc:Ignorable="d"
-        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
@@ -17,9 +16,6 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:NotiVM></vm:NotiVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -126,7 +122,7 @@
                     Margin="20 0 20 0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding DataContext.HomeViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            <i:InvokeCommandAction Command="{Binding HomeViewCommand}"
                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
@@ -151,7 +147,7 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding DataContext.HomeViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Command="{Binding HomeViewCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="540,520,340,30" Height="50">
             Quay lại
         </Button>
@@ -159,7 +155,7 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding DataContext.HomeViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Command="{Binding HomeViewCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="340,520,470,30" Height="50">
             Đánh dấu đã đọc
         </Button>

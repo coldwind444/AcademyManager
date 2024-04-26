@@ -6,7 +6,6 @@
      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
      xmlns:local="clr-namespace:AcademyManager.AdminViews"
      mc:Ignorable="d" 
-     xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
      xmlns:uc="clr-namespace:AcademyManager.Views"
      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
      d:DataContext="{d:DesignInstance Type=UserControl}"
@@ -17,9 +16,6 @@
      TextOptions.TextRenderingMode="Auto"
      FontFamily="{DynamicResource MaterialDesignFont}"
      d:DesignHeight="600" d:DesignWidth="1000">
-    <UserControl.DataContext>
-        <vm:LoginVM></vm:LoginVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="Link">
             <Setter Property="Cursor" Value="Hand"/>

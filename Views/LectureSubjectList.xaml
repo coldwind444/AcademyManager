@@ -6,7 +6,6 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
         xmlns:uc="clr-namespace:AcademyManager.Views"
-        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -18,9 +17,6 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:CourseListVM></vm:CourseListVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" 
@@ -155,7 +151,7 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DataContext.LectureCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                <i:InvokeCommandAction Command="{Binding LectureCommand}" 
                                        CommandParameter="{Binding ElementName=TypeSelectionBox}">
                 </i:InvokeCommandAction>
             </i:EventTrigger>
@@ -187,7 +183,7 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding DataContext.LectureCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Command="{Binding LectureCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="440,520,440,30" Height="50">
             Quay lại
         </Button>

@@ -5,7 +5,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                 xmlns:local="clr-namespace:AcademyManager.AdminViews"
-                xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
                 mc:Ignorable="d"
                 x:Name="adminWindow"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -17,9 +16,6 @@
                 TextOptions.TextRenderingMode="Auto"
                 FontFamily="{DynamicResource MaterialDesignFont}"
                 Height="100" Width="800">
-    <UserControl.DataContext>
-        <vm:ExamScheduleTypeVM></vm:ExamScheduleTypeVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>

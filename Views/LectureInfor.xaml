@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
-        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -17,9 +16,6 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:LectureInfoVM></vm:LectureInfoVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter 
@@ -173,7 +169,7 @@
                            RenderTransformOrigin="0.5,0.5"
                            Margin="20 0 20 0"><i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding DataContext.LectureCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            <i:InvokeCommandAction Command="{Binding LectureCommand}"
                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/><!-- Command="{Binding DownloadCommand}"-->
                         </i:EventTrigger>
                     </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
@@ -240,7 +236,7 @@
             </StackPanel>
         </Border>
         <Button 
-            Command="{Binding DataContext.LectureCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Command="{Binding LectureCommand}" 
             Background="ForestGreen"
             Grid.Row="1" Cursor="Hand"
             FontSize="20" 

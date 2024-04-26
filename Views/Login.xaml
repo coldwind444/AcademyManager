@@ -14,9 +14,6 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000">
-    <UserControl.DataContext>
-        <vm:LoginVM></vm:LoginVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <vm:MainVM x:Key="mainVM"/>
         <Style TargetType="TextBlock" x:Key="Link">
@@ -137,7 +134,7 @@
                     </Border.Effect>
                     <Button Cursor="Hand"
                             FontSize="20" Foreground="White"
-                            Command="{Binding DataContext.ConfirmCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            Command="{Binding ConfirmCommand}" 
                             Content="Xác nhận" />
                 </Border>
                 <TextBlock Foreground="ForestGreen"

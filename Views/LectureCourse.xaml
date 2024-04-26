@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager.AdminViews"
-        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         xmlns:userControls="clr-namespace:AcademyManager.UserControls"
         mc:Ignorable="d"
         x:Name="adminWindow"
@@ -18,9 +17,6 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:CourseInfoVM></vm:CourseInfoVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" 
@@ -154,9 +150,8 @@
                    Margin="20 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction     
-                    Command="{Binding DataContext.LectureMainScreenCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
+                <i:InvokeCommandAction     Command="{Binding StudentMainScreenCommand}"
+    CommandParameter="{Binding ElementName=TypeSelectionBox}">
 </i:InvokeCommandAction>
 <!--
 Command="{Binding DownloadCommand}" 
@@ -174,7 +169,7 @@ Command="{Binding DownloadCommand}"
                    Margin="0 0 20 0">
             <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DataContext.LectureMainScreenCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
                                        CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
             </i:EventTrigger>
             </i:Interaction.Triggers><Run Language="vi-vn" 
@@ -242,7 +237,7 @@ Command="{Binding DownloadCommand}"
                 Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
-                Command="{Binding DataContext.UploadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                Command="{Binding UploadCommand}" 
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="740,85,60,475" 
                 Content="Danh sách sinh viên" Width="200" Height="40"/>
@@ -250,7 +245,7 @@ Command="{Binding DownloadCommand}"
                 Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
-                Command="{Binding DataContext.UploadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                Command="{Binding UploadCommand}" 
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="790,135,60,425" Content="Thêm tài liệu" Height="40"/>
         <!--<ScrollViewer VerticalScrollBarVisibility="Auto"><ContentControl userControls="Nội dung"/></ScrollViewer> -->

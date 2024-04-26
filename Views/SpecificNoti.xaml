@@ -7,7 +7,6 @@
     xmlns:local="clr-namespace:AcademyManager.AdminViews"
     mc:Ignorable="d"
     x:Name="adminWindow"
-    xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
     xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,9 +16,6 @@
     TextOptions.TextRenderingMode="Auto"
     FontFamily="{DynamicResource MaterialDesignFont}"
     Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:NotiVM></vm:NotiVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>

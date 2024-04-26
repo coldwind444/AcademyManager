@@ -4,7 +4,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AcademyManager.AdminViews"
-    xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
     mc:Ignorable="d"
     x:Name="adminWindow"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -17,9 +16,6 @@
     TextOptions.TextRenderingMode="Auto"
     FontFamily="{DynamicResource MaterialDesignFont}"
     Height="600" Width="1000">
-    <UserControl.DataContext>
-        <vm:LectureHomeVM></vm:LectureHomeVM>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="ToggleButton">
             <Setter Property="Cursor" Value="Hand"/>
@@ -124,8 +120,7 @@
             </Border.Background>
             <StackPanel VerticalAlignment="Center" Orientation="Vertical" Height="170"/>
         </Border>
-        <Button Command="{Binding DataContext.LectureInforCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                Margin="10,296,530,42" Grid.RowSpan="2" Width="240" Height="240">
+        <Button Command="{Binding LectureInforCommand}" Margin="10,296,530,42" Grid.RowSpan="2" Width="240" Height="240">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
@@ -139,8 +134,7 @@
                 </StackPanel>
             </Border>
         </Button>
-        <Button Command="{Binding DataContext.LectureSubjectListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                Margin="383,310,237,50" Grid.RowSpan="2" Width="240" Height="240">
+        <Button Command="{Binding LectureSubjectListCommand}" Margin="383,310,237,50" Grid.RowSpan="2" Width="240" Height="240">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
@@ -154,7 +148,7 @@
                 </StackPanel>
             </Border>
         </Button>
-        <Button Command="{Binding DataContext.StudyScheduleCommand, RelativeSource={RelativeSource AncestorType=Window}}" Margin="710,307,50,53" Grid.RowSpan="2" Width="240" Height="240" Grid.ColumnSpan="2">
+        <Button Command="{Binding StudyScheduleCommand}" Margin="710,307,50,53" Grid.RowSpan="2" Width="240" Height="240" Grid.ColumnSpan="2">
             <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
                 <Border.Background>
                     <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
