@@ -16,8 +16,11 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-             
+        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"     
         Height="600" Width="1000">
+    <UserControl.DataContext>
+        <vm:CourseInfoVM></vm:CourseInfoVM>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" 

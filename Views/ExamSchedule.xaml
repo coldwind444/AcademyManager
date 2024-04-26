@@ -6,6 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager"
         xmlns:uc="clr-namespace:AcademyManager.Views"
+        xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -17,6 +18,9 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="600" Width="1000">
+    <UserControl.DataContext>
+        <vm:ExamScheduleTypeVM></vm:ExamScheduleTypeVM>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
@@ -124,7 +128,7 @@
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
                                     <i:InvokeCommandAction                                
-                                        Command="{Binding StudentMainScreenCommand}" 
+                                        Command="{Binding DataContext.StudentMainScreenCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                         CommandParameter="{Binding ElementName=TypeSelectionBox}">
                                     </i:InvokeCommandAction>
                                     <!-- Command="{Binding DownloadCommand}" -->
@@ -163,7 +167,7 @@
                 Cursor="Hand"
                 FontSize="25" 
                 Foreground="White"
-                Command="{Binding StudentMainScreenCommand}" 
+                Command="{Binding DataContext.StudentMainScreenCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                 Margin="420,520,420,20" 
                 Content="Quay lại">
                 <!-- Command="{Binding UploadCommand}" -->

@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AcademyManager.AdminViews"
+    xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
     mc:Ignorable="d"
     x:Name="adminWindow"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -16,6 +17,9 @@
     TextOptions.TextRenderingMode="Auto"
     FontFamily="{DynamicResource MaterialDesignFont}"
     Height="600" Width="1000">
+    <UserControl.DataContext>
+        <vm:StudentHomeVM></vm:StudentHomeVM>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="ToggleButton">
             <Setter Property="Cursor" Value="Hand"/>

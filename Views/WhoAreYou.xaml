@@ -17,6 +17,9 @@
          TextOptions.TextRenderingMode="Auto"
          FontFamily="{DynamicResource MaterialDesignFont}"
          d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.DataContext>
+        <vm:AccountTypeSelectionView></vm:AccountTypeSelectionView>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="Link">
             <Setter Property="Cursor" Value="Hand"/>
