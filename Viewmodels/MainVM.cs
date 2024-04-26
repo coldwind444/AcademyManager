@@ -43,6 +43,7 @@ namespace AcademyManager.Viewmodels
         public ICommand CloseUserControlCommand { get; set; } //Close UserControl
         public ICommand InformationCommand { get; set; } //Information
         public ICommand WhoAreYouCommand { get; set; }// Lecture or student
+        public ICommand CloseRegisterSubjectCommand { get; set; }// tat thong bao dk mon hoc 
         #endregion
         #region Properties
         // current account
@@ -87,7 +88,8 @@ namespace AcademyManager.Viewmodels
         public UserControl NotificationView { get; set; } // xem lich thi
         public UserControl InformationView { get; set; } // xem lich thi
         public UserControl WhoAreYouView { get; set; } // xem lich thi
-        
+        public UserControl CloseRegisterSubjectView { get; set; } // tat thong bao ten dang nhap sai
+
         // current view
         private UserControl _currentView;
         private Visibility _navBtnV;
@@ -179,6 +181,7 @@ namespace AcademyManager.Viewmodels
             RegisterSuccessView = new AcademyManager.Views.NotiRegisterSuccess(); //xem Đăng ký thành công
             ResultView = new AcademyManager.Views.Result();  // xem kết quả
             ExamScheduleView = new AcademyManager.Views.ExamSchedule();//xem lich thi
+            CloseRegisterSubjectView = new AcademyManager.Views.SubjectRegister(); // tat thong bao dk mon hoc 
         }
         private void InitializeCommands()
         {
@@ -349,10 +352,10 @@ namespace AcademyManager.Viewmodels
                 CurrentView = StudyScheduleView;
             });
 
-            CloseUserControlCommand = new RelayCommand<object>(
-                execute: p => CloseUserControl(p as UserControl),
-                canExecute: p => true
-            );
+            CloseRegisterSubjectCommand = new RelayCommand<object>(p => true, p =>
+            {
+                CurrentView = CloseRegisterSubjectView;
+            });
 
         }
         #endregion

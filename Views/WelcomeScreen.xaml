@@ -58,12 +58,33 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border Width="400"
         BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="40" Margin="300,140,300,144">
-            <Border.Background>
-                <SolidColorBrush Color="#FFEEFFF2"/>
-            </Border.Background>
+        BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="#FFEEFFF2">
             <Border.Effect>
                 <DropShadowEffect 
             Opacity="0.5" 
@@ -85,7 +106,7 @@
 
             </StackPanel>
         </Border>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
 
             <Border Width="120" Height="40" CornerRadius="20" Margin="359,100,0,0">
                 <Border.Background>
@@ -118,14 +139,14 @@
 
                 <Button Height="40" Width="120" Cursor="Hand"
 FontSize="20" Foreground="White" Margin="0 0 0 0"
- Content="Đăng ký" Command="{Binding RegisterCommand}"/> 
+ Content="Đăng ký" Command="{Binding RegisterCommand}"/>
                 <!--Command ="{Binding UploadCommand}"-->
 
             </Border>
-
-            <ContentControl>
-                <uc:ExitUC Height="300" Margin="10,0,0,0"></uc:ExitUC>
-            </ContentControl>
         </StackPanel>
+        <Button Command="{Binding WhoAreYouCommand}"
+            Margin="0,157,211,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35" Margin="-34,0,0,0"/>
+        </Button>
     </Grid>
 </UserControl>

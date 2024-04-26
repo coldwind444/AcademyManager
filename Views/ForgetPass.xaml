@@ -57,6 +57,26 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border Width="400"
                 BorderThickness="1.5"
                 BorderBrush="Black" 
@@ -81,9 +101,7 @@
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        <Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/>
-                    </TextBlock>
+                            </i:Interaction.Triggers><Run Language="vi-vn" Text="QUÊN MẬT KHẨU"/></TextBlock>
                     <Border Width="350" Height="40"
                             Background="White"
                             CornerRadius="20"
@@ -92,7 +110,7 @@
                             BorderThickness="1.5">
                         <TextBox Width="320" 
                                  Height="30"
-                                 materialDesign:HintAssist.Hint="UserName"
+                                 materialDesign:HintAssist.Hint="Email"
                                  Text="{Binding Path}"
                                  x:Name="FilePathBox"
                                  BorderThickness="0"
@@ -126,9 +144,10 @@
                         <!--  Command="{Binding UploadCommand}"-->
                     </Border>
                 </StackPanel>
-                <ContentControl Width="35" Height="35">
-                    <uc:ExitUC Height="35" Margin="-5,-95,10,90"/>
-                </ContentControl>
+                <Button Command="{Binding LoginCommand}"
+                    Margin="-10,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35" VerticalAlignment="Center" Margin="-34,0,0,0"/>
+                </Button>
             </DockPanel>
         </Border>
     </Grid>

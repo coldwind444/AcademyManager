@@ -59,15 +59,32 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border 
             Width="400"
             BorderThickness="1.5"
             BorderBrush="Black" 
             CornerRadius="40" 
-            Margin="300,140,300,144">
-            <Border.Background>
-                <SolidColorBrush Color="#FFEEFFF2"/>
-            </Border.Background>
+            Margin="300,140,300,144" Background="#FFEEFFF2">
             <Border.Effect>
                 <DropShadowEffect Opacity="0.5"
                                   Direction="300"

@@ -101,6 +101,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 30 30 0"
                 Background="White"
                 Margin="0,21,40,0" Height="40" VerticalAlignment="Top">
@@ -120,8 +140,7 @@
             VerticalAlignment="Center"
             FontSize="20" 
             RenderTransformOrigin="0.5,0.5"
-            Margin="20 0 20 0">
-            <i:Interaction.Triggers>
+            Margin="20 0 20 0"><i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonDown">
                     <i:InvokeCommandAction 
                         Command="{Binding StudentMainScreenCommand}" 
@@ -131,15 +150,12 @@
                         -->
                     </i:InvokeCommandAction>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>
-            Trang chủ >
-                </TextBlock>
+            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" Style="{StaticResource Link}"
            VerticalAlignment="Center"
            FontSize="20"
            RenderTransformOrigin="0.5,0.5"
-           Margin="-10,0,0,0" Width="167">
-        <i:Interaction.Triggers>
+           Margin="-10,0,0,0" Width="167"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction 
                     CommandParameter="{Binding ElementName=TypeSelectionBox}">
@@ -148,9 +164,7 @@
                     -->
                 </i:InvokeCommandAction>
             </i:EventTrigger>
-    </i:Interaction.Triggers>
-                Thông tin cá nhân
-                </TextBlock>
+    </i:Interaction.Triggers><Run Text="Thông tin cá nhân"/></TextBlock>
             </StackPanel>
         </Border>
 
@@ -207,11 +221,10 @@
             FontSize="20" 
             Foreground="White"
             RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50"
-            Command="{Binding StudentMainScreenCommand}">
+            Command="{Binding StudentMainScreenCommand}" Content="Quay lại">
             <!--
                         Command="{Binding UploadCommand}" 
             -->
-            Quay lại
         </Button>
     </Grid>
 </UserControl>

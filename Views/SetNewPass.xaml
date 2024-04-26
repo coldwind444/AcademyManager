@@ -57,6 +57,26 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border Width="400"
                 BorderThickness="1.5"
                 BorderBrush="Black" 
@@ -80,10 +100,7 @@
                     <i:EventTrigger EventName="MouseLeftButtonDown">
                         <i:InvokeCommandAction Command="{Binding DownloadCommand}"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <Run Language="vi-vn" Text="NHẬP THÔNG TIN"/>
-                    <LineBreak/><Run/>
-                </TextBlock>
+                    </i:Interaction.Triggers><Run Language="vi-vn" Text="NHẬP THÔNG TIN"/><LineBreak/><Run/></TextBlock>
                 <Border Width="350" 
                         Height="40"
                         Background="White"
@@ -147,9 +164,7 @@
                     <Button Command="{Binding LoginCommand}" 
                             Grid.Row="1" Height="40" 
                             Cursor="Hand"
-                            FontSize="20" Foreground="White" Width="120">
-                            Xác nhận
-                    </Button>
+                            FontSize="20" Foreground="White" Width="120" Content="Xác nhận"/>
                 </Border>
             </StackPanel>
         </Border>
