@@ -50,9 +50,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid Background="WhiteSmoke" Opacity="500" Height="600" Width="1000" Margin="0,10,0,-10">
-        </Grid>
+
         <Grid Background="#FFE6FFEC" Margin="300,250,300,250">
             <Grid.Effect>
                 <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.5"/>
@@ -65,5 +63,4 @@
                 <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="35" Height="35"/>
             </Button>
         </Grid>
-    </Grid>
 </UserControl>
