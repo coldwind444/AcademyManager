@@ -130,6 +130,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 30 30 0" 
         Background="White" 
         Margin="0,20,40,540">
@@ -147,49 +167,41 @@
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="20 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="20 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction     Command="{Binding StudentMainScreenCommand}"
-    CommandParameter="{Binding ElementName=TypeSelectionBox}">
-</i:InvokeCommandAction>
+    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
 <!--
 Command="{Binding DownloadCommand}" 
     -->
             </i:EventTrigger>
-            </i:Interaction.Triggers>
-            Trang chủ >
-                </TextBlock>
+            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
                    Style="{StaticResource Link}" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="0 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="0 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
                                        CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
             </i:EventTrigger>
             </i:Interaction.Triggers><Run Language="vi-vn" 
-                                          Text="Khóa học >"/>
-                </TextBlock>
+                                          Text="Khóa học &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
                Style="{StaticResource Link}" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Center" 
                FontSize="20" 
                RenderTransformOrigin="0.5,0.5" 
-               Margin="0 0 20 0">
-        <i:Interaction.Triggers>
+               Margin="0 0 20 0"><i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
         </i:EventTrigger>
         </i:Interaction.Triggers><Run Language="vi-vn" 
-                                      Text="Hệ điều hành"/>
-                </TextBlock>
+                                      Text="Hệ điều hành"/></TextBlock>
             </StackPanel>
         </Border>
         <TextBlock TextAlignment="Left"
@@ -198,21 +210,12 @@ Command="{Binding DownloadCommand}"
                    Foreground="Black"
                    Margin="40,100,260,450" 
                    Height="50" 
-                   Width="700">
-            <Run Text="HỆ ĐIỀU HÀNH"/>
-            <Run Text=" (CO2017)"/>
-            <Run Text=" - "/>
-            <Run Language="vi-vn" Text="L"/>
-            <Run Text="04"/>
-        </TextBlock>
+                   Width="700"><Run Text="HỆ ĐIỀU HÀNH"/><Run Text=" "/><Run Text=" (CO2017)"/><Run Text=" "/><Run Text=" - "/><Run Text=" "/><Run Language="vi-vn" Text="L"/><Run Text=" "/><Run Text="04"/></TextBlock>
         <TextBlock TextAlignment="Left" 
                    FontSize="30" 
                    TextWrapping="Wrap" 
                    Margin="40,150,360,410" 
-                   Width="600" Height="40">
-            <Run Text="Giảng viên: Nguyễn Thành An"/>
-            <LineBreak/>
-        </TextBlock>
+                   Width="600" Height="40"><Run Text="Giảng viên: Nguyễn Thành An"/><LineBreak/></TextBlock>
         <Separator Background="Black" 
                    Margin="40,195,0,395" 
                    HorizontalAlignment="Left" 
@@ -223,16 +226,12 @@ Command="{Binding DownloadCommand}"
                    TextWrapping="Wrap" 
                    Width="200" 
                    Height="60" 
-                   Margin="40,220,760,320">
-            <Run Text="Chung"/>
-        </TextBlock>
+                   Margin="40,220,760,320"><Run Text="Chung"/></TextBlock>
         <TextBlock TextAlignment="Left" 
                    FontSize="40" 
                    TextWrapping="Wrap" 
                    Height="60"
-                   Margin="40,420,680,120">
-            <Run Text="Slice bài giảng"/>
-        </TextBlock>
+                   Margin="40,420,680,120"><Run Text="Slice bài giảng"/></TextBlock>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 

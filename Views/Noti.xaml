@@ -100,6 +100,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 30 30 0"
                 Background="White"
                 Margin="0,21,40,0" Height="40" VerticalAlignment="Top">
@@ -119,28 +139,22 @@
                     VerticalAlignment="Center"
                     FontSize="20" 
                     RenderTransformOrigin="0.5,0.5"
-                    Margin="20 0 20 0">
-                    <i:Interaction.Triggers>
+                    Margin="20 0 20 0"><i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding HomeViewCommand}"
-                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
+                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    Trang chủ >
-                </TextBlock>
+                    </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" Style="{StaticResource Link}"
                    VerticalAlignment="Center"
                    FontSize="20"
                    RenderTransformOrigin="0.5,0.5"
-                   Margin="-10,0,0,0" Width="100">
-        <i:Interaction.Triggers>
+                   Margin="-10,0,0,0" Width="100"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                  CommandParameter="{Binding ElementName=TypeSelectionBox}"></i:InvokeCommandAction>
+                                  CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
             </i:EventTrigger>
-    </i:Interaction.Triggers>
-                Thông báo
-                </TextBlock>
+    </i:Interaction.Triggers><Run Text="Thông báo"/></TextBlock>
             </StackPanel>
         </Border>
         <Button 
@@ -148,16 +162,12 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding HomeViewCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="540,520,340,30" Height="50">
-            Quay lại
-        </Button>
+            RenderTransformOrigin="0.5,0.5" Margin="540,520,340,30" Height="50" Content="Quay lại"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
             Command="{Binding HomeViewCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="340,520,470,30" Height="50">
-            Đánh dấu đã đọc
-        </Button>
+            RenderTransformOrigin="0.5,0.5" Margin="340,520,470,30" Height="50" Content="Đánh dấu đã đọc"/>
     </Grid>
 </UserControl>

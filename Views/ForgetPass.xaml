@@ -57,7 +57,17 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="240,-324,-500,0" Opacity="0.5" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <materialDesign:PackIcon.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -67,7 +77,7 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="3" >
             <materialDesign:PackIcon.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -81,7 +91,7 @@
                 BorderThickness="1.5"
                 BorderBrush="Black" 
                 CornerRadius="10" 
-                Margin="90,190,90,190">
+                Margin="185,15,150,190" Grid.Column="1" Grid.Row="2">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
