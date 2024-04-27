@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FontAwesome.WPF;
 
-namespace AcademyManager.Views
+namespace AcademyManager.UCViews
 {
     /// <summary>
     /// Interaction logic for Item.xaml

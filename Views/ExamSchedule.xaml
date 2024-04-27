@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:AcademyManager"
-        xmlns:uc="clr-namespace:AcademyManager.Views"
+        xmlns:uc="clr-namespace:AcademyManager.UCViews"
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 

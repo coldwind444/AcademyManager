@@ -10,7 +10,6 @@
         x:Name="mainWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
-        d:DataContext="{d:DesignInstance Type=vm:MainVM}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"

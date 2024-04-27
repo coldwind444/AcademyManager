@@ -24,10 +24,5 @@ namespace AcademyManager.Views
         {
             InitializeComponent();
         }
-
-        private void ExitButon_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

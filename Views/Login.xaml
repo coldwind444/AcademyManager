@@ -15,7 +15,6 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000">
     <UserControl.Resources>
-        <vm:MainVM x:Key="mainVM"/>
         <Style TargetType="TextBlock" x:Key="Link">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Foreground" Value="ForestGreen"/>

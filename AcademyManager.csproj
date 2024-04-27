@@ -19,4 +19,8 @@
     <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UCViewmodels\" />
+  </ItemGroup>
+
 </Project>

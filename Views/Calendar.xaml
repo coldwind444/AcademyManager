@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:uc="clr-namespace:AcademyManager.Views"
+        xmlns:uc="clr-namespace:AcademyManager.UCViews" 
         FontFamily="Trebuchet MS" 
         Background="Transparent" Height="350" Width="800">
     <UserControl.Resources>
@@ -322,7 +322,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border CornerRadius="0 20 20 0" Background="#FF69D294" Grid.ColumnSpan="2" Margin="395,0,0,0" Width="400"/>
+            <Border CornerRadius="0 10 10 0" Background="#FF69D294" Grid.ColumnSpan="2" Margin="395,0,0,0" Width="400"/>
         </Grid>
 
         <!--Grid Controls-->
@@ -332,77 +332,33 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel>
+            <Grid>
                 <uc:CalendarUC Height="350"/>
-            </StackPanel>
+            </Grid>
 
-            <StackPanel Grid.Column="1" Height="350">
-                <!--Titles-->
-
-                <!--Titles-->
-                <StackPanel Orientation="Horizontal" Width="350" Height="50" Margin="0,5,0,0">
-
-                    <StackPanel Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Center"/>
-
-                    <Button Style="{StaticResource buttonBig}" Margin="112 0 5 0"/>
-
-                    <Button Style="{StaticResource buttonBig}"/>
-                </StackPanel>
-
-                <TextBlock Text="5 tasks- 2 dates left" Foreground="#FFABEDC6" FontSize="16" Margin="20,-30,20,0"/>
-                <Border Background="#FFABEDC6" CornerRadius="10" Width="360" Padding="17 15 5 15">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="212*"/>
-                            <ColumnDefinition Width="69*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.ColumnSpan="2">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="36*" />
-                                    <ColumnDefinition Width="97*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <fa:ImageAwesome Icon="Pencil" Width="15" Height="15" Foreground="#FF3C783C" Margin="0,1,0,0"/>
-                                <TextBlock x:Name="lblNote" MouseDown="lblNote_MouseDown" Text="Add Note" Style="{StaticResource textHint}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,0" Foreground="White"/>
-                                <TextBox x:Name="txtNote" TextChanged="txtNote_TextChanged" Style="{StaticResource textBox}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,0"/>
-                            </Grid>
-
-                            <Separator Margin="0 12 0 11" Background="#FF3C783C" Height="0.8"/>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <fa:ImageAwesome Icon="Bell" Width="15" Height="15" Foreground="#FF3C783C"/>
-                                <TextBlock x:Name="lblTime" MouseDown="lblTime_MouseDown" Text="_ _ : _ _  -  _ _ : _ _" Style="{StaticResource textHint}" Foreground="#FF3C783C"/>
-                                <TextBox x:Name="txtTime" TextChanged="txtTime_TextChanged" Style="{StaticResource textBox}"/>
-                                <TextBlock x:Name="lblNote_Copy" MouseDown="lblNote_MouseDown" Text="Add Note" Style="{StaticResource textHint}" Grid.Column="1" Margin="10,0,0,0" Foreground="White"/>
-                            </Grid>
-
-                        </StackPanel>
-                        <Button Style="{StaticResource button}" Grid.Column="2" Margin="12,0,12,0">
-                            <fa:ImageAwesome Icon="PlusCircle" Width="28" Height="28" Foreground="#f9f9f9" />
-                        </Button>
-                    </Grid>
-                </Border>
-
-                <!--Add Notes-->
-
-                <ScrollViewer Height="200" Width="392" Margin="-35,0,0,0">
-                    <StackPanel Height="229" Width="400">
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center"
+                           Margin="40 0 0 0" FontSize="40"
+                           Foreground="White"
+                           FontFamily="Comic Sans MS">
+                    April 14, 2024
+                </TextBlock>
+                <ScrollViewer Height="250" Width="380"
+                              Grid.Row="1">
+                    <StackPanel>
                         <uc:Item Title="Post on social networks" Time="09:45 - 10:30" Color="#FF3C783C" Icon="CheckCircle" IconBell="BellSlash" Width="369"/>
                         <uc:Item Title="Review the app design" Time="11:30 - 12:00" Color="#FF3C783C" Icon="CheckCircle" IconBell="BellSlash" Width="369"/>
                         <uc:Item Title="Dinner with John Doe" Time="20:15 - 21:45" Color="#f1f1f1" Icon="CircleThin" IconBell="Bell" Width="369"/>
                         <uc:Item Title="Send email to Mohammad" Time="23:00 - 23:20" Color="#f1f1f1" Icon="CircleThin" IconBell="Bell" Width="374"/>
                     </StackPanel>
                 </ScrollViewer>
-            </StackPanel>
+            </Grid>
+            
+            
         </Grid>
     </Grid>
 </UserControl>
