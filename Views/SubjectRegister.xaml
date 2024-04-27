@@ -129,6 +129,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 20 20 0" 
         Background="White" 
         Margin="0,20,40,540">
@@ -146,28 +166,23 @@
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="20 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="20 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction 
                     Command="{Binding StudentMainScreenCommand}"
-                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                </i:InvokeCommandAction>
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
                 <!--
                 Command="{Binding DownloadCommand}" 
                     -->
             </i:EventTrigger>
-            </i:Interaction.Triggers>
-            Trang chủ >
-                </TextBlock>
+            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
                    Style="{StaticResource Link}" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="0 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="0 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction 
                     Command="{Binding StudentSubjectListCommand}"
@@ -177,23 +192,20 @@
                     Command="{Binding DownloadCommand}" 
                 -->
             </i:Interaction.Triggers><Run Language="vi-vn" 
-                                          Text="Danh sách môn học >"/>
-                </TextBlock>
+                                          Text="Danh sách môn học &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
        Style="{StaticResource Link}" 
        HorizontalAlignment="Center" 
        VerticalAlignment="Center" 
        FontSize="20" 
        RenderTransformOrigin="0.5,0.5" 
-       Margin="0 0 20 0">
-<i:Interaction.Triggers>
+       Margin="0 0 20 0"><i:Interaction.Triggers>
 <i:EventTrigger EventName="MouseLeftButtonDown">
     <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
                            CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
 </i:EventTrigger>
 </i:Interaction.Triggers><Run Language="vi-vn" 
-                              Text="Đăng ký môn học"/>
-                </TextBlock>
+                              Text="Đăng ký môn học"/></TextBlock>
             </StackPanel>
         </Border>
         <TextBlock TextAlignment="Center"
@@ -205,9 +217,7 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding StudentSubjectListCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="340,516,539,30" Height="50">
-            Quay lại
-        </Button>
+            RenderTransformOrigin="0.5,0.5" Margin="340,516,539,30" Height="50" Content="Quay lại"/>
         <!--
             Command="{Binding UploadCommand}" 
         -->
@@ -216,11 +226,10 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding RegisterSuccessCommand}"
-            RenderTransformOrigin="0.5,0.5" Margin="470,516,340,30" Height="50">
+            RenderTransformOrigin="0.5,0.5" Margin="470,516,340,30" Height="50" Content="Xác nhận đăng ký">
             <!--
 Command="{Binding UploadCommand}" 
 -->
-            Xác nhận đăng ký
         </Button>
         <!--<ScrollViewer Grid.Column="1"
                       VerticalScrollBarVisibility="Auto">

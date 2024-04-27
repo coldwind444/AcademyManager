@@ -127,6 +127,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 30 30 0"
                 Background="White"
                 Margin="0,21,40,0" 
@@ -147,31 +167,23 @@
                            VerticalAlignment="Center"
                            FontSize="20"
                            RenderTransformOrigin="0.5,0.5"
-                           Margin="20 0 20 0">
-                    <i:Interaction.Triggers>
+                           Margin="20 0 20 0"><i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding LectureCommand}"
-                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                            </i:InvokeCommandAction> <!-- Command="{Binding DownloadCommand}"-->
+                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"/><!-- Command="{Binding DownloadCommand}"-->
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                     Trang chủ >
-                </TextBlock>
+                    </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
                            Style="{StaticResource Link}"
                            VerticalAlignment="Center"
                            FontSize="20"
                            RenderTransformOrigin="0.5,0.5"
-                           Margin="-10,0,0,0" Width="167">
-                    <i:Interaction.Triggers>
+                           Margin="-10,0,0,0" Width="167"><i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                  CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                            </i:InvokeCommandAction> <!-- Command="{Binding DownloadCommand}"-->
+                                  CommandParameter="{Binding ElementName=TypeSelectionBox}"/><!-- Command="{Binding DownloadCommand}"-->
                         </i:EventTrigger>
-                     </i:Interaction.Triggers>
-                    Thông tin cá nhân
-                </TextBlock>
+                     </i:Interaction.Triggers><Run Text="Thông tin cá nhân"/></TextBlock>
             </StackPanel>
         </Border>
         <Border Margin="40,110,40,195" CornerRadius="20">
@@ -194,45 +206,33 @@
                            TextWrapping="Wrap"
                            Margin="0 0 0 6" 
                            Width="860" 
-                           Height="39">
-                    Họ và tên: Nguyễn Phạm He He
-                </TextBlock>
+                           Height="39"><Run Text="Họ và tên: Nguyễn Phạm He He"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                            FontSize="30"
                            RenderTransformOrigin="0.5,0.5"
                            TextWrapping="Wrap"
-                           Margin="0 0 0 6">
-                    MSGV: 101124
-                </TextBlock>
+                           Margin="0 0 0 6"><Run Text="MSGV: 101124"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                            FontSize="30"
                            RenderTransformOrigin="0.5,0.5"
                            TextWrapping="Wrap"
-                           Margin="0 0 0 6">
-                    Địa chỉ email: nguyenphamhehe@hcmut.edu.vn
-                </TextBlock>
+                           Margin="0 0 0 6"><Run Text="Địa chỉ email: nguyenphamhehe@hcmut.edu.vn"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                            FontSize="30"
                            RenderTransformOrigin="0.5,0.5"
                            Margin="0 0 0 6"
-                           TextWrapping="Wrap">
-                    Khoa: Khoa học và Kĩ thuật Máy tính
-                </TextBlock>
+                           TextWrapping="Wrap"><Run Text="Khoa: Khoa học và Kĩ thuật Máy tính"/></TextBlock>
                 <TextBlock 
                     Style="{StaticResource Link}"
                     FontSize="30"
                     RenderTransformOrigin="0.5,0.5"
                     TextWrapping="Wrap"
-                    Margin="0 0 0 6">
-                    Chuyên ngành giảng dạy: Khoa học Máy tính
-                </TextBlock>
+                    Margin="0 0 0 6"><Run Text="Chuyên ngành giảng dạy: Khoa học Máy tính"/></TextBlock>
                 <TextBlock Style="{StaticResource Link}"
                            FontSize="30"
                            RenderTransformOrigin="0.5,0.5"
                            TextWrapping="Wrap"
-                           Margin="0 0 0 6">
-                    Học vị: Tiến sĩ
-                </TextBlock>
+                           Margin="0 0 0 6"><Run Text="Học vị: Tiến sĩ"/></TextBlock>
             </StackPanel>
         </Border>
         <Button 
@@ -241,9 +241,7 @@
             Grid.Row="1" Cursor="Hand"
             FontSize="20" 
             Foreground="White"  
-            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50">
-            Quay lại
-        </Button>
+            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50" Content="Quay lại"/>
         <!-- Command="{Binding UploadCommand}" -->
     </Grid>
 </UserControl>

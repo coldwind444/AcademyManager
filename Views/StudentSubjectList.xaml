@@ -91,6 +91,26 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
         </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border CornerRadius="0 30 30 0" 
         Background="White" 
         Margin="0,20,40,540">
@@ -108,35 +128,29 @@
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="20 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="20 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction 
                     Command="{Binding StudentMainScreenCommand}" 
-                    CommandParameter="{Binding ElementName=TypeSelectionBox}">
-                </i:InvokeCommandAction>
+                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
                  <!--
                     Command="{Binding DownloadCommand}" 
                   -->
             </i:EventTrigger>
-            </i:Interaction.Triggers>
-            Trang chủ >
-                </TextBlock>
+            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
                 <TextBlock Foreground="Black" 
                    Style="{StaticResource Link}" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="20" 
                    RenderTransformOrigin="0.5,0.5" 
-                   Margin="0 0 20 0">
-            <i:Interaction.Triggers>
+                   Margin="0 0 20 0"><i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
                                        CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
             </i:EventTrigger>
             </i:Interaction.Triggers><Run Language="vi-vn" 
-                                          Text="Danh sách môn học"/>
-                </TextBlock>
+                                          Text="Danh sách môn học"/></TextBlock>
             </StackPanel>
         </Border>
         <TextBlock TextAlignment="Center"
@@ -149,9 +163,7 @@
             FontSize="20" 
             Foreground="White"
             Command="{Binding StudentMainScreenCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="340,520,539,30" Height="50">
-            Quay lại
-        </Button>
+            RenderTransformOrigin="0.5,0.5" Margin="340,520,539,30" Height="50" Content="Quay lại"/>
         <!--
             Command="{Binding UploadCommand}" 
         -->
@@ -160,9 +172,7 @@
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding SubjectRegisterCommand}"
-                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50" Click="Button_Click">
-            Đăng kí môn học
-        </Button>
+                RenderTransformOrigin="0.5,0.5" Margin="470,521,340,29" Height="50" Click="Button_Click" Content="Đăng kí môn học"/>
         <!--
                 Command="{Binding UploadCommand}" 
         -->

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for CalendarUC.xaml
+    /// Interaction logic for NotiSignUpSuccess.xaml
     /// </summary>
-    public partial class CalendarUC : UserControl
+    public partial class NotiSignUpSuccess : UserControl
     {
-        public CalendarUC()
+        public NotiSignUpSuccess()
         {
             InitializeComponent();
         }

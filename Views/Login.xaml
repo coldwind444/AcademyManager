@@ -56,6 +56,26 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
         <Border Width="400"
         BorderThickness="1.5"
         BorderBrush="Black" CornerRadius="20" Margin="300,160,300,155">
@@ -71,9 +91,7 @@
             </Border.Effect>
             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="285">
                 <ContentControl Width="35" Height="35" Margin="355,5,0,0"/>
-                <TextBlock FontSize="30" HorizontalAlignment="Center">
-                    ĐĂNG NHẬP
-                </TextBlock>
+                <TextBlock FontSize="30" HorizontalAlignment="Center"><Run Text="ĐĂNG NHẬP"/></TextBlock>
                 <Border Width="350" Height="40"
                     Background="White"
                     CornerRadius="20"
@@ -117,15 +135,14 @@
                     <Button Cursor="Hand"
                             FontSize="20" Foreground="White"
                             Command="{Binding ConfirmCommand}" 
-                            Content="Xác nhận" ></Button>
+                            Content="Xác nhận" />
                 </Border>
                 <TextBlock Foreground="ForestGreen"
                         Style="{StaticResource Link}"
                         HorizontalAlignment="Center"
                         FontSize="13" 
                         RenderTransformOrigin="0.5,0.5"
-                        Margin="20,10,20,0" Height="20">
-                    <i:Interaction.Triggers>
+                        Margin="20,10,20,0" Height="20"><i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding ForgetPassCommand}"
                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
