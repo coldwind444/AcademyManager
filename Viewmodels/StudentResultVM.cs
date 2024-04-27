@@ -58,11 +58,6 @@ namespace AcademyManager.Viewmodels
         }
         private void InitializeCommand()
         {
-            BackCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
-            {
-                MainVM vm = p.DataContext as MainVM;
-                vm.CurrentView = vm.ResultView_Semester;
-            });
         }
         #endregion
         public StudentResultVM()

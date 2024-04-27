@@ -4,13 +4,9 @@
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-         xmlns:local="clr-namespace:AcademyManager.AdminViews"
          mc:Ignorable="d" 
-         xmlns:uc="clr-namespace:AcademyManager.Views"
-         xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
-         d:DataContext="{d:DesignInstance Type=UserControl}"
-         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" d:DataContext="{d:DesignInstance Type=viewmodels:WelcomeScreenVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
          TextElement.FontWeight="Regular"
          TextElement.FontSize="13"
          TextOptions.TextFormattingMode="Ideal"
@@ -83,70 +79,41 @@
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
         <Border Width="400"
-        BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="#FFEEFFF2">
+                BorderThickness="1.5"
+                BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="#FFEEFFF2">
             <Border.Effect>
                 <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
+                        Opacity="0.5" 
+                        Direction="300" 
+                        ShadowDepth="15" 
+                        BlurRadius="50"/>
             </Border.Effect>
-
             <StackPanel Orientation="Vertical"  
+                        VerticalAlignment="Center"
                         Background="#FFBCE9CB" 
-                        Margin="0,62,0,58"
                         Opacity="0.9">
 
-                <TextBlock
-                    Foreground="Black"
-                    FontSize="25"
-                    TextWrapping="Wrap" Height="80" 
-                    TextAlignment="Center" Margin="0,30,0,0"><Run Text="CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!"/></TextBlock>
-
+                <TextBlock  Margin="0 30 0 20"
+                            Foreground="Black"
+                            FontSize="25"
+                            TextWrapping="Wrap" Height="80" 
+                            TextAlignment="Center">
+                    CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!
+                </TextBlock>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0 0 0 30">
+                        <Button Command="{Binding LoginCommand}"
+                                Margin="0 0 10 0"
+                                Grid.Row="1" Height="40" Width="120" Cursor="Hand"
+                                FontSize="20" Foreground="White" Content="Đăng nhập"/>
+                        <Button Height="40" Width="200" Cursor="Hand"
+                                FontSize="20" Foreground="White" Margin="0 0 0 0"
+                                Content="Kích hoạt tài khoản" Command="{Binding SigninCommand}"/>
+                </StackPanel>
             </StackPanel>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
-
-            <Border Width="120" Height="40" CornerRadius="20" Margin="359,100,0,0">
-                <Border.Background>
-                    <SolidColorBrush Color="White" 
-        Opacity="0.9"/>
-                </Border.Background>
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.5"
-        Direction="300"
-        ShadowDepth="15"
-        BlurRadius="50"/>
-                </Border.Effect>
-                <Button Command="{Binding LoginCommand}"
-                    
-                    Grid.Row="1" Height="40" Width="120" Cursor="Hand"
-    FontSize="20" Foreground="White" Content="Đăng nhập"/>
-                <!-- ="{Binding OpenLoginCommand}" -->
-
-            </Border>
-            <Border Width="120" Height="40" CornerRadius="20" Margin="40,100,0,0" >
-                <Border.Background>
-                    <SolidColorBrush Color="White" Opacity="0.9"/>
-                </Border.Background>
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.5"
-                                      Direction="300"
-                                      ShadowDepth="15"
-                                      BlurRadius="50"/>
-                </Border.Effect>
-
-                <Button Height="40" Width="120" Cursor="Hand"
-FontSize="20" Foreground="White" Margin="0 0 0 0"
- Content="Đăng ký" Command="{Binding RegisterCommand}"/>
-                <!--Command ="{Binding UploadCommand}"-->
-
-            </Border>
-        </StackPanel>
-        <Button Command="{Binding WhoAreYouCommand}"
-            Margin="0,157,211,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <materialDesign:PackIcon Kind="CloseBox" Foreground="ForestGreen" Width="34" Height="35" Margin="-34,0,0,0"/>
-        </Button>
+        
+        
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AcademyManager.Viewmodels
 {
-    public class CourseInfoVM : BaseViewModel
+    public class ExamScheduleVM : BaseViewModel
     {
         #region Commands
         #endregion
@@ -15,6 +15,6 @@ namespace AcademyManager.Viewmodels
         #endregion
         #region Methods
         #endregion
-        public CourseInfoVM() { }
+        public ExamScheduleVM() { }
     }
 }

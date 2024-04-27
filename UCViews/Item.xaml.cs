@@ -42,6 +42,13 @@ namespace AcademyManager.UCViews
 
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register("Time", typeof(string), typeof(Item));
 
+        public string Room
+        {
+            get { return (string)GetValue(RoomProperty); }
+            set { SetValue(RoomProperty, value); }
+        }
+
+        public static readonly DependencyProperty RoomProperty = DependencyProperty.Register("Room", typeof(string), typeof(Item));
 
         public SolidColorBrush Color
         {

@@ -416,7 +416,7 @@
     </UserControl.Resources>
     <Border Background="White" CornerRadius="20, 0, 0, 20">
         <Viewbox>
-            <Calendar HorizontalAlignment="Center" Height="310" VerticalAlignment="Center" Width="362" Style="{DynamicResource CalendarStyle1}" CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
+            <Calendar FontFamily="Comic Sans MS" HorizontalAlignment="Center" Height="310" VerticalAlignment="Center" Width="362" Style="{DynamicResource CalendarStyle1}" CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
         </Viewbox>
     </Border>
 </UserControl>

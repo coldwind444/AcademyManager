@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+             xmlns:uc="clr-namespace:AcademyManager.UCViews"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginVM}"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -38,7 +38,7 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#027324"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
+                                            <Setter Property="Opacity" Value="0.7"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="#027324"/>
@@ -76,79 +76,90 @@
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
         <Border Width="400"
-        BorderThickness="1.5"
-        BorderBrush="Black" CornerRadius="20" Margin="300,160,300,155">
+                BorderThickness="1.5"
+                BorderBrush="Black" CornerRadius="20" Margin="300,160,300,155">
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
             <Border.Effect>
                 <DropShadowEffect 
-            Opacity="0.5" 
-            Direction="300" 
-            ShadowDepth="15" 
-            BlurRadius="50"/>
+                        Opacity="0.5" 
+                        Direction="300" 
+                        ShadowDepth="15" 
+                        BlurRadius="50"/>
             </Border.Effect>
-            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Height="285">
-                <ContentControl Width="35" Height="35" Margin="355,5,0,0"/>
-                <TextBlock FontSize="30" HorizontalAlignment="Center"><Run Text="ĐĂNG NHẬP"/></TextBlock>
-                <Border Width="350" Height="40"
-                    Background="White"
-                    CornerRadius="20"
-                    Margin="0 5 0 5"
-                    BorderBrush="Black"
-                    BorderThickness="1.5">
-                    <TextBox Width="320" Height="30"
-                         materialDesign:HintAssist.Hint="Email"
-                         Text="{Binding Path}"
-                         x:Name="FilePathBox"
-                         BorderThickness="0"
-                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                         FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,4,14,4"/>
-                </Border>
-                <Border Width="350" Height="40"
-                     Background="White"
-                     CornerRadius="20"
-                     Margin="0 15 0 0"
-                     BorderBrush="Black"
-                     BorderThickness="1.5">
-                    <TextBox Height="30"
-                        materialDesign:HintAssist.Hint="Mật khẩu"
-                        Text="{Binding Path}"
-                        x:Name="FilePathBox2"
-                        BorderThickness="0"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        FontSize="16" VerticalContentAlignment="Center" Margin="14,4,12,2"/>
-                </Border>
-
-                <Border Margin="0 10 0 0" CornerRadius="20"   Height="40" Width="120">
-                    <Border.Background>
-                        <SolidColorBrush Color="White" 
-                     Opacity="0.9"/>
-                    </Border.Background>
-                    <Border.Effect>
-                        <DropShadowEffect Opacity="0.5"
-                      Direction="300"
-                      ShadowDepth="15"
-                      BlurRadius="50"/>
-                    </Border.Effect>
-                    <Button Cursor="Hand"
+            <Grid>
+                <StackPanel  Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock FontSize="30" HorizontalAlignment="Center" 
+                               Margin="0 0 0 10"><Run Text="ĐĂNG NHẬP"/></TextBlock>
+                    <Border Width="300" Height="40"
+                            Background="White"
+                            CornerRadius="20"
+                            Margin="0 0 0 5"
+                            BorderBrush="Black"
+                            BorderThickness="1.5">
+                        <TextBox Width="270" Height="30"
+                                 materialDesign:HintAssist.Hint="ID"
+                                 Text="{Binding Email, Mode=TwoWay}"
+                                 x:Name="FilePathBox"
+                                 BorderThickness="0"
+                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                 materialDesign:TextFieldAssist.LeadingIcon="Account"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 FontSize="16" VerticalContentAlignment="Center"/>
+                    </Border>
+                    <Border  Width="300" Height="40"
+                             Background="White"
+                             CornerRadius="20"
+                             Margin="0 5 0 0"
+                             BorderBrush="Black"
+                             BorderThickness="1.5">
+                        <PasswordBox Height="30" Width="270"
+                                    materialDesign:HintAssist.Hint="Mật khẩu"
+                                    x:Name="PWBox"
+                                    materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                    materialDesign:TextFieldAssist.LeadingIcon="Password"
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    FontSize="16" VerticalContentAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordBoxTextChangedCommand}"
+                                                           CommandParameter="{Binding ElementName=PWBox}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                    </Border>
+                    <Button Cursor="Hand" Width="300"
+                            Margin="0 10 0 5"
+                            Height="40"
                             FontSize="20" Foreground="White"
-                            Command="{Binding ConfirmCommand}" 
-                            Content="Xác nhận" />
-                </Border>
-                <TextBlock Foreground="ForestGreen"
-                        Style="{StaticResource Link}"
-                        HorizontalAlignment="Center"
-                        FontSize="13" 
-                        RenderTransformOrigin="0.5,0.5"
-                        Margin="20,10,20,0" Height="20"><i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding ForgetPassCommand}"
-                                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers><Run Text="Quên mật khẩu?"/></TextBlock>
-                <!-- Command="{Binding DownloadCommand}"-->
-            </StackPanel>
+                            Command="{Binding LoginCommand}" 
+                            Content="Đăng nhập" />
+                    <Label FontStyle="Italic"
+                           HorizontalAlignment="Center"
+                           Foreground="OrangeRed"
+                           Content="{Binding NotiLabel, Mode=TwoWay}"/>
+                    <Separator Width="300" Height="5"></Separator>
+                    <TextBlock Foreground="ForestGreen"
+                            Style="{StaticResource Link}"
+                            HorizontalAlignment="Center"
+                            FontSize="16" 
+                            Margin="20,5,20,0" Height="20"><i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding ForgetPassCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers><Run Text="Quên mật khẩu?"/></TextBlock>
+                </StackPanel>
+                <uc:ExitUC Margin="0 5 10 0"
+                           Width="35" Height="35"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           Tag="{Binding BackCommand}"></uc:ExitUC>
+                <ProgressBar  Foreground="White"
+                              Style="{StaticResource MaterialDesignCircularProgressBar}"
+                              Value="0" IsIndeterminate="True" Margin="305,180,72,82" />
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

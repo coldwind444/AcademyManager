@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace AcademyManager.Viewmodels
 {
-    public class ExamScheduleTypeVM : BaseViewModel
+    public class SubjectListVM : BaseViewModel
     {
         #region Commands
         #endregion
-
         #region Properties
         #endregion
-
         #region Methods
         #endregion
-        public ExamScheduleTypeVM() { }
+        public SubjectListVM() { }
     }
 }

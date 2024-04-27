@@ -66,18 +66,12 @@ namespace AcademyManager.Viewmodels
         {
             UpdateInfoCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
-                MainVM vm = p.DataContext as MainVM;
-                if (vm.UpdateInfoView != null) vm.CurrentView = vm.UpdateInfoView;
-                else
-                {
-                    // create new and assign to Current View
-                }
+                
             });
 
             BackCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
-                MainVM vm = p.DataContext as MainVM;
-                vm.CurrentView = vm.HomeView;
+                
             });
         }
         #endregion

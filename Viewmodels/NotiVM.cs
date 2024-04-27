@@ -9,6 +9,12 @@ namespace AcademyManager.Viewmodels
 {
     class NotiVM : BaseViewModel
     {
+        #region Commands
+        #endregion
+        #region Properties
+        #endregion
+        #region Methods
+        #endregion
         public NotiVM() { }
     }
 }

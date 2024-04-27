@@ -4,27 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="400">
     <Border Margin="0,0,0,0" 
             CornerRadius="20" 
-            Width="800" 
-            Height="100" 
-            BorderBrush="Black"
-            BorderThickness="1">
-        <Border.Background>
-            <SolidColorBrush Color="#FFE6FFEC" 
-                 Opacity="0.9"/>
-        </Border.Background>
-        <StackPanel Width="800" Height="100">
-            <TextBlock Margin="10, 0, 0 0 " FontSize="30" Text="Hệ điều hành" TextAlignment="Left"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10, 0, 0 0 " FontSize="20" Text="Giảng viên: " TextAlignment="Left" Width="390"></TextBlock>
-                <TextBlock Margin="10, 0, 0 0 " FontSize="20" Text="Lớp: " TextAlignment="Left"></TextBlock>
-            </StackPanel>    
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10, 0, 0 0 " FontSize="20" Text="Phòng học: " TextAlignment="Left" Width="390"></TextBlock>
-                <TextBlock Margin="10, 0, 0 0 " FontSize="20" Text="Thời gian: " TextAlignment="Left"></TextBlock>
-            </StackPanel>
+            Width="400" 
+            Height="200">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="LightGray"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Background" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <StackPanel Width="400">
+            <TextBlock Margin="30 15 0 0 " FontSize="30" Text="Hệ điều hành" TextAlignment="Left" FontWeight="Bold"></TextBlock>
+            <TextBlock Margin="30 10 50 0 " FontSize="20" Text="Giảng viên: Tran Truong Tuan Phat " TextAlignment="Left"></TextBlock>
+            <TextBlock Margin="30 5 50 0 " FontSize="20" Text="Lớp: " TextAlignment="Left"></TextBlock>
+            <TextBlock Margin="30 5 50 0 " FontSize="20" Text="Phòng học: " TextAlignment="Left"></TextBlock>
+            <TextBlock Margin="30 5 50 0 " FontSize="20" Text="Thời gian: " TextAlignment="Left"></TextBlock>
         </StackPanel>
     </Border>
 </UserControl>

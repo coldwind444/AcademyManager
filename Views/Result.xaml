@@ -125,9 +125,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1000"/>
-        </Grid.ColumnDefinitions>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
             <materialDesign:PackIcon.RenderTransform>
                 <TransformGroup>
@@ -148,56 +145,16 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <Border CornerRadius="0 20 20 0"
-                Margin="0,20,40,540" Background="White">
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5"
-                                  Direction="300"
-                                  ShadowDepth="15"
-                                  BlurRadius="50"/>
-            </Border.Effect>
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Left">
-                <TextBlock Foreground="Black"
-                           Style="{StaticResource Link}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           RenderTransformOrigin="0.5,0.5"
-                           Margin="20 0 20 0"><i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction 
-                                Command="{Binding StudentMainScreenCommand}" 
-                                CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                            <!--
-                                Command="{Binding DownloadCommand}" 
-                            -->
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
-                <TextBlock Foreground="Black"
-                           Style="{StaticResource Link}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           RenderTransformOrigin="0.5,0.5"
-                           Margin="0 0 20 0"><i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                             <i:InvokeCommandAction Command="{Binding DownloadCommand}"
-                                                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers><Run Language="vi-vn" Text="Kết quả học tập"/></TextBlock>
-            </StackPanel>
-        </Border>
         <TextBlock TextAlignment="Center"
                    TextWrapping="Wrap" 
                    FontSize="40" 
                    Foreground="Black"
-                   Margin="150,100,150,440" 
+                   Margin="145,31,155,509" 
                    Height="60" 
                    Width="700"><Run Language="vi-vn" 
                  Text="KẾT QUẢ HỌC TẬP"/></TextBlock>
         <Separator Background="Black" 
-                   Margin="70,150,0,440" 
+                   Margin="70,96,0,494" 
                    HorizontalAlignment="Left" 
                    Width="850" Height="10"/>
         <Button 
@@ -208,57 +165,24 @@
             Command="{Binding StudentMainScreenCommand}" 
             RenderTransformOrigin="0.5,0.5" 
             Margin="440,529,440,21" Height="50" Content="Quay lại"/>
-        <!--
-             Command="{Binding UploadCommand}" 
-             -->
-        <Border Margin="80,168,400,92" 
-                CornerRadius="40">
 
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5"
-                                  Direction="300"
-                                  ShadowDepth="15"
-                                  BlurRadius="50"/>
-            </Border.Effect>
-            <Border BorderThickness="1.5"
-                    CornerRadius="20"
-                    Margin="39,17,0,278"
-                    BorderBrush="Black" 
-                    Grid.Column="1" 
-                    HorizontalAlignment="Left" 
-                    Width="160">
-                <Border.Background>
-                    <SolidColorBrush Color="White" 
-                                     Opacity="0.9"/>
-                </Border.Background>
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.5"
-                                      Direction="300"
-                                      ShadowDepth="15"
-                                      BlurRadius="50"/>
-                </Border.Effect>
-                <StackPanel>
-                    <ComboBox x:Name="TypeSelectionBox"
-                              SelectedIndex="{Binding SelectedIdx, Mode=TwoWay}"
-                              Height="42"
-                              BorderThickness="0"
-                              FontSize="30" Cursor="Hand"
-                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                              materialDesign:HintAssist.Hint="Học Kì" 
-                              Margin="20,0,0,0" 
-                              HorizontalAlignment="Left" 
-                              Width="110">
-                        <ComboBoxItem Content="Học Kì 1"/>
-                        <ComboBoxItem Content="Học Kì 2"/>
-                        <ComboBoxItem Content="Học Kì 3"/>
-                        <ComboBoxItem Content="Học Kì 4"/>
-                        <ComboBoxItem Content="Học Kì 5"/>
-                        <ComboBoxItem Content="Học Kì 6"/>
-                        <ComboBoxItem Content="Học Kì 7"/>
-                        <ComboBoxItem Content="Học Kì 8"/>
-                    </ComboBox>
-                </StackPanel>
+        <Grid Margin="50,123,50,94">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Background="White" CornerRadius="25"
+                    Height="50" Width="200"
+                    HorizontalAlignment="Left"
+                    Margin="20 0 0 0" BorderThickness="2" BorderBrush="Black">
+                <ComboBox materialDesign:HintAssist.Hint="Học kỳ"
+                          Height="30" Width="160"
+                          FontSize="20" BorderThickness="0"
+                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"></ComboBox>
             </Border>
-        </Border>
+            <DataGrid Grid.Row="1" Margin="20 10">
+                <DataGridColumnHeader Content="Mã môn học"/>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

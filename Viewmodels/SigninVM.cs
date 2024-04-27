@@ -113,42 +113,7 @@ namespace AcademyManager.Viewmodels
 
             SigninCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
             {
-                MainVM? vm = p.DataContext as MainVM;
-
-                // Check if email has already used
-                DatabaseManager database = new DatabaseManager();
-                Account acc = await database.GetAccountAsync(_emailBox.Text);
-                if (acc != null)
-                {
-                   if (vm.EmailExistView != null ) vm.CurrentView = vm.EmailExistView;
-                   else
-                    {
-                        // create new current view
-                        //
-                        vm.CurrentView = vm.EmailExistView;
-                    }
-                    return;
-                }
-
-                // Switch view
-                if (ConfirmEmail() == 1) // success
-                {
-                    await database.UpdateAccountAsync(vm.CurrentAccount);
-                    if (vm.SigninSuccessView != null) vm.CurrentView = vm.SigninSuccessView;
-                    else
-                    {
-                        // create new success sign in view
-                        // assign it to current view in main viewmodel
-                    }
-                } else 
-                {
-                    if (vm.SigninFailureView != null) vm.CurrentView = vm.SigninFailureView;
-                    else
-                    {
-                        // create new failure sign in view
-                        // assign it to current view in main viewmodel
-                    }
-                } 
+                
             });
         }
         #endregion

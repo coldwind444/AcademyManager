@@ -72,12 +72,12 @@
                 <Grid>
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Style="{StaticResource TabButton}"
-                                      Height="40" Width="120"
+                                      Height="40" Width="170"
                                       Margin="20 0 10 0"
                                       VerticalAlignment="Bottom"
                                       Command="{Binding SigninTabCommand}"
                                       IsChecked="{Binding AtSigninTab}">
-                            Đăng ký
+                            Kích hoạt tài khoản
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource TabButton}"
                                       Height="40" Width="120"

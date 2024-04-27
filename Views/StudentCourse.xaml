@@ -149,68 +149,14 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <Border CornerRadius="0 30 30 0" 
-        Background="White" 
-        Margin="0,20,40,540">
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5" 
-                          Direction="300" 
-                          ShadowDepth="15" 
-                          BlurRadius="50"/>
-            </Border.Effect>
-            <StackPanel Orientation="Horizontal" 
-                HorizontalAlignment="Left">
-                <TextBlock Foreground="Black" 
-                   Style="{StaticResource Link}" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="20" 
-                   RenderTransformOrigin="0.5,0.5" 
-                   Margin="20 0 20 0"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction     Command="{Binding StudentMainScreenCommand}"
-                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                <!--
-                Command="{Binding DownloadCommand}" 
-                    -->
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
-                <TextBlock Foreground="Black" 
-                   Style="{StaticResource Link}" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="20" 
-                   RenderTransformOrigin="0.5,0.5" 
-                   Margin="0 0 20 0"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Language="vi-vn" 
-                                          Text="Môn học &gt;"/></TextBlock>
-                <TextBlock Foreground="Black" 
-               Style="{StaticResource Link}" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" 
-               FontSize="20" 
-               RenderTransformOrigin="0.5,0.5" 
-               Margin="0 0 20 0"><i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                   CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-        </i:EventTrigger>
-        </i:Interaction.Triggers><Run Language="vi-vn" 
-                                      Text="Hệ điều hành"/></TextBlock>
-            </StackPanel>
-        </Border>
         <TextBlock TextAlignment="Left"
-                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                       Margin="40,100,260,450" Height="50" Width="700"><Run Text="HỆ ĐIỀU HÀNH"/><Run Text=" (CO2017)"/><Run Text=" - "/><Run Language="vi-vn" Text="L"/><Run Text="04"/></TextBlock>
-        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,150,360,410" Width="600" Height="40"><Run Text="Giảng viên: Nguyễn Thành An"/><LineBreak/></TextBlock>
-        <Separator Background="Black" Margin="40,195,0,395" HorizontalAlignment="Left" Width="900" Height="10"/>
+                   TextWrapping="Wrap" FontSize="40" Foreground="Black" 
+                   Margin="40,10,386,540" Height="50"></TextBlock>
+        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,65,360,495" Width="600" Height="40"><Run Text="Giảng viên: Nguyễn Thành An"/><LineBreak/></TextBlock>
+        <Separator Background="Black" Margin="40,127,0,463" HorizontalAlignment="Left" Width="900" Height="10"/>
 
-        <TextBlock TextAlignment="Left" FontSize="40" TextWrapping="Wrap" Width="200" Height="60" Margin="40,220,760,320"><Run Text="Chung"/><LineBreak/></TextBlock>
-        <TextBlock TextAlignment="Left" FontSize="40" TextWrapping="Wrap" Height="60" Margin="40,420,680,120"><Run Text="Slice bài giảng"/><LineBreak/></TextBlock>
+        <TextBlock TextAlignment="Left" FontSize="35" TextWrapping="Wrap" Width="200" Height="60" Margin="40,142,760,398"><Run Text="Chung"/><LineBreak/></TextBlock>
+        <TextBlock TextAlignment="Left" FontSize="35" TextWrapping="Wrap" Height="60" Margin="40,337,680,203"><Run Text="Slice bài giảng"/><LineBreak/></TextBlock>
 
         <Button Background="ForestGreen" 
                  Cursor="Hand"
@@ -218,16 +164,14 @@
                  Foreground="White"
                  Command="{Binding UploadCommand}" 
                  RenderTransformOrigin="0.747,0.56" 
-                 Margin="740,85,60,475" 
+                 Margin="740,10,60,550" 
                  Content="Danh sách sinh viên" Width="200" Height="40"/>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding UploadCommand}" 
-                RenderTransformOrigin="0.747,0.56" 
-                Margin="825,135,60,425" Content="Điểm số" Height="40"/>
-        <!--<ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel> <userControls:SubjectContent/></StackPanel></ScrollViewer-->
-
+                RenderTransformOrigin="0.715,-0.218" 
+                Margin="740,65,60,495" Content="Điểm số" Height="40"/>
     </Grid>
 </UserControl>

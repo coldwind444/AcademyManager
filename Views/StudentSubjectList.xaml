@@ -111,52 +111,10 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <Border CornerRadius="0 30 30 0" 
-        Background="White" 
-        Margin="0,20,40,540">
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5" 
-                          Direction="300" 
-                          ShadowDepth="15" 
-                          BlurRadius="50"/>
-            </Border.Effect>
-            <StackPanel Orientation="Horizontal" 
-                HorizontalAlignment="Left">
-                <TextBlock Foreground="Black" 
-                   Style="{StaticResource Link}" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="20" 
-                   RenderTransformOrigin="0.5,0.5" 
-                   Margin="20 0 20 0"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction 
-                    Command="{Binding StudentMainScreenCommand}" 
-                    CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-                 <!--
-                    Command="{Binding DownloadCommand}" 
-                  -->
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Text="Trang chủ &gt;"/></TextBlock>
-                <TextBlock Foreground="Black" 
-                   Style="{StaticResource Link}" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="20" 
-                   RenderTransformOrigin="0.5,0.5" 
-                   Margin="0 0 20 0"><i:Interaction.Triggers>
-            <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding DownloadCommand}" 
-                                       CommandParameter="{Binding ElementName=TypeSelectionBox}"/>
-            </i:EventTrigger>
-            </i:Interaction.Triggers><Run Language="vi-vn" 
-                                          Text="Danh sách môn học"/></TextBlock>
-            </StackPanel>
-        </Border>
         <TextBlock TextAlignment="Center"
                        TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                       Margin="150,100,150,440" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
-        <Separator Background="Black" Margin="70,150,0,440" HorizontalAlignment="Left" Width="850" Height="10"/>
+                       Margin="150,10,150,530" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
+        <Separator Background="Black" Margin="0,60,0,530" HorizontalAlignment="Center" Width="850" Height="10"/>
         <Separator Background="Black" Margin="70,490,0,100" HorizontalAlignment="Left" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
@@ -176,13 +134,21 @@
         <!--
                 Command="{Binding UploadCommand}" 
         -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="365" VerticalAlignment="Top" Margin="0,150,0,0">
-            <ListView BorderThickness="1" x:Name="SubjectsList" Width="850" Height="300" OpacityMask="Black" BorderBrush="Black" Margin="0,-40,0,-60">
-                <uc:SubjectUC Margin="0,0,0,0" Width="800" Height="100"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="440" VerticalAlignment="Top" Margin="70,75,75,0">
+            <WrapPanel x:Name="SubjectsList" Width="850" OpacityMask="Black">
+                <WrapPanel.Resources>
+                    <Style TargetType="uc:SubjectUC">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </WrapPanel.Resources>
                 <uc:SubjectUC/>
                 <uc:SubjectUC/>
                 <uc:SubjectUC/>
-            </ListView>
+                <uc:SubjectUC/>
+            </WrapPanel>
         </ScrollViewer>
+        <Label FontSize="30" FontStyle="Italic"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center">Bạn chưa đăng ký khóa học nào.</Label>
     </Grid>
 </UserControl>

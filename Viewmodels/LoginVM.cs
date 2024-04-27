@@ -19,102 +19,87 @@ namespace AcademyManager.Viewmodels
         public ICommand PasswordBoxTextChangedCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand ForgetPassCommand { get; set; }
         #endregion
-
         #region Properties
-        private TextBox _emailBox;
+        private MainVM ParentVM { get; set; }
+        private string _userid;
+        private string _password;
+        private string _notilb;
         private PasswordBox _passwordBox;
-        private Visibility _loginBtnV;
-        private Visibility _backBtnV;
-        private Visibility _loginFailurePanelV;
-        public Visibility LoginFailurePanelV
+        public string NotiLabel
         {
-            get { return _loginFailurePanelV; }
-            set { _loginFailurePanelV = value; OnPropertyChanged(); }
+            get { return _notilb; }
+            set { _notilb = value; OnPropertyChanged(); }
         }
-        public Visibility LoginBtnV
+        public string UserID
         {
-            get { return _loginBtnV; }
-            set { _loginBtnV = value; OnPropertyChanged(); }
-        }
-        public Visibility BackBtnV
-        {
-            get { return _backBtnV; }
-            set { _backBtnV = value; OnPropertyChanged(); }
+            get { return _userid; }
+            set { _userid = value; OnPropertyChanged(); }
         }
         #endregion
 
         #region Methods
         private void InitializeCommands()
         {
-            EmailBoxTextChangedCommand = new RelayCommand<TextBox>(p => { return true; }, p =>
-            {
-                // Sign in button is only show when both password and email are not null or empty string
-                _emailBox = p;
-                bool validEmail = _emailBox != null && _emailBox.Text != null && _emailBox.Text != String.Empty;
-                bool validPassword = _passwordBox != null && _passwordBox.Password != null && _passwordBox.Password != String.Empty;
-                if (validEmail && validPassword)
-                {
-                    LoginBtnV = Visibility.Visible;
-                    BackBtnV = Visibility.Hidden;
-                }
-                else
-                {
-                    LoginBtnV = Visibility.Hidden;
-                    BackBtnV = Visibility.Visible;
-                }
-            });
-
             PasswordBoxTextChangedCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
             {
-                // Sign in button is only show when both password and email are not null or empty string
                 _passwordBox = p;
-                bool validEmail = _emailBox != null && _emailBox.Text != null && _emailBox.Text != String.Empty;
-                bool validPassword = _passwordBox != null && _passwordBox.Password != null && _passwordBox.Password != String.Empty && _passwordBox.Password.Length >= 8;
-                if (validEmail && validPassword)
-                {
-                    LoginBtnV = Visibility.Visible;
-                    BackBtnV = Visibility.Hidden;
-                }
-                else
-                {
-                    LoginBtnV = Visibility.Hidden;
-                    BackBtnV = Visibility.Visible;
-                }
+                _password = p.Password;
             });
 
             LoginCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
             {
-                // Check if password is matched
-                DatabaseManager database = new DatabaseManager();
-                Account acc = await database.GetAccountAsync(_emailBox.Text);
-                MainVM vm = p.Viewmodel as MainVM;
+    //            DatabaseManager database = new DatabaseManager();
+    //            Account acc = await database.GetAccountAsync(_userid);
 
-                if (acc.Match(_passwordBox.Password, _emailBox.Text))
+                if (/*acc != null*/ true)
                 {
-                    // if password is matched, continue to check account type
-                    // if account type = 0 (undefined), type select view will be the next view
-                    // if not, navigate to home view
-                    if (acc.Type != 0)
+                    if (/*acc.Match(_password, _userid)*/ true)
                     {
-                        vm.CurrentAccount = acc;
-                        vm.CurrentView = vm.HomeView;
-                        vm.TabbarV = Visibility.Visible;
-                    } else
+                        if (/*acc.Type == 1*/!true)
+                        {
+                            ParentVM.HomeView = new LectureMainScreen(ParentVM);
+                            ParentVM.CurrentView = ParentVM.HomeView;
+                        } else
+                        {
+                            ParentVM.HomeView = new StudentMainScreen(ParentVM);
+                            ParentVM.CurrentView = ParentVM.HomeView;
+                        }
+                    //    _passwordBox.Clear(); 
+                    //    UserID = "";
+                        ParentVM.NavigationButtonV = Visibility.Visible;
+                    }
+                    else
                     {
-                        vm.CurrentView = vm.TypeSelectionView;
+                        NotiLabel = "Sai mật khẩu.";
+                        await Task.Delay(1000);
+                        NotiLabel = "";
                     }
                 } else
                 {
-                    LoginFailurePanelV = Visibility.Visible;
-                    Task.Delay(1000);
-                    LoginFailurePanelV = Visibility.Hidden;
+                    NotiLabel = "Tài khoản không tồn tại.";
+                    await Task.Delay(1000);
+                    NotiLabel = "";
                 }
+                
+            });
+
+            BackCommand = new RelayCommand<object>(p => { return true; }, p =>
+            {
+                ParentVM.CurrentView = ParentVM.WelcomeView;
+            });
+
+            ForgetPassCommand = new RelayCommand<object>(p => { return true; }, p =>
+            {
+                ParentVM.ResetPWView = new ForgetPass();
+                ParentVM.CurrentView = ParentVM.ResetPWView;
             });
         }
         #endregion
-        public LoginVM()
+        public LoginVM(MainVM vm)
         {
+            ParentVM = vm;
             InitializeCommands();
         }
     }
