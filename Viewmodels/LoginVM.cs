@@ -50,7 +50,7 @@ namespace AcademyManager.Viewmodels
                 {
                     if (/*acc.Match(_password, _userid)*/ true)
                     {
-                        if (/*acc.Type == 1*/!true)
+                        if (/*acc.Type == 1*/true)
                         {
                             ParentVM.HomeView = new LectureMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
