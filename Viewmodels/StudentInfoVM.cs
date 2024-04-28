@@ -1,11 +1,4 @@
-﻿using AcademyManager.Models;
-using AcademyManager.Viewmodel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AcademyManager.Views;
+﻿using AcademyManager.Views;
 using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels

@@ -1,5 +1,5 @@
 ﻿using AcademyManager.Models;
-using AcademyManager.Viewmodel;
+using AcademyManager.Viewmodels;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using OfficeOpenXml;

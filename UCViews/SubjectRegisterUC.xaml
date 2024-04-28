@@ -59,8 +59,8 @@
                     <Run Text="{Binding LecturerName, ElementName=register}" />
                 </TextBlock>
             </StackPanel>
-            <Button Height="50" Width="50" Margin="330,10,20,170">
-                <md:PackIcon Kind="PencilAdd" Width="40" Height="40"
+            <Button Height="50" Width="50" Margin="333,10,17,160">
+                <md:PackIcon Kind="PencilBoxOutline" Width="40" Height="40"
                              Foreground="RoyalBlue"
                              ToolTip="Đăng ký"/>
             </Button>

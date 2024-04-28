@@ -1,5 +1,5 @@
 ﻿using AcademyManager.AdminViews;
-using AcademyManager.Viewmodel;
+using AcademyManager.Viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -10,7 +10,7 @@
             x:Name="adminWindow"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
-             DataContext="{d:DesignInstance Type=viewmodels:SubjectListVM}"
+            d:DataContext="{d:DesignInstance Type=viewmodels:SubjectListVM}"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
             TextElement.FontSize="13"
@@ -116,7 +116,6 @@
                        TextWrapping="Wrap" FontSize="40" Foreground="Black" 
                        Margin="150,10,150,530" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
         <Separator Background="Black" Margin="0,60,0,530" HorizontalAlignment="Center" Width="850" Height="10"/>
-        <Separator Background="Black" Margin="70,490,0,100" HorizontalAlignment="Left" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
@@ -136,8 +135,8 @@
                         <Setter Property="Margin" Value="0 10 10 0"/>
                     </Style>
                 </WrapPanel.Resources>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
+                <uc:SubjectUC Subject="Lập trình nâng cao"/>
+                <uc:SubjectUC />
                 <uc:SubjectUC/>
                 <uc:SubjectUC/>
                 <uc:SubjectUC/>

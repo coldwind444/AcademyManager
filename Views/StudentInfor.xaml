@@ -9,7 +9,7 @@
             x:Name="studentInfoWindow"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
-             DataContext="{d:DesignInstance Type=viewmodels:StudentInfoVM}"
+            d:DataContext="{d:DesignInstance Type=viewmodels:StudentInfoVM}"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
             TextElement.FontSize="13"

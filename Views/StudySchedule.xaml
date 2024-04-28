@@ -10,7 +10,7 @@
             x:Name="adminWindow"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
-             DataContext="{d:DesignInstance Type=viewmodels:StudyScheduleVM}"
+            d:DataContext="{d:DesignInstance Type=viewmodels:StudyScheduleVM}"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
             TextElement.FontSize="13"

@@ -1,5 +1,5 @@
 ﻿using AcademyManager.Models;
-using AcademyManager.Viewmodel;
+using AcademyManager.Viewmodels;
 using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;

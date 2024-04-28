@@ -10,7 +10,7 @@
             x:Name="resultWindow"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
-             DataContext="{d:DesignInstance Type=viewmodels:StudentResultVM}"
+            d:DataContext="{d:DesignInstance Type=viewmodels:StudentResultVM}"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"
             TextElement.FontSize="13"

@@ -1,5 +1,4 @@
-﻿using AcademyManager.Viewmodel;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;

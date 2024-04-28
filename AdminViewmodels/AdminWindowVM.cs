@@ -1,5 +1,5 @@
 ﻿using AcademyManager.AdminViews;
-using AcademyManager.Viewmodel;
+using AcademyManager.Viewmodels;
 using OfficeOpenXml.Drawing.Slicer.Style;
 using System;
 using System.Collections.Generic;
