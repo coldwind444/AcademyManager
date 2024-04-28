@@ -24,19 +24,19 @@ namespace AcademyManager.Viewmodels
         {
             InfoCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.InfoView = new LectureInfor();
+                ParentVM.InfoView = new LectureInfor(ParentVM);
                 ParentVM.CurrentView = ParentVM.InfoView;
             });
 
             CourseCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.CourseListView = new LectureSubjectList();
+                ParentVM.CourseListView = new LectureSubjectList(ParentVM);
                 ParentVM.CurrentView = ParentVM.CourseListView;
             });
 
             ScheduleCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.DailyScheduleView = new StudySchedule();
+                ParentVM.DailyScheduleView = new StudySchedule(ParentVM);
                 ParentVM.CurrentView = ParentVM.DailyScheduleView;
             });
         }

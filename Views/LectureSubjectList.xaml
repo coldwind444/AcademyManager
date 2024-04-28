@@ -9,8 +9,8 @@
         mc:Ignorable="d"
         x:Name="adminWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" d:DataContext="{d:DesignInstance Type=viewmodels:SubjectListVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
@@ -120,7 +120,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Separator">
                         <Border Background="Black" Height="1" Margin="0"/>
-                        <!-- Điều chỉnh độ cao ở đây -->
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -159,7 +158,7 @@
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
-            Command="{Binding LectureCommand}" 
+            Command="{Binding BackCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="440,540,440,10" Height="50" Content="Quay lại"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="440" VerticalAlignment="Top" Margin="75,85,75,0">
             <WrapPanel x:Name="SubjectsList" Width="850" OpacityMask="Black">

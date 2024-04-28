@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AcademyManager.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +22,10 @@ namespace AcademyManager.Views
     /// </summary>
     public partial class Result : UserControl
     {
-        public Result()
+        public StudentResultVM Viewmodel { get; set; }
+        public Result(MainVM vm)
         {
+            this.DataContext = Viewmodel = new StudentResultVM(vm);
             InitializeComponent();
         }
     }

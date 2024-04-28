@@ -105,6 +105,8 @@ namespace AcademyManager.Viewmodels
         {
             HomeNavigateCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                AtHomePage = true;
+                AtNotificationPage = false;
                 CurrentView = HomeView;
             });
 
@@ -112,10 +114,15 @@ namespace AcademyManager.Viewmodels
             {
                 CurrentView = WhoAreYouView;
                 NavigationButtonV = Visibility.Hidden;
+                IsLogout = false;
+                AtHomePage = false;
+                AtInfoPage = false;
             });
 
             NotificationCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                AtHomePage = false;
+                AtNotificationPage = true;
                 if (NotificationView == null)
                 {
                     NotificationView = new Noti();

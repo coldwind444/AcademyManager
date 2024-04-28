@@ -18,6 +18,7 @@ namespace AcademyManager.Viewmodels
         #endregion
 
         #region Properties
+        private MainVM ParentVM { get; set; }
         private string _fullname;
         private string _id;
         private string _email;
@@ -71,12 +72,13 @@ namespace AcademyManager.Viewmodels
 
             BackCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
-                
+                ParentVM.CurrentView = ParentVM.HomeView;
             });
         }
         #endregion
-        public StudentInfoVM()
+        public StudentInfoVM(MainVM vm)
         {
+            ParentVM = vm;
             InitializeCommand();
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AcademyManager.Viewmodels
 {
-    class NotiVM : BaseViewModel
+    public class NotiVM : BaseViewModel
     {
         #region Commands
         #endregion

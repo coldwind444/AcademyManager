@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="AcademyManager.UCViews.SubjectRegisterUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" x:Name="register"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="220" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="20" Background="White">
+        <Grid>
+            <StackPanel>
+                <TextBlock Margin="20 5 0 0 " FontSize="40" Text="Hệ điều hành" TextAlignment="Left" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="20 0 0 0" FontSize="20">
+                    <Run Text="Lớp: "></Run>
+                    <Run Text="{Binding Path=Class, ElementName=register}"/>
+                </TextBlock>
+                <TextBlock Margin="20 5 0 0" FontSize="20">
+                    <Run Text="Phòng học: "></Run>
+                    <Run Text="{Binding Path=Room, ElementName=register}"/>
+                </TextBlock>
+                <TextBlock Margin="20 5 0 0" FontSize="20">
+                    <Run Text="Giờ học: "></Run>
+                    <Run Text="{Binding Path=Time, ElementName=register}"/>
+                </TextBlock>
+                <TextBlock Margin="20 5 0 0" FontSize="20">
+                    <Run Text="Ngày học: "></Run>
+                    <Run Text="{Binding Path=Day, ElementName=register}"/>
+                </TextBlock>
+                <TextBlock Margin="20 5 0 0 " FontSize="20" TextAlignment="Left">
+                    <Run Text="Giảng viên: " />
+                    <Run Text="{Binding LecturerName, ElementName=register}" />
+                </TextBlock>
+            </StackPanel>
+            <Button Height="50" Width="50" Margin="330,10,20,170">
+                <md:PackIcon Kind="PencilAdd" Width="40" Height="40"
+                             Foreground="RoyalBlue"
+                             ToolTip="Đăng ký"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

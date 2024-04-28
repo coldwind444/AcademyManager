@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AcademyManager.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,10 @@ namespace AcademyManager.Views
     /// </summary>
     public partial class LectureInfor : UserControl
     {
-        public LectureInfor()
+        public LectureInfoVM Viewmodel {  get; set; }
+        public LectureInfor(MainVM vm)
         {
+            this.DataContext = Viewmodel = new LectureInfoVM(vm);
             InitializeComponent();
         }
     }

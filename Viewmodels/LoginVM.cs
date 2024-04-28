@@ -92,7 +92,7 @@ namespace AcademyManager.Viewmodels
 
             ForgetPassCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.ResetPWView = new ForgetPass();
+                ParentVM.ResetPWView = new ForgetPass(ParentVM);
                 ParentVM.CurrentView = ParentVM.ResetPWView;
             });
         }

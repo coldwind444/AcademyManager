@@ -28,31 +28,31 @@ namespace AcademyManager.Viewmodels
         {
             DailyScheduleCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.DailyScheduleView = new StudySchedule();
+                ParentVM.DailyScheduleView = new StudySchedule(ParentVM);
                 ParentVM.CurrentView = ParentVM.DailyScheduleView;
             });
 
             SubjectCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.CourseListView = new StudentSubjectList();
+                ParentVM.CourseListView = new StudentSubjectList(ParentVM);
                 ParentVM.CurrentView = ParentVM.CourseListView;
             });
 
             InfoCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.InfoView = new StudentInfor();
+                ParentVM.InfoView = new StudentInfor(ParentVM);
                 ParentVM.CurrentView = ParentVM.InfoView;
             });
 
             ResultCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.ResultView = new Result();
+                ParentVM.ResultView = new Result(ParentVM);
                 ParentVM.CurrentView = ParentVM.ResultView;
             });
 
             ExamScheduleCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.ExamScheduleView = new ExamSchedule();
+                ParentVM.ExamScheduleView = new ExamSchedule(ParentVM);
                 ParentVM.CurrentView = ParentVM.ExamScheduleView;
             });
         }

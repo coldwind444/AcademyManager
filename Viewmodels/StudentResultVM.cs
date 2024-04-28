@@ -17,6 +17,7 @@ namespace AcademyManager.Viewmodels
         #endregion
 
         #region Properties
+        private MainVM ParentVM { get; set; }
         private List<ListViewItem> _resultList;
         private int _semestercredits;
         private int _totalcredits;
@@ -58,10 +59,15 @@ namespace AcademyManager.Viewmodels
         }
         private void InitializeCommand()
         {
+            BackCommand = new RelayCommand<object>(p => true, p =>
+            {
+                ParentVM.CurrentView = ParentVM.HomeView;
+            });
         }
         #endregion
-        public StudentResultVM()
+        public StudentResultVM(MainVM vm)
         {
+            ParentVM = vm;
             InitializeCommand();
         }
     }
