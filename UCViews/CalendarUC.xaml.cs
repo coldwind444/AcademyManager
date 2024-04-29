@@ -24,12 +24,33 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
-        public string CalendarDate
+        public DateTime? SelectedDate
         {
-            get { return (string)GetValue(DateProperty); }
-            set { SetValue(DateProperty, value); }
+            get { return (DateTime?)GetValue(SelectedDateProperty); }
+            set { SetValue(SelectedDateProperty, value); }
         }
 
-        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Date", typeof(string), typeof(Item));
+        // Using a DependencyProperty as the backing store for SelectedDate.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedDateProperty =
+            DependencyProperty.Register("SelectedDate", typeof(DateTime?), typeof(CalendarUC), new PropertyMetadata(null));
+
+        // Routed event for date change
+        public static readonly RoutedEvent DateChangedEvent = EventManager.RegisterRoutedEvent(
+            "DateChanged",
+            RoutingStrategy.Bubble,
+            typeof(RoutedPropertyChangedEventHandler<DateTime?>),
+            typeof(CalendarUC));
+
+        public event RoutedPropertyChangedEventHandler<DateTime?> DateChanged
+        {
+            add { AddHandler(DateChangedEvent, value); }
+            remove { RemoveHandler(DateChangedEvent, value); }
+        }
+
+        protected virtual void OnDateChanged(DateTime? newDate)
+        {
+            RoutedPropertyChangedEventArgs<DateTime?> args = new RoutedPropertyChangedEventArgs<DateTime?>(this.SelectedDate, newDate, DateChangedEvent);
+            RaiseEvent(args);
+        }
     }
 }

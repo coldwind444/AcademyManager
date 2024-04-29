@@ -25,6 +25,14 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
+        public Item(string title, string time, string room, FontAwesomeIcon icon)
+        {
+            Title = title;
+            Time = time;
+            Room = room;
+            Icon = icon;
+        }
+
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
