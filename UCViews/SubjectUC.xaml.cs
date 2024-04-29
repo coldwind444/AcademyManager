@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AcademyManager.Models;
+using AcademyManager.UCViewmodels;
+using AcademyManager.Viewmodels;
 
 namespace AcademyManager.UCViews
 {
@@ -20,10 +11,27 @@ namespace AcademyManager.UCViews
     /// </summary>
     public partial class SubjectUC : UserControl
     {
-        public SubjectUC()
+        public SubjectVM Viewmodel { get; set; }
+        public SubjectUC(MainVM p, Class info, string cid, string sub, string lecturer, string cln, string room, string time)
         {
+            LecturerName = lecturer;
+            Subject = sub;
+            CourseID = cid;
+            Class = cln;
+            Room = room;
+            Time = time;
+            ClassInfo = info;
+            this.DataContext = Viewmodel = new SubjectVM(p, info);
             InitializeComponent();
         }
+        public Class ClassInfo { get; set; }
+        public string CourseID
+        {
+            get { return (string)GetValue(CourseIDProperty); }
+            set { SetValue(CourseIDProperty, value); }
+        }
+
+        public static readonly DependencyProperty CourseIDProperty = DependencyProperty.Register("CourseID", typeof(string), typeof(SubjectUC));
         public string Subject
         {
             get { return (string)GetValue(SubjectProperty); }

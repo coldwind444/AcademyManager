@@ -38,5 +38,12 @@ namespace AcademyManager.UCViews
         }
 
         public static readonly DependencyProperty NotiContentProperty = DependencyProperty.Register("NotiContent", typeof(string), typeof(SpecificNoti));
+        public string UpdateTime
+        {
+            get { return (string)GetValue(UpdateTimeProperty); }
+            set { SetValue(UpdateTimeProperty, value); }
+        }
+
+        public static readonly DependencyProperty UpdateTimeProperty = DependencyProperty.Register("UpdateTime", typeof(string), typeof(SpecificNoti));
     }
 }

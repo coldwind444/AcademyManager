@@ -135,16 +135,12 @@
                         <Setter Property="Margin" Value="0 10 10 0"/>
                     </Style>
                 </WrapPanel.Resources>
-                <uc:SubjectUC Subject="Lập trình nâng cao"/>
-                <uc:SubjectUC />
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
             </WrapPanel>
         </ScrollViewer>
         <Label FontSize="30" FontStyle="Italic"
                VerticalAlignment="Center"
-               HorizontalAlignment="Center">Bạn chưa đăng ký khóa học nào.</Label>
+               HorizontalAlignment="Center"
+               Visibility="{Binding NotiV}"
+               Content="{Binding Noti}"/>
     </Grid>
 </UserControl>

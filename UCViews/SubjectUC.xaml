@@ -3,12 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" x:Name="subject"
+             xmlns:vm="clr-namespace:AcademyManager.UCViewmodels"
+             d:DataContext="{d:DesignInstance Type=vm:SubjectVM}"
              d:DesignHeight="200" d:DesignWidth="400">
     <Border Margin="0,0,0,0" 
             CornerRadius="20" 
             Width="400" 
             Height="200">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding ViewCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Border.Style>
             <Style TargetType="Border">
                 <Setter Property="Cursor" Value="Hand"/>
@@ -23,7 +31,12 @@
             </Style>
         </Border.Style>
         <StackPanel Width="400">
-            <TextBlock Margin="30 15 0 0 " FontSize="30" Text="{Binding Path=Subject, ElementName=subject}" TextAlignment="Left" FontWeight="Bold"></TextBlock>
+            <TextBlock Margin="30 15 0 0 " FontSize="30" TextAlignment="Left" FontWeight="Bold">
+                <Run Text="{Binding Path=Subject, ElementName=subject}"/>
+                <Run Text=" ("/>
+                <Run Text="{Binding Path=CourseID, ElementName=subject}"/>
+                <Run Text=")"/>
+            </TextBlock>
             <TextBlock Margin="30 10 50 0 " FontSize="20" TextAlignment="Left">
                 <Run Text="Giảng viên:"/>
                 <Run Text="{Binding Path=LecturerName, ElementName=subject}"/>

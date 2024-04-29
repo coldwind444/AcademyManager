@@ -4,7 +4,7 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-            xmlns:local="clr-namespace:AcademyManager.AdminViews"
+            xmlns:cv="clr-namespace:AcademyManager.Models"
             mc:Ignorable="d"
             x:Name="lectureInfoUC"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
@@ -94,12 +94,6 @@
                 <SolidColorBrush Color="#FFE6FFEC" 
                                  Opacity="0.9"/>
             </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect Opacity="0.5"
-                                  Direction="300"
-                                  ShadowDepth="15"
-                                  BlurRadius="50"/>
-            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="350"/>
@@ -107,7 +101,15 @@
                 </Grid.ColumnDefinitions>
                 <Border Width="280" Height="320"
                         BorderThickness="1" BorderBrush="Black"
-                        CornerRadius="10"></Border>
+                        CornerRadius="10">
+                    <Border.Resources>
+                        <cv:ImageConverter x:Key="ImgConverter"/>
+                    </Border.Resources>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImgConverter}}"
+                                    Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
                 <StackPanel Orientation="Vertical"
                             VerticalAlignment="Center" 
                             Grid.Column="1">
@@ -119,27 +121,27 @@
                     </StackPanel.Resources>
                     <TextBlock>
                         <Run Text="Họ và tên: "/>
-                        <Run Text="Nguyen Van A"/>
+                        <Run Text="{Binding Fullname}"/>
                     </TextBlock>
                     <TextBlock>
                         <Run Text="MSGV: "/>
-                        <Run Text="1212312"/>
+                        <Run Text="{Binding ID}"/>
                     </TextBlock>
                     <TextBlock>
                         <Run Text="Địa chỉ email: "/>
-                        <Run Text="adasdasd"/>
+                        <Run Text="{Binding Email}"/>
                     </TextBlock>
                     <TextBlock>
                         <Run Text="Khoa: "/>
-                        <Run Text="sdasd"/>
+                        <Run Text="{Binding Faculty}"/>
                     </TextBlock>
                     <TextBlock>
                         <Run Text="Chuyên ngành giảng dạy: "/>
-                        <Run Text="ádasd"/>
+                        <Run Text="{Binding Speciality}"/>
                     </TextBlock>
                     <TextBlock>
                          <Run Text="Học vị: "/>
-                         <Run Text="adasdasd"/>
+                         <Run Text="{Binding Certificate}"/>
                     </TextBlock>
                 </StackPanel>
             </Grid>

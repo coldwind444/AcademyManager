@@ -79,8 +79,12 @@
                 </StackPanel>
                 <TextBlock Grid.Row="1" FontSize="16"
                            Margin="70 0 0 0"
-                           FontStyle="Italic"
-                           Text="{Binding Path=NotiContent, ElementName=noti}"/>
+                           FontStyle="Italic">
+                    <Run Text="{Binding Path=NotiContent, ElementName=noti}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=UpdateTime, ElementName=noti}"/>
+                    <Run Text=")"/>
+                </TextBlock>
             </Grid>
         </Grid>
     </Border>

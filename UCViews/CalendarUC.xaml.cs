@@ -24,5 +24,12 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
+        public string CalendarDate
+        {
+            get { return (string)GetValue(DateProperty); }
+            set { SetValue(DateProperty, value); }
+        }
+
+        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Date", typeof(string), typeof(Item));
     }
 }

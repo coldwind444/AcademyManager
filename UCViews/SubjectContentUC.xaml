@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="880">
+             mc:Ignorable="d" x:Name="content"
+             d:DesignHeight="40" d:DesignWidth="880"
+             MouseLeftButtonDown="content_MouseLeftButtonDown">
     <Border Margin="30,0,30,0"
             CornerRadius="10" 
             Opacity="0.85" Height="40">
@@ -28,9 +29,8 @@
         </Border.Background>
         <Grid>
             <TextBlock VerticalAlignment="Center"
-                       FontSize="20" Margin="20 0 0 0">
-                Slide chương 1
-            </TextBlock>
+                       FontSize="20" Margin="20 0 0 0"
+                       Text="{Binding Path=Title, ElementName=content}"/>
         </Grid>
     </Border>
 </UserControl>

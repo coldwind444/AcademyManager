@@ -1,23 +1,28 @@
 ﻿using AcademyManager.Views;
 using System.Windows.Input;
+using AcademyManager.Models;
 
 namespace AcademyManager.Viewmodels
 {
     public class StudentInfoVM : BaseViewModel
     {
         #region Commands
-        public ICommand UpdateInfoCommand { get; set; }
         public ICommand BackCommand { get; set; }
         #endregion
-
         #region Properties
         private MainVM ParentVM { get; set; }
         private string _fullname;
+        private string _birthday;
         private string _id;
         private string _email;
         private string _faculty;
         private string _major;
         private string _avatar;
+        public string Birthday
+        {
+            get { return _birthday; }
+            set { _birthday = value; OnPropertyChanged(); }
+        }
         public string Avatar
         {
             get { return _avatar; }
@@ -49,20 +54,23 @@ namespace AcademyManager.Viewmodels
             set { _major = value; OnPropertyChanged(); }
         }
         #endregion
-
         #region Methods
         private void LoadInfo()
         {
-            // Get the current account from MainVM
-            // Assign its info to the Binding propeties
+            StudentUser? user = MainVM.CurrentUser as StudentUser;
+            if (user != null)
+            {
+                Fullname = user.Fullname;
+                ID = user.ID;
+                Email = user.Email;
+                Faculty = user.Faculty;
+                Major = user.Major;
+                Avatar = user.AvatarBase64;
+                Birthday = user.Birthday.ToString("dd/MM/yyyy");
+            }
         }
         private void InitializeCommand()
         {
-            UpdateInfoCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
-            {
-                
-            });
-
             BackCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
             {
                 ParentVM.CurrentView = ParentVM.HomeView;
@@ -72,6 +80,7 @@ namespace AcademyManager.Viewmodels
         public StudentInfoVM(MainVM vm)
         {
             ParentVM = vm;
+            LoadInfo();
             InitializeCommand();
         }
     }

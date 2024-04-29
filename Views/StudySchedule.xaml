@@ -120,7 +120,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Separator">
                         <Border Background="Black" Height="1" Margin="0"/>
-                        <!-- Điều chỉnh độ cao ở đây -->
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

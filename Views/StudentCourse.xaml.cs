@@ -1,4 +1,5 @@
-﻿using AcademyManager.Viewmodels;
+﻿using AcademyManager.Models;
+using AcademyManager.Viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace AcademyManager.Views
     public partial class StudentCourse : UserControl
     {
         public CourseInfoVM Viewmodel { get; set; }
-        public StudentCourse()
+        public StudentCourse(Class data)
         {
-            this.DataContext = Viewmodel = new CourseInfoVM();
+            this.DataContext = Viewmodel = new CourseInfoVM(data);
             InitializeComponent();
         }
     }

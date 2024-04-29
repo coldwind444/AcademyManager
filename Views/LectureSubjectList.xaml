@@ -168,16 +168,12 @@
                         <Setter Property="Margin" Value="10"/>
                     </Style>
                 </WrapPanel.Resources>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
-                <uc:SubjectUC/>
             </WrapPanel>
         </ScrollViewer>
         <Label FontSize="30" FontStyle="Italic"
                VerticalAlignment="Center"
-               HorizontalAlignment="Center">Bạn chưa được phân công giảng dạy.</Label>
+               HorizontalAlignment="Center"
+               Visibility="{Binding NotiV}"
+               Content="{Binding Noti}"/>
     </Grid>
 </UserControl>

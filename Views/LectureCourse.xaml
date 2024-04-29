@@ -153,12 +153,20 @@
                    FontSize="40" 
                    Foreground="Black"
                    Margin="40,10,395,540" 
-                   Height="50"/>
+                   Height="50" FontWeight="Bold">
+            <Run Text="{Binding Data.CourseName}"/>
+            <Run Text=" ("/>
+            <Run Text="{Binding Data.CourseID}"/>
+            <Run Text=")"/>
+        </TextBlock>
         <TextBlock TextAlignment="Left" 
-                   FontSize="30" 
+                   FontSize="30" FontWeight="Bold"
                    TextWrapping="Wrap" 
-                   Margin="40,60,360,500" 
-                   Width="600" Height="40"><Run Text="Giảng viên: Nguyễn Thành An"/><LineBreak/></TextBlock>
+                   Margin="40,65,360,495" 
+                   Width="600" Height="40">
+            <Run Text="Giảng viên: "/>
+            <Run Text="{Binding Data.InstructorName}"/>
+        </TextBlock>
         <Separator Background="Black" 
                    Margin="40,122,0,468" 
                    HorizontalAlignment="Left" 
@@ -175,33 +183,29 @@
                 Foreground="White"
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="720,10,60,550" 
-                Content="Danh sách sinh viên" Width="220" Height="40"/>
+                Content="Danh sách sinh viên" Width="220" Height="40"
+                Command="{Binding ViewStudentListCommand}"/>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
                 RenderTransformOrigin="0.747,0.56" 
                 Height="40" Width="220"
-                Content="Cập nhật điểm số" Margin="720,65,60,495" />
-        <ScrollViewer Margin="40,183,60,91">
-            <StackPanel Height="406">
+                Content="Cập nhật điểm số" Margin="720,65,60,495" 
+                Command="{Binding UpdateScoreCommand}"/>
+        <ScrollViewer Margin="40,183,60,91" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">
                         <Setter Property="Margin" Value="0 0 0 5"/>
                     </Style>
                 </StackPanel.Resources>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
-                <userControls:SubjectContentUC/>
             </StackPanel>
         </ScrollViewer>
         <Button Height="60" Width="60"
                 ToolTip="Thêm tài liệu"
-                Margin="851,530,89,10">
+                Margin="851,530,89,10"
+                Command="{Binding AddDocumentCommand}">
             <materialDesign:PackIcon Kind="Add" Foreground="White"
                                      Height="30" Width="30"/>
         </Button>

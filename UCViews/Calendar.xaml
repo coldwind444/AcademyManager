@@ -1,12 +1,13 @@
 ﻿<UserControl x:Class="AcademyManager.UCViews.Calendar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:fa="http://schemas.fontawesome.io/icons/"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:uc="clr-namespace:AcademyManager.UCViews" 
-            FontFamily="Trebuchet MS" 
-            Background="Transparent" Height="350" Width="800">
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:AcademyManager.UCViews" 
+             xmlns:vm="clr-namespace:AcademyManager.UCViewmodels"
+             FontFamily="Trebuchet MS" 
+             Background="Transparent" Height="350" Width="800">
     <UserControl.Resources>
         <Style x:Key="button" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
@@ -333,7 +334,8 @@
             </Grid.ColumnDefinitions>
 
             <Grid>
-                <uc:CalendarUC Height="350" Cursor="Hand"/>
+                <uc:CalendarUC x:Name="calendar"
+                               Height="350" Cursor="Hand"/>
             </Grid>
 
             <Grid Grid.Column="1">
