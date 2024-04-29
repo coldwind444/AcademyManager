@@ -147,21 +147,22 @@ namespace AcademyManager.AdminViewmodels
                     string? crd = worksheet.Cells[row, 4].Value.ToString();
                     string? classID = worksheet.Cells[row, 5].Value.ToString();
                     string? insID = worksheet.Cells[row, 6].Value.ToString();
-                    string? room = worksheet.Cells[row, 7].Value.ToString();
+                    string? insName = worksheet.Cells[row, 7].Value.ToString();
+                    string? room = worksheet.Cells[row, 8].Value.ToString();
 
                     // Check string input
                     if (NullOrEmpty(termID) || NullOrEmpty(courseID) || NullOrEmpty(courseName) || NullOrEmpty(classID)
-                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd))
+                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd) || NullOrEmpty(insName))
                     {
                         list = null;
                         return null;
                     }
 
                     string? day = worksheet.Cells[row, 8].Value.ToString();
-                    string? bgt = worksheet.Cells[row, 9].Value.ToString();
-                    string? et = worksheet.Cells[row, 10].Value.ToString();
-                    string? bgd = worksheet.Cells[row, 11].Value.ToString();
-                    string? ed = worksheet.Cells[row, 12].Value.ToString();
+                    string? bgt = worksheet.Cells[row, 10].Value.ToString();
+                    string? et = worksheet.Cells[row, 11].Value.ToString();
+                    string? bgd = worksheet.Cells[row, 12].Value.ToString();
+                    string? ed = worksheet.Cells[row, 13].Value.ToString();
 
                     // try to convert some data to correct type
                     DayOfWeek dayOfWeek ;
@@ -203,7 +204,7 @@ namespace AcademyManager.AdminViewmodels
                             {
                                 // if not contain
                                 // check if there is at least one class in the same time that manage by the same instructor
-                                Class cls = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
+                                Class cls = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                                 foreach (Class c in data[Tidx].Courses[courseID].Classes.Values)
                                 {
                                     if (InvalidClass(cls, c))
@@ -222,13 +223,13 @@ namespace AcademyManager.AdminViewmodels
                         } else
                         {
                             data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
-                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
+                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                         }
                     } else
                     {
                         Term term = new Term(termID);
                         term.Courses[courseID] = new Course(courseID, courseName, credits);
-                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
+                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room);
                         data.Add(term);
                     }
                     insSchedule.Add(new KeyValuePair<string, ClassIdentifier>(insID, new ClassIdentifier(termID, courseID, classID)));
