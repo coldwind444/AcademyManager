@@ -14,6 +14,7 @@ namespace AcademyManager.Models
         public DateOnly Birthday { get; set; }
         public string Faculty {  get; set; }
         public string AvatarBase64 { get; set; }
+        public List<Notification> Notifications { get; set; }
         public List<ClassIdentifier> StudyElements { get; set; }
         private bool InSchedule(DateOnly date, Class cls)
         {
@@ -21,24 +22,12 @@ namespace AcademyManager.Models
             bool inDate = cls.Weekday == date.DayOfWeek;
             return inPeriod && inDate;
         }
-        public async Task<List<Class>> GetSchedule(DateOnly date)
+        public List<Class> GetSchedule(DateOnly date, List<Class> classlist)
         {
             var list = new List<Class>();
-            DatabaseManager dbManager = new DatabaseManager();
-            Term term = null;
-            foreach (ClassIdentifier cid in StudyElements)
+            foreach (Class c in classlist)
             {
-                if (term != null) if (term.TermID != cid.TermID) term = await dbManager.GetTermAsync(term.TermID);
-                else term = await dbManager.GetTermAsync(term.TermID);
-                Dictionary<string,Class> classList = term.Courses[cid.CourseID].Classes;
-                foreach (KeyValuePair<string,Class> _class in classList)
-                {
-                    if (_class.Key == cid.ClassID && InSchedule(date, _class.Value))
-                    {
-                        list.Add(_class.Value);
-                        break;
-                    }
-                }
+                if (InSchedule(date,c)) list.Add(c);
             }
             return list;
         }
@@ -51,6 +40,7 @@ namespace AcademyManager.Models
             Faculty = faculty;
             AvatarBase64 = avt;
             StudyElements = new List<ClassIdentifier>();
+            Notifications = new List<Notification>();
         }
     }
 }
