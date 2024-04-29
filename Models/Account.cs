@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace AcademyManager.Models
 {
@@ -19,13 +20,30 @@ namespace AcademyManager.Models
             if (password != null) Password = SHA256Hash(password);
             Type = type;
         }
-        public bool IsVerified(string id, string email)
+        [JsonConstructor]public Account(string stdid, string uuid, string email, string password, int type)
         {
-            return id == UserID && Email == email; 
+            UserID = stdid;
+            Email = email;
+            UUID = uuid;
+            Password = password;
+            Type = type;
+        }
+        public void ChangePassword(string password)
+        {
+            Password = SHA256Hash(password);
+        }
+        public bool IsActivated()
+        {
+            return Password != null; 
         }
         public bool Match(string pass, string id)
         {
             return UserID == id && SHA256Hash(pass) == Password;
+        }
+        public async Task SetPassword()
+        {
+            DatabaseManager db = new DatabaseManager();
+            await db.SetPasswordAsync(UserID, Password, Type);
         }
         public string SHA256Hash(string password)
         {

@@ -244,7 +244,7 @@ namespace AcademyManager.AdminViewmodels
             var batch = new List<Task>();
             foreach (var c in list)
             {
-                Account acc = await db.GetAccountAsync(c.Key);
+                Account acc = await db.GetAccountAsync(c.Key, 1);
                 if (acc != null)
                 {
                     InstructorUser user = await db.GetInstructorAsync(c.Key);

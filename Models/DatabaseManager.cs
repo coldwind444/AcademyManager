@@ -23,13 +23,39 @@ namespace AcademyManager.Models
             }
         }
         #region Account
-        public async Task UpdateAccountAsync(Account acc)
+        public async Task UpdateAccountAsync(Account acc, int type)
         {
-            SetResponse response = await client.SetAsync("Accounts/" + acc.UserID, acc);
+            SetResponse response;
+            if (type == 1)
+            {
+                response = await client.SetAsync("Accounts/InstructorAccounts/" + acc.UserID, acc);
+            } else
+            {
+                response = await client.SetAsync("Accounts/StudentAccounts/" + acc.UserID, acc);
+            }
         }
-        public async Task<Account> GetAccountAsync(string id)
+        public async Task SetPasswordAsync(string id, string pass, int type)
         {
-            FirebaseResponse response = await client.GetAsync("Accounts/" + id);
+            SetResponse response;
+            if (type == 1)
+            {
+                response = await client.SetAsync($"Accounts/InstructorAccounts/{id}/Password", pass);
+            }
+            else
+            {
+                response = await client.SetAsync($"Accounts/StudentAccounts/{id}/Password", pass);
+            }
+        }
+        public async Task<Account> GetAccountAsync(string id, int type)
+        {
+            FirebaseResponse response;
+            if (type == 1)
+            {
+                response = await client.GetAsync("Accounts/InstructorAccounts/" + id);
+            } else
+            {
+                response = await client.GetAsync("Accounts/StudentAccounts/" + id);
+            }
             Account result = response.ResultAs<Account>();
             return result;
         }
@@ -41,7 +67,7 @@ namespace AcademyManager.Models
         }
         public async Task<StudentUser> GetStudentAsync(string id)
         {
-            Account account = await GetAccountAsync(id);
+            Account account = await GetAccountAsync(id, 2);
             string uid = "";
             if (account != null) uid = account.UUID;
             else return null;
@@ -57,7 +83,7 @@ namespace AcademyManager.Models
         }
         public async Task<InstructorUser> GetInstructorAsync(string id)
         {
-            Account account = await GetAccountAsync(id);
+            Account account = await GetAccountAsync(id, 1);
             string uid = "";
             if (account != null) uid = account.UUID;
             else return null;

@@ -196,15 +196,15 @@ namespace AcademyManager.AdminViewmodels
                         DatabaseManager db = new DatabaseManager();
                         foreach (StudentUser std in students)
                         {
-                            Account newacc = new Account(std.ID, std.Email, null, 1);
-                            Account existacc = await db.GetAccountAsync(std.ID);
+                            Account newacc = new Account(std.ID, std.Email, null, 2);
+                            Account existacc = await db.GetAccountAsync(std.ID, 1);
                             if (existacc != null)
                             {
                                 Task usertask = db.UpdateStudentAsync(existacc.UUID, std);
                                 userbatch.Add(usertask);
                             } else
                             {
-                                Task acctask = db.UpdateAccountAsync(newacc);
+                                Task acctask = db.UpdateAccountAsync(newacc, 2);
                                 accbatch.Add(acctask);
                                 Task usertask = db.UpdateStudentAsync(newacc.UUID, std);
                                 userbatch.Add(usertask);
@@ -241,7 +241,7 @@ namespace AcademyManager.AdminViewmodels
                         foreach (InstructorUser ins in instructors)
                         {
                             Account newacc = new Account(ins.ID, ins.Email, null, 2);
-                            Account existacc = await db.GetAccountAsync(ins.ID);
+                            Account existacc = await db.GetAccountAsync(ins.ID, 1);
                             if (existacc != null)
                             {
                                 Task usertask = db.UpdateInstructorAsync(existacc.UUID, ins);
@@ -249,7 +249,7 @@ namespace AcademyManager.AdminViewmodels
                             }
                             else
                             {
-                                Task acctask = db.UpdateAccountAsync(newacc);
+                                Task acctask = db.UpdateAccountAsync(newacc, 1);
                                 accbatch.Add(acctask);
                                 Task usertask = db.UpdateInstructorAsync(newacc.UUID, ins);
                                 userbatch.Add(usertask);
