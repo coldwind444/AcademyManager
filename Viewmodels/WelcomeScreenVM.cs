@@ -8,6 +8,7 @@ namespace AcademyManager.Viewmodels
         #region Commands
         public ICommand LoginCommand { get; set; }
         public ICommand SigninCommand {  get; set; }
+        public ICommand BackCommand {  get; set; }
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }
@@ -20,7 +21,7 @@ namespace AcademyManager.Viewmodels
             {
                 if (ParentVM.LoginView == null)
                 {
-                    ParentVM.LoginView = new Login(ParentVM);
+                    ParentVM.LoginView = new Login(AccountType, ParentVM);
                     ParentVM.CurrentView = ParentVM.LoginView;
                 }
                 else
@@ -31,11 +32,16 @@ namespace AcademyManager.Viewmodels
             {
                 if (ParentVM.SigninView == null)
                 {
-                    ParentVM.SigninView = new SetNewPass(ParentVM);
+                    ParentVM.SigninView = new SetNewPass(AccountType, ParentVM);
                     ParentVM.CurrentView = ParentVM.SigninView;
                 }
                 else
                     ParentVM.CurrentView = ParentVM.SigninView;
+            });
+
+            BackCommand = new RelayCommand<object>(p => true, p =>
+            {
+                ParentVM.CurrentView = ParentVM.WhoAreYouView;
             });
         }
         #endregion

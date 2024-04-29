@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using AcademyManager.Views;
+using AcademyManager.Models;
 
 namespace AcademyManager.Viewmodels
 {
@@ -16,10 +17,23 @@ namespace AcademyManager.Viewmodels
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }
+        private int type;
+        private string _notilb;
         private string _userid;
         private string _password;
-        private string _notilb;
         private PasswordBox _passwordBox;
+        private Visibility _load;
+        private Visibility _notiV;
+        public Visibility NotiV
+        {
+            get { return _notiV; }
+            set { _notiV = value; OnPropertyChanged(); }
+        }
+        public Visibility Loading
+        {
+            get { return _load; }
+            set { _load = value; OnPropertyChanged(); }
+        }
         public string NotiLabel
         {
             get { return _notilb; }
@@ -33,6 +47,16 @@ namespace AcademyManager.Viewmodels
         #endregion
 
         #region Methods
+        private void ResetAll()
+        {
+            UserID = "";
+            if (_passwordBox != null) _passwordBox.Clear();
+            NotiV = Visibility.Hidden;
+        }
+        private bool NullOrEmpty(string s)
+        {
+            return (s == null || s == String.Empty);
+        }
         private void InitializeCommands()
         {
             PasswordBoxTextChangedCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
@@ -41,58 +65,71 @@ namespace AcademyManager.Viewmodels
                 _password = p.Password;
             });
 
-            LoginCommand = new RelayCommand<MainWindow>(p => { return true; }, async p =>
+            LoginCommand = new RelayCommand<MainWindow>(p => { return !NullOrEmpty(_userid) && !NullOrEmpty(_password); }, async p =>
             {
-    //            DatabaseManager database = new DatabaseManager();
-    //            Account acc = await database.GetAccountAsync(_userid);
+                Loading = Visibility.Visible;
+                DatabaseManager database = new DatabaseManager();
+                Account acc = await database.GetAccountAsync(_userid, type);
 
-                if (/*acc != null*/ true)
+                if (acc != null)
                 {
-                    if (/*acc.Match(_password, _userid)*/ true)
+                    if (acc.Match(_password, _userid))
                     {
-                        if (/*acc.Type == 1*/true)
+                        if (type == 1)
                         {
+                            MainVM.CurrentAccount = acc;
+                            MainVM.CurrentUser = await database.GetInstructorAsync(_userid);
                             ParentVM.HomeView = new LectureMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
                         } else
                         {
+                            MainVM.CurrentAccount = acc;
+                            MainVM.CurrentUser = await database.GetStudentAsync(_userid);
                             ParentVM.HomeView = new StudentMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
                         }
-                    //    _passwordBox.Clear(); 
-                    //    UserID = "";
+                        ResetAll();
                         ParentVM.NavigationButtonV = Visibility.Visible;
                     }
                     else
                     {
-                        NotiLabel = "Sai mật khẩu.";
-                        await Task.Delay(1000);
-                        NotiLabel = "";
+                        Loading = Visibility.Hidden;
+                        if (acc.IsActivated()) NotiLabel = "Sai mật khẩu.";
+                        else NotiLabel = "Tài khoản chưa được kích hoạt.";
+                        NotiV = Visibility.Visible;
+                        await Task.Delay(1500);
+                        NotiV = Visibility.Hidden;
                     }
                 } else
                 {
+                    Loading = Visibility.Hidden;
                     NotiLabel = "Tài khoản không tồn tại.";
-                    await Task.Delay(1000);
-                    NotiLabel = "";
+                    NotiV = Visibility.Visible;
+                    await Task.Delay(1500);
+                    NotiV = Visibility.Hidden;
                 }
-                
+                Loading = Visibility.Hidden;
             });
 
             BackCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
                 ParentVM.CurrentView = ParentVM.WelcomeView;
+                ResetAll();
             });
 
             ForgetPassCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.ResetPWView = new ForgetPass(ParentVM);
+                ParentVM.ResetPWView = new ForgetPass(type, ParentVM);
                 ParentVM.CurrentView = ParentVM.ResetPWView;
             });
         }
         #endregion
-        public LoginVM(MainVM vm)
+        public LoginVM(int t, MainVM vm)
         {
             ParentVM = vm;
+            type = t;
+            Loading = Visibility.Hidden;
+            NotiV = Visibility.Hidden;
             InitializeCommands();
         }
     }

@@ -22,9 +22,9 @@ namespace AcademyManager.Views
     public partial class Login : UserControl
     {
         public LoginVM Viewmodel {  get; set; }
-        public Login(MainVM vm)
+        public Login(int t, MainVM vm)
         {
-            this.DataContext = Viewmodel = new LoginVM(vm);
+            this.DataContext = Viewmodel = new LoginVM(t, vm);
             InitializeComponent();
         }
     }

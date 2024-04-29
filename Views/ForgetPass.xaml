@@ -15,7 +15,8 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="600" d:DesignWidth="1000"
+             SnapsToDevicePixels="True">
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="Link">
             <Setter Property="Cursor" Value="Hand"/>
@@ -84,182 +85,207 @@
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-                    Opacity="0.5" 
-                    Direction="300" 
-                    ShadowDepth="15" 
-                    BlurRadius="50"/>
-            </Border.Effect>
             <Grid>
-                <TabControl Height="400" Width="360">
-                    <TabItem Header="Bước 1">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock Margin="0 0 0 20"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Center"
-                                       FontSize="30" Height="43"
-                                       Text="XÁC THỰC TÀI KHOẢN"/>
-                            <Border Width="300" Height="40"
-                                    Background="White"
-                                    CornerRadius="20"
-                                    Margin="0 0 0 10"
-                                    BorderBrush="Black"
-                                    BorderThickness="1.5">
-                                <TextBox Width="270" 
-                                         Height="30"
-                                         materialDesign:HintAssist.Hint="ID"
-                                         Text="{Binding Path}"
-                                         x:Name="IDBox"
-                                         BorderThickness="0"
-                                         materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                         materialDesign:TextFieldAssist.LeadingIcon="Account"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         FontSize="20" VerticalContentAlignment="Center"/>
-                            </Border>
-                            <Border Width="300" Height="40"
-                                    Background="White"
-                                    CornerRadius="20"
-                                    Margin="0 0 0 10"
-                                    BorderBrush="Black"
-                                    BorderThickness="1.5">
-                                <TextBox Width="270" 
-                                         Height="30"
-                                         x:Name="EmailBox"
-                                         materialDesign:HintAssist.Hint="Email"
-                                         Text="{Binding Path}"
-                                         BorderThickness="0"
-                                         materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                         materialDesign:TextFieldAssist.LeadingIcon="Email"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         FontSize="20" VerticalContentAlignment="Center"/>
-                            </Border>
-                            
-                            <Border Width="300" CornerRadius="20" Height="42">
-                                <Button Width="300" 
-                                        Cursor="Hand"  
-                                        FontSize="20" Foreground="White"
-                                        Command="{Binding ForgetPass2Command}" Content="Gửi mã xác nhận" RenderTransformOrigin="0.5,0.5">
-                                    <Button.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform Y="7"/>
-                                        </TransformGroup>
-                                    </Button.RenderTransform>
-                                </Button>
-                            </Border>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Bước 2">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock Margin="0 0 0 20"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Center"
-                                       FontSize="30" Height="43"
-                                       Text="NHẬP MÃ XÁC NHẬN"/>
-                            <Border Width="300" Height="40"
-                                    Background="White"
-                                    CornerRadius="20"
-                                    Margin="0 0 0 10"
-                                    BorderBrush="Black"
-                                    BorderThickness="1.5">
-                                <TextBox Width="270" 
-                                         Height="30"
-                                         x:Name="CodeBox"
-                                         materialDesign:HintAssist.Hint="Mã xác nhận"
-                                         Text="{Binding Path}"
-                                         BorderThickness="0"
-                                         materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                         materialDesign:TextFieldAssist.LeadingIcon="ConfirmationNumber"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         FontSize="20" VerticalContentAlignment="Center"/>
-                            </Border>
-                            <Border Width="300" CornerRadius="20" Height="42">
-                                <Button Width="300" 
-                                        Cursor="Hand"  
-                                        FontSize="20" Foreground="White"
-                                        Command="{Binding ForgetPass2Command}" Content="Xác nhận" RenderTransformOrigin="0.5,0.5">
-                                    <Button.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform Y="7"/>
-                                        </TransformGroup>
-                                    </Button.RenderTransform>
-                                </Button>
-                            </Border>
-                            <Label FontSize="16" Foreground="OrangeRed"
-                                   Margin="0 10 0 0" HorizontalAlignment="Center">
-                                Mã hết hạn sau: 05:00
-                            </Label>
-                            <TextBlock Style="{StaticResource Link}" FontSize="16"
-                                       Margin="0 5 0 0" HorizontalAlignment="Center">
-                                Gửi lại
-                            </TextBlock>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Bước 3">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock Margin="0 0 0 20"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Center"
-                                       FontSize="30" Height="43"
-                                       Text="ĐẶT LẠI MẬT KHẨU"/>
-                            <Border Width="300" Height="40"
-                                    Background="White"
-                                    CornerRadius="20"
-                                    Margin="0 0 0 10"
-                                    BorderBrush="Black"
-                                    BorderThickness="1.5">
-                                <PasswordBox Width="270" 
-                                         Height="30"
-                                         x:Name="PWBox"
-                                         materialDesign:HintAssist.Hint="Mật khẩu mới"
-                                         BorderThickness="0"
-                                         materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                         materialDesign:TextFieldAssist.LeadingIcon="Password"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         FontSize="20" VerticalContentAlignment="Center"/>
-                            </Border>
-                            <Border Width="300" Height="40"
-                                    Background="White"
-                                    CornerRadius="20"
-                                    Margin="0 0 0 10"
-                                    BorderBrush="Black"
-                                    BorderThickness="1.5">
-                                <PasswordBox Width="270" 
+                <TabControl Height="400" Width="360" SelectedIndex="{Binding CurrentStep}"
+                            x:Name="Tab3Step">
+                    <TabItem Header="Bước 1" IsEnabled="{Binding Step1Enable}">
+                        <Grid>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock Margin="0 0 0 20"
+                                           Foreground="Black"
+                                           HorizontalAlignment="Center"
+                                           FontSize="30" Height="43"
+                                           Text="XÁC THỰC TÀI KHOẢN"/>
+                                <Border Width="300" Height="40"
+                                        Background="White"
+                                        CornerRadius="20"
+                                        Margin="0 0 0 10"
+                                        BorderBrush="Black"
+                                        BorderThickness="1.5">
+                                    <TextBox Width="270" 
                                              Height="30"
-                                             x:Name="ConfirmBox"
-                                             materialDesign:HintAssist.Hint="Xác nhận mật khẩu"
+                                             materialDesign:HintAssist.Hint="ID"
+                                             Text="{Binding UserID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              BorderThickness="0"
                                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                             materialDesign:TextFieldAssist.LeadingIcon="CheckBold"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Account"
                                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                             FontSize="20" VerticalContentAlignment="Center"/>
-                            </Border>
-                            <Border Width="300" CornerRadius="20" Height="42">
-                                <Button Width="300" 
-                                        Cursor="Hand"  
-                                        FontSize="20" Foreground="White"
-                                        Command="{Binding ForgetPass2Command}" Content="Đặt lại mật khẩu" RenderTransformOrigin="0.5,0.5">
-                                    <Button.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform Y="7"/>
-                                        </TransformGroup>
-                                    </Button.RenderTransform>
-                                </Button>
-                            </Border>
-                            <Label FontSize="16" Foreground="OrangeRed"
-                                   Margin="0 10 0 0" HorizontalAlignment="Center">
-                                Mật khẩu không hợp lệ.
-                            </Label>
-                        </StackPanel>
+                                             FontSize="16" VerticalContentAlignment="Center"/>
+                                </Border>
+                                <Border Width="300" Height="40"
+                                        Background="White"
+                                        CornerRadius="20"
+                                        Margin="0 0 0 10"
+                                        BorderBrush="Black"
+                                        BorderThickness="1.5">
+                                    <TextBox Width="270" 
+                                             Height="30"
+                                             x:Name="EmailBox"
+                                             materialDesign:HintAssist.Hint="Email"
+                                             Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             BorderThickness="0"
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Email"
+                                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                             FontSize="16" VerticalContentAlignment="Center"/>
+                                </Border>
+                                <Border Width="300" CornerRadius="20" Height="42">
+                                    <Button Width="300" 
+                                            Cursor="Hand"  
+                                            FontSize="20" Foreground="White"
+                                            Command="{Binding SendCodeCommand}">
+                                        <Grid Width="270">
+                                            <ProgressBar  Foreground="White" Visibility="{Binding Loading1}"
+                                                          Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                                          Value="0" IsIndeterminate="True" HorizontalAlignment="Right"/>
+                                            <TextBlock FontSize="16" HorizontalAlignment="Center">Gửi mã xác nhận</TextBlock>
+                                        </Grid>
+                                    </Button>
+                                </Border>
+                                <Label Content="{Binding Noti, Mode=TwoWay}" HorizontalAlignment="Center"
+                                       Margin="0 10 0 0" Foreground="OrangeRed"
+                                       FontStyle="Italic"></Label>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Bước 2" IsEnabled="{Binding Step2Enable}">
+                        <Grid>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock Margin="0 0 0 20"
+                                           Foreground="Black"
+                                           HorizontalAlignment="Center"
+                                           FontSize="30" Height="43"
+                                           Text="NHẬP MÃ XÁC NHẬN"/>
+                                <Border Width="300" Height="40"
+                                        Background="White"
+                                        CornerRadius="20"
+                                        Margin="0 0 0 10"
+                                        BorderBrush="Black"
+                                        BorderThickness="1.5">
+                                    <TextBox Width="270" 
+                                             Height="30"
+                                             x:Name="CodeBox"
+                                             materialDesign:HintAssist.Hint="Mã xác nhận"
+                                             Text="{Binding InputCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             BorderThickness="0"
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.LeadingIcon="ConfirmationNumber"
+                                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                             FontSize="16" VerticalContentAlignment="Center"/>
+                                </Border>
+                                <Border Width="300" CornerRadius="20" Height="40">
+                                    <Button Width="300" 
+                                            Cursor="Hand"  
+                                            FontSize="16" Foreground="White"
+                                            Command="{Binding ConfirmCodeCommand}" Content="Xác nhận" RenderTransformOrigin="0.5,0.5">
+                                    </Button>
+                                </Border>
+                                <Border Width="300" CornerRadius="20" Height="40" Margin="0 10 0 0">
+                                    <Button Width="300" 
+                                            Cursor="Hand" 
+                                            FontSize="20" Foreground="White"
+                                            Command="{Binding SendCodeCommand}">
+                                        <Grid Width="270">
+                                            <ProgressBar  Foreground="White" Visibility="{Binding Loading1}"
+                                                          Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                                          Value="0" IsIndeterminate="True" HorizontalAlignment="Right"/>
+                                            <TextBlock FontSize="16" HorizontalAlignment="Center">Gửi lại</TextBlock>
+                                        </Grid>
+                                    </Button>
+                                </Border>
+                                <TextBlock FontSize="16" Foreground="Black"
+                                       Margin="0 10 0 10" HorizontalAlignment="Center">
+                                    <Run Text="Mã hết hạn sau: "/>
+                                    <Run Text="{Binding TimeLabel}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="16" Foreground="OrangeRed"
+                                           Margin="0 10 0 10" HorizontalAlignment="Center"
+                                           FontStyle="Italic" Text="{Binding Noti}">
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Bước 3" IsEnabled="{Binding Step3Enable}">
+                        <Grid>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Margin="0 0 0 20"
+                                               Foreground="Black"
+                                               HorizontalAlignment="Center"
+                                               FontSize="30" Height="43"
+                                               Text="ĐẶT LẠI MẬT KHẨU"/>
+                                    <Border Width="300" Height="40"
+                                            Background="White"
+                                            CornerRadius="20"
+                                            Margin="0 0 0 10"
+                                            BorderBrush="Black"
+                                            BorderThickness="1.5">
+                                    <PasswordBox Width="270" 
+                                                 Height="30"
+                                                 x:Name="PWBox"
+                                                 materialDesign:HintAssist.Hint="Mật khẩu mới"
+                                                 BorderThickness="0"
+                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                                 materialDesign:TextFieldAssist.LeadingIcon="Password"
+                                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                 FontSize="16" VerticalContentAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PasswordChanged">
+                                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                                       CommandParameter="{Binding ElementName=PWBox}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </PasswordBox>
+                                    </Border>
+                                    <Border Width="300" Height="40"
+                                            Background="White"
+                                            CornerRadius="20"
+                                            Margin="0 0 0 10"
+                                            BorderBrush="Black"
+                                            BorderThickness="1.5">
+                                    <PasswordBox Width="270" 
+                                                     Height="30"
+                                                     x:Name="ConfirmBox"
+                                                     materialDesign:HintAssist.Hint="Xác nhận mật khẩu"
+                                                     BorderThickness="0"
+                                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                                     materialDesign:TextFieldAssist.LeadingIcon="CheckBold"
+                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                     FontSize="16" VerticalContentAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PasswordChanged">
+                                                <i:InvokeCommandAction Command="{Binding ConfirmPasswordChangedCommand}"
+                                                                       CommandParameter="{Binding ElementName=ConfirmBox}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </PasswordBox>
+                                    </Border>
+                                    <Border Width="300" CornerRadius="20" Height="42">
+                                        <Button Width="300" 
+                                                Cursor="Hand"  
+                                                FontSize="20" Foreground="White"
+                                                Command="{Binding ResetPasswordCommand}">
+                                        <Grid Width="270">
+                                            <ProgressBar  Foreground="White" Visibility="{Binding Loading2}"
+                                                          Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                                          Value="0" IsIndeterminate="True" HorizontalAlignment="Right"/>
+                                            <TextBlock FontSize="16" HorizontalAlignment="Center" >Đặt lại mật khẩu</TextBlock>
+                                        </Grid>
+                                            <Button.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform Y="7"/>
+                                                </TransformGroup>
+                                            </Button.RenderTransform>
+                                        </Button>
+                                    </Border>
+                                    <Label FontSize="16" Foreground="OrangeRed"
+                                           Margin="0 10 0 0" HorizontalAlignment="Center"
+                                           Content="{Binding Noti}">
+                                    </Label>
+                            </StackPanel>
+                        </Grid>
                     </TabItem>
                 </TabControl>
                 <uc:ExitUC VerticalAlignment="Top"

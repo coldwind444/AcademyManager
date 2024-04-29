@@ -86,13 +86,6 @@
             <Border.Background>
                 <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
             </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect 
-                    Opacity="0.5" 
-                    Direction="300" 
-                    ShadowDepth="15" 
-                    BlurRadius="50"/>
-            </Border.Effect>
             <Grid>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock  Margin="0 0 0 10"
@@ -109,7 +102,7 @@
                             BorderThickness="1.5">
                         <TextBox Width="270" Height="30"
                                  materialDesign:HintAssist.Hint="ID"
-                                 Text="{Binding UserID}"
+                                 Text="{Binding UserID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  x:Name="IDBox"
                                  BorderThickness="0"
                                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
@@ -126,7 +119,7 @@
                             BorderThickness="1.5">
                         <TextBox Width="270" Height="30"
                                  materialDesign:HintAssist.Hint="Email"
-                                 Text="{Binding Email}"
+                                 Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  x:Name="EmailBox"
                                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
                                  materialDesign:TextFieldAssist.LeadingIcon="Email"
@@ -182,24 +175,28 @@
                             </i:Interaction.Triggers>
                         </PasswordBox>
                     </Border>
-                    <Button Command="{Binding NotiSignUpSuccessCommand}" 
+                    <Button Command="{Binding ConfirmCommand}" 
                             Grid.Row="1" Height="40" 
                             Cursor="Hand" Margin="0 15 0 5"
                             FontSize="20" Foreground="White" 
-                            Width="300" Content="Xác nhận"/>
-                    <Label FontStyle="Italic"
+                            Width="300" >
+                        <Grid Width="270">
+                            <ProgressBar  Foreground="White" Visibility="{Binding Loading}"
+                                          Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                          Value="0" IsIndeterminate="True" HorizontalAlignment="Right"/>
+                            <TextBlock HorizontalAlignment="Center">Xác nhận</TextBlock>
+                        </Grid>
+                    </Button>
+                        <Label FontStyle="Italic"
                            HorizontalAlignment="Center"
                            Foreground="OrangeRed"
-                           Content="Sai."/>
+                           Content="{Binding Noti}"/>
                 </StackPanel>
                 <uc:ExitUC Margin="0 5 10 0"
                            Width="35" Height="35"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Right"
                            Tag="{Binding BackCommand}"></uc:ExitUC>
-                <ProgressBar  Foreground="White"
-                              Style="{StaticResource MaterialDesignCircularProgressBar}"
-                              Value="0" IsIndeterminate="True" Margin="310,298,67,79" />
             </Grid>
         </Border>
 

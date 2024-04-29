@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
 using AcademyManager.Views;
 using AcademyManager.AdminViews;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace AcademyManager.Viewmodels
 {
@@ -15,6 +17,17 @@ namespace AcademyManager.Viewmodels
         private MainVM ParentVM { get; set; }
         #endregion
         #region Methods
+        FrameworkElement GetWindowParent(UserControl p)
+        {
+            FrameworkElement parent = p;
+
+            while (parent.Parent != null)
+            {
+                parent = parent.Parent as FrameworkElement;
+            }
+
+            return parent;
+        }
         private void InitializeCommand()
         {
             InstructorCommand = new RelayCommand<object>(p => { return true; }, p =>
@@ -39,11 +52,19 @@ namespace AcademyManager.Viewmodels
                     ParentVM.CurrentView = ParentVM.WelcomeView;
             });
 
-            AdminCommand = new RelayCommand<object>(p => { return true; }, p =>
+            AdminCommand = new RelayCommand<WhoAreYou>(p => { return true; }, p =>
             {
-                AdminAuthWindow adm = new AdminAuthWindow();
-                adm.ShowDialog();
+                var w = GetWindowParent(p);
+                Window main = w as Window;
+                if (main != null)
+                {
+                    AdminAuthWindow adm = new AdminAuthWindow();
+                    main.Hide();
+                    adm.ShowDialog();
+                    main.Show();
+                }
             });
+
         }
         #endregion
         public WhoAreYouVM(MainVM vm)

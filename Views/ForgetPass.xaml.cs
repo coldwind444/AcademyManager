@@ -22,9 +22,9 @@ namespace AcademyManager.Views
     public partial class ForgetPass : UserControl
     {
         public ForgetPassVM Viewmodel { get; set; }
-        public ForgetPass(MainVM vm)
+        public ForgetPass(int t, MainVM vm)
         {
-            this.DataContext = Viewmodel = new ForgetPassVM(vm);
+            this.DataContext = Viewmodel = new ForgetPassVM(t, vm);
             InitializeComponent();
         }
     }
