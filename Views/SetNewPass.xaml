@@ -176,7 +176,7 @@
                         </PasswordBox>
                     </Border>
                     <Button Command="{Binding ConfirmCommand}" 
-                            Grid.Row="1" Height="40" 
+                            Grid.Row="1" Height="40" IsDefault="True"
                             Cursor="Hand" Margin="0 15 0 5"
                             FontSize="20" Foreground="White" 
                             Width="300" >
