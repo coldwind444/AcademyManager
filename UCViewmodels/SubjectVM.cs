@@ -12,6 +12,7 @@ namespace AcademyManager.UCViewmodels
         #endregion
         #region Properties
         private MainVM GParentVM { get; set; }
+        private SubjectListVM ParentVM { get; set; }
         private Class ClassData { get; set; }
         #endregion
         #region Methods
@@ -23,21 +24,22 @@ namespace AcademyManager.UCViewmodels
                 {
                     if (MainVM.CurrentAccount.Type == 1)
                     {
-                        GParentVM.CourseContent = new LectureCourse(ClassData);
+                        GParentVM.CourseContent = new LectureCourse(ClassData, GParentVM, ParentVM);
                         GParentVM.CurrentView = GParentVM.CourseContent;
                     } else
                     {
-                        GParentVM.CourseContent = new StudentCourse(ClassData);
+                        GParentVM.CourseContent = new StudentCourse(ClassData, GParentVM, ParentVM);
                         GParentVM.CurrentView = GParentVM.CourseContent;
                     }
                 }
             });
         }
         #endregion
-        public SubjectVM(MainVM p, Class data)
+        public SubjectVM(MainVM p, SubjectListVM p1, Class data)
         {
             ClassData = data;
             GParentVM = p;
+            ParentVM = p1;
             InitializeCommands();
         }
     }
