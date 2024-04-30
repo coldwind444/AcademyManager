@@ -22,9 +22,9 @@ namespace AcademyManager.Views
     public partial class Noti : UserControl
     {
         public NotiVM Viewmodel { get; set; }
-        public Noti()
+        public Noti(MainVM vm)
         {
-            this.DataContext = Viewmodel = new NotiVM();
+            this.DataContext = Viewmodel = new NotiVM(vm);
             InitializeComponent();
         }
     }

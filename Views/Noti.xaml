@@ -128,8 +128,8 @@
             <Separator Grid.Row="1" Height="5" Width="900"/>
             <ScrollViewer Grid.Row="2" Width="900" Height="400"
                           Background="Transparent"
-                          VerticalAlignment="Center"
-                          VerticalScrollBarVisibility="Auto">
+                          VerticalAlignment="Top"
+                          VerticalScrollBarVisibility="Auto" Margin="50,31,50,0">
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="uc:SpecificNoti">
@@ -145,6 +145,12 @@
                     <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
                 </StackPanel>
             </ScrollViewer>
+            <Button Width="200" Height="50" Margin="270,455,530,-5" Grid.Row="2"
+                    Content="Quay lại" Foreground="White" FontSize="25"
+                    Command="{Binding BackCommand}"/>
+            <Button Width="200" Height="50" Margin="500,455,300,-5" Grid.Row="2"
+                    Content="Tải lại" Foreground="White" FontSize="25"
+                    Command="{Binding ReloadCommand}"/>
         </Grid>
     </Grid>
 </UserControl>
