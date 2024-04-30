@@ -132,7 +132,7 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 12)
+                if (colCount != 13)
                 {
                     list = null;
                     return null;
@@ -158,7 +158,7 @@ namespace AcademyManager.AdminViewmodels
                         return null;
                     }
 
-                    string? day = worksheet.Cells[row, 8].Value.ToString();
+                    string? day = worksheet.Cells[row, 9].Value.ToString();
                     string? bgt = worksheet.Cells[row, 10].Value.ToString();
                     string? et = worksheet.Cells[row, 11].Value.ToString();
                     string? bgd = worksheet.Cells[row, 12].Value.ToString();

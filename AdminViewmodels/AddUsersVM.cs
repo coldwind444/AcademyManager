@@ -85,7 +85,7 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 7) return null;
+                if (colCount != 7) return null;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
@@ -132,7 +132,7 @@ namespace AcademyManager.AdminViewmodels
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
-                if (colCount < 8) return null;
+                if (colCount != 8) return null;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
