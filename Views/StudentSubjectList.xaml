@@ -112,22 +112,22 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <TextBlock TextAlignment="Center"
-                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                       Margin="150,10,150,530" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
+        <TextBlock TextAlignment="Center" FontWeight="Medium"
+                       TextWrapping="Wrap" FontSize="35" Foreground="Black" 
+                       Margin="150,22,150,518" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
         <Separator Background="Black" Margin="0,60,0,530" HorizontalAlignment="Center" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
             Command="{Binding BackCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="344,539,535,11" Height="50" Content="Quay lại"/>
+            RenderTransformOrigin="0.5,0.5" Margin="344,539,535,11" Height="40" Content="Quay lại"/>
         <Button 
                 Background="ForestGreen" Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding RegisterCommand}"
-                RenderTransformOrigin="0.5,0.5" Margin="480,539,330,11" Height="50" Content="Đăng kí môn học"/>
+                RenderTransformOrigin="0.5,0.5" Margin="480,539,330,11" Height="40" Content="Đăng kí môn học"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="426" VerticalAlignment="Center" Margin="70,0,75,0">
             <WrapPanel x:Name="SubjectsList" Width="850" OpacityMask="Black">
                 <WrapPanel.Resources>

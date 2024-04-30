@@ -39,7 +39,7 @@
     <Border CornerRadius="20" Background="White">
         <Grid>
             <StackPanel>
-                <TextBlock Margin="20 5 0 0 " FontSize="30" Text="{Binding Path=Class, ElementName=register}" TextAlignment="Left" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="20 15 0 0 " FontSize="25" Text="{Binding Path=Class, ElementName=register}" TextAlignment="Left" FontWeight="Medium"></TextBlock>
                 <TextBlock Margin="20 5 0 0 " FontSize="20" TextAlignment="Left">
                     <Run Text="Giảng viên: " />
                     <Run Text="{Binding LecturerName, ElementName=register}" />

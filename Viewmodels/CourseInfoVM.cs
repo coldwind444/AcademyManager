@@ -38,7 +38,6 @@ namespace AcademyManager.Viewmodels
             BackCommand = new RelayCommand<object>(p => true, p =>
             {
                 GGParentVM.CurrentView = GGParentVM.CourseListView;
-                GParentVM.LoadClasses();
             });
         }
         #endregion

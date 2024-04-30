@@ -144,33 +144,33 @@
         </materialDesign:PackIcon>
         <TextBlock TextAlignment="Left"
                    TextWrapping="Wrap" 
-                   FontSize="40" 
+                   FontSize="30" 
                    Foreground="Black"
-                   Margin="40,10,395,540" 
-                   Height="50" FontWeight="Bold">
+                   Margin="40,26,395,524" 
+                   Height="50" FontWeight="Medium">
             <Run Text="{Binding Data.CourseName}"/>
             <Run Text=" ("/>
             <Run Text="{Binding Data.CourseID}"/>
             <Run Text=")"/>
         </TextBlock>
         <TextBlock TextAlignment="Left" 
-                   FontSize="30" FontWeight="Bold"
+                   FontSize="30" FontWeight="Medium"
                    TextWrapping="Wrap" 
-                   Margin="40,65,360,495" 
+                   Margin="40,70,360,490" 
                    Width="600" Height="40">
             <Run Text="Giảng viên: "/>
             <Run Text="{Binding Data.InstructorName}"/>
         </TextBlock>
         <Separator Background="Black" 
-                   Margin="40,122,0,468" 
+                   Margin="40,105,0,485" 
                    HorizontalAlignment="Left" 
                    Width="900" 
                    Height="10"/>
         <TextBlock TextAlignment="Left" 
-                   FontSize="30" 
+                   FontSize="25" 
                    TextWrapping="Wrap" 
                    Width="200" 
-                   Margin="71,137,729,403" Text="Tài liệu"/>
+                   Margin="40,120,760,439" Text="Tài liệu"/>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 
@@ -185,7 +185,7 @@
                 Foreground="White"
                 RenderTransformOrigin="0.747,0.56" 
                 Height="40" Width="220"
-                Content="Cập nhật điểm số" Margin="720,65,60,495" 
+                Content="Cập nhật điểm số" Margin="720,55,60,505" 
                 Command="{Binding UpdateScoreCommand}"/>
         <ScrollViewer Margin="40,183,60,91" VerticalScrollBarVisibility="Auto">
             <StackPanel>
@@ -198,7 +198,7 @@
         </ScrollViewer>
         <Button Height="60" Width="60"
                 ToolTip="Thêm tài liệu"
-                Margin="851,530,89,10"
+                Margin="850,525,90,15"
                 Command="{Binding AddDocumentCommand}">
             <materialDesign:PackIcon Kind="Add" Foreground="White"
                                      Height="30" Width="30"/>

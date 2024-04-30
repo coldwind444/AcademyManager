@@ -73,7 +73,7 @@ namespace AcademyManager.AdminViewmodels
                         NotificationV = Visibility.Hidden;
                         w.Hide();
                         adwd.ShowDialog();
-                        w.Show();
+                        w.ShowDialog();
                     } else
                     {
                         Notification = "Sai mật khẩu.";

@@ -144,9 +144,9 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <TextBlock TextAlignment="Center"
-                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                       Margin="150,5,150,535" Height="60" Width="700"><Run Text="ĐĂNG K"/><Run Language="vi-vn" Text="Ý"/><Run Text=" MÔN HỌC"/></TextBlock>
+        <TextBlock TextAlignment="Center" FontWeight="Medium"
+                       TextWrapping="Wrap" FontSize="35" Foreground="Black" 
+                       Margin="150,13,150,527" Height="60" Width="700"><Run Text="ĐĂNG K"/><Run Language="vi-vn" Text="Ý"/><Run Text=" MÔN HỌC"/></TextBlock>
         <Separator Background="Black" Margin="0,55,0,535" HorizontalAlignment="Center" Width="850" Height="10"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       Width="850" Margin="75,128,75,70">
@@ -158,30 +158,30 @@
                 </StackPanel.Resources>
             </StackPanel>
         </ScrollViewer>
-        <Button Height="50" Width="160"
-                Foreground="White" FontSize="25" 
+        <Button Height="40" Width="160"
+                Foreground="White" FontSize="20" 
                 Margin="420,530,420,10"
                 Command="{Binding BackCommand}">
             Quay lại
         </Button>
-        <Border Background="White" CornerRadius="25"
-                Height="50" Margin="75,73,620,477"
+        <Border Background="White" CornerRadius="20"
+                Height="40" Margin="75,73,620,477"
                 BorderThickness="1" BorderBrush="Black">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <TextBox Height="30" Width="200"
                          Text="{Binding CID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         FontSize="20" VerticalContentAlignment="Center"
+                         FontSize="16" VerticalContentAlignment="Center"
                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                          materialDesign:TextFieldAssist.HasLeadingIcon="True"
                          materialDesign:TextFieldAssist.LeadingIcon="Collage"
                          materialDesign:HintAssist.Hint="Nhập mã môn học"
                          BorderThickness="0" Margin="20 0 0 0"></TextBox>
-                <Button Height="40" Width="40" Margin="30 0 0 0"
+                <Button Height="30" Width="30" Margin="40 0 0 0"
                         Command="{Binding SearchCommand}" IsDefault="True"
                         CommandParameter="{Binding ElementName=ClassPanel}">
                     <materialDesign:PackIcon Kind="Search" Foreground="White"
-                                             Height="25" Width="25"/>
+                                             Height="20" Width="20"/>
                 </Button>
             </StackPanel>
         </Border>

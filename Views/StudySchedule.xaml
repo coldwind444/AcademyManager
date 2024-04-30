@@ -150,16 +150,16 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <TextBlock TextAlignment="Center"
-                       TextWrapping="Wrap" FontSize="40" Foreground="Black" 
+        <TextBlock TextAlignment="Center" FontWeight="Medium"
+                       TextWrapping="Wrap" FontSize="35" Foreground="Black" 
                        Margin="150,23,150,517" Height="60" Width="700" Text="LỊCH"/>
-        <Separator Background="Black" Margin="0,88,0,502" HorizontalAlignment="Center" Width="850" Height="10"/>
+        <Separator Background="Black" Margin="0,73,0,517" HorizontalAlignment="Center" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"
             FontSize="20" 
             Foreground="White"
             Command="{Binding BackCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="50" Content="Quay lại"/>
+            RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="40" Content="Quay lại"/>
         <Border Width="900" Margin="0 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350">
             <uc:FullCalendar HorizontalAlignment="Center" VerticalAlignment="Top" Height="351" Margin="0,-26,0,0"/>
         </Border>

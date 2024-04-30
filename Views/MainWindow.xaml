@@ -120,10 +120,10 @@
 									  IsChecked="{Binding AtNotificationPage}"
 									  Command="{Binding NotificationCommand}">
                             <Grid>
-                                <materialDesign:PackIcon Kind="BellRing" HorizontalAlignment="Center"
+                                <materialDesign:PackIcon Kind="Bell" HorizontalAlignment="Center"
 														 Width="40" Height="40"
 														 Foreground="White"/>
-                                <Ellipse Fill="Red" Height="12" Width="12" 
+                                <Ellipse Fill="Red" Height="15" Width="15" 
                                          RenderTransformOrigin="1.4,-0.133" 
                                          Margin="22,2,8,28" Visibility="{Binding NewNotifications}"/>
                             </Grid>

@@ -143,20 +143,20 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <TextBlock TextAlignment="Left" FontWeight="Bold"
-                   TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                   Margin="40,10,386,540" Height="50">
+        <TextBlock TextAlignment="Left" FontWeight="Medium"
+                   TextWrapping="Wrap" FontSize="30" Foreground="Black" 
+                   Margin="40,31,386,519" Height="50">
             <Run Text="{Binding Data.CourseName}"/>
             <Run Text=" ("/>
             <Run Text="{Binding Data.CourseID}"/>
             <Run Text=")"/>
         </TextBlock>
-        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,65,360,495" Width="600" Height="40" FontWeight="Bold">
+        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,72,360,488" Width="600" Height="40" FontWeight="Medium">
             <Run Text="Giảng viên: "/>
             <Run Text="{Binding Data.InstructorName}"/>
         </TextBlock>
-        <Separator Background="Black" Margin="40,122,0,468" HorizontalAlignment="Left" Width="900" Height="10"/>
-        <TextBlock TextAlignment="Left" FontSize="35" TextWrapping="Wrap" Width="200" Height="60" Margin="77,137,723,403"><Run Text="Tài liệu"/><LineBreak/></TextBlock>
+        <Separator Background="Black" Margin="40,106,0,484" HorizontalAlignment="Left" Width="900" Height="10"/>
+        <TextBlock TextAlignment="Left" FontSize="25" TextWrapping="Wrap" Width="200" Margin="40,121,760,435"><Run Text="Tài liệu"/><LineBreak/></TextBlock>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 
@@ -165,7 +165,7 @@
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="740,61,60,499" 
                 Content="Danh sách sinh viên" Width="200" Height="40"/>
-        <ScrollViewer Margin="40,179,60,95" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="40,193,60,79" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">
@@ -174,8 +174,8 @@
                 </StackPanel.Resources>
             </StackPanel>
         </ScrollViewer>
-        <Button Height="50" Width="160"
-                FontSize="25" Foreground="White" Margin="420,540,420,10"
+        <Button Height="40"
+                FontSize="20" Foreground="White" Margin="432,550,432,10"
                 Command="{Binding BackCommand}">
             Quay lại
         </Button>

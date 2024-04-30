@@ -20,17 +20,15 @@ namespace AcademyManager.UCViewmodels
         {
             ViewCommand = new RelayCommand<object>(p => true, p =>
             {
-                if (GParentVM.CourseContent == null)
+                if (MainVM.CurrentAccount.Type == 1)
                 {
-                    if (MainVM.CurrentAccount.Type == 1)
-                    {
-                        GParentVM.CourseContent = new LectureCourse(ClassData, GParentVM, ParentVM);
-                        GParentVM.CurrentView = GParentVM.CourseContent;
-                    } else
-                    {
-                        GParentVM.CourseContent = new StudentCourse(ClassData, GParentVM, ParentVM);
-                        GParentVM.CurrentView = GParentVM.CourseContent;
-                    }
+                    GParentVM.CourseContent = new LectureCourse(ClassData, GParentVM, ParentVM);
+                    GParentVM.CurrentView = GParentVM.CourseContent;
+                }
+                else
+                {
+                    GParentVM.CourseContent = new StudentCourse(ClassData, GParentVM, ParentVM);
+                    GParentVM.CurrentView = GParentVM.CourseContent;
                 }
             });
         }

@@ -151,9 +151,9 @@
                 </TransformGroup>
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
-        <TextBlock TextAlignment="Center"
+        <TextBlock TextAlignment="Center" FontWeight="Medium"
                        TextWrapping="Wrap" FontSize="40" Foreground="Black" 
-                       Margin="150,10,150,530" Height="60" Width="700"><Run Language="vi-vn" Text="CÁC LỚP GIẢNG DẠY"/></TextBlock>
+                       Margin="150,20,150,520" Height="60" Width="700"><Run Language="vi-vn" Text="CÁC LỚP GIẢNG DẠY"/></TextBlock>
         <Separator Background="Black" Margin="0,70,0,520" HorizontalAlignment="Center" Width="850" Height="10"/>
         <Button 
             Background="ForestGreen" Cursor="Hand"

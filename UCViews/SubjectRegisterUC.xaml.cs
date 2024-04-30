@@ -35,7 +35,7 @@ namespace AcademyManager.UCViews
                     e = cls.EndTime.ToString("HH:mm");
             Time = $"{bg} - {e}";
             LecturerName = cls.InstructorName;
-            Class = cls.ClassID;
+            Class = $"{cls.CourseName} - {cls.ClassID}";
             ClassData = cls;
             InitializeComponent();
         }

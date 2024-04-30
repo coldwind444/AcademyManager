@@ -7,11 +7,11 @@
              mc:Ignorable="d" x:Name="subject"
              xmlns:vm="clr-namespace:AcademyManager.UCViewmodels"
              d:DataContext="{d:DesignInstance Type=vm:SubjectVM}"
-             d:DesignHeight="200" d:DesignWidth="400">
+             d:DesignHeight="170" d:DesignWidth="400">
     <Border Margin="0,0,0,0" 
             CornerRadius="20" 
             Width="400" 
-            Height="200">
+            Height="170">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding ViewCommand}"/>
@@ -31,25 +31,25 @@
             </Style>
         </Border.Style>
         <StackPanel Width="400">
-            <TextBlock Margin="30 15 0 0 " FontSize="30" TextAlignment="Left" FontWeight="Bold">
+            <TextBlock Margin="30 15 20 0 " FontSize="20" TextAlignment="Left" FontWeight="Bold">
                 <Run Text="{Binding Path=Subject, ElementName=subject}"/>
                 <Run Text=" ("/>
                 <Run Text="{Binding Path=CourseID, ElementName=subject}"/>
                 <Run Text=")"/>
             </TextBlock>
-            <TextBlock Margin="30 10 50 0 " FontSize="20" TextAlignment="Left">
+            <TextBlock Margin="30 10 50 0 " FontSize="16" TextAlignment="Left">
                 <Run Text="Giảng viên:"/>
                 <Run Text="{Binding Path=LecturerName, ElementName=subject}"/>
             </TextBlock>
-            <TextBlock Margin="30 5 50 0 " FontSize="20" TextAlignment="Left">
+            <TextBlock Margin="30 5 50 0 " FontSize="16" TextAlignment="Left">
                 <Run Text="Lớp: "/>
                 <Run Text="{Binding Path=Class, ElementName=subject}"/>
             </TextBlock>
-            <TextBlock Margin="30 5 50 0 " FontSize="20" TextAlignment="Left">
+            <TextBlock Margin="30 5 50 0 " FontSize="16" TextAlignment="Left">
                 <Run Text="Phòng học: "/>
                 <Run Text="{Binding Path=Room, ElementName=subject}"/>
             </TextBlock>
-            <TextBlock Margin="30 5 50 0 " FontSize="20" TextAlignment="Left">
+            <TextBlock Margin="30 5 50 0 " FontSize="16" TextAlignment="Left">
                 <Run Text="Thời gian: " />
                 <Run Text="{Binding Path=Time, ElementName=subject}"/>
             </TextBlock>
