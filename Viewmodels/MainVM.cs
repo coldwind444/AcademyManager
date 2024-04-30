@@ -19,6 +19,7 @@ namespace AcademyManager.Viewmodels
         // current account
         public static Account CurrentAccount { get; set; }
         public static User CurrentUser { get; set; }
+        public static List<Class> UserClassList { get; set; }
 
         // authentication
         public UserControl WhoAreYouView { get; set; }
@@ -49,7 +50,12 @@ namespace AcademyManager.Viewmodels
         private bool _atinfopage;
         private bool _athomepage;
         private bool _islogout;
-        private bool _isTeacher;
+        private Visibility _noti;
+        public Visibility NewNotifications
+        {
+            get { return _noti; }
+            set { _noti = value; OnPropertyChanged(); }
+        }
         public Visibility NavigationButtonV
         {
             get { return _navBtnV; }
@@ -95,6 +101,18 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
+        private void SetNotificationDot()
+        {
+            if (CurrentUser == null) return;
+            if (CurrentUser.Notifications != null)
+            {
+                if (CurrentUser.Notifications.Count > 0) NewNotifications = Visibility.Visible;
+                else NewNotifications = Visibility.Hidden;
+            } else
+            {
+                NewNotifications = Visibility.Hidden;
+            }
+        }
         private void InitializeCommands()
         {
             HomeNavigateCommand = new RelayCommand<object>(p => { return true; }, p =>
@@ -102,6 +120,7 @@ namespace AcademyManager.Viewmodels
                 AtHomePage = true;
                 AtNotificationPage = false;
                 CurrentView = HomeView;
+                SetNotificationDot();
             });
 
             LogoutCommand = new RelayCommand<object>(p => { return true; }, p =>
@@ -119,7 +138,7 @@ namespace AcademyManager.Viewmodels
                 AtNotificationPage = true;
                 if (NotificationView == null)
                 {
-                    NotificationView = new Noti();
+                    NotificationView = new Noti(this);
                     CurrentView = NotificationView;
                 } else 
                     CurrentView = NotificationView;
@@ -154,6 +173,7 @@ namespace AcademyManager.Viewmodels
             AtInfoPage = false;
             IsLogout = false;
             NavigationButtonV = Visibility.Hidden;
+            SetNotificationDot();
         }
     }
 }
