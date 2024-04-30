@@ -62,7 +62,7 @@ namespace AcademyManager.UCViewmodels
             CurrentDate = ScheduleDate.Value.ToString("dd/MM/yyyy");
             DateOnly input = DateOnly.FromDateTime((DateTime)ScheduleDate);
             List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
-            LoadTodayTasks(todaytasks, p);
+            LoadTodayTasks(todaytasks, panel);
             InitializeCommands();
         }
     }
