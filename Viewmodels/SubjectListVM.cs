@@ -30,44 +30,9 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
-        private async Task<List<Class>> GetClassList()
+        public void LoadClasses()
         {
-            var list = new List<Class>();
-            DatabaseManager db = new DatabaseManager();
-            if (MainVM.CurrentAccount.Type == 1)
-            {
-                InstructorUser? user = MainVM.CurrentUser as InstructorUser;
-                if (user != null)
-                {
-                    var batch = new List<Task<Class>>();
-                    foreach (ClassIdentifier c in user.StudyElements)
-                    {
-                        batch.Add(db.GetClassAsync(c.TermID, c.CourseID, c.ClassID));
-                    }
-                    var result = await Task.WhenAll(batch);
-                    list.AddRange(result);
-                }
-            }
-            else
-            {
-                StudentUser? user = MainVM.CurrentUser as StudentUser;
-                if (user != null)
-                {
-                    var batch = new List<Task<Class>>();
-                    foreach (ClassIdentifier c in user.StudyElements)
-                    {
-                        batch.Add(db.GetClassAsync(c.TermID, c.CourseID, c.ClassID));
-                    }
-                    var result = await Task.WhenAll(batch);
-                    list.AddRange(result);
-                }
-            }
-            return list;
-        }
-        private async void LoadClasses()
-        {
-            DatabaseManager db = new DatabaseManager();
-            List<Class> list = await GetClassList();
+            List<Class> list = MainVM.UserClassList;
             if (list.Count == 0)
             {
                 if (MainVM.CurrentAccount.Type == 1)
@@ -84,10 +49,7 @@ namespace AcademyManager.Viewmodels
 
             foreach (Class c in list)
             {
-                string bg = c.BeginTime.ToString("HH:mm"),
-                       e = c.EndTime.ToString("HH:mm");
-                string time = $"{bg} - {e}";
-                SubjectUC item = new SubjectUC(ParentVM, c, c.CourseID, c.CourseName, c.InstructorName, c.ClassID, c.Room, time);
+                SubjectUC item = new SubjectUC(ParentVM, this, c);
                 SubjList.Children.Add(item);
             }
         }
@@ -95,14 +57,14 @@ namespace AcademyManager.Viewmodels
         {
             BackCommand = new RelayCommand<object>(p => true, p =>
             {
-                ParentVM.CurrentView = ParentVM.HomeView;
+                ParentVM.HomeNavigateCommand.Execute(null);
             });
 
             RegisterCommand = new RelayCommand<object>(p => true, p =>
             {
                 if (ParentVM.CourseRegisterView == null)
                 {
-                    ParentVM.CourseRegisterView = new SubjectRegister();
+                    ParentVM.CourseRegisterView = new SubjectRegister(ParentVM);
                     ParentVM.CurrentView = ParentVM.CourseRegisterView;
                 } else
                     ParentVM.CurrentView = ParentVM.CourseRegisterView;

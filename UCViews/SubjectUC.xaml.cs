@@ -12,19 +12,20 @@ namespace AcademyManager.UCViews
     public partial class SubjectUC : UserControl
     {
         public SubjectVM Viewmodel { get; set; }
-        public SubjectUC(MainVM p, Class info, string cid, string sub, string lecturer, string cln, string room, string time)
+        public SubjectUC(MainVM p, SubjectListVM p1, Class info)
         {
-            LecturerName = lecturer;
-            Subject = sub;
-            CourseID = cid;
-            Class = cln;
-            Room = room;
+            LecturerName = info.InstructorName;
+            Subject = info.CourseName;
+            CourseID = info.CourseID;
+            Class = info.ClassID;
+            Room = info.Room;
+            string bg = info.BeginTime.ToString("HH:mm"),
+                       e = info.EndTime.ToString("HH:mm");
+            string time = $"{bg} - {e}";
             Time = time;
-            ClassInfo = info;
-            this.DataContext = Viewmodel = new SubjectVM(p, info);
+            this.DataContext = Viewmodel = new SubjectVM(p, p1, info);
             InitializeComponent();
         }
-        public Class ClassInfo { get; set; }
         public string CourseID
         {
             get { return (string)GetValue(CourseIDProperty); }

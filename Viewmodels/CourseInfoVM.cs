@@ -9,9 +9,12 @@ namespace AcademyManager.Viewmodels
         public ICommand ViewStudentListCommand { get; set; }
         public ICommand UpdateScoreCommand { get; set; }
         public ICommand AddDocumentCommand { get; set; }
+        public ICommand BackCommand { get; set; }
         #endregion
         #region Properties
         public Class Data {  get; set; }
+        private MainVM GGParentVM { get; set; }
+        private SubjectListVM GParentVM { get; set; }
         
         #endregion
         #region Methods
@@ -31,11 +34,19 @@ namespace AcademyManager.Viewmodels
             {
 
             });
+
+            BackCommand = new RelayCommand<object>(p => true, p =>
+            {
+                GGParentVM.CurrentView = GGParentVM.CourseListView;
+                GParentVM.LoadClasses();
+            });
         }
         #endregion
-        public CourseInfoVM(Class data)
+        public CourseInfoVM(Class data, MainVM vm, SubjectListVM p)
         {
             Data = data;
+            GGParentVM = vm;
+            GParentVM = p;
             InitializeCommands();
         }
     }

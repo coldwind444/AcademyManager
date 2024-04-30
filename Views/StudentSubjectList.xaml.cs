@@ -24,8 +24,8 @@ namespace AcademyManager.Views
         public SubjectListVM Viewmodel { get; set; }
         public StudentSubjectList(MainVM vm)
         {
-            this.DataContext = Viewmodel = new SubjectListVM(vm, SubjectsList);
             InitializeComponent();
+            this.DataContext = Viewmodel = new SubjectListVM(vm, SubjectsList);
         }
     }
 }

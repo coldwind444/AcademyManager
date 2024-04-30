@@ -26,12 +26,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="20">
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.5" 
-                                                  Direction="300" 
-                                                  ShadowDepth="15" 
-                                                  BlurRadius="50"/>
-                            </Border.Effect>
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
@@ -162,7 +156,7 @@
             <Run Text="{Binding Data.InstructorName}"/>
         </TextBlock>
         <Separator Background="Black" Margin="40,122,0,468" HorizontalAlignment="Left" Width="900" Height="10"/>
-        <TextBlock TextAlignment="Left" FontSize="35" TextWrapping="Wrap" Width="200" Height="60" Margin="81,146,719,394"><Run Text="Tài liệu"/><LineBreak/></TextBlock>
+        <TextBlock TextAlignment="Left" FontSize="35" TextWrapping="Wrap" Width="200" Height="60" Margin="77,137,723,403"><Run Text="Tài liệu"/><LineBreak/></TextBlock>
         <Button Background="ForestGreen" 
                 Cursor="Hand"
                 FontSize="20" 
@@ -171,7 +165,7 @@
                 RenderTransformOrigin="0.747,0.56" 
                 Margin="740,61,60,499" 
                 Content="Danh sách sinh viên" Width="200" Height="40"/>
-        <ScrollViewer Margin="40,203,60,71" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="40,179,60,95" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">
@@ -180,5 +174,10 @@
                 </StackPanel.Resources>
             </StackPanel>
         </ScrollViewer>
+        <Button Height="50" Width="160"
+                FontSize="25" Foreground="White" Margin="420,540,420,10"
+                Command="{Binding BackCommand}">
+            Quay lại
+        </Button>
     </Grid>
 </UserControl>

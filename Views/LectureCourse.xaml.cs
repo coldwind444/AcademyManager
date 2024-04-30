@@ -23,9 +23,9 @@ namespace AcademyManager.Views
     public partial class LectureCourse : UserControl
     {
         public CourseInfoVM Viewmodel { get; set; }
-        public LectureCourse(Class data)
+        public LectureCourse(Class data, MainVM vm, SubjectListVM p)
         {
-            this.DataContext = Viewmodel = new CourseInfoVM(data);
+            this.DataContext = Viewmodel = new CourseInfoVM(data, vm, p);
             InitializeComponent();
         }
     }
