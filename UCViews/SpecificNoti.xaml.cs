@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AcademyManager.Viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,17 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
+        public SpecificNoti(int id, string title, string notiContent, DateTime updateTime, NotiVM p)
+        {
+            NotiParent = p;
+            ID = id;
+            Title = title;
+            NotiContent = notiContent;
+            UpdateTime = updateTime.ToString();
+            InitializeComponent();
+        }
+        public NotiVM NotiParent {  get; set; }
+        public int ID { get; set; }
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -45,5 +57,11 @@ namespace AcademyManager.UCViews
         }
 
         public static readonly DependencyProperty UpdateTimeProperty = DependencyProperty.Register("UpdateTime", typeof(string), typeof(SpecificNoti));
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            NotiParent.DeletedNoti = this;
+            NotiParent.DeleteNoti();
+        }
     }
 }

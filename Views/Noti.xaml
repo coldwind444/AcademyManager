@@ -130,19 +130,12 @@
                           Background="Transparent"
                           VerticalAlignment="Top"
                           VerticalScrollBarVisibility="Auto" Margin="50,31,50,0">
-                <StackPanel HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" x:Name="notiPanel">
                     <StackPanel.Resources>
                         <Style TargetType="uc:SpecificNoti">
                             <Setter Property="Margin" Value="0 0 0 10"/>
                         </Style>
                     </StackPanel.Resources>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
-                    <uc:SpecificNoti Title="Hệ điều hành" NotiContent="Điểm số vừa được cập nhật !"></uc:SpecificNoti>
                 </StackPanel>
             </ScrollViewer>
             <Button Width="200" Height="50" Margin="270,455,530,-5" Grid.Row="2"

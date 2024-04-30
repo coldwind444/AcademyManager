@@ -24,8 +24,8 @@ namespace AcademyManager.Views
         public NotiVM Viewmodel { get; set; }
         public Noti(MainVM vm)
         {
-            this.DataContext = Viewmodel = new NotiVM(vm);
             InitializeComponent();
+            this.DataContext = Viewmodel = new NotiVM(vm, notiPanel);
         }
     }
 }
