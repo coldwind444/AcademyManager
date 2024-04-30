@@ -103,6 +103,12 @@ namespace AcademyManager.Models
             Term result = response.ResultAs<Term>();
             return result;
         }
+        public async Task<string> GetCurrentTermAsync()
+        {
+            FirebaseResponse response = await client.GetAsync("CurrentTerm");
+            string result = response.ResultAs<string>();
+            return result;
+        }
         #endregion
         #region Course
         public async Task UpdateCourseAsync(string termID, Course course)
@@ -142,6 +148,18 @@ namespace AcademyManager.Models
         public async Task UpdateAdminPassword(Admin ad)
         {
             SetResponse response = await client.SetAsync($"Admin/{ad.UUID}/Password", ad.Password);
+        }
+        #endregion
+        #region Student List
+        public async Task AddStudentAsync(string termid, string courseid, string classid, string stid, StudentRecord rec)
+        {
+            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students/{stid}";
+            SetResponse response = await client.SetAsync(path, rec);
+        }
+        public async Task RemoveStudentAsync(string termid, string courseid, string classid, string stid)
+        {
+            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students/{stid}";
+            FirebaseResponse response = await client.DeleteAsync(path);
         }
         #endregion
     }

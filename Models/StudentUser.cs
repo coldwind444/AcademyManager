@@ -11,12 +11,21 @@ namespace AcademyManager.Models
         public double AverageGPA { get; set; }
         public int Credits { get; set; }
         public string Major {  get; set; }
-        public async Task RegisterClass(string termID, string courseID, string classID)
+        public async Task RegisterClass(string termID, string courseID, string classID, string uuid)
         {
             DatabaseManager database = new DatabaseManager();
-            Term term = await database.GetTermAsync(termID);
-            StudyElements.Add(new ClassIdentifier(termID, courseID, classID));
-            term.Courses[courseID].Classes[classID].Students[ID] = new StudentRecord(ID, 0, 0, 0, 0);
+            this.StudyElements.Add(new ClassIdentifier(termID, courseID, classID));
+            await database.UpdateStudentAsync(uuid, this);
+            await database.AddStudentAsync(termID, courseID, classID, ID, new StudentRecord(ID, 0, 0, 0, 0));
+        }
+        public async Task CancelRegisterClass(string termID, string courseID, string classID, string uuid)
+        {
+            DatabaseManager db = new DatabaseManager();
+            ClassIdentifier? ci = StudyElements.Find(c => c.TermID == termID && c.CourseID == courseID && c.ClassID == classID);
+            if (ci != null) StudyElements.Remove(ci);
+            await db.UpdateStudentAsync(uuid, this);
+            await db.RemoveStudentAsync(termID, courseID, classID, ID);
+
         }
         public async Task<List<StudentRecord>> ViewScore()
         {
