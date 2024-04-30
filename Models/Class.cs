@@ -16,6 +16,9 @@ namespace AcademyManager.Models
         public string CourseID { get; set; }
         public string CourseName { get; set; }
         public List<KeyValuePair<string,string>> Documents { get; set; }
+        public DateOnly ExamDate { get; set; }
+        public string ExamRoom { get; set; }
+        public TimeOnly ExamTime { get; set; }
         public DayOfWeek Weekday { get; set; }
         public TimeOnly BeginTime { get; set; }
         public TimeOnly EndTime { get; set; }
@@ -25,7 +28,7 @@ namespace AcademyManager.Models
         public Dictionary<string, StudentRecord> Students { get; set; }
         public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, 
             List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
-            DateOnly beginDate, DateOnly endDate, string room)
+            DateOnly beginDate, DateOnly endDate, string room, DateOnly examDate, string examRoom, TimeOnly examTime)
         {
             Students = new Dictionary<string, StudentRecord>();
             ClassID = classID;
@@ -41,9 +44,13 @@ namespace AcademyManager.Models
             BeginDate = beginDate;
             EndDate = endDate;
             Room = room;
+            ExamDate = examDate;
+            ExamRoom = examRoom;
+            ExamTime = examTime;
         }
         public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName,
-            DayOfWeek day, TimeOnly bgT, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room)
+            DayOfWeek day, TimeOnly bgT, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room,
+            DateOnly examDate, string examRoom, TimeOnly examTime)
         {
             Students = new Dictionary<string, StudentRecord>();
             ClassID = classID;
@@ -58,11 +65,16 @@ namespace AcademyManager.Models
             BeginDate = beginDate;
             EndDate = endDate;
             Room = room;
+            ExamDate = examDate;
+            ExamRoom = examRoom;
+            ExamTime = examTime;
         }
         [JsonConstructor]public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, 
             List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
-            DateOnly beginDate, DateOnly endDate, string room, Dictionary<string, StudentRecord> students) 
-            : this(classID, instructorID, instructorName, termID, courseID, courseName, documents, weekday, beginTime, endTime, beginDate, endDate, room)
+            DateOnly beginDate, DateOnly endDate, string room, Dictionary<string, StudentRecord> students,
+            DateOnly examDate, string examRoom, TimeOnly examTime) 
+            : this(classID, instructorID, instructorName, termID, courseID, courseName, documents, weekday, beginTime, endTime, beginDate, endDate, room,
+                  examDate, examRoom, examTime)
         {
             Students = students;
         }
