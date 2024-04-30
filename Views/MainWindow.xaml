@@ -119,9 +119,14 @@
 									  ToolTip="Thông báo"
 									  IsChecked="{Binding AtNotificationPage}"
 									  Command="{Binding NotificationCommand}">
-							<materialDesign:PackIcon Kind="BellRing"
-                                             Width="40" Height="40"
-                                             Foreground="White"/>
+                            <Grid>
+                                <materialDesign:PackIcon Kind="BellRing" HorizontalAlignment="Center"
+														 Width="40" Height="40"
+														 Foreground="White"/>
+                                <Ellipse Fill="Red" Height="12" Width="12" 
+                                         RenderTransformOrigin="1.4,-0.133" 
+                                         Margin="22,2,8,28" Visibility="{Binding NewNotifications}"/>
+                            </Grid>
 						</ToggleButton>
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
