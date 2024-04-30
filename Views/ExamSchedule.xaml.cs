@@ -24,8 +24,8 @@ namespace AcademyManager.Views
         public ExamScheduleVM Viewmodel { get; set; }
         public ExamSchedule(MainVM vm)
         {
-            this.DataContext = Viewmodel = new ExamScheduleVM(vm);
             InitializeComponent();
+            this.DataContext = Viewmodel = new ExamScheduleVM(vm, ExamList);
         }
     }
 }

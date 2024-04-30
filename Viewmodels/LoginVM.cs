@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using AcademyManager.Views;
 using AcademyManager.Models;
+using Firebase.Auth;
 
 namespace AcademyManager.Viewmodels
 {
@@ -46,44 +47,6 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
-        private async Task<List<Class>> GetClassList()
-        {
-            var list = new List<Class>();
-            DatabaseManager db = new DatabaseManager();
-            if (MainVM.CurrentAccount.Type == 1)
-            {
-                InstructorUser? user = MainVM.CurrentUser as InstructorUser;
-                if (user != null)
-                {
-                    var batch = new List<Task<Class>>();
-                    foreach (ClassIdentifier c in user.StudyElements)
-                    {
-                        batch.Add(db.GetClassAsync(c.TermID, c.CourseID, c.ClassID));
-                    }
-                    var result = await Task.WhenAll(batch);
-                    list.AddRange(result);
-                }
-            }
-            else
-            {
-                StudentUser? user = MainVM.CurrentUser as StudentUser;
-                if (user != null)
-                {
-                    var batch = new List<Task<Class>>();
-                    foreach (ClassIdentifier c in user.StudyElements)
-                    {
-                        batch.Add(db.GetClassAsync(c.TermID, c.CourseID, c.ClassID));
-                    }
-                    var result = await Task.WhenAll(batch);
-                    list.AddRange(result);
-                }
-            }
-            return list;
-        }
-        private async Task LoadClasses()
-        {
-            MainVM.UserClassList = await GetClassList();
-        }
         private void ResetAll()
         {
             UserID = "";
@@ -116,14 +79,14 @@ namespace AcademyManager.Viewmodels
                         {
                             MainVM.CurrentAccount = acc;
                             MainVM.CurrentUser = await database.GetInstructorAsync(_userid);
-                            await LoadClasses();
+                            await ParentVM.LoadClasses();
                             ParentVM.HomeView = new LectureMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
                         } else
                         {
                             MainVM.CurrentAccount = acc;
                             MainVM.CurrentUser = await database.GetStudentAsync(_userid);
-                            await LoadClasses();
+                            await ParentVM.LoadClasses();
                             ParentVM.HomeView = new StudentMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
                         }

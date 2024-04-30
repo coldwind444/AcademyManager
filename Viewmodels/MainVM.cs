@@ -20,6 +20,7 @@ namespace AcademyManager.Viewmodels
         public static Account CurrentAccount { get; set; }
         public static User CurrentUser { get; set; }
         public static List<Class> UserClassList { get; set; }
+        public static List<Course> UserCourseList { get; set; }
 
         // authentication
         public UserControl WhoAreYouView { get; set; }
@@ -101,6 +102,23 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
+        public async Task<List<Class>> GetClassList()
+        {
+            var list = new List<Class>();
+            DatabaseManager db = new DatabaseManager();
+            var batch = new List<Task<Class>>();
+            foreach (ClassIdentifier c in MainVM.CurrentUser.StudyElements)
+            {
+                batch.Add(db.GetClassAsync(c.TermID, c.CourseID, c.ClassID));
+            }
+            var result = await Task.WhenAll(batch);
+            list.AddRange(result);
+            return list;
+        }
+        public async Task LoadClasses()
+        {
+            MainVM.UserClassList = await GetClassList();
+        }
         private void SetNotificationDot()
         {
             if (CurrentUser == null) return;

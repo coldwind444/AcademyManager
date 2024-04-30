@@ -111,7 +111,7 @@
                        FontWeight="Medium">
                 <Run Language="vi-vn" Text="LỊCH THI"/>
             </TextBlock>
-            <Separator Background="Black" Margin="0,72,0,518" HorizontalAlignment="Center" Width="900" Height="10"/>
+            <Separator Background="Black" Margin="0,57,0,533" HorizontalAlignment="Center" Width="900" Height="10"/>
             <Button
                 Background="ForestGreen" 
                 Cursor="Hand"
@@ -121,18 +121,13 @@
                 Margin="420,520,420,20" 
                 Content="Quay lại">
             </Button>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="416" Width="850" VerticalAlignment="Center" Margin="10,0,-10,0" >
-                <StackPanel x:Name="SubjectsList" Width="850">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="416" Width="850" VerticalAlignment="Top" Margin="75,72,75,0" >
+                <StackPanel x:Name="ExamList" Width="850">
                     <StackPanel.Resources>
                         <Style TargetType="uc:ExamScheduleUC">
                             <Setter Property="Margin" Value="0 10 0 0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <uc:ExamScheduleUC Subject="Hệ điều hành (CO2017)" Date="14/04/2004"/>
-                    <uc:ExamScheduleUC />
-                    <uc:ExamScheduleUC />
-                    <uc:ExamScheduleUC />
-                    <uc:ExamScheduleUC />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

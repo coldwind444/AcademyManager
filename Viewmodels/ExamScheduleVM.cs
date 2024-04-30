@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Controls;
+using System.Windows.Input;
+using AcademyManager.Models;
+using AcademyManager.UCViews;
 
 namespace AcademyManager.Viewmodels
 {
@@ -11,17 +14,27 @@ namespace AcademyManager.Viewmodels
         private MainVM ParentVM { get; set; }
         #endregion
         #region Methods
+        private void LoadExamSchedule(StackPanel p)
+        {
+            List<Class> list = MainVM.UserClassList;
+            foreach (Class cls in list)
+            {
+                ExamScheduleUC item = new ExamScheduleUC(cls.CourseName, cls.ExamDate, cls.ExamRoom, cls.ExamTime);
+                p.Children.Add(item);
+            }
+        }
         private void InitializeCommand()
         {
             BackCommand = new RelayCommand<object>(p => true, p =>
             {
-                ParentVM.CurrentView = ParentVM.HomeView;
+                ParentVM.HomeNavigateCommand.Execute(null);
             });
         }
         #endregion
-        public ExamScheduleVM(MainVM vm)
+        public ExamScheduleVM(MainVM vm, StackPanel panel)
         {
             ParentVM = vm;
+            LoadExamSchedule(panel);
             InitializeCommand();
         }
     }

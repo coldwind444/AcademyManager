@@ -30,8 +30,10 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
-        public void LoadClasses()
+        public async void LoadClasses()
         {
+            SubjList.Children.Clear();
+            await ParentVM.LoadClasses();
             List<Class> list = MainVM.UserClassList;
             if (list.Count == 0)
             {
@@ -39,13 +41,15 @@ namespace AcademyManager.Viewmodels
                 {
                     Noti = "Bạn chưa được phân công giảng dạy.";
                     NotiV = Visibility.Visible;
-                } else
+                }
+                else
                 {
                     Noti = "Bạn chưa đăng ký khóa học nào.";
                     NotiV = Visibility.Visible;
                 }
                 return;
             }
+            else NotiV = Visibility.Hidden;
 
             foreach (Class c in list)
             {
@@ -64,7 +68,7 @@ namespace AcademyManager.Viewmodels
             {
                 if (ParentVM.CourseRegisterView == null)
                 {
-                    ParentVM.CourseRegisterView = new SubjectRegister(ParentVM);
+                    ParentVM.CourseRegisterView = new SubjectRegister(ParentVM, this);
                     ParentVM.CurrentView = ParentVM.CourseRegisterView;
                 } else
                     ParentVM.CurrentView = ParentVM.CourseRegisterView;

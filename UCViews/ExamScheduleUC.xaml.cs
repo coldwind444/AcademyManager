@@ -24,6 +24,14 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
+        public ExamScheduleUC(string courseName, DateOnly examDate, string examRoom, TimeOnly examTime)
+        {
+            InitializeComponent();
+            Subject = courseName;
+            Date = examDate.ToString("dd/MM/yyyy");
+            Room = examRoom;
+            Time = examTime.ToString("HH:mm");
+        }
         public string Subject
         {
             get { return (string)GetValue(SubjectProperty); }

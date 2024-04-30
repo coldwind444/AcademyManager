@@ -178,7 +178,7 @@
                          materialDesign:HintAssist.Hint="Nhập mã môn học"
                          BorderThickness="0" Margin="20 0 0 0"></TextBox>
                 <Button Height="40" Width="40" Margin="30 0 0 0"
-                        Command="{Binding SearchCommand}"
+                        Command="{Binding SearchCommand}" IsDefault="True"
                         CommandParameter="{Binding ElementName=ClassPanel}">
                     <materialDesign:PackIcon Kind="Search" Foreground="White"
                                              Height="25" Width="25"/>

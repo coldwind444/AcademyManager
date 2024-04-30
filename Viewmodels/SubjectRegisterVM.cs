@@ -14,6 +14,7 @@ namespace AcademyManager.Viewmodels
 
         #region Properties
         private MainVM GParentVM { get; set; }
+        private SubjectListVM ParentVM { get; set; }
         private string _cid;
         public string CID
         {
@@ -28,8 +29,6 @@ namespace AcademyManager.Viewmodels
             DatabaseManager db = new DatabaseManager();
             string termid = await db.GetCurrentTermAsync();
             Course course = await db.GetCourseAsync(termid, CID);
-            bool contain = MainVM.CurrentUser.StudyElements.Any(cls => cls.TermID == termid && cls.CourseID == CID);
-            if (contain) return;
             foreach (Class c in course.Classes.Values)
             {
                 SubjectRegisterUC item = new SubjectRegisterUC(c) ;
@@ -41,6 +40,7 @@ namespace AcademyManager.Viewmodels
             BackCommand = new RelayCommand<object>(p => true, p =>
             {
                 GParentVM.CurrentView = GParentVM.CourseListView;
+                ParentVM.LoadClasses();
             });
 
             SearchCommand = new RelayCommand<StackPanel>(p => _cid != null && _cid.Length > 0, async p =>
@@ -49,9 +49,10 @@ namespace AcademyManager.Viewmodels
             });
         }
         #endregion
-        public SubjectRegisterVM(MainVM vm)
+        public SubjectRegisterVM(MainVM vm, SubjectListVM p)
         {
             GParentVM = vm;
+            ParentVM = p;
             InitializeCommands();
         }
     }
