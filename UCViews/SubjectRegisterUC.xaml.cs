@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AcademyManager.Models;
+using AcademyManager.Viewmodels;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +27,20 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
-        public string Subject
+        public SubjectRegisterUC(Class cls)
         {
-            get { return (string)GetValue(SubjectProperty); }
-            set { SetValue(SubjectProperty, value); }
+            Room = cls.Room;
+            Day = cls.Weekday;
+            string bg = cls.BeginTime.ToString("HH:mm"),
+                    e = cls.EndTime.ToString("HH:mm");
+            Time = $"{bg} - {e}";
+            LecturerName = cls.InstructorName;
+            Class = cls.ClassID;
+            ClassData = cls;
+            InitializeComponent();
         }
-
-        public static readonly DependencyProperty SubjectProperty = DependencyProperty.Register("Subject", typeof(string), typeof(SubjectRegisterUC));
+        private bool IsRegisterd { get; set; }
+        private Class ClassData { get; set; }
         public string Room
         {
             get { return (string)GetValue(RoomProperty); }
@@ -38,13 +48,13 @@ namespace AcademyManager.UCViews
         }
 
         public static readonly DependencyProperty RoomProperty = DependencyProperty.Register("Room", typeof(string), typeof(SubjectRegisterUC));
-        public string Day
+        public DayOfWeek Day
         {
-            get { return (string)GetValue(DateProperty); }
+            get { return (DayOfWeek)GetValue(DateProperty); }
             set { SetValue(DateProperty, value); }
         }
 
-        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Day", typeof(string), typeof(SubjectRegisterUC));
+        public static readonly DependencyProperty DateProperty = DependencyProperty.Register("Day", typeof(DayOfWeek), typeof(SubjectRegisterUC));
         public string Time
         {
             get { return (string)GetValue(TimeProperty); }
@@ -67,5 +77,33 @@ namespace AcademyManager.UCViews
 
         public static readonly DependencyProperty ClassProperty = DependencyProperty.Register("Class", typeof(string), typeof(SubjectRegisterUC));
 
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsRegisterd)
+            {
+                IsRegisterd = true;
+                StudentUser? user = MainVM.CurrentUser as StudentUser;
+                if (user != null)
+                {
+                    await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    MainVM.CurrentUser = user;
+                }
+                Icon.Kind = PackIconKind.BoxCancelOutline;
+                Icon.Foreground = Brushes.OrangeRed;
+                RegisterButton.ToolTip = "Huỷ đăng ký";
+            } else
+            {
+                IsRegisterd = false;
+                StudentUser? user = MainVM.CurrentUser as StudentUser;
+                if (user != null)
+                {
+                    await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    MainVM.CurrentUser = user;
+                }
+                Icon.Kind = PackIconKind.PencilBoxOutline;
+                Icon.Foreground = Brushes.RoyalBlue;
+                RegisterButton.ToolTip = "Đăng ký";
+            }
+        }
     }
 }

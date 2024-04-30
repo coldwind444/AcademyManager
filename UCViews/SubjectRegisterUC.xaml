@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" x:Name="register"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="220" d:DesignWidth="400">
+             d:DesignHeight="120" d:DesignWidth="800"
+             xmlns:cv="clr-namespace:AcademyManager.Models">
     <UserControl.Resources>
+        <cv:DayOfWeekConverter x:Key="DayConverter"/>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -37,31 +39,37 @@
     <Border CornerRadius="20" Background="White">
         <Grid>
             <StackPanel>
-                <TextBlock Margin="20 5 0 0 " FontSize="40" Text="Hệ điều hành" TextAlignment="Left" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="20 0 0 0" FontSize="20">
-                    <Run Text="Lớp: "></Run>
-                    <Run Text="{Binding Path=Class, ElementName=register}"/>
-                </TextBlock>
-                <TextBlock Margin="20 5 0 0" FontSize="20">
-                    <Run Text="Phòng học: "></Run>
-                    <Run Text="{Binding Path=Room, ElementName=register}"/>
-                </TextBlock>
-                <TextBlock Margin="20 5 0 0" FontSize="20">
-                    <Run Text="Giờ học: "></Run>
-                    <Run Text="{Binding Path=Time, ElementName=register}"/>
-                </TextBlock>
-                <TextBlock Margin="20 5 0 0" FontSize="20">
-                    <Run Text="Ngày học: "></Run>
-                    <Run Text="{Binding Path=Day, ElementName=register}"/>
-                </TextBlock>
+                <TextBlock Margin="20 5 0 0 " FontSize="30" Text="{Binding Path=Class, ElementName=register}" TextAlignment="Left" FontWeight="Bold"></TextBlock>
                 <TextBlock Margin="20 5 0 0 " FontSize="20" TextAlignment="Left">
                     <Run Text="Giảng viên: " />
                     <Run Text="{Binding LecturerName, ElementName=register}" />
                 </TextBlock>
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="0">
+                        <Run Text="Phòng học: "></Run>
+                        <Run Text="{Binding Path=Room, ElementName=register}"/>
+                    </TextBlock>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="1">
+                        <Run Text="Giờ học: "></Run>
+                        <Run Text="{Binding Path=Time, ElementName=register}"/>
+                    </TextBlock>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="2">
+                        <Run Text="Ngày học: "></Run>
+                        <Run Text="{Binding Path=Day, ElementName=register, Converter={StaticResource DayConverter}}"/>
+                    </TextBlock>
+                </Grid>
             </StackPanel>
-            <Button Height="50" Width="50" Margin="333,10,17,160">
+            <Button Height="50" Width="50" Margin="740,10,10,60"
+                    x:Name="RegisterButton"
+                    ToolTip="Đăng ký"
+                    Click="RegisterButton_Click">
                 <md:PackIcon Kind="PencilBoxOutline" Width="40" Height="40"
-                             Foreground="RoyalBlue"
+                             Foreground="RoyalBlue" x:Name="Icon"
                              ToolTip="Đăng ký"/>
             </Button>
         </Grid>

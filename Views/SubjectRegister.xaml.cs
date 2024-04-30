@@ -22,9 +22,9 @@ namespace AcademyManager.Views
     public partial class SubjectRegister : UserControl
     {
         public SubjectRegisterVM Viewmodel { get; set; }
-        public SubjectRegister()
+        public SubjectRegister(MainVM vm)
         {
-            this.DataContext = Viewmodel = new SubjectRegisterVM();
+            this.DataContext = Viewmodel = new SubjectRegisterVM(vm);
             InitializeComponent();
         }
     }
