@@ -161,7 +161,7 @@
             Command="{Binding BackCommand}" 
             RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="50" Content="Quay lại"/>
         <Border Width="900" Margin="0 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350">
-            <uc:Calendar HorizontalAlignment="Center" VerticalAlignment="Top" Height="351" Margin="0,-26,0,0"/>
+            <uc:FullCalendar HorizontalAlignment="Center" VerticalAlignment="Top" Height="351" Margin="0,-26,0,0"/>
         </Border>
     </Grid>
 </UserControl>

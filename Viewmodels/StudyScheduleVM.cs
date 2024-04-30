@@ -17,7 +17,7 @@ namespace AcademyManager.Viewmodels
         {
             BackCommand = new RelayCommand<object>(p => true, p =>
             {
-                ParentVM.CurrentView = ParentVM.HomeView;
+                ParentVM.HomeNavigateCommand.Execute(null);
             });
         }
         #endregion
