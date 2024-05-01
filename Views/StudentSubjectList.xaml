@@ -18,70 +18,6 @@
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}"
             Height="600" Width="1000">
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="DimGray"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
-
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="Black"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="TextBlock" 
-               x:Key="Link">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Foreground" 
-                    Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" 
-                         Value="True">
-                    <Setter Property="TextDecorations" 
-                            Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" 
-                         Value="False">
-                    <Setter Property="TextDecorations" 
-                            Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Separator">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Separator">
-                        <Border Background="Black" Height="1" Margin="0"/>
-                        <!-- Điều chỉnh độ cao ở đây -->
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
@@ -109,15 +45,16 @@
         <TextBlock TextAlignment="Center" FontWeight="Medium"
                        TextWrapping="Wrap" FontSize="35" Foreground="Black" 
                        Margin="150,22,150,518" Height="60" Width="700"><Run Language="vi-vn" Text="DANH SÁCH MÔN HỌC"/></TextBlock>
-        <Separator Background="Black" Margin="0,60,0,530" HorizontalAlignment="Center" Width="850" Height="10"/>
-        <Button 
-            Background="ForestGreen" Cursor="Hand"
-            FontSize="20" 
-            Foreground="White"
-            Command="{Binding BackCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="344,539,535,11" Height="40" Content="Quay lại"/>
-        <Button 
-                Background="ForestGreen" Cursor="Hand"
+        <Separator Background="Black" Margin="0,60,0,530" HorizontalAlignment="Center" Width="850" Height="10"
+                   Style="{DynamicResource MySeperator}"/>
+        <Button Style="{DynamicResource RoundButton}"
+                Cursor="Hand"
+                FontSize="20" 
+                Foreground="White"
+                Command="{Binding BackCommand}" 
+                RenderTransformOrigin="0.5,0.5" Margin="344,539,535,11" Height="40" Content="Quay lại"/>
+        <Button Style="{DynamicResource RoundButton}"
+                Cursor="Hand"
                 FontSize="20" 
                 Foreground="White"
                 Command="{Binding RegisterCommand}"

@@ -22,36 +22,6 @@
         ResizeMode="NoResize">
 	<Window.Resources>
 		<DropShadowEffect x:Key="MyShadowEffect" Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="0"/>
-		<Style TargetType="ToggleButton">
-			<Setter Property="Cursor" Value="Hand"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ToggleButton">
-						<Border x:Name="ButtonBorder" CornerRadius="20 0 0 20">
-							<ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
-							</ContentPresenter>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background"
-                                        TargetName="ButtonBorder"
-                                        Value="#004B19"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="False">
-                                <Setter Property="Background"
-										TargetName="ButtonBorder"
-										Value="Transparent"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" 
-                                        TargetName="ButtonBorder"
-                                        Value="#004B19"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 		<Style TargetType="Button">
 			<Setter Property="Cursor" 
              Value="Hand"/>
@@ -76,7 +46,7 @@
 								</Style>
 							</Border.Style>
 							<ContentPresenter VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center">
+										      HorizontalAlignment="Center">
 							</ContentPresenter>
 						</Border>
 					</ControlTemplate>
@@ -116,7 +86,7 @@
                                 Visibility="{Binding NavigationButtonV}">
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
 						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-									  ToolTip="Thông báo"
+									  ToolTip="Thông báo" Style="{DynamicResource TabBarButton}"
 									  IsChecked="{Binding AtNotificationPage}"
 									  Command="{Binding NotificationCommand}">
                             <Grid>
@@ -130,7 +100,7 @@
 						</ToggleButton>
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-                              ToolTip="Màn hình chính"
+                              ToolTip="Màn hình chính" Style="{DynamicResource TabBarButton}"
                               IsChecked="{Binding AtHomePage}"
                               Command="{Binding HomeNavigateCommand}">
 							<materialDesign:PackIcon Kind="Home"
@@ -139,7 +109,7 @@
 						</ToggleButton>
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-										ToolTip="Đăng xuất"
+										ToolTip="Đăng xuất" Style="{DynamicResource TabBarButton}"
 										IsChecked="{Binding IsLogout}"
 										Command="{Binding LogoutCommand}">
                             <materialDesign:PackIcon Kind="LogoutVariant"

@@ -17,40 +17,6 @@
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}"
             Height="600" Width="1000">
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20" Margin="0,12,0,0">
-                            <Border.Effect>
-                                <DropShadowEffect 
-                            Opacity="0.5" 
-                            Direction="300" 
-                            ShadowDepth="15" 
-                            BlurRadius="50"/>
-                            </Border.Effect>
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="DimGray"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="Black"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center"
-                          HorizontalAlignment="Center"></ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -135,13 +101,13 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Button 
-            Command="{Binding BackCommand}" 
-            Background="ForestGreen"
-            Grid.Row="1" Cursor="Hand"
-            FontSize="20" 
-            Foreground="White"  
-            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50" Content="Quay lại"/>
+        <Button Style="{DynamicResource RoundButton}"
+                Command="{Binding BackCommand}" 
+                Background="ForestGreen"
+                Grid.Row="1" Cursor="Hand"
+                FontSize="20" 
+                Foreground="White"  
+                RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50" Content="Quay lại"/>
         <!-- Command="{Binding UploadCommand}" -->
     </Grid>
 </UserControl>

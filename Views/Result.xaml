@@ -18,106 +18,6 @@
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}" 
             Height="600" Width="1000">
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="DimGray"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="Black"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="TextBlock" 
-               x:Key="Link">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Foreground" 
-                    Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" 
-                         Value="True">
-                    <Setter Property="TextDecorations" 
-                            Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" 
-                         Value="False">
-                    <Setter Property="TextDecorations" 
-                            Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="ToggleButton">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" 
-                                CornerRadius="10">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" 
-                                                    Value="ForestGreen"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="#FF3C783C"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" 
-                                     Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" Value="#027324"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="Separator">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Separator">
-                        <Border Background="Black" Height="1" Margin="0"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
             <materialDesign:PackIcon.RenderTransform>
@@ -148,11 +48,12 @@
                    Width="700"><Run Language="vi-vn" 
                  Text="KẾT QUẢ HỌC TẬP"/></TextBlock>
         <Separator Background="Black" 
+                   Style="{DynamicResource MySeperator}"
                    Margin="70,60,0,530" 
                    HorizontalAlignment="Left" 
                    Width="850" Height="10"/>
         <Button 
-            Background="ForestGreen" 
+            Style="{DynamicResource RoundButton}"
             Cursor="Hand"
             FontSize="16" 
             Foreground="White"

@@ -16,46 +16,6 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="Link">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Foreground" Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextDecorations" Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#027324"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#027324"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"></ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="89*"/>
@@ -83,7 +43,7 @@
         </materialDesign:PackIcon>
         <Border Width="400"
                 BorderThickness="1.5"
-                BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="#FFEEFFF2">
+                BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="White">
             <StackPanel Orientation="Vertical"  
                         VerticalAlignment="Center"
                         Background="#FFBCE9CB" 
@@ -100,10 +60,11 @@
                             HorizontalAlignment="Center"
                             Margin="0 0 0 30">
                         <Button Command="{Binding LoginCommand}"
-                                Margin="0 0 10 0"
+                                Margin="0 0 10 0" Style="{DynamicResource RoundButton}"
                                 Grid.Row="1" Height="40" Width="120" Cursor="Hand"
                                 FontSize="20" Foreground="White" Content="Đăng nhập"/>
                         <Button Height="40" Width="200" Cursor="Hand"
+                                Style="{DynamicResource RoundButton}"
                                 FontSize="20" Foreground="White" Margin="0 0 0 0"
                                 Content="Kích hoạt tài khoản" Command="{Binding SigninCommand}"/>
                 </StackPanel>

@@ -16,46 +16,6 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="Link">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Foreground" Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextDecorations" Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#027324"/>
-                                            <Setter Property="Opacity" Value="0.7"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#027324"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center"
-                              HorizontalAlignment="Center"></ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
             <materialDesign:PackIcon.RenderTransform>
@@ -176,6 +136,7 @@
                         </PasswordBox>
                     </Border>
                     <Button Command="{Binding ConfirmCommand}" 
+                            Style="{DynamicResource RoundButton}"
                             Grid.Row="1" Height="40" IsDefault="True"
                             Cursor="Hand" Margin="0 15 0 5"
                             FontSize="20" Foreground="White" 

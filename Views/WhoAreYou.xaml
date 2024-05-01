@@ -18,47 +18,6 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="Link">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Foreground" Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextDecorations" Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="15">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#027324"/>
-                                            <Setter Property="Opacity" Value="0.7"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="Background" Value="#027324"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter 
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"></ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
             <materialDesign:PackIcon.RenderTransform>
@@ -85,7 +44,7 @@
             BorderThickness="1.5"
             BorderBrush="Black" 
             CornerRadius="40" 
-            Margin="300,140,300,144" Background="#FFEEFFF2">
+            Margin="300,140,300,144" Background="White">
             <StackPanel Orientation="Vertical"  
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -104,18 +63,21 @@
                 <Border Width="220" Height="40" CornerRadius="10"
                         Margin="0 10 0 10">
                     <Button Command="{Binding InstructorCommand}"
+                            Style="{DynamicResource RoundButton}"
                             Grid.Row="1" Height="40" Width="220" Cursor="Hand"
                             FontSize="20" Foreground="White" Content="Giảng viên"/>
                 </Border>
                 <Border Width="220" Height="40" CornerRadius="10"
                         Margin="0 0 0 10">
                     <Button Command="{Binding StudentCommand}"
+                            Style="{DynamicResource RoundButton}"
                             Grid.Row="1" Height="40" Width="220" Cursor="Hand"
                             FontSize="20" Foreground="White" Content="Sinh viên"/>
                 </Border>
                 <Border Width="220" Height="40" CornerRadius="10"
                         Margin="0 0 0 10">
                     <Button Command="{Binding AdminCommand}"
+                            Style="{DynamicResource RoundButton}"
                             CommandParameter="{Binding ElementName=who}"
                             Grid.Row="1" Height="40" Width="220" Cursor="Hand"
                             FontSize="20" Foreground="White" Content="Quản trị viên"/>

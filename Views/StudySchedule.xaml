@@ -18,106 +18,6 @@
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}"
             Height="600" Width="1000">
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="20">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" Value="DimGray"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="Black"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="TextBlock" 
-               x:Key="Link">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Foreground" 
-                    Value="ForestGreen"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" 
-                         Value="True">
-                    <Setter Property="TextDecorations" 
-                            Value="Underline"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" 
-                         Value="False">
-                    <Setter Property="TextDecorations" 
-                            Value="None"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="ToggleButton">
-            <Setter Property="Cursor" 
-                    Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Border x:Name="ButtonBorder" 
-                                CornerRadius="10">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="True">
-                                            <Setter Property="Background" Value="ForestGreen"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" 
-                                                 Value="False">
-                                            <Setter Property="Background" 
-                                                    Value="#FF3C783C"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center">
-                            </ContentPresenter>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" 
-                                     Value="True">
-                                <Setter TargetName="ButtonBorder" 
-                                        Property="Background" Value="#027324"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="Separator">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Separator">
-                        <Border Background="Black" Height="1" Margin="0"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>
@@ -146,12 +46,12 @@
                        TextWrapping="Wrap" FontSize="35" Foreground="Black" 
                        Margin="150,23,150,517" Height="60" Width="700" Text="LỊCH"/>
         <Separator Background="Black" Margin="0,73,0,517" HorizontalAlignment="Center" Width="850" Height="10"/>
-        <Button 
-            Background="ForestGreen" Cursor="Hand"
-            FontSize="20" 
-            Foreground="White"
-            Command="{Binding BackCommand}" 
-            RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="40" Content="Quay lại"/>
+        <Button Style="{DynamicResource RoundButton}"
+                Cursor="Hand"
+                FontSize="20" 
+                Foreground="White"
+                Command="{Binding BackCommand}" 
+                RenderTransformOrigin="0.5,0.5" Margin="440,530,440,20" Height="40" Content="Quay lại"/>
         <Border Width="900" Margin="0 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350">
             <uc:FullCalendar HorizontalAlignment="Center" VerticalAlignment="Top" Height="351" Margin="0,-26,0,0"/>
         </Border>
