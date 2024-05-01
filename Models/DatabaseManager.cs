@@ -133,6 +133,11 @@ namespace AcademyManager.Models
             Class result = response.ResultAs<Class>();
             return result;
         }
+        public async Task UpdateScoreAsync(string termid, string courseid, string classid, Dictionary<string, StudentRecord> score)
+        {
+            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students";
+            SetResponse res = await client.SetAsync(path, score);
+        }
         #endregion
         #region Admin
         public async Task UpdateAdminAsync(Admin ad)
