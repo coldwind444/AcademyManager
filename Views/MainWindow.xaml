@@ -22,37 +22,6 @@
         ResizeMode="NoResize">
 	<Window.Resources>
 		<DropShadowEffect x:Key="MyShadowEffect" Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="0"/>
-		<Style TargetType="Button">
-			<Setter Property="Cursor" 
-             Value="Hand"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Border CornerRadius="20">
-							<Border.Style>
-								<Style TargetType="Border">
-									<Style.Triggers>
-										<Trigger Property="IsMouseOver" 
-												 Value="True">
-											<Setter Property="Background" 
-													Value="#004B19"/>
-										</Trigger>
-                                        <Trigger Property="IsMouseOver" 
-												 Value="False">
-                                            <Setter Property="Background" 
-													Value="Transparent"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-								</Style>
-							</Border.Style>
-							<ContentPresenter VerticalAlignment="Center" 
-										      HorizontalAlignment="Center">
-							</ContentPresenter>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 	</Window.Resources>
 	<Border CornerRadius="10" Background="#FFABEDC6" Effect="{StaticResource MyShadowEffect}">
 		<DockPanel>
@@ -86,7 +55,7 @@
                                 Visibility="{Binding NavigationButtonV}">
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
 						<ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-									  ToolTip="Thông báo" Style="{DynamicResource TabBarButton}"
+									  ToolTip="Thông báo" Style="{DynamicResource TabBarToggleButton}"
 									  IsChecked="{Binding AtNotificationPage}"
 									  Command="{Binding NotificationCommand}">
                             <Grid>
@@ -100,7 +69,7 @@
 						</ToggleButton>
                         <Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-                              ToolTip="Màn hình chính" Style="{DynamicResource TabBarButton}"
+                              ToolTip="Màn hình chính" Style="{DynamicResource TabBarToggleButton}"
                               IsChecked="{Binding AtHomePage}"
                               Command="{Binding HomeNavigateCommand}">
 							<materialDesign:PackIcon Kind="Home"
@@ -109,7 +78,7 @@
 						</ToggleButton>
 						<Separator Background="White" Width="40" Margin="0 0 0 10"></Separator>
                         <ToggleButton Height="60" Width="60" Margin="0 0 0 10"
-										ToolTip="Đăng xuất" Style="{DynamicResource TabBarButton}"
+										ToolTip="Đăng xuất" Style="{DynamicResource TabBarToggleButton}"
 										IsChecked="{Binding IsLogout}"
 										Command="{Binding LogoutCommand}">
                             <materialDesign:PackIcon Kind="LogoutVariant"
@@ -120,18 +89,18 @@
 						<Separator Background="White" Width="40" Margin="0 0 0 10" Height="1"></Separator>
 					</StackPanel>
 				</Border>
-				<Button
-                    ToolTip="Thoát"
-                    Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding ElementName=mainWindow}" Margin="0,540,0,0" Height="50" Width="50">
+				<Button	Style="{DynamicResource TabBarButton}"
+						ToolTip="Thoát"
+						Command="{Binding CloseCommand}"
+						CommandParameter="{Binding ElementName=mainWindow}" Margin="0,540,0,0" Height="50" Width="50">
 					<materialDesign:PackIcon Kind="Power"
 											 Width="40" Height="40"
 											 Foreground="White"/>
 				</Button>
-				<Button
-                    ToolTip="Thu nhỏ"
-                    Command="{Binding MinimizeCommand}"
-                    CommandParameter="{Binding ElementName=mainWindow}" Margin="5,5,5,545" Height="50" Width="50">
+                <Button Style="{DynamicResource TabBarButton}"
+						ToolTip="Thu nhỏ"
+						Command="{Binding MinimizeCommand}"
+						CommandParameter="{Binding ElementName=mainWindow}" Margin="5,5,5,545" Height="50" Width="50">
 					<materialDesign:PackIcon Kind="CollapseAll"
 										     Width="30" Height="30"
 										     Foreground="White"/>

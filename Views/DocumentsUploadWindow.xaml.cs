@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace AcademyManager.Views
 {
     /// <summary>
-    /// Interaction logic for StudentListWindow.xaml
+    /// Interaction logic for DocumentsUploadWindow.xaml
     /// </summary>
-    public partial class StudentListWindow : Window
+    public partial class DocumentsUploadWindow : Window
     {
-        public StudentListVM Viewmodel { get; set; }
-        public StudentListWindow(Class data)
+        public DocumentsUploadVM Viewmodel { get; set; }
+        public DocumentsUploadWindow(Class data)
         {
-            this.DataContext = Viewmodel = new StudentListVM(data);
             InitializeComponent();
+            this.DataContext = Viewmodel = new DocumentsUploadVM(data, notification);
         }
     }
 }

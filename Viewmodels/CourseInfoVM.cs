@@ -1,4 +1,5 @@
 ﻿using AcademyManager.Models;
+using AcademyManager.Views;
 using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
@@ -22,17 +23,20 @@ namespace AcademyManager.Viewmodels
         {
             ViewStudentListCommand = new RelayCommand<object>(p => true, p =>
             {
-
+                StudentListWindow window = new StudentListWindow(Data);
+                window.ShowDialog();
             });
 
             UpdateScoreCommand = new RelayCommand<object>(p => true, p =>
             {
-
+                ScoreUpdateWindow window = new ScoreUpdateWindow(Data);
+                window.ShowDialog();
             });
 
             AddDocumentCommand = new RelayCommand<object>(p => true, p =>
             {
-
+                DocumentsUploadWindow window = new DocumentsUploadWindow(Data);
+                window.ShowDialog();
             });
 
             BackCommand = new RelayCommand<object>(p => true, p =>
