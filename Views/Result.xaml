@@ -26,25 +26,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="20">
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.5" 
-                                                  Direction="300" 
-                                                  ShadowDepth="15" 
-                                                  BlurRadius="50"/>
-                            </Border.Effect>
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="True">
                                             <Setter Property="Background" 
-                                                    Value="#027324"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
+                                                    Value="DimGray"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">
                                             <Setter Property="Background" 
-                                                    Value="#027324"/>
+                                                    Value="Black"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -148,14 +141,14 @@
         </materialDesign:PackIcon>
         <TextBlock TextAlignment="Center"
                    TextWrapping="Wrap" 
-                   FontSize="40" 
+                   FontSize="35" 
                    Foreground="Black"
-                   Margin="145,31,155,509" 
-                   Height="60" 
+                   Margin="145,10,155,530" 
+                   Height="60" FontWeight="Medium"
                    Width="700"><Run Language="vi-vn" 
                  Text="KẾT QUẢ HỌC TẬP"/></TextBlock>
         <Separator Background="Black" 
-                   Margin="70,96,0,494" 
+                   Margin="70,60,0,530" 
                    HorizontalAlignment="Left" 
                    Width="850" Height="10"/>
         <Button 
@@ -172,17 +165,30 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border Background="White" CornerRadius="20"
+            <Border Background="White" CornerRadius="5"
                     Height="40" Width="200"
                     HorizontalAlignment="Left"
-                    Margin="20 0 0 0" BorderThickness="2" BorderBrush="Black">
+                    Margin="20,-40,0,70" BorderThickness="1" BorderBrush="Black">
                 <ComboBox materialDesign:HintAssist.Hint="Học kỳ"
-                          Height="30" Width="160"
+                          Height="30" Width="160" Cursor="Hand"
                           FontSize="16" BorderThickness="0"
-                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"></ComboBox>
+                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden">
+                    <ComboBoxItem Content="Học kỳ 231"></ComboBoxItem>
+                    <ComboBoxItem Content="Học kỳ 232"></ComboBoxItem>
+                    <ComboBoxItem Content="Học kỳ 233"></ComboBoxItem>
+                    <ComboBoxItem Content="Học kỳ 241"></ComboBoxItem>
+                </ComboBox>
             </Border>
-            <DataGrid Grid.Row="1" Margin="20 10">
-                <DataGridColumnHeader Content="Mã môn học"/>
+            <DataGrid GridLinesVisibility="All" 
+                      Background="White" Margin="20,13,320,0" Grid.RowSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Mã môn học"/>
+                    <DataGridTextColumn Header="Tên môn học"/>
+                    <DataGridTextColumn Header="Kiểm tra" Width="100"/>
+                    <DataGridTextColumn Header="Giữa kỳ"/>
+                    <DataGridTextColumn Header="Bài tập lớn"/>
+                    <DataGridTextColumn Header="Cuối kỳ"/>
+                </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </Grid>

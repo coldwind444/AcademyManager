@@ -35,7 +35,7 @@
 							<Trigger Property="IsChecked" Value="True">
                                 <Setter Property="Background"
                                         TargetName="ButtonBorder"
-                                        Value="#FFABEDC6"/>
+                                        Value="#004B19"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter Property="Background"
@@ -45,7 +45,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" 
                                         TargetName="ButtonBorder"
-                                        Value="#FFABEDC6"/>
+                                        Value="#004B19"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -65,7 +65,7 @@
 										<Trigger Property="IsMouseOver" 
 												 Value="True">
 											<Setter Property="Background" 
-													Value="#FFABEDC6"/>
+													Value="#004B19"/>
 										</Trigger>
                                         <Trigger Property="IsMouseOver" 
 												 Value="False">
@@ -86,7 +86,7 @@
 	</Window.Resources>
 	<Border CornerRadius="10" Background="#FFABEDC6" Effect="{StaticResource MyShadowEffect}">
 		<DockPanel>
-			<Border DockPanel.Dock="Right" Background="#FFABEDC6" CornerRadius="10" Height="600" Width="1000">
+			<Border DockPanel.Dock="Right" Background="WhiteSmoke" CornerRadius="10" Height="600" Width="1000">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="43*"/>
@@ -109,7 +109,7 @@
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="0" 
                         CornerRadius="10 0 0 10" 
-                        Background="#FF3C783C" 
+                        Background="#02702C" 
                         Grid.RowSpan="3">
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Center"

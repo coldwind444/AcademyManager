@@ -346,7 +346,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Border Grid.Row="1" Background="Black" Opacity="0.75"
+                <Border Grid.Row="1" Background="#004B19"
                         CornerRadius="0 10 10 0">
                     <Grid>
                         <Grid.RowDefinitions>

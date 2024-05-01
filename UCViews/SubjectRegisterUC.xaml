@@ -19,8 +19,7 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
+                                            <Setter Property="Background" Value="#004B19"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="Transparent"/>
@@ -36,9 +35,28 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Border CornerRadius="20" Background="White">
+    <Border CornerRadius="20" Background="#02702C" Cursor="Hand">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
         <Grid>
             <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
                 <TextBlock Margin="20 15 0 0 " FontSize="25" Text="{Binding Path=Class, ElementName=register}" TextAlignment="Left" FontWeight="Medium"></TextBlock>
                 <TextBlock Margin="20 5 0 0 " FontSize="20" TextAlignment="Left">
                     <Run Text="Giảng viên: " />
@@ -69,7 +87,7 @@
                     ToolTip="Đăng ký"
                     Click="RegisterButton_Click">
                 <md:PackIcon Kind="PencilBoxOutline" Width="40" Height="40"
-                             Foreground="RoyalBlue" x:Name="Icon"
+                             Foreground="White" x:Name="Icon"
                              ToolTip="Đăng ký"/>
             </Button>
         </Grid>

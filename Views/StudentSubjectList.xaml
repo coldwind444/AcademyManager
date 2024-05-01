@@ -26,26 +26,20 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="20">
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.5" 
-                                                  Direction="300" 
-                                                  ShadowDepth="15" 
-                                                  BlurRadius="50"/>
-                            </Border.Effect>
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="True">
                                             <Setter Property="Background" 
-                                                    Value="#15BF5C"/>
+                                                    Value="DimGray"/>
                                             <Setter Property="Opacity" Value="0.5"/>
 
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" 
                                                  Value="False">
                                             <Setter Property="Background" 
-                                                    Value="#027324"/>
+                                                    Value="Black"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>

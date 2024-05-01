@@ -9,8 +9,8 @@
              d:DataContext="{d:DesignInstance Type=vm:SubjectVM}"
              d:DesignHeight="170" d:DesignWidth="400">
     <Border Margin="0,0,0,0" 
-            CornerRadius="20" 
-            Width="400" 
+            CornerRadius="20" Cursor="Hand"
+            Width="400" Background="#02702C" 
             Height="170">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -19,18 +19,24 @@
         </i:Interaction.Triggers>
         <Border.Style>
             <Style TargetType="Border">
-                <Setter Property="Cursor" Value="Hand"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Opacity" Value="0.8"/>
+                        <Setter Property="BorderThickness" Value="0"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="False">
-                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="BorderThickness" Value="3"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
         <StackPanel Width="400">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </StackPanel.Resources>
             <TextBlock Margin="30 15 20 0 " FontSize="20" TextAlignment="Left" FontWeight="Bold">
                 <Run Text="{Binding Path=Subject, ElementName=subject}"/>
                 <Run Text=" ("/>

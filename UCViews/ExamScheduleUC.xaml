@@ -13,35 +13,50 @@
                 TextOptions.TextFormattingMode="Ideal"
                 TextOptions.TextRenderingMode="Auto"
                 FontFamily="{DynamicResource MaterialDesignFont}"
-                Height="140" Width="600" >
-        <Border BorderThickness="1" CornerRadius="20" BorderBrush="Black" Width="600">
+                Height="70" Width="800" >
+        <Border CornerRadius="20" Width="800">
             <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.9"/>
+            <SolidColorBrush Color="#02702C" Opacity="0.9"/>
             </Border.Background>
             <StackPanel Margin="0,0,0,0">
-                <TextBlock FontSize="30" FontWeight="Bold"
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock FontSize="25" FontWeight="Bold"
                            TextWrapping="Wrap" 
-                           Height="40" Margin="20,5,0,0">
+                           Margin="20,5,0,5">
                     <Run Text="{Binding Path=Subject, ElementName=exam}"/>
                 </TextBlock>
-                <TextBlock FontSize="20"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="16" 
+                           Grid.Column="0"
                            TextWrapping="Wrap" 
                            Margin="20,0,0,5">
-                    <Run Text="Ngày thi: "/>
-                    <Run Text="{Binding Date, ElementName=exam}"/>
+                        <Run Text="Ngày thi: "/>
+                        <Run Text="{Binding Date, ElementName=exam}"/>
                 </TextBlock>
-                <TextBlock FontSize="20"
+                <TextBlock FontSize="16"
+                           Grid.Column="1"
                            TextWrapping="Wrap" 
                            Margin="20,0,0,5">
                         <Run Text="Phòng thi: "/>
                         <Run Text="{Binding Room, ElementName=exam}"/>
                 </TextBlock>
-                <TextBlock FontSize="20"
+                <TextBlock FontSize="16"
+                           Grid.Column="2"
                            TextWrapping="Wrap" 
                            Margin="20,0,0,0">
                         <Run Text="Giờ thi: "/>
                         <Run Text="{Binding Time, ElementName=exam}"/>
                 </TextBlock>
-            </StackPanel>
+            </Grid>
+        </StackPanel>
         </Border>
 </UserControl>

@@ -27,8 +27,7 @@
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
-                                            <Setter Property="Opacity" Value="0.5"/>
+                                            <Setter Property="Background" Value="#004B19"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="False">
                                             <Setter Property="Background" Value="Transparent"/>
@@ -44,7 +43,21 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Border Background="White" CornerRadius="20">
+    <Border Background="#02702C" CornerRadius="20" Cursor="Hand">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="600"/>
@@ -58,7 +71,7 @@
                     x:Name="Delete" Click="Delete_Click">
                 <materialDesign:PackIcon Kind="CheckboxOutline"
                                          Height="38" Width="38"
-                                         Foreground="RoyalBlue" 
+                                         Foreground="White" 
                                          HorizontalAlignment="Center" 
                                          VerticalAlignment="Center"/>
             </Button>
@@ -73,13 +86,13 @@
                              Width="40" Height="40"
                              HorizontalAlignment="Center"
                              VerticalAlignment="Center"
-                             Foreground="DarkGreen"/>
+                             Foreground="White"/>
                     <TextBlock Grid.Column="1" FontWeight="DemiBold"
                                FontSize="28" Margin="10"
                                Text="{Binding Path=Title, ElementName=noti}"/>
                 </StackPanel>
                 <TextBlock Grid.Row="1" FontSize="16"
-                           Margin="70 0 0 0"
+                           Margin="70 0 0 0" Foreground="White"
                            FontStyle="Italic">
                     <Run Text="{Binding Path=NotiContent, ElementName=noti}"/>
                     <Run Text=" ("/>
