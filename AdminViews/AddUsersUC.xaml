@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:AcademyManager.AdminViews"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
+             xmlns:toast="clr-namespace:Flattinger.UI.ToastMessage.Controls;assembly=Flattinger.UI.ToastMessage"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
              d:DataContext="{d:DesignInstance Type=adminviewmodels:AddUsersVM}"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -113,44 +114,10 @@
                 </TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="Black" Opacity="0.8"
-                Visibility="{Binding Notice}"
-                Height="100" Width="200"
-                CornerRadius="10"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right">
-            <Border.Style>
-                <Style>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Notice}" Value="Visible">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation From="0" To="1" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation From="1" To="0" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Label FontSize="18" Foreground="White"
-                       Content="{Binding Content}"
-                       HorizontalAlignment="Center"/>
-                <materialDesign:PackIcon Kind="{Binding Icon}"
-                                     HorizontalAlignment="Center"
-                                     Foreground="{Binding IconBrush}"
-                                     Height="30" Width="30"/>
-            </StackPanel>
-        </Border>
+        <toast:NotificationContainer Height="100" Width="250"
+                                     VerticalAlignment="Top"
+                                     HorizontalAlignment="Right"
+                                     x:Name="noti"/>
         <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
              Width="50" Height="50" Foreground="Black"
              Margin="265,388,265,87" IsIndeterminate="True"

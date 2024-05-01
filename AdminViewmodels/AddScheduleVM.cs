@@ -8,6 +8,9 @@ using OfficeOpenXml;
 using MaterialDesignThemes.Wpf;
 using System.Diagnostics;
 using System.Windows.Media;
+using Flattinger.UI.ToastMessage.Controls;
+using Flattinger.Core.Theme;
+using Flattinger.UI.ToastMessage;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -20,42 +23,20 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Properties
+        private AppTheme _theme;
+        private ToastProvider _toastProvider;
         private bool _inProcess;
         private string _path;
-        private string _content;
         private Visibility _loading;
-        private Visibility _notice;
-        private PackIconKind _icon;
-        private Brush _iconBrush;
         public Visibility Loading
         {
             get { return _loading; }
             set { _loading = value; OnPropertyChanged(); }
         }
-        public PackIconKind Icon
-        {
-            get { return _icon; }
-            set { _icon = value; OnPropertyChanged(); }
-        }
-        public Brush IconBrush
-        {
-            get { return _iconBrush; }
-            set { _iconBrush = value; OnPropertyChanged(); }
-        }
         public string Path
         {
             get { return _path; }
             set { _path = value; OnPropertyChanged(); }
-        }
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; OnPropertyChanged(); }
-        }
-        public Visibility Notice
-        {
-            get { return _notice; }
-            set { _notice = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -296,21 +277,11 @@ namespace AcademyManager.AdminViewmodels
                     }
                     await Task.WhenAll(batch);
                     batch.Clear();
-                    Content = "Cập nhật thành công";
-                    Notice = Visibility.Visible;
-                    Icon = PackIconKind.Check;
-                    IconBrush = Brushes.GreenYellow;
-                    await Task.Delay(3000);
-                    Notice = Visibility.Hidden;
+                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Lịch trình học tập và giảng dạy đã được cập nhật.", 1000);
                 }
                 else
                 {
-                    Content = "Dữ liệu không hợp lệ";
-                    Notice = Visibility.Visible;
-                    Icon = PackIconKind.Close;
-                    IconBrush = Brushes.OrangeRed;
-                    await Task.Delay(3000);
-                    Notice = Visibility.Hidden;
+                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
                 }
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
@@ -319,16 +290,18 @@ namespace AcademyManager.AdminViewmodels
 
             DownloadCommand = new RelayCommand<object>(p => { return true; }, p => 
             {
-                string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FScheduleFileFormat.xlsx?alt=media&token=9af4068f-0fc1-4e92-bff1-35bd82c690d9";
+                string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FScheduleFileFormat.xlsx?alt=media&token=8d5ca0d1-6658-4634-8991-eaebe93b59f8";
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             });
         }
         #endregion
-        public AddScheduleVM()
+        public AddScheduleVM(NotificationContainer n)
         {
-            Notice = Visibility.Hidden;
             Loading = Visibility.Hidden;
             _inProcess = false;
+            _theme = new AppTheme();
+            _theme.ChangeTheme(Flattinger.Core.Enums.Theme.LIGHT);
+            _toastProvider = new ToastProvider(n);
             InitializeCommands();
         }
     }

@@ -24,8 +24,8 @@ namespace AcademyManager.AdminViews
         public AddUsersVM Viewmodel {  get; set; }
         public AddUsersUC()
         {
-            this.DataContext = Viewmodel = new AddUsersVM();
             InitializeComponent();
+            this.DataContext = Viewmodel = new AddUsersVM(noti);
         }
     }
 }

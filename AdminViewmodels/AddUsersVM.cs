@@ -9,6 +9,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Flattinger.UI.ToastMessage.Controls;
+using Flattinger.Core.Theme;
+using Flattinger.UI.ToastMessage;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -21,42 +24,20 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Properties
+        private AppTheme _theme;
+        private ToastProvider _toastProvider;
         private bool _inProcess;
         private string _path;
-        private string _content;
-        private Brush _iconbrush;
-        private PackIconKind _icon;
-        private Visibility _notice;
         private Visibility _loading;
         public Visibility Loading
         {
             get { return _loading; }
             set { _loading = value; OnPropertyChanged(); }
         }
-        public Brush IconBrush
-        {
-            get { return _iconbrush; }
-            set { _iconbrush = value; OnPropertyChanged(); }
-        }
         public string Path
         {
             get { return _path; }
             set { _path = value; OnPropertyChanged(); }
-        }
-        public PackIconKind Icon
-        {
-            get { return _icon; }
-            set { _icon = value; OnPropertyChanged(); }
-        }
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; OnPropertyChanged(); }
-        }
-        public Visibility Notice
-        {
-            get { return _notice; }
-            set { _notice = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -214,21 +195,11 @@ namespace AcademyManager.AdminViewmodels
                         await Task.WhenAll(userbatch);
                         accbatch.Clear();
                         userbatch.Clear();
-                        Content = "Cập nhật thành công";
-                        Icon = PackIconKind.Check;
-                        IconBrush = Brushes.GreenYellow;
-                        Notice = Visibility.Visible;
-                        await Task.Delay(3000);
-                        Notice = Visibility.Hidden;
+                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
                     }
                     else
                     {
-                        Content = "Dữ liệu không hợp lệ";
-                        Icon = PackIconKind.Close;
-                        IconBrush = Brushes.OrangeRed;
-                        Notice = Visibility.Visible;
-                        await Task.Delay(3000);
-                        Notice = Visibility.Hidden;
+                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
                     }
                 } else if (p.SelectedIndex == 1)
                 {
@@ -259,21 +230,11 @@ namespace AcademyManager.AdminViewmodels
                         await Task.WhenAll(userbatch);
                         accbatch.Clear();
                         userbatch.Clear();
-                        Content = "Cập nhật thành công";
-                        Icon = PackIconKind.Check;
-                        IconBrush = Brushes.GreenYellow;
-                        Notice = Visibility.Visible;
-                        await Task.Delay(2000);
-                        Notice = Visibility.Hidden;
+                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
                     }
                     else
                     {
-                        Content = "Dữ liệu không hợp lệ";
-                        Icon = PackIconKind.Close;
-                        IconBrush = Brushes.OrangeRed;
-                        Notice = Visibility.Visible;
-                        await Task.Delay(2000);
-                        Notice = Visibility.Hidden;
+                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
                     }
                 }
                 Loading = Visibility.Hidden;
@@ -295,11 +256,13 @@ namespace AcademyManager.AdminViewmodels
             });
         }
         #endregion
-        public AddUsersVM()
+        public AddUsersVM(NotificationContainer n)
         {
             InitializeCommands();
+            _toastProvider = new ToastProvider(n);
+            _theme = new AppTheme();
+            _theme.ChangeTheme(Flattinger.Core.Enums.Theme.LIGHT);
             _inProcess = false;
-            Notice = Visibility.Hidden;
             Loading = Visibility.Hidden;
         }
     }

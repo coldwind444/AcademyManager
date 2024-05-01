@@ -24,8 +24,8 @@ namespace AcademyManager.AdminViews
         public AddScheduleVM Viewmodel { get; set ; }
         public AddScheduleUC()
         {
-            this.DataContext = Viewmodel = new AddScheduleVM();
             InitializeComponent();
+            this.DataContext = Viewmodel = new AddScheduleVM(noti);
         }
     }
 }
