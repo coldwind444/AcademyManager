@@ -15,6 +15,7 @@ namespace AcademyManager.Models
         public string TermID { get; set; }
         public string CourseID { get; set; }
         public string CourseName { get; set; }
+        public int CourseCredits { get; set; }
         public List<KeyValuePair<string,string>> Documents { get; set; }
         public DateOnly ExamDate { get; set; }
         public string ExamRoom { get; set; }
@@ -26,7 +27,7 @@ namespace AcademyManager.Models
         public DateOnly EndDate { get; set; }
         public string Room {  get; set; }
         public Dictionary<string, StudentRecord> Students { get; set; }
-        public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, 
+        public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
             List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
             DateOnly beginDate, DateOnly endDate, string room, DateOnly examDate, string examRoom, TimeOnly examTime)
         {
@@ -37,6 +38,7 @@ namespace AcademyManager.Models
             TermID = termID;
             CourseID = courseID;
             CourseName = courseName;
+            CourseCredits = credits;
             Documents = documents;
             Weekday = weekday;
             BeginTime = beginTime;
@@ -48,7 +50,7 @@ namespace AcademyManager.Models
             ExamRoom = examRoom;
             ExamTime = examTime;
         }
-        public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName,
+        public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
             DayOfWeek day, TimeOnly bgT, TimeOnly endTime, DateOnly beginDate, DateOnly endDate, string room,
             DateOnly examDate, string examRoom, TimeOnly examTime)
         {
@@ -59,6 +61,7 @@ namespace AcademyManager.Models
             TermID = termID;
             CourseID = courseID;
             CourseName = courseName;
+            CourseCredits= credits;
             Weekday = day;
             BeginTime = bgT;
             EndTime = endTime;
@@ -69,11 +72,11 @@ namespace AcademyManager.Models
             ExamRoom = examRoom;
             ExamTime = examTime;
         }
-        [JsonConstructor]public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, 
+        [JsonConstructor]public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
             List<KeyValuePair<string, string>> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
             DateOnly beginDate, DateOnly endDate, string room, Dictionary<string, StudentRecord> students,
             DateOnly examDate, string examRoom, TimeOnly examTime) 
-            : this(classID, instructorID, instructorName, termID, courseID, courseName, documents, weekday, beginTime, endTime, beginDate, endDate, room,
+            : this(classID, instructorID, instructorName, termID, courseID, courseName, credits, documents, weekday, beginTime, endTime, beginDate, endDate, room,
                   examDate, examRoom, examTime)
         {
             Students = students;

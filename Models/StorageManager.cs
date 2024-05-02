@@ -39,8 +39,7 @@ namespace AcademyManager.Models
 
             // Update document's url and title to database
             DatabaseManager db = new DatabaseManager();
-            Term term = await db.GetTermAsync(termID);
-            term.Courses[courseID].Classes[classID].Documents.Add(new KeyValuePair<string, string>(title, downloadUrl));
+            await db.UploadDocumentAsync(termID, courseID, classID, new KeyValuePair<string, string>(title, downloadUrl));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using System.Security.Cryptography;
 using System.Windows;
 
 namespace AcademyManager.Models
@@ -165,6 +166,36 @@ namespace AcademyManager.Models
         {
             string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students/{stid}";
             FirebaseResponse response = await client.DeleteAsync(path);
+        }
+        #endregion
+        #region Notifications
+        public async Task RemoveNotificationAsync(string uuid, int type, int nid)
+        {
+            if (type == 1)
+            {
+                string path = $"Instructors/{uuid}/Notifications/{nid}";
+                FirebaseResponse res = await client.DeleteAsync(path);
+            } else
+            {
+                string path = $"Students/{uuid}/Notifications/{nid}";
+                FirebaseResponse res = await client.DeleteAsync(path);
+            }
+        }
+        public async Task SendNotificationAsync(string receiverid, int type, Notification n)
+        {
+            Account acc = await GetAccountAsync(receiverid, type);
+            if (acc == null) { return; }
+            string path;
+            if (type == 1) path = $"Instructors/{acc.UUID}/Notifications/{n.ID}";
+            else path = $"Students/{acc.UUID}/Notifications/{n.ID}";
+            SetResponse response = await client.SetAsync(path, n);
+        }
+        #endregion
+        #region Documents
+        public async Task UploadDocumentAsync(string termid, string courseid, string classid, KeyValuePair<string, string> doc)
+        {
+            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Documents/";
+            SetResponse response = await client.SetAsync(path, doc);
         }
         #endregion
     }

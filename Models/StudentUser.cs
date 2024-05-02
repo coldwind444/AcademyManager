@@ -16,7 +16,7 @@ namespace AcademyManager.Models
             DatabaseManager database = new DatabaseManager();
             this.StudyElements.Add(new ClassIdentifier(termID, courseID, classID));
             await database.UpdateStudentAsync(uuid, this);
-            await database.AddStudentAsync(termID, courseID, classID, ID, new StudentRecord(ID, Fullname, 0, 0, 0, 0));
+            await database.AddStudentAsync(termID, courseID, classID, ID, new StudentRecord(ID, Fullname, 0, 0, 0, 0, 0));
         }
         public async Task CancelRegisterClass(string termID, string courseID, string classID, string uuid)
         {

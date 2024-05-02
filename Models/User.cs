@@ -14,7 +14,7 @@ namespace AcademyManager.Models
         public DateOnly Birthday { get; set; }
         public string Faculty {  get; set; }
         public string AvatarBase64 { get; set; }
-        public List<Notification> Notifications { get; set; }
+        public Dictionary<int, Notification> Notifications { get; set; }
         public List<ClassIdentifier> StudyElements { get; set; }
         private bool InSchedule(DateOnly date, Class cls)
         {
@@ -40,7 +40,7 @@ namespace AcademyManager.Models
             Faculty = faculty;
             AvatarBase64 = avt;
             StudyElements = new List<ClassIdentifier>();
-            Notifications = new List<Notification>();
+            Notifications = new Dictionary<int, Notification>();
         }
     }
 }
