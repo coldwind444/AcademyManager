@@ -51,7 +51,7 @@ namespace AcademyManager.Viewmodels
         {
             Random random = new Random();
             DatabaseManager db = new DatabaseManager();
-            int id = random.Next(1, 1000);
+            int id = random.Next(0, 1000);
             string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
             string message = "Điểm số đã được cập nhật!";
             Notification noti = new Notification(id, title, message, DateTime.Now);
