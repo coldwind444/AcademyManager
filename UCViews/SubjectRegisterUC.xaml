@@ -84,9 +84,8 @@
             </StackPanel>
             <Button Height="50" Width="50" Margin="740,10,10,60"
                     x:Name="RegisterButton"
-                    ToolTip="Đăng ký"
                     Click="RegisterButton_Click">
-                <md:PackIcon Kind="PencilBoxOutline" Width="40" Height="40"
+                <md:PackIcon Width="40" Height="40"
                              Foreground="White" x:Name="Icon"
                              ToolTip="Đăng ký"/>
             </Button>

@@ -27,8 +27,20 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
-        public SubjectRegisterUC(Class cls)
+        public SubjectRegisterUC(Class cls, PackIconKind icon)
         {
+            InitializeComponent();
+            Icon.Kind = icon;
+            if (icon == PackIconKind.PencilBox)
+            {
+                IsRegisterd = false;
+                RegisterButton.ToolTip = "Đăng ký";
+            }
+            else
+            {
+                IsRegisterd = true;
+                RegisterButton.ToolTip = "Hủy đăng ký";
+            }
             Room = cls.Room;
             Day = cls.Weekday;
             string bg = cls.BeginTime.ToString("HH:mm"),
@@ -37,7 +49,7 @@ namespace AcademyManager.UCViews
             LecturerName = cls.InstructorName;
             Class = $"{cls.CourseName} - {cls.ClassID}";
             ClassData = cls;
-            InitializeComponent();
+
         }
         private bool IsRegisterd { get; set; }
         private Class ClassData { get; set; }
