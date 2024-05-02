@@ -119,7 +119,7 @@ namespace AcademyManager.Viewmodels
         {
             MainVM.UserClassList = await GetClassList();
         }
-        private void SetNotificationDot()
+        public void SetNotificationDot()
         {
             if (CurrentUser == null) return;
             if (CurrentUser.Notifications != null)
@@ -154,12 +154,8 @@ namespace AcademyManager.Viewmodels
             {
                 AtHomePage = false;
                 AtNotificationPage = true;
-                if (NotificationView == null)
-                {
-                    NotificationView = new Noti(this);
-                    CurrentView = NotificationView;
-                } else 
-                    CurrentView = NotificationView;
+                NotificationView = new Noti(this);
+                CurrentView = NotificationView;
             });
 
             CloseCommand = new RelayCommand<MainWindow>(p => { return true; }, p =>
@@ -191,7 +187,6 @@ namespace AcademyManager.Viewmodels
             AtInfoPage = false;
             IsLogout = false;
             NavigationButtonV = Visibility.Hidden;
-            SetNotificationDot();
         }
     }
 }

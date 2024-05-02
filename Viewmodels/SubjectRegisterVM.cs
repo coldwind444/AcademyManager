@@ -31,7 +31,10 @@ namespace AcademyManager.Viewmodels
             Course course = await db.GetCourseAsync(termid, CID);
             foreach (Class c in course.Classes.Values)
             {
-                SubjectRegisterUC item = new SubjectRegisterUC(c) ;
+                bool contain = MainVM.CurrentUser.StudyElements.Any(e => e.TermID == c.TermID && e.CourseID == c.CourseID && e.ClassID == c.ClassID);
+                SubjectRegisterUC item;
+                if (!contain) item = new SubjectRegisterUC(c, MaterialDesignThemes.Wpf.PackIconKind.PencilBox);
+                else item = new SubjectRegisterUC(c, MaterialDesignThemes.Wpf.PackIconKind.BoxCancel);
                 panel.Children.Add(item);
             }
         }

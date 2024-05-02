@@ -82,6 +82,7 @@ namespace AcademyManager.Viewmodels
                             await ParentVM.LoadClasses();
                             ParentVM.HomeView = new LectureMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
+                            ParentVM.SetNotificationDot();
                         } else
                         {
                             MainVM.CurrentAccount = acc;
@@ -89,6 +90,7 @@ namespace AcademyManager.Viewmodels
                             await ParentVM.LoadClasses();
                             ParentVM.HomeView = new StudentMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
+                            ParentVM.SetNotificationDot();
                         }
                         ResetAll();
                         ParentVM.NavigationButtonV = Visibility.Visible;

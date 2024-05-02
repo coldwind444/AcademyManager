@@ -17,17 +17,21 @@ namespace AcademyManager.Viewmodels
         public SpecificNoti DeletedNoti { get; set; }
         #endregion
         #region Methods
-        public void DeleteNoti()
+        public async void DeleteNoti()
         {
-            Notification? notification = MainVM.CurrentUser.Notifications.Find(noti => noti.ID == DeletedNoti.ID);
-            if (notification != null) MainVM.CurrentUser.Notifications.Remove(notification);
+            DatabaseManager db = new DatabaseManager();
+            if (MainVM.CurrentUser.Notifications.ContainsKey(DeletedNoti.ID))
+            {
+                MainVM.CurrentUser.Notifications.Remove(DeletedNoti.ID);
+                await db.RemoveNotificationAsync(MainVM.CurrentAccount.UUID, MainVM.CurrentAccount.Type, DeletedNoti.ID);
+            }
             NotiPanel.Children.Remove(DeletedNoti);
         }
         private void LoadNotifications()
         {
-            List<Notification> list = MainVM.CurrentUser.Notifications;
+            Dictionary<int, Notification> list = MainVM.CurrentUser.Notifications;
             if (list == null || list.Count == 0) return;
-            foreach (Notification n in list)
+            foreach (Notification n in list.Values)
             {
                 SpecificNoti noti = new SpecificNoti(n.ID, n.Title, n.Message, n.UpdateDate, this);
                 NotiPanel.Children.Add(noti);

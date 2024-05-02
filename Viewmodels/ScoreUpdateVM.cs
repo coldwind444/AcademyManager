@@ -47,6 +47,21 @@ namespace AcademyManager.Viewmodels
         {
             return (s == null || s.Length == 0);
         }
+        private async Task SendNotification()
+        {
+            Random random = new Random();
+            DatabaseManager db = new DatabaseManager();
+            int id = random.Next(1, 1000);
+            string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
+            string message = "Điểm số đã được cập nhật!";
+            Notification noti = new Notification(id, title, message, DateTime.Now);
+            var batch = new List<Task>();
+            foreach (string s in ClassData.Students.Keys)
+            {
+                Task t = db.SendNotificationAsync(s, 2, noti);
+            }
+            await Task.WhenAll(batch);
+        }
         private List<StudentRecord>? GetStudentResultData()
         {
             var list = new List<StudentRecord>();
@@ -84,7 +99,7 @@ namespace AcademyManager.Viewmodels
                         return null;
                     }
 
-                    list.Add(new StudentRecord(id, name, d, m, f, g));
+                    list.Add(new StudentRecord(id, name, d, p, m, f, g));
                 }
             }
             return list;
@@ -119,11 +134,14 @@ namespace AcademyManager.Viewmodels
                 Loading = Visibility.Visible;
                 var list = GetStudentResultData();
                 await UpdateScore(list);
-                Loading = Visibility.Hidden;
-                if (list != null) 
+                if (list != null)
+                {
                     _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Điểm đã được cập nhật!", 1000);
+                    await SendNotification();
+                }
                 else
                     _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ!", 1000);
+                Loading = Visibility.Hidden;
             });
 
             DownloadCommand = new RelayCommand<object>(p => true, p =>

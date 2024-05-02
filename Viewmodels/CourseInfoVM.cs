@@ -1,5 +1,7 @@
 ﻿using AcademyManager.Models;
+using AcademyManager.UCViews;
 using AcademyManager.Views;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
@@ -11,14 +13,24 @@ namespace AcademyManager.Viewmodels
         public ICommand UpdateScoreCommand { get; set; }
         public ICommand AddDocumentCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand ReloadCommand { get; set; }
         #endregion
         #region Properties
         public Class Data {  get; set; }
         private MainVM GGParentVM { get; set; }
-        private SubjectListVM GParentVM { get; set; }
-        
+        private StackPanel DocumentsPanel { get; set; }
         #endregion
         #region Methods
+        public async void LoadDocuments()
+        {
+            DatabaseManager db = new DatabaseManager();
+            Data = await db.GetClassAsync(Data.TermID, Data.CourseID, Data.ClassID);
+            foreach (var doc in Data.Documents)
+            {
+                SubjectContentUC item = new SubjectContentUC(doc.Key, doc.Value);
+                DocumentsPanel.Children.Add(item);
+            }
+        }
         private void InitializeCommands()
         {
             ViewStudentListCommand = new RelayCommand<object>(p => true, p =>
@@ -43,13 +55,19 @@ namespace AcademyManager.Viewmodels
             {
                 GGParentVM.CurrentView = GGParentVM.CourseListView;
             });
+
+            ReloadCommand = new RelayCommand<object>(p => true, p =>
+            {
+                LoadDocuments();
+            });
         }
         #endregion
-        public CourseInfoVM(Class data, MainVM vm, SubjectListVM p)
+        public CourseInfoVM(Class data, MainVM vm, StackPanel p)
         {
             Data = data;
             GGParentVM = vm;
-            GParentVM = p;
+            DocumentsPanel = p;
+            LoadDocuments();
             InitializeCommands();
         }
     }

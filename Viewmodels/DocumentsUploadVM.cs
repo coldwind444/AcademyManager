@@ -24,6 +24,7 @@ namespace AcademyManager.Viewmodels
         #region Support class
         public class FileItem
         {
+            public bool IsSelected { get; set; }
             public string Path { get; set; }
             public BitmapSource Icon { get; set; }
         }
@@ -32,6 +33,7 @@ namespace AcademyManager.Viewmodels
         public ICommand SelectFilesCommand { get; set; }
         public ICommand UploadFilesCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }
         #endregion
         #region Properties
         public ObservableCollection<FileItem> Files { get; set; }
@@ -47,6 +49,21 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
+        private async Task SendNotification()
+        {
+            Random random = new Random();
+            DatabaseManager db = new DatabaseManager();
+            int id = random.Next(1,1000);
+            string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
+            string message = "Tài liệu đã được cập nhật!";
+            Notification noti = new Notification(id, title, message, DateTime.Now);
+            var batch = new List<Task>();
+            foreach (string s in ClassData.Students.Keys)
+            {
+                Task t = db.SendNotificationAsync(s, 2, noti);
+            }
+            await Task.WhenAll(batch);
+        }
         private void InitializeCommands()
         {
             SelectFilesCommand = new RelayCommand<object>(p => true, p =>
@@ -67,7 +84,7 @@ namespace AcademyManager.Viewmodels
                             Int32Rect.Empty,
                             BitmapSizeOptions.FromEmptyOptions());
 
-                        Files.Add(new FileItem { Path = filename, Icon = iconImage });
+                        Files.Add(new FileItem { IsSelected = false, Path = filename, Icon = iconImage });
                     }
                 }
             });
@@ -96,8 +113,17 @@ namespace AcademyManager.Viewmodels
                     Loading = Visibility.Hidden;
                     _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Không thể tải tệp tin!", 1000);
                 }
+                await SendNotification();
                 Loading = Visibility.Hidden;
                 _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đã tải tệp tin lên!", 1000);
+            });
+
+            RemoveCommand = new RelayCommand<object>(p => true, p =>
+            {
+                foreach (FileItem file in Files)
+                {
+                    if (file.IsSelected) Files.Remove(file);
+                }
             });
 
             CloseCommand = new RelayCommand<DocumentsUploadWindow>(p => true, p =>
