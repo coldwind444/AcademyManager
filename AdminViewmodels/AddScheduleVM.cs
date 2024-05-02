@@ -103,10 +103,10 @@ namespace AcademyManager.AdminViewmodels
             }
             return false;
         }
-        private List<Term>? GetDataFromExcel(out List<KeyValuePair<string, ClassIdentifier>>? list)
+        private List<Term>? GetDataFromExcel(out List<KeyValuePair<string, Class>>? list)
         {
             List<Term> data = new List<Term>();
-            List<KeyValuePair<string, ClassIdentifier>> insSchedule = new List<KeyValuePair<string, ClassIdentifier>>();
+            List<KeyValuePair<string, Class>> insSchedule = new List<KeyValuePair<string, Class>>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
             using (ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(_path)))
             {
@@ -182,6 +182,7 @@ namespace AcademyManager.AdminViewmodels
                     }
 
                     int Tidx = data.FindIndex(t => t.TermID == termID);
+                    Class cls = null;
                     if (Tidx != -1) // Check if term is contained in list
                     {
                         // if contains
@@ -192,7 +193,7 @@ namespace AcademyManager.AdminViewmodels
                             {
                                 // if not contain
                                 // check if there is at least one class in the same time that manage by the same instructor
-                                Class cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                                cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
                                 foreach (Class c in data[Tidx].Courses[courseID].Classes.Values)
                                 {
                                     if (InvalidClass(cls, c))
@@ -211,25 +212,38 @@ namespace AcademyManager.AdminViewmodels
                         } else
                         {
                             data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
-                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                            cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                            data[Tidx].Courses[courseID].Classes[classID] = cls;
                         }
                     } else
                     {
                         Term term = new Term(termID);
                         term.Courses[courseID] = new Course(courseID, courseName, credits);
-                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                        cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                        term.Courses[courseID].Classes[classID] = cls;
                         data.Add(term);
                     }
-                    insSchedule.Add(new KeyValuePair<string, ClassIdentifier>(insID, new ClassIdentifier(termID, courseID, classID)));
+                    insSchedule.Add(new KeyValuePair<string, Class>(insID, cls));
                 }
             }
             list = insSchedule;
             return data;
         }
-        private async Task<bool> UploadInstructorSchedule(List<KeyValuePair<string, ClassIdentifier>> list)
+        private void SendNotification(ref InstructorUser us, Class data)
+        {
+            Random rand = new Random();
+            int id = rand.Next(0, 1000);
+            string title = $"{data.CourseName} ({data.CourseID} - {data.ClassID})";
+            string message = $"Bạn vừa được phân công dạy lớp này!";
+            Notification n = new Notification(id, title, message, DateTime.Now);
+            us.Notifications.Add(id, n);
+        }
+        private async Task<bool> UploadInstructorSchedule(List<KeyValuePair<string, Class>> list)
         {
             if (list == null) return false;
             DatabaseManager db = new DatabaseManager();
+            Random rand = new Random();
+            int id = rand.Next(0, 1000);
             var batch = new List<Task>();
             foreach (var c in list)
             {
@@ -238,7 +252,11 @@ namespace AcademyManager.AdminViewmodels
                 {
                     InstructorUser user = await db.GetInstructorAsync(c.Key);
                     bool contain = user.StudyElements.Any(n => n.TermID == c.Value.TermID && n.ClassID == c.Value.ClassID && n.CourseID == c.Value.CourseID);
-                    if (!contain) user.StudyElements.Add(c.Value);
+                    if (!contain)
+                    {
+                        user.StudyElements.Add(new ClassIdentifier(c.Value.TermID, c.Value.CourseID, c.Value.ClassID));
+                        SendNotification(ref user, c.Value);
+                    }
                     Task task = db.UpdateInstructorAsync(acc.UUID, user);
                     batch.Add(task);
                 }
@@ -264,7 +282,7 @@ namespace AcademyManager.AdminViewmodels
             {
                 _inProcess = true;
                 Loading = Visibility.Visible;
-                List<Term>? terms = GetDataFromExcel(out List<KeyValuePair<string, ClassIdentifier>>? list);
+                List<Term>? terms = GetDataFromExcel(out List<KeyValuePair<string, Class>>? list);
                 bool canUpload = await UploadInstructorSchedule(list);
                 if (terms != null && canUpload)
                 {
