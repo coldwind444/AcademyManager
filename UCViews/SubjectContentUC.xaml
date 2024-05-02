@@ -6,9 +6,9 @@
              mc:Ignorable="d" x:Name="content"
              d:DesignHeight="40" d:DesignWidth="880"
              MouseLeftButtonDown="content_MouseLeftButtonDown">
-    <Border Margin="30,0,30,0"
+    <Border Margin="0,0,0,0"
             CornerRadius="10" 
-            Opacity="0.85" Height="40">
+            Height="40" Background="#02702C">
         <Border.Style>
             <Style TargetType="Border">
                 <Setter Property="Cursor" Value="Hand"/>
@@ -23,10 +23,6 @@
                 </Style.Triggers>
             </Style>
         </Border.Style>
-        <Border.Background>
-            <SolidColorBrush Color="#02702C" 
-                             Opacity="0.9"/>
-        </Border.Background>
         <Grid>
             <TextBlock VerticalAlignment="Center" Foreground="White"
                        FontSize="20" Margin="20 0 0 0"

@@ -58,6 +58,7 @@ namespace AcademyManager.Viewmodels
             string message = "Tài liệu đã được cập nhật!";
             Notification noti = new Notification(id, title, message, DateTime.Now);
             var batch = new List<Task>();
+            if (ClassData.Students == null) return;
             foreach (string s in ClassData.Students.Keys)
             {
                 Task t = db.SendNotificationAsync(s, 2, noti);
@@ -120,9 +121,10 @@ namespace AcademyManager.Viewmodels
 
             RemoveCommand = new RelayCommand<object>(p => true, p =>
             {
-                foreach (FileItem file in Files)
+                var selectedFiles = Files.Where(f => f.IsSelected).ToList(); 
+                foreach (var file in selectedFiles)
                 {
-                    if (file.IsSelected) Files.Remove(file);
+                    Files.Remove(file);
                 }
             });
 
@@ -139,6 +141,8 @@ namespace AcademyManager.Viewmodels
             _theme = new AppTheme();
             _theme.ChangeTheme(Flattinger.Core.Enums.Theme.LIGHT);
             _toastProvider = new ToastProvider(noti);
+            Files = new ObservableCollection<FileItem>();
+            Loading = Visibility.Hidden;
             InitializeCommands();
         }
     }

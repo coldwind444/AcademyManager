@@ -125,7 +125,7 @@ namespace AcademyManager.Viewmodels
 
             BackCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.CurrentView = ParentVM.WelcomeView;
+                ParentVM.CurrentView = ParentVM.WhoAreYouView;
                 ResetAll();
             });
         }

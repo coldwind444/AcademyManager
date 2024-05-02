@@ -43,7 +43,7 @@
                    TextWrapping="Wrap" 
                    FontSize="30" 
                    Foreground="Black"
-                   Margin="40,26,395,524" 
+                   Margin="40,10,395,540" 
                    Height="50" FontWeight="Medium">
             <Run Text="{Binding Data.CourseName}"/>
             <Run Text=" ("/>
@@ -53,7 +53,7 @@
         <TextBlock TextAlignment="Left" 
                    FontSize="30" FontWeight="Medium"
                    TextWrapping="Wrap" 
-                   Margin="40,70,360,490" 
+                   Margin="40,53,360,507" 
                    Width="600" Height="40">
             <Run Text="Giảng viên: "/>
             <Run Text="{Binding Data.InstructorName}"/>
@@ -85,7 +85,7 @@
                 Height="40" Width="220"
                 Content="Cập nhật điểm số" Margin="720,55,60,505" 
                 Command="{Binding UpdateScoreCommand}"/>
-        <ScrollViewer Margin="40,183,60,91" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="40,161,60,75" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="DocumentsPanel">
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">

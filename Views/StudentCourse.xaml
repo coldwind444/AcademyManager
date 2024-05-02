@@ -41,17 +41,17 @@
         </materialDesign:PackIcon>
         <TextBlock TextAlignment="Left" FontWeight="Medium"
                    TextWrapping="Wrap" FontSize="30" Foreground="Black" 
-                   Margin="40,31,386,519" Height="50">
+                   Margin="40,10,386,540" Height="50">
             <Run Text="{Binding Data.CourseName}"/>
             <Run Text=" ("/>
             <Run Text="{Binding Data.CourseID}"/>
             <Run Text=")"/>
         </TextBlock>
-        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,72,360,488" Width="600" Height="40" FontWeight="Medium">
+        <TextBlock TextAlignment="Left" FontSize="30" TextWrapping="Wrap" Margin="40,60,360,500" Width="600" Height="40" FontWeight="Medium">
             <Run Text="Giảng viên: "/>
             <Run Text="{Binding Data.InstructorName}"/>
         </TextBlock>
-        <Separator Background="Black" Margin="40,106,0,484" HorizontalAlignment="Left" Width="900" Height="10"/>
+        <Separator Background="Black" Margin="40,98,0,492" HorizontalAlignment="Left" Width="900" Height="10"/>
         <TextBlock TextAlignment="Left" FontSize="25" TextWrapping="Wrap" Width="200" Margin="40,121,760,435"><Run Text="Tài liệu"/><LineBreak/></TextBlock>
         <Button Style="{DynamicResource RoundButton}" 
                 Cursor="Hand"
@@ -59,9 +59,9 @@
                 Foreground="White"
                 Command="{Binding ViewStudentListCommand}" 
                 RenderTransformOrigin="0.747,0.56" 
-                Margin="740,61,60,499" 
+                Margin="740,53,60,507" 
                 Content="Danh sách sinh viên" Width="200" Height="40"/>
-        <ScrollViewer Margin="40,193,60,79" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="40,165,60,70" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="DocumentsPanel">
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">

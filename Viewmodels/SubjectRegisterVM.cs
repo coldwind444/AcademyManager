@@ -29,6 +29,7 @@ namespace AcademyManager.Viewmodels
             DatabaseManager db = new DatabaseManager();
             string termid = await db.GetCurrentTermAsync();
             Course course = await db.GetCourseAsync(termid, CID);
+            if (course == null) return;
             foreach (Class c in course.Classes.Values)
             {
                 bool contain = MainVM.CurrentUser.StudyElements.Any(e => e.TermID == c.TermID && e.CourseID == c.CourseID && e.ClassID == c.ClassID);

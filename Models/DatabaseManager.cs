@@ -194,8 +194,8 @@ namespace AcademyManager.Models
         #region Documents
         public async Task UploadDocumentAsync(string termid, string courseid, string classid, KeyValuePair<string, string> doc)
         {
-            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Documents/";
-            SetResponse response = await client.SetAsync(path, doc);
+            string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Documents/{doc.Key}";
+            SetResponse response = await client.SetAsync(path, doc.Value);
         }
         #endregion
     }

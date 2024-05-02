@@ -184,6 +184,8 @@ namespace AcademyManager.Viewmodels
             TermCredits = 0;
             PassCredits = 0;
             TotalCredits = 0;
+            Terms = new ObservableCollection<string>();
+            Result = new ObservableCollection<CourseRecord>();
             LoadTerms();
             InitializeCommand();
         }

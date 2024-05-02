@@ -211,7 +211,7 @@ namespace AcademyManager.AdminViewmodels
                         DatabaseManager db = new DatabaseManager();
                         foreach (InstructorUser ins in instructors)
                         {
-                            Account newacc = new Account(ins.ID, ins.Email, null, 2);
+                            Account newacc = new Account(ins.ID, ins.Email, null, 1);
                             Account existacc = await db.GetAccountAsync(ins.ID, 1);
                             if (existacc != null)
                             {

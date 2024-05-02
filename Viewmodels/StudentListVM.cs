@@ -71,7 +71,7 @@ namespace AcademyManager.Viewmodels
             var batch = new List<Task<StudentUser>>();
             var list = new List<StudentUser>();
             DatabaseManager db = new DatabaseManager();
-
+            if (ClassData.Students == null) return;
             foreach (string id in ClassData.Students.Keys)
             {
                 batch.Add(db.GetStudentAsync(id));

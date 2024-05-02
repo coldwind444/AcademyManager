@@ -25,6 +25,7 @@ namespace AcademyManager.Viewmodels
         {
             DatabaseManager db = new DatabaseManager();
             Data = await db.GetClassAsync(Data.TermID, Data.CourseID, Data.ClassID);
+            if (Data.Documents == null) return;
             foreach (var doc in Data.Documents)
             {
                 SubjectContentUC item = new SubjectContentUC(doc.Key, doc.Value);
@@ -33,13 +34,13 @@ namespace AcademyManager.Viewmodels
         }
         private void InitializeCommands()
         {
-            ViewStudentListCommand = new RelayCommand<object>(p => true, p =>
+            ViewStudentListCommand = new RelayCommand<object>(p => Data.Students != null, p =>
             {
                 StudentListWindow window = new StudentListWindow(Data);
                 window.ShowDialog();
             });
 
-            UpdateScoreCommand = new RelayCommand<object>(p => true, p =>
+            UpdateScoreCommand = new RelayCommand<object>(p => Data.Students != null, p =>
             {
                 ScoreUpdateWindow window = new ScoreUpdateWindow(Data);
                 window.ShowDialog();

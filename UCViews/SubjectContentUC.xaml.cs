@@ -41,7 +41,7 @@ namespace AcademyManager.UCViews
             set { SetValue(URLProperty, value); }
         }
 
-        public static readonly DependencyProperty URLProperty = DependencyProperty.Register("Title", typeof(string), typeof(SubjectContentUC));
+        public static readonly DependencyProperty URLProperty = DependencyProperty.Register("URL", typeof(string), typeof(SubjectContentUC));
 
         private void content_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -48,7 +48,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Margin="20" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-                    <DataGrid ItemsSource="{Binding Files}" Margin="10" Background="White">
+                    <DataGrid ItemsSource="{Binding Files, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              Margin="10" Background="White"
+                              AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Header="#" 
                                                     Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -75,7 +77,7 @@
                     <Button Style="{DynamicResource RoundButton}"
                             Height="40" Width="150" Margin="0 0 10 0"
                             Content="Xóa" Foreground="White"
-                            FontSize="16" Command="{Binding SelectFilesCommand}"/>
+                            FontSize="16" Command="{Binding RemoveCommand}"/>
                     <Button Style="{DynamicResource RoundButton}"
                             Height="40" Width="150"
                             Foreground="White"
