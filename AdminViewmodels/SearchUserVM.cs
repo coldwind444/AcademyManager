@@ -1,5 +1,6 @@
 ﻿using AcademyManager.Models;
 using AcademyManager.Viewmodels;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,24 +11,28 @@ namespace AcademyManager.AdminViewmodels
     public class SearchUserVM : BaseViewModel
     {
         #region Support Classes
-        private class StudentDataRecord
+        public class StudentDataRecord
         {
             public string CourseID { get; set; }
             public string CourseName { get; set; }
+            public double Daily {  get; set; }
+            public double Project {  get; set; }
             public double MidTerm { get; set; }
             public double Final { get; set; }
             public double GPA { get; set; }
-            public StudentDataRecord(string cid, string cname, double midTerm, double final, double gpa)
+            public StudentDataRecord(string cid, string cname, double d, double p, double midTerm, double final, double gpa)
             {
                 CourseID = cid;
                 CourseName = cname;
+                Daily = d;
+                Project = p;
                 MidTerm = midTerm;
                 Final = final;
                 GPA = gpa;
             }
         }
 
-        private class InsDataRecord
+        public class InsDataRecord
         {
             public string CourseID { get; set; }
             public string CourseName { get; set; }
@@ -52,6 +57,8 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Properties
+        private ObservableCollection<StudentDataRecord> _students;
+        private ObservableCollection<InsDataRecord> _inss;
         private int _selectedIdx;
         private string _id;
         private string _userid;
@@ -67,6 +74,28 @@ namespace AcademyManager.AdminViewmodels
         private Visibility _loading;
         private Visibility _dataV;
         private Visibility _notfound;
+        private Visibility _std;
+        private Visibility _ins;
+        public ObservableCollection<StudentDataRecord> Students
+        {
+            get { return _students; }
+            set { _students = value; OnPropertyChanged(); }
+        }
+        public ObservableCollection<InsDataRecord> Instructors
+        {
+            get { return _inss; }
+            set { _inss = value; OnPropertyChanged(); }
+        }
+        public Visibility StudentV
+        {
+            get => _std;
+            set { _std = value; OnPropertyChanged(); }
+        }
+        public Visibility InsV
+        {
+            get => _ins;
+            set { _ins = value; OnPropertyChanged(); }
+        }
         public Visibility Addition2V
         {
             get { return _add2V; }
@@ -152,10 +181,12 @@ namespace AcademyManager.AdminViewmodels
             foreach (ClassIdentifier cls in user.StudyElements)
             {
                 Course c = await db.GetCourseAsync(cls.TermID, cls.CourseID);
+                double daily = c.Classes[cls.ClassID].Students[ID].DailyTestScore;
+                double prj = c.Classes[cls.ClassID].Students[ID].Project;
                 double mid = c.Classes[cls.ClassID].Students[ID].Mid_Term;
                 double final = c.Classes[cls.ClassID].Students[ID].Final;
                 double gpa = c.Classes[cls.ClassID].Students[ID].GPA;
-                list.Add(new StudentDataRecord(c.CourseID, c.CourseName, mid, final, gpa));
+                list.Add(new StudentDataRecord(c.CourseID, c.CourseName, daily, prj, mid, final, gpa));
             }
             return list;
         }
@@ -173,18 +204,19 @@ namespace AcademyManager.AdminViewmodels
             }
             return list;
         }
-        private async void LoadStudentDataGrid(DataGrid grid, StudentUser user)
+        private async void LoadStudentDataGrid(StudentUser user)
         {
-            grid.Columns.Clear();
+            StudentV = Visibility.Visible;
+            InsV = Visibility.Hidden;
             var data = await GetStudentResultData(user);
-            grid.ItemsSource = data;
+            Students = [.. data];
         }
-        private async void LoadInsDataGrid(DataGrid grid, InstructorUser user)
+        private async void LoadInsDataGrid(InstructorUser user)
         {
-            grid.Columns.Clear();
+            StudentV = Visibility.Hidden;
+            InsV = Visibility.Visible;
             var data = await GetInsData(user);
-            grid.ItemsSource = data;
-            
+            Instructors = [.. data];
         }
         private void LoadStudentPersonalInfo(StudentUser user)
         {
@@ -213,7 +245,7 @@ namespace AcademyManager.AdminViewmodels
         }
         private void InitializeCommands()
         {
-            SearchCommand = new RelayCommand<DataGrid>(p => { return true; }, async p =>
+            SearchCommand = new RelayCommand<object>(p => { return true; }, async p =>
             {
                 if (SelectedIdx == -1 || ID == null || ID == String.Empty) return;
                 if (SelectedIdx == 0)
@@ -232,7 +264,7 @@ namespace AcademyManager.AdminViewmodels
                     DataV = Visibility.Visible;
                     NotFound = Visibility.Hidden;
                     LoadStudentPersonalInfo(user);
-                    LoadStudentDataGrid(p, user);
+                    LoadStudentDataGrid(user);
                     TabHeader = "Kết quả học tập";
                     Loading = Visibility.Hidden;
                     
@@ -252,7 +284,7 @@ namespace AcademyManager.AdminViewmodels
                     DataV = Visibility.Visible;
                     NotFound = Visibility.Hidden;
                     LoadInsPersonalInfo(user);
-                    LoadInsDataGrid(p, user);
+                    LoadInsDataGrid(user);
                     TabHeader = "Các lớp giảng dạy";
                     Loading= Visibility.Hidden;
                 }

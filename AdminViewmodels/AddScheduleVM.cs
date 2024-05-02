@@ -134,7 +134,7 @@ namespace AcademyManager.AdminViewmodels
 
                     // Check string input
                     if (NullOrEmpty(termID) || NullOrEmpty(courseID) || NullOrEmpty(courseName) || NullOrEmpty(classID)
-                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(crd) || NullOrEmpty(insName) || NullOrEmpty(exr))
+                        || NullOrEmpty(insID) || NullOrEmpty(room) || NullOrEmpty(insName) || NullOrEmpty(exr))
                     {
                         list = null;
                         return null;
@@ -192,7 +192,7 @@ namespace AcademyManager.AdminViewmodels
                             {
                                 // if not contain
                                 // check if there is at least one class in the same time that manage by the same instructor
-                                Class cls = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                                Class cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
                                 foreach (Class c in data[Tidx].Courses[courseID].Classes.Values)
                                 {
                                     if (InvalidClass(cls, c))
@@ -211,13 +211,13 @@ namespace AcademyManager.AdminViewmodels
                         } else
                         {
                             data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
-                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                            data[Tidx].Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
                         }
                     } else
                     {
                         Term term = new Term(termID);
                         term.Courses[courseID] = new Course(courseID, courseName, credits);
-                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
+                        term.Courses[courseID].Classes[classID] = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
                         data.Add(term);
                     }
                     insSchedule.Add(new KeyValuePair<string, ClassIdentifier>(insID, new ClassIdentifier(termID, courseID, classID)));

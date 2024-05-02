@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             xmlns:models="clr-namespace:AcademyManager.Models"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
@@ -94,11 +95,12 @@
                             CommandParameter="{Binding ElementName=UserDataGrid}"
                             VerticalAlignment="Center"
                             HorizontalContentAlignment="Center"
-                            Width="50" Height="30"
+                            Width="30" Height="30"
+                            Margin="15 0 0 0" 
                             Background="Transparent"
                             BorderBrush="Transparent">
                         <materialDesign:PackIcon Kind="Send" 
-                                                 Width="20" Height="20"
+                                                 Width="15" Height="15"
                                                  VerticalAlignment="Center"
                                                  HorizontalAlignment="Center"
                                                  Foreground="White"/>
@@ -154,8 +156,51 @@
                     <TabItem Header="{Binding TabHeader}"
                              Background="Blue"
                              Cursor="Hand">
-                        <DataGrid x:Name="UserDataGrid" IsReadOnly="True">
-                        </DataGrid>
+                        <Grid>
+                            <DataGrid x:Name="StudentDataGrid"
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding Students}"
+                                      Visibility="{Binding StudentV}"
+                                      AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã môn học"
+                                                        Binding="{Binding CourseID}"/>
+                                    <DataGridTextColumn Header="Tên môn học"
+                                                        Binding="{Binding CourseName}"/>
+                                    <DataGridTextColumn Header="Kiểm tra"
+                                                        Binding="{Binding Daily}"/>
+                                    <DataGridTextColumn Header="BTL"
+                                                        Binding="{Binding Project}"/>
+                                    <DataGridTextColumn Header="Giữa kỳ"
+                                                        Binding="{Binding MidTerm}"/>
+                                    <DataGridTextColumn Header="Cuối kỳ"
+                                                        Binding="{Binding Final}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid x:Name="InsDataGrid"
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding Instructors}"
+                                      Visibility="{Binding InsV}"
+                                      AutoGenerateColumns="False">
+                                <DataGrid.Resources>
+                                    <models:DayOfWeekConverter x:Key="DayConverter"/>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã môn học"
+                                                        Binding="{Binding CourseID}"/>
+                                    <DataGridTextColumn Header="Tên môn học"
+                                                        Binding="{Binding CourseName}"/>
+                                    <DataGridTextColumn Header="Lớp"
+                                                        Binding="{Binding ClassID}"/>
+                                    <DataGridTextColumn Header="Ngày"
+                                                        Binding="{Binding Workday, Converter={StaticResource DayConverter}}"/>
+                                    <DataGridTextColumn Header="Bắt đầu"
+                                                        Binding="{Binding BeginTime}"/>
+                                    <DataGridTextColumn Header="Kết thúc"
+                                                        Binding="{Binding EndTime}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                     </TabItem>
                 </TabControl>
                 <Label VerticalAlignment="Center"
