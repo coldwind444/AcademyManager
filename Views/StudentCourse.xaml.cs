@@ -25,8 +25,8 @@ namespace AcademyManager.Views
         public CourseInfoVM Viewmodel { get; set; }
         public StudentCourse(Class data, MainVM vm, SubjectListVM p)
         {
-            this.DataContext = Viewmodel = new CourseInfoVM(data, vm, p);
             InitializeComponent();
+            this.DataContext = Viewmodel = new CourseInfoVM(data, vm, DocumentsPanel);
         }
     }
 }

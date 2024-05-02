@@ -86,7 +86,7 @@
                 Content="Cập nhật điểm số" Margin="720,55,60,505" 
                 Command="{Binding UpdateScoreCommand}"/>
         <ScrollViewer Margin="40,183,60,91" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+            <StackPanel x:Name="DocumentsPanel">
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">
                         <Setter Property="Margin" Value="0 0 0 5"/>
@@ -103,13 +103,16 @@
                                      Height="30" Width="30"/>
         </Button>
         <Button Height="40" Width="150"
+            Style="{DynamicResource RoundButton}" 
+            Foreground="White" FontSize="20"
+            VerticalAlignment="Top"
+            Command="{Binding ReloadCommand}" 
+            Margin="514,545,336,0" Content="Tải lại"/>
+        <Button Height="40" Width="150"
                 Style="{DynamicResource RoundButton}" 
                 Foreground="White" FontSize="20"
-                ToolTip="Thêm tài liệu"
                 VerticalAlignment="Top"
                 Command="{Binding BackCommand}" 
-                Margin="425,545,425,0">
-            Quay lại
-        </Button>
+                Margin="350,545,500,0" Content="Quay lại"/>
     </Grid>
 </UserControl>

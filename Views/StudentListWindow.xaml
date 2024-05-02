@@ -59,7 +59,7 @@
                     </Button>
                 </StackPanel>
             </Border>
-            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="1"
+            <DataGrid Grid.Row="1"
                       ItemsSource="{Binding StudentsView}"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto"

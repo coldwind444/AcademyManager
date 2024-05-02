@@ -48,20 +48,21 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Margin="20" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-                    <ListView Name="listViewFiles" Margin="10">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="50">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding Icon}" Width="20" Height="20"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Đường dẫn" DisplayMemberBinding="{Binding Path}" Width="350"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DataGrid ItemsSource="{Binding Files}" Margin="10" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="#" 
+                                                    Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Icon}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Tệp tin"
+                                                Binding="{Binding Path}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Border>
                 <toast:NotificationContainer Grid.Row="0" Height="100" Width="300"
                                              VerticalAlignment="Top" HorizontalAlignment="Right"
@@ -70,6 +71,10 @@
                     <Button Style="{DynamicResource RoundButton}"
                             Height="40" Width="150" Margin="0 0 10 0"
                             Content="Chọn các tệp tin" Foreground="White"
+                            FontSize="16" Command="{Binding SelectFilesCommand}"/>
+                    <Button Style="{DynamicResource RoundButton}"
+                            Height="40" Width="150" Margin="0 0 10 0"
+                            Content="Xóa" Foreground="White"
                             FontSize="16" Command="{Binding SelectFilesCommand}"/>
                     <Button Style="{DynamicResource RoundButton}"
                             Height="40" Width="150"

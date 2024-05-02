@@ -62,7 +62,7 @@
                 Margin="740,61,60,499" 
                 Content="Danh sách sinh viên" Width="200" Height="40"/>
         <ScrollViewer Margin="40,193,60,79" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+            <StackPanel x:Name="DocumentsPanel">
                 <StackPanel.Resources>
                     <Style TargetType="userControls:SubjectContentUC">
                         <Setter Property="Margin" Value="0 0 0 5"/>
