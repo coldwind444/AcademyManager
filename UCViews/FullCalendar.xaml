@@ -335,13 +335,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid>
-                <uc:CalendarUC SelectedDate="{Binding ScheduleDate}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="DateChanged">
-                            <i:InvokeCommandAction Command="{Binding SelectedDateChangedCommand}"
-                                                   CommandParameter="{Binding ElementName=TaskPanel}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <uc:CalendarUC SelectedDate="{Binding ScheduleDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </uc:CalendarUC>
             </Grid>
 
@@ -360,8 +354,31 @@
                                    Text="{Binding CurrentDate}"/>
                         <ScrollViewer Height="250" Width="360"
                                       Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                            <StackPanel Cursor="Hand" x:Name="TaskPanel">
-                            </StackPanel>
+                            <Grid Cursor="Hand" x:Name="TaskPanel">
+                                <ItemsControl ItemsSource="{Binding Items, Mode=TwoWay
+                                                            , UpdateSourceTrigger=PropertyChanged}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel IsItemsHost="True">
+                                                <StackPanel.Resources>
+                                                    <Style TargetType="uc:Item">
+                                                        <Setter Property="Margin" Value="0 0 0 6"/>
+                                                    </Style>
+                                                </StackPanel.Resources>
+                                            </StackPanel>
+                                            <!-- This hosts the items inside a StackPanel -->
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <uc:Item Title="{Binding Title}"
+                                                     Time="{Binding Time}"
+                                                     Room="{Binding Room}"
+                                                     Icon="{Binding Icon}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
                         </ScrollViewer>
                     </Grid>
                 </Border>

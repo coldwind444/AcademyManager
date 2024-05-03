@@ -3,6 +3,7 @@ using AcademyManager.UCViews;
 using AcademyManager.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,25 @@ namespace AcademyManager.UCViewmodels
         #region Properties
         private DateTime? _date;
         private string _currdate;
+        private ObservableCollection<Item> _items;
+        public ObservableCollection<Item> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value;
+                OnPropertyChanged();
+            }
+        }
         public DateTime? ScheduleDate
         {
             get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
+            set 
+            { 
+                _date = value; 
+                OnPropertyChanged(); 
+                SelectedDateChangedCommand.Execute(null);
+            }
         }
         public string CurrentDate
         {
@@ -31,9 +47,10 @@ namespace AcademyManager.UCViewmodels
         }
         #endregion
         #region Methods
-        private void LoadTodayTasks(List<Class> list, StackPanel panel)
+        private void LoadTodayTasks(List<Class> list)
         {
             TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+            Items = new ObservableCollection<Item>();
             foreach (Class c in list)
             {
                 Item item;
@@ -42,27 +59,26 @@ namespace AcademyManager.UCViewmodels
                 string time = $"{bg} - {e}";
                 if (c.EndTime >= now) item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CircleOutline);
                 else item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CheckCircle);
-                panel.Children.Add(item);
+                Items.Add(item);
             }
         }
         private void InitializeCommands()
         {
-            SelectedDateChangedCommand = new RelayCommand<StackPanel>(p => true, p =>
+            SelectedDateChangedCommand = new RelayCommand<object>(p => true, p =>
             {
-                CurrentDate = ScheduleDate.Value.ToString("dd/MM/yyyy");
+                CurrentDate = ScheduleDate.Value.ToString("MMMM d, yyyy");
                 DateOnly input = DateOnly.FromDateTime((DateTime)ScheduleDate);
                 List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
-                LoadTodayTasks(todaytasks, p);
+                LoadTodayTasks(todaytasks);
             });
         }
         #endregion
-        public FullCalendarVM(StackPanel panel)
+        public FullCalendarVM()
         {
-            ScheduleDate = DateTime.Now;
-            CurrentDate = ScheduleDate.Value.ToString("dd/MM/yyyy");
-            DateOnly input = DateOnly.FromDateTime((DateTime)ScheduleDate);
+            CurrentDate = DateTime.Now.ToString("MMMM d, yyyy");
+            DateOnly input = DateOnly.FromDateTime(DateTime.Now);
             List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
-            LoadTodayTasks(todaytasks, panel);
+            LoadTodayTasks(todaytasks);
             InitializeCommands();
         }
     }

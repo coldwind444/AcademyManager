@@ -5,13 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" x:Name="subject"
+             xmlns:cv="clr-namespace:AcademyManager.Models"
              xmlns:vm="clr-namespace:AcademyManager.UCViewmodels"
              d:DataContext="{d:DesignInstance Type=vm:SubjectVM}"
-             d:DesignHeight="170" d:DesignWidth="400">
+             d:DesignHeight="200" d:DesignWidth="400">
     <Border Margin="0,0,0,0" 
             CornerRadius="20" Cursor="Hand"
             Width="400" Background="#02702C" 
-            Height="170">
+            Height="200">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
                 <i:InvokeCommandAction Command="{Binding ViewCommand}"/>
@@ -33,6 +34,7 @@
         </Border.Style>
         <StackPanel Width="400">
             <StackPanel.Resources>
+                <cv:DayOfWeekConverter x:Key="DayConverter"/>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="White"/>
                 </Style>
@@ -58,6 +60,10 @@
             <TextBlock Margin="30 5 50 0 " FontSize="16" TextAlignment="Left">
                 <Run Text="Thời gian: " />
                 <Run Text="{Binding Path=Time, ElementName=subject}"/>
+            </TextBlock>
+            <TextBlock Margin="30 5 50 0 " FontSize="16" TextAlignment="Left">
+                <Run Text="Ngày: " />
+                <Run Text="{Binding Path=Day, ElementName=subject, Converter={StaticResource DayConverter}}"/>
             </TextBlock>
         </StackPanel>
     </Border>

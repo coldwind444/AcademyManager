@@ -13,7 +13,7 @@ namespace AcademyManager.UCViews
         public FullCalendar()
         {
             InitializeComponent();
-            this.DataContext = Viewmodel = new FullCalendarVM(TaskPanel);
+            this.DataContext = Viewmodel = new FullCalendarVM();
         }
     }
 }

@@ -417,8 +417,8 @@
     </UserControl.Resources>
     <Border Background="White" CornerRadius="20, 0, 0, 20">
         <Viewbox>
-            <Calendar x:Name="calendar" 
-                      SelectedDate="{Binding Path=SelectedDate, ElementName=MyCalendar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <Calendar x:Name="calendar" Cursor="Hand"
+                      SelectedDatesChanged="calendar_SelectedDatesChanged"
                       FontFamily="Comic Sans MS" HorizontalAlignment="Center" 
                       Height="310" VerticalAlignment="Center" 
                       Width="362" Style="{DynamicResource CalendarStyle1}" 

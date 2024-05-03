@@ -100,7 +100,6 @@ namespace AcademyManager.UCViews
                     MainVM.CurrentUser = user;
                 }
                 Icon.Kind = PackIconKind.BoxCancelOutline;
-                Icon.Foreground = Brushes.OrangeRed;
                 RegisterButton.ToolTip = "Huỷ đăng ký";
             } else
             {
@@ -112,7 +111,6 @@ namespace AcademyManager.UCViews
                     MainVM.CurrentUser = user;
                 }
                 Icon.Kind = PackIconKind.PencilBoxOutline;
-                Icon.Foreground = Brushes.RoyalBlue;
                 RegisterButton.ToolTip = "Đăng ký";
             }
         }

@@ -31,6 +31,7 @@ namespace AcademyManager.UCViews
             Time = time;
             Room = room;
             Icon = icon;
+            InitializeComponent();
         }
 
         public string Title

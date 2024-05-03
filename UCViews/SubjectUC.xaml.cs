@@ -68,5 +68,12 @@ namespace AcademyManager.UCViews
         }
 
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register("Time", typeof(string), typeof(SubjectUC));
+        public DayOfWeek Day
+        {
+            get { return (DayOfWeek)GetValue(DayProperty); }
+            set { SetValue(DayProperty, value); }
+        }
+
+        public static readonly DependencyProperty DayProperty = DependencyProperty.Register("Day", typeof(DayOfWeek), typeof(SubjectUC));
     }
 }
