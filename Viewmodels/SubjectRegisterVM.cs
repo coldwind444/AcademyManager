@@ -26,6 +26,7 @@ namespace AcademyManager.Viewmodels
         #region Methods
         private async Task LoadAvailableCourses(StackPanel panel)
         {
+            if (panel != null) panel.Children.Clear();
             DatabaseManager db = new DatabaseManager();
             string termid = await db.GetCurrentTermAsync();
             Course course = await db.GetCourseAsync(termid, CID);

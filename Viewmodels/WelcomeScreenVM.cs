@@ -12,7 +12,6 @@ namespace AcademyManager.Viewmodels
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }
-        private int AccountType { get; set; }
         #endregion
         #region Methods
         private void InitializeCommands()
@@ -21,7 +20,7 @@ namespace AcademyManager.Viewmodels
             {
                 if (ParentVM.LoginView == null)
                 {
-                    ParentVM.LoginView = new Login(AccountType, ParentVM);
+                    ParentVM.LoginView = new Login(ParentVM);
                     ParentVM.CurrentView = ParentVM.LoginView;
                 }
                 else
@@ -32,7 +31,7 @@ namespace AcademyManager.Viewmodels
             {
                 if (ParentVM.SigninView == null)
                 {
-                    ParentVM.SigninView = new SetNewPass(AccountType, ParentVM);
+                    ParentVM.SigninView = new SetNewPass(ParentVM);
                     ParentVM.CurrentView = ParentVM.SigninView;
                 }
                 else
@@ -45,11 +44,10 @@ namespace AcademyManager.Viewmodels
             });
         }
         #endregion
-        public WelcomeScreenVM(int type, MainVM parentVM)
+        public WelcomeScreenVM(MainVM parentVM)
         {
             InitializeCommands();
             ParentVM = parentVM;
-            AccountType = type;
         }
     }
 }

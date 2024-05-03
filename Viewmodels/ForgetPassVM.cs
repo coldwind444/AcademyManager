@@ -37,7 +37,6 @@ namespace AcademyManager.Viewmodels
         private bool _step3enable;
         private int _currstep;
         private int _expireT;
-        private int type;
         private string _timelb;
         private DispatcherTimer _timer;
         private Visibility _load1, _load2;
@@ -132,7 +131,7 @@ namespace AcademyManager.Viewmodels
 
             // Recipient's email address check
             DatabaseManager db = new DatabaseManager();
-            _tempAcc = await db.GetAccountAsync(_userid, type);
+            _tempAcc = await db.GetAccountAsync(_userid, MainVM.Type);
             if (_tempAcc != null)
             {
                 if (_tempAcc.Email != _email)
@@ -270,10 +269,9 @@ namespace AcademyManager.Viewmodels
             });
         }
         #endregion
-        public ForgetPassVM(int t, MainVM vm)
+        public ForgetPassVM(MainVM vm)
         {
             ParentVM = vm;
-            type = t;
             CurrentStep = 0;
             Step1Enable = true;
             Step2Enable = false;

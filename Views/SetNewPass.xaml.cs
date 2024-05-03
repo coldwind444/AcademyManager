@@ -9,9 +9,9 @@ namespace AcademyManager.Views
     public partial class SetNewPass : UserControl
     {
         public SetPasswordVM Viewmodel { get; set; }
-        public SetNewPass(int t, MainVM vm)
+        public SetNewPass(MainVM vm)
         {
-            this.DataContext = Viewmodel = new SetPasswordVM(t, vm);
+            this.DataContext = Viewmodel = new SetPasswordVM(vm);
             InitializeComponent();
         }
     }

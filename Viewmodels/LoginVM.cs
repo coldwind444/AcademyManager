@@ -18,7 +18,6 @@ namespace AcademyManager.Viewmodels
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }
-        private int type;
         private string _notilb;
         private string _userid;
         private string _password;
@@ -69,6 +68,7 @@ namespace AcademyManager.Viewmodels
             {
                 Loading = Visibility.Visible;
                 DatabaseManager database = new DatabaseManager();
+                int type = MainVM.Type;
                 Account acc = await database.GetAccountAsync(_userid, type);
 
                 if (acc != null)
@@ -123,15 +123,14 @@ namespace AcademyManager.Viewmodels
 
             ForgetPassCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
-                ParentVM.ResetPWView = new ForgetPass(type, ParentVM);
+                ParentVM.ResetPWView = new ForgetPass(ParentVM);
                 ParentVM.CurrentView = ParentVM.ResetPWView;
             });
         }
         #endregion
-        public LoginVM(int t, MainVM vm)
+        public LoginVM(MainVM vm)
         {
             ParentVM = vm;
-            type = t;
             Loading = Visibility.Hidden;
             NotiV = Visibility.Hidden;
             InitializeCommands();

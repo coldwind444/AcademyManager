@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using AcademyManager.UCViews;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {
@@ -10,6 +11,12 @@ namespace AcademyManager.Viewmodels
 
         #region Properties
         private MainVM ParentVM {  get; set; }
+        private FullCalendar _calendar;
+        public FullCalendar MyCalendar
+        {
+            get => _calendar;
+            set { _calendar = value; OnPropertyChanged(); }
+        }
         #endregion
 
         #region Methods
@@ -24,6 +31,7 @@ namespace AcademyManager.Viewmodels
         public StudyScheduleVM(MainVM vm)
         {
             ParentVM = vm;
+            MyCalendar = new FullCalendar();
             InitializeCommands();
         }
     }

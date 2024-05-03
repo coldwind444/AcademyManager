@@ -32,9 +32,10 @@ namespace AcademyManager.Viewmodels
         {
             InstructorCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
+                MainVM.Type = 1;
                 if (ParentVM.WelcomeView == null)
                 {
-                    ParentVM.WelcomeView = new WelcomeScreen(1, ParentVM);
+                    ParentVM.WelcomeView = new WelcomeScreen(ParentVM);
                     ParentVM.CurrentView = ParentVM.WelcomeView;
                 }
                 else
@@ -43,9 +44,10 @@ namespace AcademyManager.Viewmodels
 
             StudentCommand = new RelayCommand<object>(p => { return true; },  p =>
             {
+                MainVM.Type = 2;
                 if (ParentVM.WelcomeView == null)
                 {
-                    ParentVM.WelcomeView = new WelcomeScreen(2, ParentVM);
+                    ParentVM.WelcomeView = new WelcomeScreen(ParentVM);
                     ParentVM.CurrentView = ParentVM.WelcomeView;
                 }
                 else

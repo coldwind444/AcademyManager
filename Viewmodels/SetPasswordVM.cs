@@ -21,7 +21,6 @@ namespace AcademyManager.Viewmodels
         private string _password;
         private string _confirm;
         private string _noti;
-        private int type;
         private Visibility _load;
         private PasswordBox _passwordBox, _confirmBox;
         public Visibility Loading
@@ -77,7 +76,7 @@ namespace AcademyManager.Viewmodels
             {
                 Loading = Visibility.Visible;
                 DatabaseManager db = new DatabaseManager();
-                _tempAcc = await db.GetAccountAsync(UserID, type);
+                _tempAcc = await db.GetAccountAsync(UserID, MainVM.Type);
                 if (_tempAcc != null)
                 {
                     if (_tempAcc.Email == Email)
@@ -131,10 +130,9 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
 
-        public SetPasswordVM(int t, MainVM vm)
+        public SetPasswordVM(MainVM vm)
         {
             InitializeCommands();
-            type = t;
             ParentVM = vm;
             Loading = Visibility.Hidden;
         }

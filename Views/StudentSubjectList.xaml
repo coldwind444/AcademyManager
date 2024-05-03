@@ -68,7 +68,7 @@
                 </WrapPanel.Resources>
             </WrapPanel>
         </ScrollViewer>
-        <Label FontSize="30" FontStyle="Italic"
+        <Label FontSize="20" FontStyle="Italic"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                Visibility="{Binding NotiV}"

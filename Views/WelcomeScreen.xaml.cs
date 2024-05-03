@@ -22,9 +22,9 @@ namespace AcademyManager.Views
     public partial class WelcomeScreen : UserControl
     {
         public WelcomeScreenVM Viewmodel { get; set; }
-        public WelcomeScreen(int type, MainVM vm)
+        public WelcomeScreen(MainVM vm)
         {
-            this.DataContext = Viewmodel = new WelcomeScreenVM(type, vm);
+            this.DataContext = Viewmodel = new WelcomeScreenVM(vm);
             InitializeComponent();
         }
     }

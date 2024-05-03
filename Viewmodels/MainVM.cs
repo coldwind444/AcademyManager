@@ -19,6 +19,7 @@ namespace AcademyManager.Viewmodels
         // current account
         public static Account CurrentAccount { get; set; }
         public static User CurrentUser { get; set; }
+        public static int Type { get; set; }
         public static List<Class> UserClassList { get; set; }
         public static List<Course> UserCourseList { get; set; }
 
