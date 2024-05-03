@@ -79,7 +79,7 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <uc:ExitUC Height="40" Width="40" Margin="580,122,270,438"
+        <uc:ExitUC Height="40" Width="40" Margin="633,132,217,428"
                    Tag="{Binding BackCommand}"></uc:ExitUC>
     </Grid>
 </UserControl>
