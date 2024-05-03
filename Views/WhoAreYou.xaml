@@ -87,7 +87,7 @@
                         </StackPanel>
                     </Button>
                     <Button Style="{DynamicResource IconRoundButton}"
-                            Command="{Binding AdminCommand}" Background="White">
+                            Command="{Binding AdminCommand}" CommandParameter="{Binding ElementName=who}" Background="White">
                         <StackPanel VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Cog" Height="70" Width="70"
                                                      HorizontalAlignment="Center"/>
