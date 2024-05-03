@@ -17,7 +17,7 @@
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}"
-            Height="600" Width="1000">
+            Height="600" Width="1000" ClipToBounds="True">
     <Border CornerRadius="10">
         <Grid>
             <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >

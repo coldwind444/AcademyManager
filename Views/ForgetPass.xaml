@@ -16,7 +16,7 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="600" d:DesignWidth="1000"
-             SnapsToDevicePixels="True">
+             SnapsToDevicePixels="True" ClipToBounds="True">
     <Grid>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="240,-324,-500,0" Opacity="0.5" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <materialDesign:PackIcon.RenderTransform>

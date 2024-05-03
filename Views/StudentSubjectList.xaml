@@ -17,7 +17,7 @@
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}"
-            Height="600" Width="1000">
+            Height="600" Width="1000" ClipToBounds="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1000"/>

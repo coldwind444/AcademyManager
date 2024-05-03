@@ -17,7 +17,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="600" d:DesignWidth="1000" ClipToBounds="True">
     <Grid>
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
             <materialDesign:PackIcon.RenderTransform>
@@ -40,11 +40,11 @@
             </materialDesign:PackIcon.RenderTransform>
         </materialDesign:PackIcon>
         <Border 
-            Width="400"
+            Width="500" Height="320"
             BorderThickness="1.5"
             BorderBrush="Black" 
             CornerRadius="40" 
-            Margin="300,140,300,144" Background="White">
+            Background="White">
             <StackPanel Orientation="Vertical"  
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -52,36 +52,50 @@
                         Opacity="0.9">
                 <TextBlock  HorizontalAlignment="Center"
                             Foreground="Black"
-                            FontSize="25"
+                            FontSize="25" FontWeight="Medium"
                             TextWrapping="Wrap" Height="60" 
                             TextAlignment="Center" ><Run Text="CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!"/></TextBlock>
                 <TextBlock  HorizontalAlignment="Center"
                             Foreground="Black"
                             FontSize="20"
                             TextWrapping="Wrap" Height="30" 
-                            TextAlignment="Center" Margin="0,15,0,0" Width="400"><Run Language="vi-vn" Text="Đăng nhập với tư cách:"/></TextBlock>
-                <Border Width="220" Height="40" CornerRadius="10"
-                        Margin="0 10 0 10">
-                    <Button Command="{Binding InstructorCommand}"
-                            Style="{DynamicResource RoundButton}"
-                            Grid.Row="1" Height="40" Width="220" Cursor="Hand"
-                            FontSize="20" Foreground="White" Content="Giảng viên"/>
-                </Border>
-                <Border Width="220" Height="40" CornerRadius="10"
-                        Margin="0 0 0 10">
-                    <Button Command="{Binding StudentCommand}"
-                            Style="{DynamicResource RoundButton}"
-                            Grid.Row="1" Height="40" Width="220" Cursor="Hand"
-                            FontSize="20" Foreground="White" Content="Sinh viên"/>
-                </Border>
-                <Border Width="220" Height="40" CornerRadius="10"
-                        Margin="0 0 0 10">
-                    <Button Command="{Binding AdminCommand}"
-                            Style="{DynamicResource RoundButton}"
-                            CommandParameter="{Binding ElementName=who}"
-                            Grid.Row="1" Height="40" Width="220" Cursor="Hand"
-                            FontSize="20" Foreground="White" Content="Quản trị viên"/>
-                </Border>
+                            TextAlignment="Center" Margin="0,15,0,20" Width="400"><Run Language="vi-vn" Text="Đăng nhập với tư cách:"/></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="120"/>
+                            <Setter Property="Height" Value="120"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Command="{Binding InstructorCommand}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Teacher" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Giảng viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Margin="10 0 10 0" Background="White"
+                            Command="{Binding StudentCommand}">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountStudent" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Sinh viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Command="{Binding AdminCommand}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Cog" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Quản trị viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

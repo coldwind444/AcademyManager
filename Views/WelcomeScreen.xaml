@@ -15,7 +15,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="600" d:DesignWidth="1000" ClipToBounds="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="89*"/>
@@ -43,34 +43,43 @@
         </materialDesign:PackIcon>
         <Border Width="400"
                 BorderThickness="1.5"
-                BorderBrush="Black" CornerRadius="40" Margin="300,140,190,144" Background="White">
+                BorderBrush="Black" CornerRadius="40" Background="White" Margin="300,122,190,149">
             <StackPanel Orientation="Vertical"  
                         VerticalAlignment="Center"
-                        Background="#FFBCE9CB" 
+                        Background="White" 
                         Opacity="0.9">
-
-                <TextBlock  Margin="0 30 0 20"
+                <TextBlock  Margin="0 30 0 0"
                             Foreground="Black"
-                            FontSize="25"
+                            FontSize="25" FontWeight="Medium"
                             TextWrapping="Wrap" Height="80" 
-                            TextAlignment="Center">
+                            TextAlignment="Center" Width="391">
                     CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!
                 </TextBlock>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             Margin="0 0 0 30">
-                        <Button Command="{Binding LoginCommand}"
-                                Margin="0 0 10 0" Style="{DynamicResource RoundButton}"
-                                Grid.Row="1" Height="40" Width="120" Cursor="Hand"
-                                FontSize="20" Foreground="White" Content="Đăng nhập"/>
-                        <Button Height="40" Width="200" Cursor="Hand"
-                                Style="{DynamicResource RoundButton}"
-                                FontSize="20" Foreground="White" Margin="0 0 0 0"
-                                Content="Kích hoạt tài khoản" Command="{Binding SigninCommand}"/>
+                    <Button Style="{DynamicResource IconRoundButton}" Margin="0 0 20 0"
+                            Command="{Binding LoginCommand}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="LoginVariant" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Đăng nhập</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Command="{Binding SigninCommand}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Sign" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Đăng ký</TextBlock>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </Border>
-        <uc:ExitUC Height="40" Width="40" Margin="643,152,207,408"
+        <uc:ExitUC Height="40" Width="40" Margin="580,122,270,438"
                    Tag="{Binding BackCommand}"></uc:ExitUC>
     </Grid>
 </UserControl>

@@ -23,10 +23,10 @@
 	<Window.Resources>
 		<DropShadowEffect x:Key="MyShadowEffect" Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="0"/>
 	</Window.Resources>
-	<Border CornerRadius="10" Background="#FFABEDC6" Effect="{StaticResource MyShadowEffect}">
+	<Border CornerRadius="20" Background="Azure" Effect="{StaticResource MyShadowEffect}">
 		<DockPanel>
-			<Border DockPanel.Dock="Right" Background="WhiteSmoke" CornerRadius="10" Height="600" Width="1000">
-				<Grid>
+			<Border DockPanel.Dock="Right" CornerRadius="10" Height="600" Width="1000">
+                <Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="43*"/>
 						<RowDefinition/>
@@ -47,8 +47,8 @@
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="0" 
-                        CornerRadius="10 0 0 10" 
-                        Background="#02702C" 
+                        CornerRadius="20" 
+                        Background="#089546" 
                         Grid.RowSpan="3">
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Center"
