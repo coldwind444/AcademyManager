@@ -44,7 +44,7 @@
                 VerticalAlignment="Center"
                 Height="380">
             <Border.Background>
-                <SolidColorBrush Color="#FFE6FFEC" Opacity="0.9"/>
+                <SolidColorBrush Color="White" Opacity="0.9"/>
             </Border.Background>
             <Grid>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">

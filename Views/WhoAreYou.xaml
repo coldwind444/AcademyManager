@@ -59,7 +59,7 @@
                             Foreground="Black"
                             FontSize="20"
                             TextWrapping="Wrap" Height="30" 
-                            TextAlignment="Center" Margin="0,15,0,20" Width="400"><Run Language="vi-vn" Text="Đăng nhập với tư cách:"/></TextBlock>
+                            TextAlignment="Center" Margin="0,15,0,20" Width="400"><Run Language="vi-vn" Text="Đăng nhập/Đăng ký với tư cách:"/></TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="Button">

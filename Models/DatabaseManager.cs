@@ -19,8 +19,7 @@ namespace AcademyManager.Models
         {
             if (client == null)
             {
-                MessageBox.Show("Cannot connect to database.\n Please check your connection.", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
-                App.Current.Shutdown();
+                MessageBox.Show("Không thể kết nối đến CSDL.\n Vui lòng kiểm tra lại đường truyền.", "Lỗi kết nối", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #region Account

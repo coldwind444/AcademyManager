@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AcademyManager.Views;
+using System.Net.NetworkInformation;
 
 namespace AcademyManager.Viewmodels
 {
@@ -103,6 +104,20 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
+        private bool NetworkConnection()
+        {
+            try
+            {
+                using (Ping ping = new Ping())
+                {
+                    PingReply reply = ping.Send("www.google.com");
+                    return reply.Status == IPStatus.Success;
+                }
+            } catch
+            {
+                return false;
+            }
+        }
         public async Task<List<Class>> GetClassList()
         {
             var list = new List<Class>();
@@ -172,6 +187,13 @@ namespace AcademyManager.Viewmodels
         #endregion
         public MainVM()
         {
+            // check network connection
+            if (!NetworkConnection())
+            {
+                MessageBox.Show("Vui lòng kiểm tra kết nối mạng.\n Phần mềm sẽ tự động thoát.", "Lỗi kết nối", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
+            }
+
             InitializeCommands();
 
             // first view 
