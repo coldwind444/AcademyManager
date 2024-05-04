@@ -42,6 +42,11 @@ namespace AcademyManager.AdminViewmodels
         #endregion
 
         #region Methods
+        private void ShowNotification(bool success)
+        {
+            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
+            _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
+        }
         private DateOnly StringToDateOnly(string s)
         {
             if (DateOnly.TryParseExact(s, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateOnly date))
@@ -167,13 +172,14 @@ namespace AcademyManager.AdminViewmodels
             {
                 _inProcess = true;
                 Loading = Visibility.Visible;
+                bool error = false;
                 if (p.SelectedIndex == 0)
                 {
                     List<StudentUser>? students = GetStudentsDataFromExcel();
                     if (students != null)
                     {
-                        var accbatch = new List<Task>();
-                        var userbatch = new List<Task>();
+                        var accbatch = new List<Task<bool>>();
+                        var userbatch = new List<Task<bool>>();
                         DatabaseManager db = new DatabaseManager();
                         foreach (StudentUser std in students)
                         {
@@ -181,33 +187,44 @@ namespace AcademyManager.AdminViewmodels
                             Account existacc = await db.GetAccountAsync(std.ID, 1);
                             if (existacc != null)
                             {
-                                Task usertask = db.UpdateStudentAsync(existacc.UUID, std);
+                                Task<bool> usertask = db.UpdateStudentAsync(existacc.UUID, std);
                                 userbatch.Add(usertask);
                             } else
                             {
-                                Task acctask = db.UpdateAccountAsync(newacc, 2);
+                                Task<bool> acctask = db.UpdateAccountAsync(newacc, 2);
                                 accbatch.Add(acctask);
-                                Task usertask = db.UpdateStudentAsync(newacc.UUID, std);
+                                Task<bool> usertask = db.UpdateStudentAsync(newacc.UUID, std);
                                 userbatch.Add(usertask);
                             }
                         }
-                        await Task.WhenAll(accbatch);
-                        await Task.WhenAll(userbatch);
+                        var accres = await Task.WhenAll(accbatch);
+                        foreach (bool state in accres)
+                        {
+                            if (!state)
+                            {
+                                error = true;
+                                break;
+                            }
+                        }
+                        var userres = await Task.WhenAll(userbatch);
+                        foreach (bool state in userres)
+                        {
+                            if (!state)
+                            {
+                                error = true;
+                                break;
+                            }
+                        }
                         accbatch.Clear();
                         userbatch.Clear();
-                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
-                    }
-                    else
-                    {
-                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
                     }
                 } else if (p.SelectedIndex == 1)
                 {
                     List<InstructorUser>? instructors = GetInstructorsDataFromExcel();
                     if (instructors != null)
                     {
-                        var accbatch = new List<Task>();
-                        var userbatch = new List<Task>();
+                        var accbatch = new List<Task<bool>>();
+                        var userbatch = new List<Task<bool>>();
                         DatabaseManager db = new DatabaseManager();
                         foreach (InstructorUser ins in instructors)
                         {
@@ -215,28 +232,40 @@ namespace AcademyManager.AdminViewmodels
                             Account existacc = await db.GetAccountAsync(ins.ID, 1);
                             if (existacc != null)
                             {
-                                Task usertask = db.UpdateInstructorAsync(existacc.UUID, ins);
+                                Task<bool> usertask = db.UpdateInstructorAsync(existacc.UUID, ins);
                                 userbatch.Add(usertask);
                             }
                             else
                             {
-                                Task acctask = db.UpdateAccountAsync(newacc, 1);
+                                Task<bool> acctask = db.UpdateAccountAsync(newacc, 1);
                                 accbatch.Add(acctask);
-                                Task usertask = db.UpdateInstructorAsync(newacc.UUID, ins);
+                                Task<bool> usertask = db.UpdateInstructorAsync(newacc.UUID, ins);
                                 userbatch.Add(usertask);
                             }
                         }
-                        await Task.WhenAll(accbatch);
-                        await Task.WhenAll(userbatch);
+                        var accres = await Task.WhenAll(accbatch);
+                        foreach (bool state in accres)
+                        {
+                            if (!state)
+                            {
+                                error = true;
+                                break;
+                            }
+                        }
+                        var userres = await Task.WhenAll(userbatch);
+                        foreach (bool state in userres)
+                        {
+                            if (!state)
+                            {
+                                error = true;
+                                break;
+                            }
+                        }
                         accbatch.Clear();
                         userbatch.Clear();
-                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
-                    }
-                    else
-                    {
-                        _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
                     }
                 }
+                ShowNotification(!error);
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
                 _inProcess = false;

@@ -99,12 +99,22 @@ namespace AcademyManager.AdminViewmodels
                     } else
                     {
                         Admin newadmin = new Admin(_uuid, _password);
-                        await db.UpdateAdminPassword(newadmin);
-                        Notification = "Kích hoạt thành công.";
-                        Foreground = Brushes.Green;
-                        NotificationV = Visibility.Visible;
-                        await Task.Delay(1000);
-                        NotificationV = Visibility.Hidden;
+                        bool success = await db.UpdateAdminPassword(newadmin);
+                        if (success)
+                        {
+                            Notification = "Kích hoạt thành công.";
+                            Foreground = Brushes.Green;
+                            NotificationV = Visibility.Visible;
+                            await Task.Delay(1000);
+                            NotificationV = Visibility.Hidden;
+                        } else
+                        {
+                            Notification = "Lỗi đường truyền.";
+                            Foreground = Brushes.OrangeRed;
+                            NotificationV = Visibility.Visible;
+                            await Task.Delay(1000);
+                            NotificationV = Visibility.Hidden;
+                        }
                     }
                 } else
                 {

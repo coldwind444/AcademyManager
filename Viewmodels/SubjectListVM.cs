@@ -66,12 +66,8 @@ namespace AcademyManager.Viewmodels
 
             RegisterCommand = new RelayCommand<object>(p => true, p =>
             {
-                if (ParentVM.CourseRegisterView == null)
-                {
-                    ParentVM.CourseRegisterView = new SubjectRegister(ParentVM, this);
-                    ParentVM.CurrentView = ParentVM.CourseRegisterView;
-                } else
-                    ParentVM.CurrentView = ParentVM.CourseRegisterView;
+                ParentVM.CourseRegisterView = new SubjectRegister(ParentVM, this);
+                ParentVM.CurrentView = ParentVM.CourseRegisterView;
             });
         }
         #endregion

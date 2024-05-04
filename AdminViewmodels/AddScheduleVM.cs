@@ -244,7 +244,7 @@ namespace AcademyManager.AdminViewmodels
             DatabaseManager db = new DatabaseManager();
             Random rand = new Random();
             int id = rand.Next(0, 1000);
-            var batch = new List<Task>();
+            var batch = new List<Task<bool>>();
             foreach (var c in list)
             {
                 Account acc = await db.GetAccountAsync(c.Key, 1);
@@ -257,13 +257,24 @@ namespace AcademyManager.AdminViewmodels
                         user.StudyElements.Add(new ClassIdentifier(c.Value.TermID, c.Value.CourseID, c.Value.ClassID));
                         SendNotification(ref user, c.Value);
                     }
-                    Task task = db.UpdateInstructorAsync(acc.UUID, user);
+                    Task<bool> task = db.UpdateInstructorAsync(acc.UUID, user);
                     batch.Add(task);
                 }
                 else return false;
             }
-            await Task.WhenAll(batch);
+            var res = await Task.WhenAll(batch);
+            foreach (bool state in res)
+            {
+                if (!state) return false;
+            }
             return true;
+        }
+        private void ShowNotification(bool success)
+        {
+            if (success)
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Lịch trình học tập và giảng dạy đã được cập nhật.", 1000);
+            else
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
         }
         private void InitializeCommands()
         {
@@ -284,23 +295,20 @@ namespace AcademyManager.AdminViewmodels
                 Loading = Visibility.Visible;
                 List<Term>? terms = GetDataFromExcel(out List<KeyValuePair<string, Class>>? list);
                 bool canUpload = await UploadInstructorSchedule(list);
+                bool success = true;
                 if (terms != null && canUpload)
                 {
                     DatabaseManager db = new DatabaseManager();
-                    var batch = new List<Task>();
+                    var batch = new List<Task<bool>>();
                     foreach (Term term in terms)
                     {
-                        Task task = db.UpdateTermAsync(term);
+                        Task<bool> task = db.UpdateTermAsync(term);
                         batch.Add(task);
                     }
-                    await Task.WhenAll(batch);
+                    var res = await Task.WhenAll(batch);
                     batch.Clear();
-                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Lịch trình học tập và giảng dạy đã được cập nhật.", 1000);
                 }
-                else
-                {
-                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
-                }
+                ShowNotification(terms != null && canUpload && success);
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
                 _inProcess = false;

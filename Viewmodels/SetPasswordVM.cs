@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace AcademyManager.Viewmodels
 {
@@ -21,8 +22,18 @@ namespace AcademyManager.Viewmodels
         private string _password;
         private string _confirm;
         private string _noti;
+        private Brush _labelcolor;
         private Visibility _load;
         private PasswordBox _passwordBox, _confirmBox;
+        public Brush LabelColor
+        {
+            get => _labelcolor;
+            set
+            {
+                _labelcolor = value;
+                OnPropertyChanged();
+            }
+        }
         public Visibility Loading
         {
             get { return _load; }
@@ -87,11 +98,16 @@ namespace AcademyManager.Viewmodels
                             {
                                 _tempAcc.ChangePassword(_password);
                                 await _tempAcc.SetPassword();
-                                BackCommand.Execute(null);
+                                Loading = Visibility.Hidden;
+                                LabelColor = Brushes.ForestGreen;
+                                Noti = "Đăng ký thành công.";
+                                await Task.Delay(1500);
+                                Noti = "";
                             }
                             else
                             {
                                 Loading = Visibility.Hidden;
+                                LabelColor = Brushes.OrangeRed;
                                 Noti = "Mật khẩu không khớp.";
                                 _confirmBox.Clear();
                                 await Task.Delay(1500);
@@ -100,6 +116,7 @@ namespace AcademyManager.Viewmodels
                         } else
                         {
                             Loading = Visibility.Hidden;
+                            LabelColor = Brushes.OrangeRed;
                             Noti = "Tài khoản này đã được kích hoạt.";
                             await Task.Delay(1500);
                             Noti = "";
@@ -107,6 +124,7 @@ namespace AcademyManager.Viewmodels
                     } else
                     {
                         Loading = Visibility.Hidden;
+                        LabelColor = Brushes.OrangeRed;
                         Noti = "Email không khớp với tài khoản được cấp quyền.";
                         await Task.Delay(1500);
                         Noti = "";

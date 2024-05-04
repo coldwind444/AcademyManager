@@ -27,7 +27,7 @@ namespace AcademyManager.UCViews
         {
             InitializeComponent();
         }
-        public SubjectRegisterUC(Class cls, PackIconKind icon)
+        public SubjectRegisterUC(Class cls, PackIconKind icon, SubjectRegisterVM parent)
         {
             Room = cls.Room;
             Day = cls.Weekday;
@@ -37,6 +37,7 @@ namespace AcademyManager.UCViews
             LecturerName = cls.InstructorName;
             Class = $"{cls.CourseName} - {cls.ClassID}";
             ClassData = cls;
+            ParentVM = parent;
             InitializeComponent();
             if (icon == PackIconKind.PencilBox)
             {
@@ -52,6 +53,7 @@ namespace AcademyManager.UCViews
         }
         private bool IsRegisterd { get; set; }
         private Class ClassData { get; set; }
+        private SubjectRegisterVM ParentVM { get; set; }
         public string Room
         {
             get { return (string)GetValue(RoomProperty); }
@@ -90,13 +92,17 @@ namespace AcademyManager.UCViews
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+            Button? button = sender as Button;
+            if (button != null) button.IsEnabled = false;
             if (!IsRegisterd)
             {
                 IsRegisterd = true;
                 StudentUser? user = MainVM.CurrentUser as StudentUser;
                 if (user != null)
                 {
-                    await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    bool success = await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    ParentVM.ShowNotification(success);
+                    if (!success) return;
                     MainVM.CurrentUser = user;
                 }
                 Icon.Kind = PackIconKind.BoxCancelOutline;
@@ -107,12 +113,15 @@ namespace AcademyManager.UCViews
                 StudentUser? user = MainVM.CurrentUser as StudentUser;
                 if (user != null)
                 {
-                    await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    bool success = await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
+                    ParentVM.ShowNotification(success);
+                    if (!success) return;
                     MainVM.CurrentUser = user;
                 }
                 Icon.Kind = PackIconKind.PencilBoxOutline;
                 RegisterButton.ToolTip = "Đăng ký";
             }
+            if (button != null) button.IsEnabled = true;
         }
     }
 }

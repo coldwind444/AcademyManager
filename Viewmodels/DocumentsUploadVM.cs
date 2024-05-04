@@ -57,13 +57,19 @@ namespace AcademyManager.Viewmodels
             string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
             string message = "Tài liệu đã được cập nhật!";
             Notification noti = new Notification(id, title, message, DateTime.Now);
-            var batch = new List<Task>();
             if (ClassData.Students == null) return;
             foreach (string s in ClassData.Students.Keys)
             {
-                Task t = db.SendNotificationAsync(s, 2, noti);
+                var success = await db.SendNotificationAsync(s, 2, noti);
+                do { success = await db.SendNotificationAsync(s, 2, noti); } while (!success);
             }
-            await Task.WhenAll(batch);
+        }
+        private void ShowNotification(bool success)
+        {
+            if (!success)
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Không thể tải tệp tin!", 1000);
+            else
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đã tải tệp tin lên!", 1000);
         }
         private void InitializeCommands()
         {
@@ -94,29 +100,32 @@ namespace AcademyManager.Viewmodels
             {
                 Loading = Visibility.Visible;
                 StorageManager storage = new StorageManager();
+                bool error = false;
                 string termid = ClassData.TermID,
                        courseid = ClassData.CourseID,
                        classid = ClassData.ClassID;
 
-                var batch = new List<Task>();
+                var batch = new List<Task<bool>>();
                 foreach (FileItem file in Files)
                 {
                     string title = Path.GetFileNameWithoutExtension(file.Path);
-                    Task task = storage.UploadFileToFirebaseStorage(file.Path, termid, courseid, classid, title);
+                    Task<bool> task = storage.UploadFileToFirebaseStorage(file.Path, termid, courseid, classid, title);
                     batch.Add(task);
                 }
-                try
+                var res = await Task.WhenAll(batch);
+                foreach (bool state in res)
                 {
-                    await Task.WhenAll(batch);
+                    if (!state)
+                    {
+                        error = true;
+                        break;
+                    }
                 }
-                catch
-                {
-                    Loading = Visibility.Hidden;
-                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Không thể tải tệp tin!", 1000);
-                }
+
+                if (!error) ShowNotification(!error);
+                else ShowNotification(error);
                 await SendNotification();
                 Loading = Visibility.Hidden;
-                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đã tải tệp tin lên!", 1000);
             });
 
             RemoveCommand = new RelayCommand<object>(p => true, p =>

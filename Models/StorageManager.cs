@@ -7,7 +7,7 @@ namespace AcademyManager.Models
     public class StorageManager
     {
         public StorageManager() { }
-        public async Task UploadFileToFirebaseStorage(string localFilePath, string termID, string courseID, string classID, string title)
+        public async Task<bool> UploadFileToFirebaseStorage(string localFilePath, string termID, string courseID, string classID, string title)
         {
             // Get a FileStream
             var stream = File.Open(localFilePath, FileMode.Open);
@@ -36,10 +36,13 @@ namespace AcademyManager.Models
 
             // Await the task to wait until upload completes and get the download url
             var downloadUrl = await task;
-
-            // Update document's url and title to database
-            DatabaseManager db = new DatabaseManager();
-            await db.UploadDocumentAsync(termID, courseID, classID, new KeyValuePair<string, string>(title, downloadUrl));
+            if (downloadUrl != null)
+            {
+                DatabaseManager db = new DatabaseManager();
+                bool success = await db.UploadDocumentAsync(termID, courseID, classID, new KeyValuePair<string, string>(title, downloadUrl));
+                if (success) return true;
+            }
+            return false;
         }
     }
 }

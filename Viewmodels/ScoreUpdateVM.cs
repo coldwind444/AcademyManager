@@ -55,12 +55,11 @@ namespace AcademyManager.Viewmodels
             string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
             string message = "Điểm số đã được cập nhật!";
             Notification noti = new Notification(id, title, message, DateTime.Now);
-            var batch = new List<Task>();
             foreach (string s in ClassData.Students.Keys)
             {
-                Task t = db.SendNotificationAsync(s, 2, noti);
+                var success = await db.SendNotificationAsync(s, 2, noti);
+                do { success = await db.SendNotificationAsync(s, 2, noti); } while (!success);
             }
-            await Task.WhenAll(batch);
         }
         private List<StudentRecord>? GetStudentResultData()
         {
@@ -117,8 +116,12 @@ namespace AcademyManager.Viewmodels
                 dict.Add(rc.ID, rc);
             }
             InstructorUser? user = MainVM.CurrentUser as InstructorUser;
-            if (user != null) 
-                await user.UpdateScore(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, dict);
+            if (user != null)
+            {
+                bool success = await user.UpdateScore(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, dict);
+                if (!success) return -1;
+            }
+                
             return 1;
         }
         private void InitializeCommands()

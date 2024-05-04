@@ -112,7 +112,6 @@ namespace AcademyManager.Viewmodels
         }
         private double CalculateTotalGPA()
         {
-            double result = 0;
             string sid = MainVM.CurrentUser.ID;
             int totalcredits = 0;
             Dictionary<string, double> sums = new Dictionary<string, double>();
@@ -127,7 +126,7 @@ namespace AcademyManager.Viewmodels
                     credits[cls.TermID] = 0;
                 } else
                 {
-                    sums[cls.TermID] += cls.Students[sid].GPA * cls.CourseCredits ;
+                    sums[cls.TermID] += (cls.Students[sid].GPA * cls.CourseCredits) ;
                     credits[cls.TermID] += cls.CourseCredits;
                 }
             }
@@ -139,7 +138,7 @@ namespace AcademyManager.Viewmodels
                 total += gpa * credits[termid];
             }
 
-            result = total / totalcredits;
+            double result = Math.Round(total/totalcredits, 1);
 
             return result;
         }
@@ -153,12 +152,13 @@ namespace AcademyManager.Viewmodels
                 if (cls.TermID == termid)
                 {
                     TermCredits += cls.CourseCredits;
-                    sum += cls.CourseCredits * cls.Students[sid].GPA;
+                    sum += (cls.CourseCredits * cls.Students[sid].GPA);
                     if (cls.Students[sid].GPA >= 4.0) PassCredits += cls.CourseCredits;
                 }
             }
-            TermGPA = (sum/TermCredits) * 0.4;
-            CalculateTotalGPA();
+            double gpa = sum / TermCredits * 0.4;
+            TermGPA = Math.Round(gpa, 1);
+            TotalGPA = CalculateTotalGPA();
         }
         private void InitializeCommand()
         {

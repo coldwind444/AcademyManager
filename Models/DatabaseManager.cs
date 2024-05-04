@@ -23,7 +23,7 @@ namespace AcademyManager.Models
             }
         }
         #region Account
-        public async Task UpdateAccountAsync(Account acc, int type)
+        public async Task<bool> UpdateAccountAsync(Account acc, int type)
         {
             SetResponse response;
             if (type == 1)
@@ -33,6 +33,8 @@ namespace AcademyManager.Models
             {
                 response = await client.SetAsync("Accounts/StudentAccounts/" + acc.UserID, acc);
             }
+            if (response != null) return true;
+            return false;
         }
         public async Task SetPasswordAsync(string id, string pass, int type)
         {
@@ -61,9 +63,11 @@ namespace AcademyManager.Models
         }
         #endregion
         #region Student
-        public async Task UpdateStudentAsync(string uuid, StudentUser user)
+        public async Task<bool> UpdateStudentAsync(string uuid, StudentUser user)
         {
             SetResponse response = await client.SetAsync("Students/" + uuid, user);
+            if (response != null) return true;
+            return false;
         }
         public async Task<StudentUser> GetStudentAsync(string id)
         {
@@ -77,9 +81,11 @@ namespace AcademyManager.Models
         }
         #endregion
         #region Instructors
-        public async Task UpdateInstructorAsync(string uuid, InstructorUser user)
+        public async Task<bool> UpdateInstructorAsync(string uuid, InstructorUser user)
         {
             SetResponse response = await client.SetAsync("Instructors/" + uuid, user);
+            if (response != null) return true;
+            return false;
         }
         public async Task<InstructorUser> GetInstructorAsync(string id)
         {
@@ -93,9 +99,11 @@ namespace AcademyManager.Models
         }
         #endregion
         #region Term
-        public async Task UpdateTermAsync(Term term)
+        public async Task<bool> UpdateTermAsync(Term term)
         {
             SetResponse response = await client.SetAsync("Terms/" + term.TermID, term);
+            if (response != null) return true;
+            return false;
         }
         public async Task<Term> GetTermAsync(string id)
         {
@@ -111,10 +119,6 @@ namespace AcademyManager.Models
         }
         #endregion
         #region Course
-        public async Task UpdateCourseAsync(string termID, Course course)
-        {
-            SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{course.CourseID}", course);
-        }
         public async Task<Course> GetCourseAsync(string termID, string courseId)
         {
             FirebaseResponse response = await client.GetAsync($"Terms/{termID}/Courses/{courseId}");
@@ -123,48 +127,48 @@ namespace AcademyManager.Models
         }
         #endregion
         #region Class
-        public async Task UpdateClassAsync(string termID, string courseID, Class cls)
-        {
-            SetResponse response = await client.SetAsync($"Terms/{termID}/Courses/{courseID}/Classes/{cls.ClassID}", cls);
-        }
         public async Task<Class> GetClassAsync(string termID, string courseId, string classID)
         {
             FirebaseResponse response = await client.GetAsync($"Terms/{termID}/Courses/{courseId}/Classes/{classID}");
             Class result = response.ResultAs<Class>();
             return result;
         }
-        public async Task UpdateScoreAsync(string termid, string courseid, string classid, Dictionary<string, StudentRecord> score)
+        public async Task<bool> UpdateScoreAsync(string termid, string courseid, string classid, Dictionary<string, StudentRecord> score)
         {
             string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students";
             SetResponse res = await client.SetAsync(path, score);
+            if (res != null) return true;
+            return false;
         }
         #endregion
         #region Admin
-        public async Task UpdateAdminAsync(Admin ad)
-        {
-            SetResponse response = await client.SetAsync($"Admin/{ad.UUID}", ad);
-        }
         public async Task<Admin> GetAdminAsync(string uuid)
         {
             FirebaseResponse response = await client.GetAsync($"Admin/{uuid}");
             Admin result = response.ResultAs<Admin>();
             return result;
         }
-        public async Task UpdateAdminPassword(Admin ad)
+        public async Task<bool> UpdateAdminPassword(Admin ad)
         {
             SetResponse response = await client.SetAsync($"Admin/{ad.UUID}/Password", ad.Password);
+            if (response != null) return true;
+            return false;
         }
         #endregion
         #region Student List
-        public async Task AddStudentAsync(string termid, string courseid, string classid, string stid, StudentRecord rec)
+        public async Task<bool> AddStudentAsync(string termid, string courseid, string classid, string stid, StudentRecord rec)
         {
             string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students/{stid}";
             SetResponse response = await client.SetAsync(path, rec);
+            if (response != null) return true;
+            return false;
         }
-        public async Task RemoveStudentAsync(string termid, string courseid, string classid, string stid)
+        public async Task<bool> RemoveStudentAsync(string termid, string courseid, string classid, string stid)
         {
             string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Students/{stid}";
             FirebaseResponse response = await client.DeleteAsync(path);
+            if (response != null) return true;
+            return false;
         }
         #endregion
         #region Notifications
@@ -180,21 +184,25 @@ namespace AcademyManager.Models
                 FirebaseResponse res = await client.DeleteAsync(path);
             }
         }
-        public async Task SendNotificationAsync(string receiverid, int type, Notification n)
+        public async Task<bool> SendNotificationAsync(string receiverid, int type, Notification n)
         {
             Account acc = await GetAccountAsync(receiverid, type);
-            if (acc == null) { return; }
+            if (acc == null) { return false; }
             string path;
             if (type == 1) path = $"Instructors/{acc.UUID}/Notifications/{n.ID}";
             else path = $"Students/{acc.UUID}/Notifications/{n.ID}";
             SetResponse response = await client.SetAsync(path, n);
+            if (response != null) return true;
+            return false;
         }
         #endregion
         #region Documents
-        public async Task UploadDocumentAsync(string termid, string courseid, string classid, KeyValuePair<string, string> doc)
+        public async Task<bool> UploadDocumentAsync(string termid, string courseid, string classid, KeyValuePair<string, string> doc)
         {
             string path = $"Terms/{termid}/Courses/{courseid}/Classes/{classid}/Documents/{doc.Key}";
             SetResponse response = await client.SetAsync(path, doc.Value);
+            if (response != null) return true;
+            return false;
         }
         #endregion
     }
