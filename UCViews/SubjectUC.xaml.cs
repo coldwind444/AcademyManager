@@ -23,6 +23,7 @@ namespace AcademyManager.UCViews
                        e = info.EndTime.ToString("HH:mm");
             string time = $"{bg} - {e}";
             Time = time;
+            Day = info.Weekday;
             this.DataContext = Viewmodel = new SubjectVM(p, p1, info);
             InitializeComponent();
         }
