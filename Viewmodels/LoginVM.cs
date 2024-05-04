@@ -1,9 +1,8 @@
-﻿using System.Windows.Controls;
-using System.Windows;
-using System.Windows.Input;
+﻿using AcademyManager.Models;
 using AcademyManager.Views;
-using AcademyManager.Models;
-using Firebase.Auth;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {
@@ -83,7 +82,8 @@ namespace AcademyManager.Viewmodels
                             ParentVM.HomeView = new LectureMainScreen(ParentVM);
                             ParentVM.CurrentView = ParentVM.HomeView;
                             ParentVM.SetNotificationDot();
-                        } else
+                        }
+                        else
                         {
                             MainVM.CurrentAccount = acc;
                             MainVM.CurrentUser = await database.GetStudentAsync(_userid);
@@ -104,7 +104,8 @@ namespace AcademyManager.Viewmodels
                         await Task.Delay(1500);
                         NotiV = Visibility.Hidden;
                     }
-                } else
+                }
+                else
                 {
                     Loading = Visibility.Hidden;
                     NotiLabel = "Tài khoản không tồn tại.";

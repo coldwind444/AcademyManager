@@ -15,7 +15,7 @@ namespace AcademyManager.Viewmodels
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }
-        private WrapPanel SubjList {  get; set; }
+        private WrapPanel SubjList { get; set; }
         private string _noti;
         private Visibility _notiV;
         public string Noti

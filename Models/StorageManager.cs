@@ -1,6 +1,6 @@
-﻿using Firebase.Storage;
+﻿using Firebase.Auth;
+using Firebase.Storage;
 using System.IO;
-using Firebase.Auth;
 
 namespace AcademyManager.Models
 {

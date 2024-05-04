@@ -1,6 +1,5 @@
 ﻿using AcademyManager.UCViewmodels;
 using System.Windows.Controls;
-using System.Windows;
 
 namespace AcademyManager.UCViews
 {

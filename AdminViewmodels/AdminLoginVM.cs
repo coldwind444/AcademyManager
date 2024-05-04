@@ -1,11 +1,6 @@
 ﻿using AcademyManager.AdminViews;
 using AcademyManager.Models;
 using AcademyManager.Viewmodels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -74,14 +69,16 @@ namespace AcademyManager.AdminViewmodels
                         w.Hide();
                         adwd.ShowDialog();
                         w.ShowDialog();
-                    } else
+                    }
+                    else
                     {
                         Notification = "Sai mật khẩu.";
                         NotificationV = Visibility.Visible;
                         await Task.Delay(1000);
                         NotificationV = Visibility.Hidden;
                     }
-                } else
+                }
+                else
                 {
                     Notification = "Tài khoản không tồn tại.";
                     NotificationV = Visibility.Visible;

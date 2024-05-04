@@ -1,8 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using AcademyManager.Models;
+﻿using AcademyManager.Models;
 using AcademyManager.UCViewmodels;
 using AcademyManager.Viewmodels;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace AcademyManager.UCViews
 {

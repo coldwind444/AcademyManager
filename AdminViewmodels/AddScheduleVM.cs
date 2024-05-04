@@ -1,16 +1,14 @@
 ﻿using AcademyManager.Models;
 using AcademyManager.Viewmodels;
+using Flattinger.Core.Theme;
+using Flattinger.UI.ToastMessage;
+using Flattinger.UI.ToastMessage.Controls;
 using Microsoft.Win32;
+using OfficeOpenXml;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using OfficeOpenXml;
-using MaterialDesignThemes.Wpf;
-using System.Diagnostics;
-using System.Windows.Media;
-using Flattinger.UI.ToastMessage.Controls;
-using Flattinger.Core.Theme;
-using Flattinger.UI.ToastMessage;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -96,7 +94,7 @@ namespace AcademyManager.AdminViewmodels
                 if (c1.InstructorID != c2.InstructorID) return false;
                 else
                 {
-                    bool manage2class1time = (c1.Weekday == c2.Weekday) && ((c1.BeginTime >= c2.BeginTime && c1.EndTime <= c2.EndTime) || 
+                    bool manage2class1time = (c1.Weekday == c2.Weekday) && ((c1.BeginTime >= c2.BeginTime && c1.EndTime <= c2.EndTime) ||
                         (c1.BeginTime <= c2.BeginTime && c1.EndTime >= c2.EndTime));
                     if (manage2class1time) return true;
                 }
@@ -107,7 +105,7 @@ namespace AcademyManager.AdminViewmodels
         {
             List<Term> data = new List<Term>();
             List<KeyValuePair<string, Class>> insSchedule = new List<KeyValuePair<string, Class>>();
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(_path)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
@@ -149,8 +147,8 @@ namespace AcademyManager.AdminViewmodels
                     string? ext = worksheet.Cells[row, 16].Value.ToString();
 
                     // try to convert some data to correct type
-                    DayOfWeek dayOfWeek ;
-                    TimeOnly beginTime ;
+                    DayOfWeek dayOfWeek;
+                    TimeOnly beginTime;
                     TimeOnly endTime;
                     DateOnly beginDate;
                     DateOnly endDate;
@@ -168,7 +166,8 @@ namespace AcademyManager.AdminViewmodels
                         endDate = StringToDateOnly(ed);
                         examDate = StringToDateOnly(exd);
                         credits = Convert.ToInt32(crd);
-                    } catch 
+                    }
+                    catch
                     {
                         list = null;
                         return null;
@@ -209,13 +208,15 @@ namespace AcademyManager.AdminViewmodels
                                 list = null;
                                 return null;
                             }
-                        } else
+                        }
+                        else
                         {
                             data[Tidx].Courses[courseID] = new Course(courseID, courseName, credits);
                             cls = new Class(classID, insID, insName, termID, courseID, courseName, credits, dayOfWeek, beginTime, endTime, beginDate, endDate, room, examDate, exr, examTime);
                             data[Tidx].Courses[courseID].Classes[classID] = cls;
                         }
-                    } else
+                    }
+                    else
                     {
                         Term term = new Term(termID);
                         term.Courses[courseID] = new Course(courseID, courseName, credits);
@@ -314,7 +315,7 @@ namespace AcademyManager.AdminViewmodels
                 _inProcess = false;
             });
 
-            DownloadCommand = new RelayCommand<object>(p => { return true; }, p => 
+            DownloadCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
                 string url = "https://firebasestorage.googleapis.com/v0/b/academymanager-5ea2b.appspot.com/o/excelformat%2FScheduleFileFormat.xlsx?alt=media&token=8d5ca0d1-6658-4634-8991-eaebe93b59f8";
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });

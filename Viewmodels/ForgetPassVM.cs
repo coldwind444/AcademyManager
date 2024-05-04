@@ -1,13 +1,10 @@
-﻿using MaterialDesignThemes.Wpf;
-using System.Net.Mail;
+﻿using AcademyManager.Models;
 using System.Net;
-using System.Reflection.Emit;
+using System.Net.Mail;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AcademyManager.Models;
-using AcademyManager.Views;
 using System.Windows.Threading;
-using System.Windows;
 
 namespace AcademyManager.Viewmodels
 {
@@ -57,7 +54,7 @@ namespace AcademyManager.Viewmodels
         }
         public string InputCode
         {
-            get { return _inputcode; } 
+            get { return _inputcode; }
             set { _inputcode = value; OnPropertyChanged(); }
         }
         public string Noti
@@ -68,7 +65,7 @@ namespace AcademyManager.Viewmodels
         public string UserID
         {
             get { return _userid; }
-            set {  _userid = value; OnPropertyChanged(); }
+            set { _userid = value; OnPropertyChanged(); }
         }
         public string Email
         {
@@ -138,10 +135,11 @@ namespace AcademyManager.Viewmodels
                 {
                     return -1;
                 }
-            } else return -1;
+            }
+            else return -1;
 
             if (!_tempAcc.IsActivated()) return -3;
-            
+
 
             // Email configuration
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
@@ -195,16 +193,20 @@ namespace AcademyManager.Viewmodels
                     Noti = "Không thể gửi mã xác nhận.";
                     await Task.Delay(1500);
                     Noti = "";
-                } else if (result == -1) {
+                }
+                else if (result == -1)
+                {
                     Noti = "Thông tin không hợp lệ.";
                     await Task.Delay(1500);
                     Noti = "";
-                } else if (result == -2)
+                }
+                else if (result == -2)
                 {
                     Noti = "Email không hợp lệ.";
                     await Task.Delay(1500);
                     Noti = "";
-                } else if (result == -3)
+                }
+                else if (result == -3)
                 {
                     Noti = "Tài khoản chưa được kích hoạt.";
                     await Task.Delay(1500);
@@ -239,7 +241,8 @@ namespace AcademyManager.Viewmodels
                     Step3Enable = true;
                     CurrentStep = 2;
                     Step2Enable = false;
-                } else
+                }
+                else
                 {
                     Noti = "Mã xác nhận không hợp lệ.";
                     await Task.Delay(1500);
@@ -257,7 +260,8 @@ namespace AcademyManager.Viewmodels
                     _tempAcc.ChangePassword(_password);
                     await _tempAcc.SetPassword();
                     BackCommand.Execute(null);
-                } else
+                }
+                else
                 {
                     Loading2 = Visibility.Hidden;
                     Noti = "Mật khẩu không khớp.";

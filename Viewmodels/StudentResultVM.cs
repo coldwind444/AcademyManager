@@ -1,7 +1,5 @@
 ﻿using AcademyManager.Models;
-using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using System.Security.Cryptography;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -14,8 +12,8 @@ namespace AcademyManager.Viewmodels
         {
             public string ID { get; set; }
             public string Name { get; set; }
-            public double Daily {  get; set; }
-            public double Project {  get; set; }
+            public double Daily { get; set; }
+            public double Project { get; set; }
             public double Mid { get; set; }
             public double Final { get; set; }
             public double GPA { get; set; }
@@ -119,7 +117,7 @@ namespace AcademyManager.Viewmodels
             int totalcredits = 0;
             Dictionary<string, double> sums = new Dictionary<string, double>();
             Dictionary<string, int> credits = new Dictionary<string, int>();
-            
+
             foreach (Class cls in MainVM.UserClassList)
             {
                 totalcredits += cls.CourseCredits;
@@ -127,9 +125,10 @@ namespace AcademyManager.Viewmodels
                 {
                     sums[cls.TermID] = 0;
                     credits[cls.TermID] = 0;
-                } else
+                }
+                else
                 {
-                    sums[cls.TermID] += (cls.Students[sid].GPA * cls.CourseCredits) ;
+                    sums[cls.TermID] += (cls.Students[sid].GPA * cls.CourseCredits);
                     credits[cls.TermID] += cls.CourseCredits;
                 }
             }
@@ -141,7 +140,7 @@ namespace AcademyManager.Viewmodels
                 total += gpa * credits[termid];
             }
 
-            double result = Math.Round(total/totalcredits, 1, MidpointRounding.AwayFromZero);
+            double result = Math.Round(total / totalcredits, 1, MidpointRounding.AwayFromZero);
 
             return result;
         }

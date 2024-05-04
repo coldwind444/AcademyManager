@@ -3,14 +3,9 @@ using AcademyManager.Views;
 using Flattinger.Core.Theme;
 using Flattinger.UI.ToastMessage;
 using Flattinger.UI.ToastMessage.Controls;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -53,7 +48,7 @@ namespace AcademyManager.Viewmodels
         {
             Random random = new Random();
             DatabaseManager db = new DatabaseManager();
-            int id = random.Next(0,1000);
+            int id = random.Next(0, 1000);
             string title = $"{ClassData.CourseName} ({ClassData.CourseID} - {ClassData.ClassID})";
             string message = "Tài liệu đã được cập nhật!";
             Notification noti = new Notification(id, title, message, DateTime.Now);
@@ -130,7 +125,7 @@ namespace AcademyManager.Viewmodels
 
             RemoveCommand = new RelayCommand<object>(p => true, p =>
             {
-                var selectedFiles = Files.Where(f => f.IsSelected).ToList(); 
+                var selectedFiles = Files.Where(f => f.IsSelected).ToList();
                 foreach (var file in selectedFiles)
                 {
                     Files.Remove(file);

@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
+﻿using AcademyManager.AdminViews;
 using AcademyManager.Views;
-using AcademyManager.AdminViews;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {
@@ -42,7 +42,7 @@ namespace AcademyManager.Viewmodels
                     ParentVM.CurrentView = ParentVM.WelcomeView;
             });
 
-            StudentCommand = new RelayCommand<object>(p => { return true; },  p =>
+            StudentCommand = new RelayCommand<object>(p => { return true; }, p =>
             {
                 MainVM.Type = 2;
                 if (ParentVM.WelcomeView == null)

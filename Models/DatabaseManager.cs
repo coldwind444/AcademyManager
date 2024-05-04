@@ -1,10 +1,8 @@
-﻿using FireSharp.Config;
+﻿using AcademyManager.UCViews;
+using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
-using System.Security.Cryptography;
-using System.Windows;
 using System.Net.NetworkInformation;
-using AcademyManager.UCViews;
 
 namespace AcademyManager.Models
 {
@@ -53,7 +51,8 @@ namespace AcademyManager.Models
             if (type == 1)
             {
                 response = await client.SetAsync("Accounts/InstructorAccounts/" + acc.UserID, acc);
-            } else
+            }
+            else
             {
                 response = await client.SetAsync("Accounts/StudentAccounts/" + acc.UserID, acc);
             }
@@ -90,7 +89,8 @@ namespace AcademyManager.Models
             if (type == 1)
             {
                 response = await client.GetAsync("Accounts/InstructorAccounts/" + id);
-            } else
+            }
+            else
             {
                 response = await client.GetAsync("Accounts/StudentAccounts/" + id);
             }
@@ -304,7 +304,8 @@ namespace AcademyManager.Models
             {
                 string path = $"Instructors/{uuid}/Notifications/{nid}";
                 FirebaseResponse res = await client.DeleteAsync(path);
-            } else
+            }
+            else
             {
                 string path = $"Students/{uuid}/Notifications/{nid}";
                 FirebaseResponse res = await client.DeleteAsync(path);

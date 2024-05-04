@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AcademyManager.Models
+﻿namespace AcademyManager.Models
 {
     public class StudentUser : User
     {
         public double AverageGPA { get; set; }
         public int Credits { get; set; }
-        public string Major {  get; set; }
+        public string Major { get; set; }
         public async Task<bool> RegisterClass(string termID, string courseID, string classID, string uuid)
         {
             DatabaseManager database = new DatabaseManager();
@@ -32,14 +26,14 @@ namespace AcademyManager.Models
         }
         public async Task<List<StudentRecord>> ViewScore()
         {
-            List<StudentRecord> result = new List<StudentRecord> ();
+            List<StudentRecord> result = new List<StudentRecord>();
             DatabaseManager database = new DatabaseManager();
             Term term = null;
             foreach (ClassIdentifier cid in StudyElements)
             {
                 if (term != null)
                     if (term.TermID != cid.TermID) term = await database.GetTermAsync(cid.TermID);
-                else term = await database.GetTermAsync(cid.TermID);
+                    else term = await database.GetTermAsync(cid.TermID);
                 StudentRecord rc = term.Courses[cid.CourseID].Classes[cid.ClassID].Students[ID];
                 result.Add(rc);
             }

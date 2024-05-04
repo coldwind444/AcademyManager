@@ -1,10 +1,10 @@
 ﻿using AcademyManager.Models;
+using AcademyManager.UCViews;
+using AcademyManager.Views;
+using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AcademyManager.Views;
-using System.Net.NetworkInformation;
-using AcademyManager.UCViews;
 
 namespace AcademyManager.Viewmodels
 {
@@ -14,7 +14,7 @@ namespace AcademyManager.Viewmodels
         public ICommand HomeNavigateCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand NotificationCommand { get; set; }
-        public ICommand CloseCommand { get; set; } 
+        public ICommand CloseCommand { get; set; }
         public ICommand MinimizeCommand { get; set; }
         #endregion
         #region Properties
@@ -38,13 +38,13 @@ namespace AcademyManager.Viewmodels
         public UserControl InfoView { get; set; }
         public UserControl DailyScheduleView { get; set; }
         public UserControl CourseListView { get; set; }
-        public UserControl CourseContent {  get; set; }
+        public UserControl CourseContent { get; set; }
 
         // student
         public UserControl CourseRegisterView { get; set; }
         public UserControl ResultView { get; set; }
-        public UserControl ExamScheduleView { get; set; } 
-        public UserControl NotificationView { get; set; } 
+        public UserControl ExamScheduleView { get; set; }
+        public UserControl NotificationView { get; set; }
 
 
         // current view
@@ -114,7 +114,8 @@ namespace AcademyManager.Viewmodels
                     PingReply reply = ping.Send("www.google.com");
                     return reply.Status == IPStatus.Success;
                 }
-            } catch
+            }
+            catch
             {
                 return false;
             }
@@ -143,7 +144,8 @@ namespace AcademyManager.Viewmodels
             {
                 if (CurrentUser.Notifications.Count > 0) NewNotifications = Visibility.Visible;
                 else NewNotifications = Visibility.Hidden;
-            } else
+            }
+            else
             {
                 NewNotifications = Visibility.Hidden;
             }
@@ -202,7 +204,8 @@ namespace AcademyManager.Viewmodels
             {
                 WhoAreYouView = new WhoAreYou(this);
                 CurrentView = WhoAreYouView;
-            } else
+            }
+            else
                 CurrentView = WhoAreYouView;
 
             // init state

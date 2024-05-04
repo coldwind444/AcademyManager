@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using AcademyManager.Models;
+﻿using AcademyManager.Models;
 using AcademyManager.Views;
 using Flattinger.Core.Theme;
 using Flattinger.UI.ToastMessage;
 using Flattinger.UI.ToastMessage.Controls;
 using Microsoft.Win32;
 using OfficeOpenXml;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {
@@ -93,7 +88,8 @@ namespace AcademyManager.Viewmodels
                         m = Convert.ToDouble(mid);
                         f = Convert.ToDouble(final);
                         g = Convert.ToDouble(gpa);
-                    } catch
+                    }
+                    catch
                     {
                         return null;
                     }
@@ -121,7 +117,7 @@ namespace AcademyManager.Viewmodels
                 bool success = await user.UpdateScore(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, dict);
                 if (!success) return -1;
             }
-                
+
             return 1;
         }
         private void InitializeCommands()

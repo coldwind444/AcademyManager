@@ -2,8 +2,6 @@
 using AcademyManager.Viewmodels;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace AcademyManager.AdminViewmodels
@@ -15,8 +13,8 @@ namespace AcademyManager.AdminViewmodels
         {
             public string CourseID { get; set; }
             public string CourseName { get; set; }
-            public double Daily {  get; set; }
-            public double Project {  get; set; }
+            public double Daily { get; set; }
+            public double Project { get; set; }
             public double MidTerm { get; set; }
             public double Final { get; set; }
             public double GPA { get; set; }
@@ -134,7 +132,7 @@ namespace AcademyManager.AdminViewmodels
         public string UserID
         {
             get { return _userid; }
-            set { _userid = value; OnPropertyChanged();}
+            set { _userid = value; OnPropertyChanged(); }
         }
         public string Fullname
         {
@@ -154,7 +152,7 @@ namespace AcademyManager.AdminViewmodels
         public string Faculty
         {
             get { return _faculty; }
-            set { _faculty = value; OnPropertyChanged();}
+            set { _faculty = value; OnPropertyChanged(); }
         }
         public string Avatar
         {
@@ -267,8 +265,9 @@ namespace AcademyManager.AdminViewmodels
                     LoadStudentDataGrid(user);
                     TabHeader = "Kết quả học tập";
                     Loading = Visibility.Hidden;
-                    
-                } else if (SelectedIdx == 1) 
+
+                }
+                else if (SelectedIdx == 1)
                 {
                     DatabaseManager db = new DatabaseManager();
                     Loading = Visibility.Visible;
@@ -276,7 +275,7 @@ namespace AcademyManager.AdminViewmodels
                     InstructorUser user = await db.GetInstructorAsync(ID);
                     if (user == null)
                     {
-                        NotFound= Visibility.Visible;
+                        NotFound = Visibility.Visible;
                         DataV = Visibility.Hidden;
                         Loading = Visibility.Hidden;
                         return;
@@ -286,7 +285,7 @@ namespace AcademyManager.AdminViewmodels
                     LoadInsPersonalInfo(user);
                     LoadInsDataGrid(user);
                     TabHeader = "Các lớp giảng dạy";
-                    Loading= Visibility.Hidden;
+                    Loading = Visibility.Hidden;
                 }
             });
         }

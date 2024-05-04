@@ -1,11 +1,5 @@
 ﻿using AcademyManager.AdminViews;
 using AcademyManager.Viewmodels;
-using OfficeOpenXml.Drawing.Slicer.Style;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -79,8 +73,9 @@ namespace AcademyManager.AdminViewmodels
                 {
                     _addUsersView = new AddUsersUC();
                     CurrentView = _addUsersView;
-                } else CurrentView = _addUsersView;
-                
+                }
+                else CurrentView = _addUsersView;
+
             });
 
             SearchUsersCommand = new RelayCommand<object>(p => { return true; }, p =>
@@ -110,7 +105,7 @@ namespace AcademyManager.AdminViewmodels
             }
             AddCourses = true;
             AddUsers = false;
-            SearchUsers= false;
+            SearchUsers = false;
             CurrentUrl = "Quản trị viên" + " > Thêm khóa học";
             InitializeCommands();
         }

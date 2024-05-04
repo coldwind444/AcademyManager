@@ -1,10 +1,5 @@
 ﻿using AcademyManager.Models;
 using AcademyManager.Viewmodels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,7 +26,7 @@ namespace AcademyManager.AdminViewmodels
         public Brush Foreground
         {
             get { return _foreground; }
-            set {  _foreground = value; OnPropertyChanged(); }
+            set { _foreground = value; OnPropertyChanged(); }
         }
         public string Notification
         {
@@ -82,21 +77,24 @@ namespace AcademyManager.AdminViewmodels
                         NotificationV = Visibility.Visible;
                         await Task.Delay(1000);
                         NotificationV = Visibility.Hidden;
-                    } else if (_password.Length < 8)
+                    }
+                    else if (_password.Length < 8)
                     {
                         Notification = "Mật khẩu phải chứa ít nhất 8 kí tự.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
                         await Task.Delay(1000);
                         NotificationV = Visibility.Hidden;
-                    } else if (_password != _passwordConfirm)
+                    }
+                    else if (_password != _passwordConfirm)
                     {
                         Notification = "Xác nhận mật khẩu không trùng khớp.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
                         await Task.Delay(1000);
                         NotificationV = Visibility.Hidden;
-                    } else
+                    }
+                    else
                     {
                         Admin newadmin = new Admin(_uuid, _password);
                         bool success = await db.UpdateAdminPassword(newadmin);
@@ -107,7 +105,8 @@ namespace AcademyManager.AdminViewmodels
                             NotificationV = Visibility.Visible;
                             await Task.Delay(1000);
                             NotificationV = Visibility.Hidden;
-                        } else
+                        }
+                        else
                         {
                             Notification = "Lỗi đường truyền.";
                             Foreground = Brushes.OrangeRed;
@@ -116,7 +115,8 @@ namespace AcademyManager.AdminViewmodels
                             NotificationV = Visibility.Hidden;
                         }
                     }
-                } else
+                }
+                else
                 {
                     NotificationV = Visibility.Hidden;
                     Notification = "Tài khoản chưa được cấp quyền.";

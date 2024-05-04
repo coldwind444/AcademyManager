@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Windows.Input;
-using AcademyManager.Models;
+﻿using AcademyManager.Models;
 using AcademyManager.UCViews;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {

@@ -1,6 +1,6 @@
-﻿using AcademyManager.Views;
+﻿using AcademyManager.Models;
+using AcademyManager.Views;
 using System.Windows.Input;
-using AcademyManager.Models;
 
 namespace AcademyManager.Viewmodels
 {
@@ -40,7 +40,7 @@ namespace AcademyManager.Viewmodels
         }
         public string Email
         {
-            get { return _email; } 
+            get { return _email; }
             set { _email = value; OnPropertyChanged(); }
         }
         public string Faculty

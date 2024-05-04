@@ -16,7 +16,7 @@ namespace AcademyManager.Viewmodels
         public ICommand ReloadCommand { get; set; }
         #endregion
         #region Properties
-        public Class Data {  get; set; }
+        public Class Data { get; set; }
         private MainVM GGParentVM { get; set; }
         private StackPanel DocumentsPanel { get; set; }
         #endregion

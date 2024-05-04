@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AcademyManager.Models
+﻿namespace AcademyManager.Models
 {
     public class User
     {
@@ -12,7 +6,7 @@ namespace AcademyManager.Models
         public string Fullname { get; set; }
         public string Email { get; set; }
         public DateOnly Birthday { get; set; }
-        public string Faculty {  get; set; }
+        public string Faculty { get; set; }
         public string AvatarBase64 { get; set; }
         public Dictionary<int, Notification> Notifications { get; set; }
         public List<ClassIdentifier> StudyElements { get; set; }
@@ -27,7 +21,7 @@ namespace AcademyManager.Models
             var list = new List<Class>();
             foreach (Class c in classlist)
             {
-                if (InSchedule(date,c)) list.Add(c);
+                if (InSchedule(date, c)) list.Add(c);
             }
             return list;
         }

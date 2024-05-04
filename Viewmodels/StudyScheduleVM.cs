@@ -10,7 +10,7 @@ namespace AcademyManager.Viewmodels
         #endregion
 
         #region Properties
-        private MainVM ParentVM {  get; set; }
+        private MainVM ParentVM { get; set; }
         private FullCalendar _calendar;
         public FullCalendar MyCalendar
         {

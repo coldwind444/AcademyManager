@@ -1,13 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using AcademyManager.Models;
+using AcademyManager.Views;
+using OfficeOpenXml;
+using Ookii.Dialogs.Wpf;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Data;
 using System.Windows.Input;
-using AcademyManager.Models;
-using AcademyManager.Views;
-using OfficeOpenXml;
-using Ookii.Dialogs.Wpf;
 
 namespace AcademyManager.Viewmodels
 {
@@ -29,7 +29,7 @@ namespace AcademyManager.Viewmodels
         public string Filter
         {
             get { return _filter; }
-            set { _filter = value; StudentsView.Refresh(); OnPropertyChanged();}
+            set { _filter = value; StudentsView.Refresh(); OnPropertyChanged(); }
         }
         private Class ClassData { get; set; }
         #endregion
@@ -79,7 +79,7 @@ namespace AcademyManager.Viewmodels
 
             var result = await Task.WhenAll(batch);
             list.AddRange(result);
-            StudentsList = [..list];
+            StudentsList = [.. list];
 
             StudentsView = CollectionViewSource.GetDefaultView(StudentsList);
             StudentsView.Filter = FilterStudents;
@@ -103,7 +103,7 @@ namespace AcademyManager.Viewmodels
                 {
                     GenerateExcelFileAndSave(dialog.SelectedPath);
                     string location = Path.Combine(dialog.SelectedPath, $"Danh sách lớp {ClassData.ClassID}.xlsx");
-                    Process.Start(new ProcessStartInfo(location) { UseShellExecute = true});
+                    Process.Start(new ProcessStartInfo(location) { UseShellExecute = true });
                 }
             });
 

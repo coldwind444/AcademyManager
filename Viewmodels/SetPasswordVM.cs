@@ -42,11 +42,11 @@ namespace AcademyManager.Viewmodels
         public string Noti
         {
             get { return _noti; }
-            set {  _noti = value; OnPropertyChanged(); }
+            set { _noti = value; OnPropertyChanged(); }
         }
         public string UserID
         {
-            get { return _userid; } 
+            get { return _userid; }
             set { _userid = value; OnPropertyChanged(); }
         }
         public string Email
@@ -81,9 +81,12 @@ namespace AcademyManager.Viewmodels
                 _confirm = p.Password;
             });
 
-            ConfirmCommand = new RelayCommand<object>(p => { return !NullOrEmpty(UserID) && !NullOrEmpty(Email) 
+            ConfirmCommand = new RelayCommand<object>(p =>
+            {
+                return !NullOrEmpty(UserID) && !NullOrEmpty(Email)
                                                             && !NullOrEmpty(_password) && !NullOrEmpty(_confirm)
-                                                            && _password.Length >= 8; }, async p =>
+                                                            && _password.Length >= 8;
+            }, async p =>
             {
                 Loading = Visibility.Visible;
                 DatabaseManager db = new DatabaseManager();
@@ -94,7 +97,7 @@ namespace AcademyManager.Viewmodels
                     {
                         if (!_tempAcc.IsActivated())
                         {
-                            if(_password == _confirm)
+                            if (_password == _confirm)
                             {
                                 _tempAcc.ChangePassword(_password);
                                 await _tempAcc.SetPassword();
@@ -113,7 +116,8 @@ namespace AcademyManager.Viewmodels
                                 await Task.Delay(1500);
                                 Noti = "";
                             }
-                        } else
+                        }
+                        else
                         {
                             Loading = Visibility.Hidden;
                             LabelColor = Brushes.OrangeRed;
@@ -121,7 +125,8 @@ namespace AcademyManager.Viewmodels
                             await Task.Delay(1500);
                             Noti = "";
                         }
-                    } else
+                    }
+                    else
                     {
                         Loading = Visibility.Hidden;
                         LabelColor = Brushes.OrangeRed;

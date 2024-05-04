@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using AcademyManager.Views;
+﻿using AcademyManager.Views;
+using System.Windows.Input;
 
 namespace AcademyManager.Viewmodels
 {

@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using Newtonsoft.Json;
 using System.Security.Cryptography;
-using Newtonsoft.Json;
+using System.Text;
 
 namespace AcademyManager.Models
 {
@@ -20,7 +20,8 @@ namespace AcademyManager.Models
             if (password != null) Password = SHA256Hash(password);
             Type = type;
         }
-        [JsonConstructor]public Account(string stdid, string uuid, string email, string password, int type)
+        [JsonConstructor]
+        public Account(string stdid, string uuid, string email, string password, int type)
         {
             UserID = stdid;
             Email = email;
@@ -34,7 +35,7 @@ namespace AcademyManager.Models
         }
         public bool IsActivated()
         {
-            return Password != null; 
+            return Password != null;
         }
         public bool Match(string pass, string id)
         {

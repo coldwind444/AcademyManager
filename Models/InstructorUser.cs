@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AcademyManager.Models
+﻿namespace AcademyManager.Models
 {
     public class InstructorUser : User
     {
@@ -17,7 +11,7 @@ namespace AcademyManager.Models
             if (success) return true;
             return false;
         }
-        public InstructorUser(string id, string fullname, string email, DateOnly birthday, string faculty, string avt, string cert, string spec) 
+        public InstructorUser(string id, string fullname, string email, DateOnly birthday, string faculty, string avt, string cert, string spec)
             : base(id, fullname, email, birthday, faculty, avt)
         {
             Certificate = cert;

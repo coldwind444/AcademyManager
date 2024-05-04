@@ -1,17 +1,15 @@
 ﻿using AcademyManager.Models;
 using AcademyManager.Viewmodels;
-using MaterialDesignThemes.Wpf;
+using Flattinger.Core.Theme;
+using Flattinger.UI.ToastMessage;
+using Flattinger.UI.ToastMessage.Controls;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Flattinger.UI.ToastMessage.Controls;
-using Flattinger.Core.Theme;
-using Flattinger.UI.ToastMessage;
 
 namespace AcademyManager.AdminViewmodels
 {
@@ -189,7 +187,8 @@ namespace AcademyManager.AdminViewmodels
                             {
                                 Task<bool> usertask = db.UpdateStudentAsync(existacc.UUID, std);
                                 userbatch.Add(usertask);
-                            } else
+                            }
+                            else
                             {
                                 Task<bool> acctask = db.UpdateAccountAsync(newacc, 2);
                                 accbatch.Add(acctask);
@@ -218,7 +217,8 @@ namespace AcademyManager.AdminViewmodels
                         accbatch.Clear();
                         userbatch.Clear();
                     }
-                } else if (p.SelectedIndex == 1)
+                }
+                else if (p.SelectedIndex == 1)
                 {
                     List<InstructorUser>? instructors = GetInstructorsDataFromExcel();
                     if (instructors != null)
@@ -278,7 +278,8 @@ namespace AcademyManager.AdminViewmodels
                 if (p.SelectedIndex == 0)
                 {
                     Process.Start(new ProcessStartInfo(url1) { UseShellExecute = true });
-                } else if (p.SelectedIndex == 1)
+                }
+                else if (p.SelectedIndex == 1)
                 {
                     Process.Start(new ProcessStartInfo(url2) { UseShellExecute = true });
                 }

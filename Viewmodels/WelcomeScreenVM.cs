@@ -7,8 +7,8 @@ namespace AcademyManager.Viewmodels
     {
         #region Commands
         public ICommand LoginCommand { get; set; }
-        public ICommand SigninCommand {  get; set; }
-        public ICommand BackCommand {  get; set; }
+        public ICommand SigninCommand { get; set; }
+        public ICommand BackCommand { get; set; }
         #endregion
         #region Properties
         private MainVM ParentVM { get; set; }

@@ -1,17 +1,13 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AcademyManager.Models
 {
     public class Admin
     {
         public string UUID { get; set; }
-        public string Password { get; set; } 
+        public string Password { get; set; }
         private string MD5Hash(string password)
         {
             using (MD5 md5 = MD5.Create())
@@ -42,7 +38,8 @@ namespace AcademyManager.Models
             UUID = uuid;
             if (password != null) Password = MD5Hash(password);
         }
-        [JsonConstructor]public Admin(string uuid, string password, int a = 0)
+        [JsonConstructor]
+        public Admin(string uuid, string password, int a = 0)
         {
             UUID = uuid;
             Password = password;

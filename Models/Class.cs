@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AcademyManager.Models
 {
@@ -25,10 +20,10 @@ namespace AcademyManager.Models
         public TimeOnly EndTime { get; set; }
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public string Room {  get; set; }
+        public string Room { get; set; }
         public Dictionary<string, StudentRecord> Students { get; set; }
         public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
-            Dictionary<string, string> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
+            Dictionary<string, string> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime,
             DateOnly beginDate, DateOnly endDate, string room, DateOnly examDate, string examRoom, TimeOnly examTime)
         {
             Students = new Dictionary<string, StudentRecord>();
@@ -61,7 +56,7 @@ namespace AcademyManager.Models
             TermID = termID;
             CourseID = courseID;
             CourseName = courseName;
-            CourseCredits= credits;
+            CourseCredits = credits;
             Weekday = day;
             BeginTime = bgT;
             EndTime = endTime;
@@ -72,10 +67,11 @@ namespace AcademyManager.Models
             ExamRoom = examRoom;
             ExamTime = examTime;
         }
-        [JsonConstructor]public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
-            Dictionary<string, string> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime, 
+        [JsonConstructor]
+        public Class(string classID, string instructorID, string instructorName, string termID, string courseID, string courseName, int credits,
+            Dictionary<string, string> documents, DayOfWeek weekday, TimeOnly beginTime, TimeOnly endTime,
             DateOnly beginDate, DateOnly endDate, string room, Dictionary<string, StudentRecord> students,
-            DateOnly examDate, string examRoom, TimeOnly examTime) 
+            DateOnly examDate, string examRoom, TimeOnly examTime)
             : this(classID, instructorID, instructorName, termID, courseID, courseName, credits, documents, weekday, beginTime, endTime, beginDate, endDate, room,
                   examDate, examRoom, examTime)
         {
