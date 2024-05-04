@@ -325,7 +325,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border CornerRadius="0 10 10 0" Background="#FF69D294" Grid.ColumnSpan="2" Margin="395,0,0,0" Width="400"/>
+            <Border CornerRadius="0 10 10 0" Grid.ColumnSpan="2" Margin="395,0,0,0" Width="400"/>
         </Grid>
 
         <!--Grid Controls-->
@@ -335,23 +335,23 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid>
-                <uc:CalendarUC SelectedDate="{Binding ScheduleDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <uc:CalendarUC SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </uc:CalendarUC>
             </Grid>
 
             <Grid Grid.Column="1">
                 <Border Grid.Row="1" Background="#004B19"
-                        CornerRadius="0 10 10 0">
+                        CornerRadius="0 20 20 0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="80"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" VerticalAlignment="Center"
-                                   Margin="40 0 0 0" FontSize="40"
+                                   Margin="40 0 30 0" FontSize="40"
                                    Foreground="White"
                                    FontFamily="Comic Sans MS"
-                                   Text="{Binding CurrentDate}"/>
+                                   Text="{Binding DateLabel}"/>
                         <ScrollViewer Height="250" Width="360"
                                       Grid.Row="1" VerticalScrollBarVisibility="Auto">
                             <Grid Cursor="Hand" x:Name="TaskPanel">

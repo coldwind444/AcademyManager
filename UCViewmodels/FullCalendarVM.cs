@@ -19,7 +19,7 @@ namespace AcademyManager.UCViewmodels
         #endregion
         #region Properties
         private DateTime? _date;
-        private string _currdate;
+        private string _datelb;
         private ObservableCollection<Item> _items;
         public ObservableCollection<Item> Items
         {
@@ -30,7 +30,7 @@ namespace AcademyManager.UCViewmodels
                 OnPropertyChanged();
             }
         }
-        public DateTime? ScheduleDate
+        public DateTime? SelectedDate
         {
             get { return _date; }
             set 
@@ -40,16 +40,18 @@ namespace AcademyManager.UCViewmodels
                 SelectedDateChangedCommand.Execute(null);
             }
         }
-        public string CurrentDate
+        public string DateLabel
         {
-            get { return _currdate; }
-            set { _currdate = value; OnPropertyChanged(); }
+            get { return _datelb; }
+            set { _datelb = value; OnPropertyChanged(); }
         }
         #endregion
         #region Methods
-        private void LoadTodayTasks(List<Class> list)
+        private void LoadTodayTasks(DateOnly selectedDate ,List<Class> list)
         {
             TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+            list.Sort((c1,c2) => c1.BeginTime.CompareTo(c2.BeginTime));
             Items = new ObservableCollection<Item>();
             foreach (Class c in list)
             {
@@ -57,8 +59,14 @@ namespace AcademyManager.UCViewmodels
                 string bg = c.BeginTime.ToString("HH:mm");
                 string e = c.EndTime.ToString("HH:mm");
                 string time = $"{bg} - {e}";
-                if (c.EndTime >= now) item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CircleOutline);
-                else item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CheckCircle);
+
+                if (selectedDate > today) item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CircleOutline);
+                else if (selectedDate < today) item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CheckCircle);
+                else 
+                {
+                    if (now > c.EndTime) item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CheckCircle);
+                    else item = new Item(c.CourseName, time, c.Room, FontAwesome.WPF.FontAwesomeIcon.CircleOutline);
+                }
                 Items.Add(item);
             }
         }
@@ -66,19 +74,21 @@ namespace AcademyManager.UCViewmodels
         {
             SelectedDateChangedCommand = new RelayCommand<object>(p => true, p =>
             {
-                CurrentDate = ScheduleDate.Value.ToString("MMMM d, yyyy");
-                DateOnly input = DateOnly.FromDateTime((DateTime)ScheduleDate);
+                DateLabel = SelectedDate.Value.ToString("MMMM d, yyyy");
+                DateOnly input = DateOnly.FromDateTime((DateTime)SelectedDate);
                 List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
-                LoadTodayTasks(todaytasks);
+                LoadTodayTasks(input, todaytasks);
             });
         }
         #endregion
         public FullCalendarVM()
         {
-            CurrentDate = DateTime.Now.ToString("MMMM d, yyyy");
+            
+            DateLabel = DateTime.Now.ToString("MMMM d, yyyy");
             DateOnly input = DateOnly.FromDateTime(DateTime.Now);
             List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
-            LoadTodayTasks(todaytasks);
+            LoadTodayTasks(input, todaytasks);
+            
             InitializeCommands();
         }
     }
