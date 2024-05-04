@@ -30,10 +30,9 @@ namespace AcademyManager.Viewmodels
         }
         #endregion
         #region Methods
-        public async void LoadClasses()
+        public void LoadClasses()
         {
             SubjList.Children.Clear();
-            await ParentVM.LoadClasses();
             List<Class> list = MainVM.UserClassList;
             if (list.Count == 0)
             {

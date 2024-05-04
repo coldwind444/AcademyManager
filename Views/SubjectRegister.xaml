@@ -84,6 +84,7 @@
             </StackPanel>
         </Border>
         <Label Content="Không tìm thấy môn học."
+               Visibility="{Binding Unfound}"
                FontSize="18" VerticalAlignment="Center"
                HorizontalAlignment="Center" FontStyle="Italic"/>
         <toast:NotificationContainer Height="100" Width="350"

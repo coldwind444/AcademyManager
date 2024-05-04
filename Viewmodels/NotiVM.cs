@@ -45,8 +45,9 @@ namespace AcademyManager.Viewmodels
                 LoadNotifications();
             });
 
-            ReloadCommand = new RelayCommand<object>(p => true, p =>
+            ReloadCommand = new RelayCommand<StackPanel>(p => true, p =>
             {
+                p.Children.Clear();
                 LoadNotifications();
             });
         }

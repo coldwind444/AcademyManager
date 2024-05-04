@@ -68,7 +68,8 @@
             <Button Height="40" Margin="500,460,350,0" Grid.Row="2"
                     Style="{DynamicResource RoundButton}"
                     Content="Tải lại" Foreground="White" FontSize="20"
-                    Command="{Binding ReloadCommand}"/>
+                    Command="{Binding ReloadCommand}"
+                    CommandParameter="{Binding ElementName=notiPanel}"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -115,6 +115,7 @@ namespace AcademyManager.UCViews
                     ParentVM.ShowNotification(success, 1);
                     if (!success) return;
                     MainVM.CurrentUser = user;
+                    MainVM.UserClassList.Add(ClassData);
                 }
                 Icon.Kind = PackIconKind.BoxCancelOutline;
                 RegisterButton.ToolTip = "Huỷ đăng ký";
@@ -129,6 +130,7 @@ namespace AcademyManager.UCViews
                     ParentVM.ShowNotification(success, 1);
                     if (!success) return;
                     MainVM.CurrentUser = user;
+                    MainVM.UserClassList.Remove(ClassData);
                 }
                 Icon.Kind = PackIconKind.PencilBoxOutline;
                 RegisterButton.ToolTip = "Đăng ký";

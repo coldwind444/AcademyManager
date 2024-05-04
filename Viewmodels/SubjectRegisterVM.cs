@@ -3,6 +3,7 @@ using AcademyManager.UCViews;
 using Flattinger.Core.Theme;
 using Flattinger.UI.ToastMessage;
 using Flattinger.UI.ToastMessage.Controls;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -21,6 +22,16 @@ namespace AcademyManager.Viewmodels
         private AppTheme _theme;
         private ToastProvider _toastProvider;
         private string _cid;
+        private Visibility _unfound;
+        public Visibility Unfound
+        {
+            get => _unfound;
+            set
+            {
+                _unfound = value;
+                OnPropertyChanged();
+            }
+        }
         public string CID
         {
             get { return _cid; }
@@ -37,13 +48,14 @@ namespace AcademyManager.Viewmodels
                 if (ex == 1) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký môn thất bại.", 1000);
             else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký trùng lịch học.", 1000);
         }
-        private async Task LoadAvailableCourses(StackPanel panel)
+        private async Task<bool> LoadAvailableCourses(StackPanel panel)
         {
             if (panel != null) panel.Children.Clear();
             DatabaseManager db = new DatabaseManager();
             string termid = await db.GetCurrentTermAsync();
             Course course = await db.GetCourseAsync(termid, CID);
-            if (course == null) return;
+            if (course == null) return false;
+            if (course.Classes.Count == 0) return false;
             foreach (Class c in course.Classes.Values)
             {
                 bool contain = MainVM.CurrentUser.StudyElements.Any(e => e.TermID == c.TermID && e.CourseID == c.CourseID && e.ClassID == c.ClassID);
@@ -52,6 +64,7 @@ namespace AcademyManager.Viewmodels
                 else item = new SubjectRegisterUC(c, MaterialDesignThemes.Wpf.PackIconKind.BoxCancel, this);
                 panel.Children.Add(item);
             }
+            return true;
         }
         private void InitializeCommands()
         {
@@ -63,7 +76,9 @@ namespace AcademyManager.Viewmodels
 
             SearchCommand = new RelayCommand<StackPanel>(p => _cid != null && _cid.Length > 0, async p =>
             {
-                await LoadAvailableCourses(p);
+                bool found = await LoadAvailableCourses(p);
+                if (!found) Unfound = Visibility.Visible;
+                else Unfound = Visibility.Hidden;
             });
         }
         #endregion
@@ -74,6 +89,7 @@ namespace AcademyManager.Viewmodels
             _theme = new AppTheme();
             _theme.ChangeTheme(Flattinger.Core.Enums.Theme.LIGHT);
             _toastProvider = new ToastProvider(container);
+            Unfound = Visibility.Hidden;
             InitializeCommands();
         }
     }
