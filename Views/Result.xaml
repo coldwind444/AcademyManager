@@ -105,17 +105,20 @@
             <DataGrid Height="330" AutoGenerateColumns="False" IsReadOnly="True"
                       Width="604" HorizontalAlignment="Left"
                       Margin="20,16,0,17" Background="White"
-                      Grid.Row="1" BorderThickness="2" BorderBrush="DarkGray"
+                      Grid.Row="1"
                       ItemsSource="{Binding Result}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã môn học" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Tên môn học" Width="150"
                                         Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Số tín chỉ"
+                                        Binding="{Binding Credits}"/>
                     <DataGridTextColumn Header="Kiểm tra" Width="100"
                                         Binding="{Binding Daily}"/>
                     <DataGridTextColumn Header="Giữa kỳ" Binding="{Binding Mid}"/>
                     <DataGridTextColumn Header="Bài tập lớn" Binding="{Binding Project}"/>
                     <DataGridTextColumn Header="Cuối kỳ" Binding="{Binding Final}"/>
+                    <DataGridTextColumn Header="Trung bình" Binding="{Binding GPA}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <materialDesign:Card Width="250" Grid.Row="1"
