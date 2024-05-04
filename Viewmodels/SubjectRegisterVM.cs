@@ -43,7 +43,8 @@ namespace AcademyManager.Viewmodels
         public void ShowNotification(bool success, int ex)
         {
             if (success)
-                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đăng ký môn thành công.", 1000);
+                 if (ex == 1) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đăng ký môn thành công.", 1000);
+                 else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Hủy đăng ký môn thành công.", 1000);
             else
                 if (ex == 1) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký môn thất bại.", 1000);
             else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký trùng lịch học.", 1000);

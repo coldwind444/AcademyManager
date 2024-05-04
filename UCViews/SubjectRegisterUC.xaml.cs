@@ -137,7 +137,7 @@ namespace AcademyManager.UCViews
                 if (user != null)
                 {
                     bool success = await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
-                    ParentVM.ShowNotification(success, 1);
+                    ParentVM.ShowNotification(success, 2);
                     if (!success) return;
                     MainVM.CurrentUser = user;
                     Class cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
