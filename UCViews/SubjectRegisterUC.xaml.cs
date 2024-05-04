@@ -140,7 +140,8 @@ namespace AcademyManager.UCViews
                     ParentVM.ShowNotification(success, 1);
                     if (!success) return;
                     MainVM.CurrentUser = user;
-                    MainVM.UserClassList.Remove(ClassData);
+                    Class cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
+                    if (cls != null) MainVM.UserClassList.Remove(cls);
                 }
                 Icon.Kind = PackIconKind.PencilBoxOutline;
                 RegisterButton.ToolTip = "Đăng ký";
