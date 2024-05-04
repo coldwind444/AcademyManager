@@ -7,6 +7,8 @@
         public string Major { get; set; }
         public async Task<bool> RegisterClass(string termID, string courseID, string classID, string uuid)
         {
+            bool isregistered = this.StudyElements.Any(c => c.TermID == termID && c.CourseID == courseID);
+            if (isregistered) return false;
             DatabaseManager database = new DatabaseManager();
             this.StudyElements.Add(new ClassIdentifier(termID, courseID, classID));
             bool success = await database.UpdateStudentAsync(uuid, this);

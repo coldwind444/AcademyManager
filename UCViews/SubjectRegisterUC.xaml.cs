@@ -140,7 +140,7 @@ namespace AcademyManager.UCViews
                     ParentVM.ShowCancelNotification(success);
                     if (!success) return;
                     MainVM.CurrentUser = user;
-                    Class cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
+                    Class? cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
                     if (cls != null) MainVM.UserClassList.Remove(cls);
                 }
                 Icon.Kind = PackIconKind.PencilBoxOutline;

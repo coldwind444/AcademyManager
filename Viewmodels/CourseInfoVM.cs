@@ -26,6 +26,7 @@ namespace AcademyManager.Viewmodels
             DatabaseManager db = new DatabaseManager();
             Data = await db.GetClassAsync(Data.TermID, Data.CourseID, Data.ClassID);
             if (Data.Documents == null) return;
+            DocumentsPanel.Children.Clear();
             foreach (var doc in Data.Documents)
             {
                 SubjectContentUC item = new SubjectContentUC(doc.Key, doc.Value);

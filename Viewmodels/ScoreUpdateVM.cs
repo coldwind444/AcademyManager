@@ -103,12 +103,16 @@ namespace AcademyManager.Viewmodels
         {
             if (list == null) return -1;
             Dictionary<string, StudentRecord> dict = new Dictionary<string, StudentRecord>();
+            Class? cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.ClassID == ClassData.ClassID && c.CourseID == ClassData.CourseID);
+            if (cls == null) return -1;
             foreach (StudentRecord rc in list)
             {
-                bool contain = MainVM.UserClassList.Any(c => c.TermID == ClassData.TermID && c.ClassID == ClassData.ClassID
-                                                            && c.CourseID == ClassData.CourseID && c.Students.ContainsKey(rc.ID));
-                bool nameexist = MainVM.UserClassList.Any(c => c.Students[rc.ID].Name == rc.Name);
-                if (!contain && !nameexist) return -1;
+                bool idcontain = cls.Students.ContainsKey(rc.ID);
+                if (idcontain)
+                {
+                    if (cls.Students[rc.ID].Name != rc.Name) return -1;
+                }
+                else return -1;
                 dict.Add(rc.ID, rc);
             }
             InstructorUser? user = MainVM.CurrentUser as InstructorUser;
@@ -117,7 +121,6 @@ namespace AcademyManager.Viewmodels
                 bool success = await user.UpdateScore(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, dict);
                 if (!success) return -1;
             }
-
             return 1;
         }
         private void InitializeCommands()
