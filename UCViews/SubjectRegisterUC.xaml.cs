@@ -84,7 +84,17 @@ namespace AcademyManager.UCViews
             bool invalidday = a.Weekday == b.Weekday;
             bool invalidtime = (a.BeginTime >= b.BeginTime && a.BeginTime <= b.EndTime)
                             || (a.EndTime >= b.BeginTime && a.EndTime <= b.EndTime);
-            return invaliddate || invalidday || invalidtime;
+            if (invaliddate)
+            {
+                if (invalidday)
+                {
+                    if (invalidtime)
+                    {
+                        return true;
+                    }
+                } else return false;
+            }
+            return false;
         }
         private bool ExistTimeConflict()
         {
