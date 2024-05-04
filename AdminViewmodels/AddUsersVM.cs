@@ -43,7 +43,7 @@ namespace AcademyManager.AdminViewmodels
         private void ShowNotification(bool success)
         {
             if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
-            _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
+            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
         }
         private DateOnly StringToDateOnly(string s)
         {

@@ -113,7 +113,7 @@ namespace AcademyManager.UCViews
             {
                 if (conflict)
                 {
-                    ParentVM.ShowNotification(!conflict, 2);
+                    ParentVM.ShowTimeConflictNotification();
                     button.IsEnabled = true;
                     return;
                 }
@@ -122,7 +122,7 @@ namespace AcademyManager.UCViews
                 if (user != null)
                 {
                     bool success = await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
-                    ParentVM.ShowNotification(success, 1);
+                    ParentVM.ShowRegisterNotification(success);
                     if (!success) return;
                     MainVM.CurrentUser = user;
                     MainVM.UserClassList.Add(ClassData);
@@ -137,7 +137,7 @@ namespace AcademyManager.UCViews
                 if (user != null)
                 {
                     bool success = await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
-                    ParentVM.ShowNotification(success, 2);
+                    ParentVM.ShowCancelNotification(success);
                     if (!success) return;
                     MainVM.CurrentUser = user;
                     Class cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
