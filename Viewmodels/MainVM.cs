@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using AcademyManager.Views;
 using System.Net.NetworkInformation;
+using AcademyManager.UCViews;
 
 namespace AcademyManager.Viewmodels
 {
@@ -190,8 +191,8 @@ namespace AcademyManager.Viewmodels
             // check network connection
             if (!NetworkConnection())
             {
-                MessageBox.Show("Vui lòng kiểm tra kết nối mạng.\n Phần mềm sẽ tự động thoát.", "Lỗi kết nối", MessageBoxButton.OK, MessageBoxImage.Error);
-                App.Current.Shutdown();
+                CustomedMessageBox msg = new CustomedMessageBox();
+                msg.ShowDialog();
             }
 
             InitializeCommands();

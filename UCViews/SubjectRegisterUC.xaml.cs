@@ -89,11 +89,34 @@ namespace AcademyManager.UCViews
         }
 
         public static readonly DependencyProperty ClassProperty = DependencyProperty.Register("Class", typeof(string), typeof(SubjectRegisterUC));
-
+        private bool TimeConflict(Class a, Class b)
+        {
+            bool invaliddate = (a.BeginDate >= b.BeginDate && a.BeginDate <= b.EndDate)
+                            || (a.EndDate >= b.BeginDate && a.EndDate <= b.EndDate);
+            bool invalidday = a.Weekday == b.Weekday;
+            bool invalidtime = (a.BeginTime >= b.BeginTime && a.BeginTime <= b.EndTime)
+                            || (a.EndTime >= b.BeginTime && a.EndTime <= b.EndTime);
+            return invaliddate || invalidday || invalidtime;
+        }
+        private bool ExistTimeConflict()
+        {
+            foreach (Class c in MainVM.UserClassList)
+            {
+                if (TimeConflict(c, ClassData)) return true;
+            }
+            return false;
+        }
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             Button? button = sender as Button;
             if (button != null) button.IsEnabled = false;
+            bool conflict = ExistTimeConflict();
+            if (conflict)
+            {
+                ParentVM.ShowNotification(!conflict, 2);
+                button.IsEnabled = true;
+                return;
+            }
             if (!IsRegisterd)
             {
                 IsRegisterd = true;
@@ -101,7 +124,7 @@ namespace AcademyManager.UCViews
                 if (user != null)
                 {
                     bool success = await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
-                    ParentVM.ShowNotification(success);
+                    ParentVM.ShowNotification(success, 1);
                     if (!success) return;
                     MainVM.CurrentUser = user;
                 }
@@ -114,7 +137,7 @@ namespace AcademyManager.UCViews
                 if (user != null)
                 {
                     bool success = await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
-                    ParentVM.ShowNotification(success);
+                    ParentVM.ShowNotification(success, 1);
                     if (!success) return;
                     MainVM.CurrentUser = user;
                 }
