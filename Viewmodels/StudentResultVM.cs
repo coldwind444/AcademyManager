@@ -20,6 +20,7 @@ namespace AcademyManager.Viewmodels
             public double Final { get; set; }
             public double GPA { get; set; }
             public int Credits { get; set; }
+            public string Result { get; set; }
             public CourseRecord(string id, string name, double d, double p, double m, double f, double g, int c)
             {
                 ID = id;
@@ -30,6 +31,8 @@ namespace AcademyManager.Viewmodels
                 Final = f;
                 GPA = g;
                 Credits = c;
+                if (GPA >= 4.0) Result = "Đạt";
+                else Result = "Không đạt";
             }
         }
         #endregion
@@ -138,7 +141,7 @@ namespace AcademyManager.Viewmodels
                 total += gpa * credits[termid];
             }
 
-            double result = Math.Round(total/totalcredits, 1);
+            double result = Math.Round(total/totalcredits, 1, MidpointRounding.AwayFromZero);
 
             return result;
         }
@@ -152,12 +155,14 @@ namespace AcademyManager.Viewmodels
                 if (cls.TermID == termid)
                 {
                     TermCredits += cls.CourseCredits;
-                    sum += (cls.CourseCredits * cls.Students[sid].GPA);
+                    int c = cls.CourseCredits;
+                    double g = cls.Students[sid].GPA;
+                    sum += (c * g);
                     if (cls.Students[sid].GPA >= 4.0) PassCredits += cls.CourseCredits;
                 }
             }
             double gpa = sum / TermCredits * 0.4;
-            TermGPA = Math.Round(gpa, 1);
+            TermGPA = Math.Round(gpa, 1, MidpointRounding.AwayFromZero);
             TotalGPA = CalculateTotalGPA();
         }
         private void InitializeCommand()
