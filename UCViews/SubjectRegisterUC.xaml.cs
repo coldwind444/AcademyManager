@@ -109,14 +109,14 @@ namespace AcademyManager.UCViews
             Button? button = sender as Button;
             if (button != null) button.IsEnabled = false;
             bool conflict = ExistTimeConflict();
-            if (conflict)
-            {
-                ParentVM.ShowNotification(!conflict, 2);
-                button.IsEnabled = true;
-                return;
-            }
             if (!IsRegisterd)
             {
+                if (conflict)
+                {
+                    ParentVM.ShowNotification(!conflict, 2);
+                    button.IsEnabled = true;
+                    return;
+                }
                 IsRegisterd = true;
                 StudentUser? user = MainVM.CurrentUser as StudentUser;
                 if (user != null)
