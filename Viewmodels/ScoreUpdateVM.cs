@@ -66,7 +66,7 @@ namespace AcademyManager.Viewmodels
                 int rowCount = worksheet.Dimension.Rows;
                 int colCount = worksheet.Dimension.Columns;
 
-                if (colCount != 7) return null;
+                if (colCount != 7 || rowCount - 1 != ClassData.Students.Count) return null;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
