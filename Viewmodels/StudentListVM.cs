@@ -37,7 +37,7 @@ namespace AcademyManager.Viewmodels
         private void GenerateExcelFileAndSave(string path)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            string filename = $"Danh sách lớp {ClassData.ClassID}.xlsx";
+            string filename = $"Danh sách lớp {ClassData.ClassID} {ClassData.CourseName}.xlsx";
             string fullpath = Path.Combine(path, filename);
             var fi = new FileInfo(fullpath);
 
