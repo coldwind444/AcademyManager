@@ -1,5 +1,6 @@
 ﻿using AcademyManager.Models;
 using AcademyManager.UCViews;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -15,6 +16,16 @@ namespace AcademyManager.Viewmodels
         private MainVM ParentVM { get; set; }
         private StackPanel NotiPanel { get; set; }
         public SpecificNoti DeletedNoti { get; set; }
+        private Visibility _v;
+        public Visibility LabelV
+        {
+            get => _v;
+            set
+            {
+                _v = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
         #region Methods
         public async void DeleteNoti()
@@ -30,7 +41,12 @@ namespace AcademyManager.Viewmodels
         private void LoadNotifications()
         {
             Dictionary<int, Notification> list = MainVM.CurrentUser.Notifications;
-            if (list == null || list.Count == 0) return;
+            if (list == null || list.Count == 0)
+            {
+                LabelV = Visibility.Visible;
+                return;
+            }
+            LabelV = Visibility.Hidden;
             foreach (Notification n in list.Values)
             {
                 SpecificNoti noti = new SpecificNoti(n.ID, n.Title, n.Message, n.UpdateDate, this);

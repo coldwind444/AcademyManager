@@ -70,6 +70,9 @@
                     Content="Tải lại" Foreground="White" FontSize="20"
                     Command="{Binding ReloadCommand}"
                     CommandParameter="{Binding ElementName=notiPanel}"/>
+            <Label Content="Không có thông báo mới."
+                   FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Grid.Row="2" Visibility="{Binding LabelV}"/>
         </Grid>
     </Grid>
 </UserControl>
