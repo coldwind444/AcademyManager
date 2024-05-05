@@ -180,7 +180,7 @@ namespace AcademyManager.AdminViewmodels
                         foreach (StudentUser std in students)
                         {
                             Account newacc = new Account(std.ID, std.Email, null, 2);
-                            Account existacc = await db.GetAccountAsync(std.ID, 1);
+                            Account existacc = await db.GetAccountAsync(std.ID, 2);
                             if (existacc != null)
                             {
                                 StudentUser s = await db.GetStudentByUUIDAsync(existacc.UUID);
