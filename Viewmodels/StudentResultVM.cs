@@ -103,8 +103,16 @@ namespace AcademyManager.Viewmodels
                 if (cls.TermID == termid)
                 {
                     string sid = MainVM.CurrentUser.ID;
-                    StudentRecord strc = cls.Students[sid];
-                    CourseRecord rc = new CourseRecord(cls.CourseID, cls.CourseName, strc.DailyTestScore, strc.Project, strc.Mid_Term, strc.Final, strc.GPA, cls.CourseCredits);
+                    StudentRecord strc;
+                    CourseRecord rc;
+                    if (cls.Students.ContainsKey(sid))
+                    {
+                        strc = cls.Students[sid];
+                        rc = new CourseRecord(cls.CourseID, cls.CourseName, strc.DailyTestScore, strc.Project, strc.Mid_Term, strc.Final, strc.GPA, cls.CourseCredits);
+                    } else
+                    {
+                        rc = new CourseRecord(cls.CourseID, cls.CourseName, 0, 0, 0, 0, 0, cls.CourseCredits);
+                    }
                     list.Add(rc);
                 }
             }
@@ -140,7 +148,7 @@ namespace AcademyManager.Viewmodels
                 total += gpa * credits[termid];
             }
 
-            double result = Math.Round(total / totalcredits, 1, MidpointRounding.AwayFromZero);
+            double result = Math.Round((total / totalcredits) * 0.4, 1, MidpointRounding.AwayFromZero);
 
             return result;
         }

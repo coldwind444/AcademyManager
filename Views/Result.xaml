@@ -18,7 +18,7 @@
             TextOptions.TextRenderingMode="Auto"
             FontFamily="{DynamicResource MaterialDesignFont}" 
             Height="600" Width="1000" ClipToBounds="True">
-    <Grid>
+    <Grid Background="Azure">
         <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
             <materialDesign:PackIcon.RenderTransform>
                 <TransformGroup>
@@ -69,7 +69,7 @@
                 <Border Background="White" CornerRadius="20"
                         Height="40" Width="200" Grid.Row="0"
                         HorizontalAlignment="Left" Margin="20 0 0 0"
-                        BorderThickness="1" BorderBrush="Black">
+                        BorderThickness="1.5" BorderBrush="Black">
                     <ComboBox materialDesign:HintAssist.Hint="Học kỳ"
                               x:Name="termBox" ItemsSource="{Binding Terms}"
                               Height="30" Width="160" Cursor="Hand"
@@ -83,32 +83,38 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                 </Border>
-                <materialDesign:Card Height="40" Width="250"
-                                     Margin="20 0 0 0" 
-                                     UniformCornerRadius="20">
+                <Border Height="40" Width="250"
+                        Margin="20 0 0 0" 
+                        Background="White"
+                        BorderBrush="LightGray"
+                        BorderThickness="1.5"
+                        CornerRadius="20">
                     <TextBlock FontSize="18" FontWeight="Medium"
                                VerticalAlignment="Center" Margin="15 0 0 0">
                         <Run Text="Trung bình tích lũy: "/>
                         <Run Text="{Binding TotalGPA}"/>
                     </TextBlock>
-                </materialDesign:Card>
-                <materialDesign:Card Height="40" Width="250"
-                                     Margin="20 0 0 0" 
-                                     UniformCornerRadius="20">
+                </Border>
+                <Border Height="40" Width="250" 
+                        Background="White"
+                        BorderBrush="LightGray" BorderThickness="1.5"
+                        Margin="20 0 0 0" 
+                        CornerRadius="20">
                     <TextBlock FontSize="18" FontWeight="Medium"
                                VerticalAlignment="Center" Margin="15 0 0 0">
                         <Run Text="Tín chỉ tích lũy: "/>
                         <Run Text="{Binding TotalCredits}"/>
                     </TextBlock>
-                </materialDesign:Card>
+                </Border>
             </StackPanel>
             <DataGrid Height="330" AutoGenerateColumns="False" IsReadOnly="True"
                       Width="604" HorizontalAlignment="Left"
-                      Margin="20,16,0,17" Background="White"
+                      Margin="20,16,0,17" Background="White" BorderThickness="2.5"
                       Grid.Row="1"
                       ItemsSource="{Binding Result}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã môn học" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Mã môn học" 
+                                        Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Tên môn học" Width="150"
                                         Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Số tín chỉ"
@@ -121,11 +127,13 @@
                     <DataGridTextColumn Header="Trung bình" Binding="{Binding GPA}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <materialDesign:Card Width="250" Grid.Row="1"
-                                 Background="WhiteSmoke"
+            <Border Width="250" Grid.Row="1"
+                    BorderThickness="2.5"
+                    BorderBrush="LightGray"
+                                 Background="White"
                                  HorizontalAlignment="Right"
                                  Margin="0,16,10,17" Grid.RowSpan="2"
-                                 UniformCornerRadius="15">
+                                 CornerRadius="15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200"/>
@@ -164,7 +172,7 @@
                         </TextBlock>
                     </StackPanel>
                 </Grid>
-            </materialDesign:Card>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
