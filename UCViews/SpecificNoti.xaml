@@ -67,7 +67,7 @@
                     Background="RoyalBlue"
                     ToolTip="Đọc và xóa"
                     x:Name="Delete" Click="Delete_Click">
-                <materialDesign:PackIcon Kind="CheckboxOutline"
+                <materialDesign:PackIcon Kind="Checkbox"
                                          Height="38" Width="38"
                                          Foreground="White" 
                                          HorizontalAlignment="Center" 
