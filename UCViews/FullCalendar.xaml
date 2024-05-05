@@ -378,6 +378,11 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
+                                <Label Content="Không có lịch trình hôm nay."
+                                       Foreground="LightGray" FontSize="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Visibility="{Binding NoTask}"/>
                             </Grid>
                         </ScrollViewer>
                     </Grid>

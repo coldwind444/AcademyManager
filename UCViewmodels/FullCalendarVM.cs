@@ -2,6 +2,7 @@
 using AcademyManager.UCViews;
 using AcademyManager.Viewmodels;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AcademyManager.UCViewmodels
@@ -14,6 +15,16 @@ namespace AcademyManager.UCViewmodels
         #region Properties
         private DateTime? _date;
         private string _datelb;
+        private Visibility _v;
+        public Visibility NoTask
+        {
+            get => _v;
+            set
+            {
+                _v = value;
+                OnPropertyChanged();
+            }
+        }
         private ObservableCollection<Item> _items;
         public ObservableCollection<Item> Items
         {
@@ -43,10 +54,16 @@ namespace AcademyManager.UCViewmodels
         #region Methods
         private void LoadTodayTasks(DateOnly selectedDate, List<Class> list)
         {
+            Items.Clear();  
+            if (list.Count == 0 || list == null)
+            {
+                NoTask = Visibility.Visible;
+                return;
+            } else NoTask = Visibility.Hidden;
             TimeOnly now = TimeOnly.FromDateTime(DateTime.Now);
             DateOnly today = DateOnly.FromDateTime(DateTime.Now);
             list.Sort((c1, c2) => c1.BeginTime.CompareTo(c2.BeginTime));
-            Items = new ObservableCollection<Item>();
+            
             foreach (Class c in list)
             {
                 Item item;
@@ -77,12 +94,11 @@ namespace AcademyManager.UCViewmodels
         #endregion
         public FullCalendarVM()
         {
-
+            Items = new ObservableCollection<Item>();
             DateLabel = DateTime.Now.ToString("MMMM d, yyyy");
             DateOnly input = DateOnly.FromDateTime(DateTime.Now);
             List<Class> todaytasks = MainVM.CurrentUser.GetSchedule(input, MainVM.UserClassList);
             LoadTodayTasks(input, todaytasks);
-
             InitializeCommands();
         }
     }
