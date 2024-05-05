@@ -40,7 +40,10 @@ namespace AcademyManager.Viewmodels
             string filename = $"Danh sách lớp {ClassData.ClassID} {ClassData.CourseName}.xlsx";
             string fullpath = Path.Combine(path, filename);
             var fi = new FileInfo(fullpath);
-
+            if (fi.Exists)
+            {
+                fi.Delete();
+            }
             using (var package = new ExcelPackage(fi))
             {
                 var worksheet = package.Workbook.Worksheets.Add("Danh sách lớp");
