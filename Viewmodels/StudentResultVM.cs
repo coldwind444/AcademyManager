@@ -131,8 +131,8 @@ namespace AcademyManager.Viewmodels
                 totalcredits += cls.CourseCredits;
                 if (!sums.ContainsKey(cls.TermID))
                 {
-                    sums[cls.TermID] = 0;
-                    credits[cls.TermID] = 0;
+                    sums[cls.TermID] = cls.Students[sid].GPA * cls.CourseCredits;
+                    credits[cls.TermID] = cls.CourseCredits;
                 }
                 else
                 {

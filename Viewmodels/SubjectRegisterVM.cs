@@ -15,7 +15,6 @@ namespace AcademyManager.Viewmodels
         public ICommand BackCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         #endregion
-
         #region Properties
         private MainVM GParentVM { get; set; }
         private SubjectListVM ParentVM { get; set; }
@@ -38,21 +37,20 @@ namespace AcademyManager.Viewmodels
             set { _cid = value; OnPropertyChanged(); }
         }
         #endregion
-
         #region Methods
         public void ShowRegisterNotification(bool success)
         {
-            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đăng ký môn thành công.", 1000);
-            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký môn thất bại.", 1000);
+            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Đăng ký môn thành công.", 500);
+            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký môn thất bại.", 500);
         }
         public void ShowCancelNotification(bool success)
         {
-            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Hủy đăng ký môn thành công.", 1000);
-            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Hủy đăng ký môn thất bại.", 1000);
+            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Thành công!", "Hủy đăng ký môn thành công.", 500);
+            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Hủy đăng ký môn thất bại.", 500);
         }
         public void ShowTimeConflictNotification()
         {
-            _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký trùng lịch học.", 1000);
+            _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Thất bại!", "Đăng ký trùng lịch học.", 500);
         }
         private async Task<bool> LoadAvailableCourses(StackPanel panel)
         {

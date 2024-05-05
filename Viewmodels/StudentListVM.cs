@@ -103,7 +103,6 @@ namespace AcademyManager.Viewmodels
                 {
                     GenerateExcelFileAndSave(dialog.SelectedPath);
                     string location = Path.Combine(dialog.SelectedPath, $"Danh sách lớp {ClassData.ClassID}.xlsx");
-                    Process.Start(new ProcessStartInfo(location) { UseShellExecute = true });
                 }
             });
 

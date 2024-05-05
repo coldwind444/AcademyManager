@@ -143,11 +143,11 @@ namespace AcademyManager.Viewmodels
                 int result = await UpdateScore(list);
                 if (list != null && result != -1)
                 {
-                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Điểm đã được cập nhật!", 1000);
+                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Điểm đã được cập nhật!", 500);
                     await SendNotification();
                 }
                 else
-                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ!", 1000);
+                    _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ!", 500);
                 Loading = Visibility.Hidden;
             });
 
