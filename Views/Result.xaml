@@ -83,7 +83,7 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                 </Border>
-                <Border Height="40" Width="250"
+                <Border Height="40" Width="270"
                         Margin="20 0 0 0" 
                         Background="White"
                         BorderBrush="LightGray"
@@ -93,6 +93,7 @@
                                VerticalAlignment="Center" Margin="15 0 0 0">
                         <Run Text="Trung bình tích lũy: "/>
                         <Run Text="{Binding TotalGPA}"/>
+                        <Run Text="/4.0"/>
                     </TextBlock>
                 </Border>
                 <Border Height="40" Width="250" 
@@ -108,8 +109,8 @@
                 </Border>
             </StackPanel>
             <DataGrid Height="330" AutoGenerateColumns="False" IsReadOnly="True"
-                      Width="604" HorizontalAlignment="Left"
-                      Margin="20,16,0,17" Background="White" BorderThickness="2.5"
+                      Width="590" HorizontalAlignment="Left"
+                      Margin="20,18,0,18" Background="White" BorderThickness="2.5"
                       Grid.Row="1"
                       ItemsSource="{Binding Result}">
                 <DataGrid.Columns>
@@ -127,7 +128,7 @@
                     <DataGridTextColumn Header="Trung bình" Binding="{Binding GPA}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Border Width="250" Grid.Row="1"
+            <Border Width="260" Grid.Row="1"
                     BorderThickness="2.5"
                     BorderBrush="LightGray"
                                  Background="White"
@@ -169,6 +170,7 @@
                         <TextBlock>
                             <Run Text="Trung bình học kỳ: "/>
                             <Run Text="{Binding TermGPA}"/>
+                            <Run Text="/4.0"/>
                         </TextBlock>
                     </StackPanel>
                 </Grid>
