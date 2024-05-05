@@ -20,7 +20,6 @@ namespace AcademyManager.AdminViewmodels
         public ICommand BrowseCommand { get; set; }
         public ICommand DownloadCommand { get; set; }
         #endregion
-
         #region Properties
         private AppTheme _theme;
         private ToastProvider _toastProvider;
@@ -38,12 +37,11 @@ namespace AcademyManager.AdminViewmodels
             set { _path = value; OnPropertyChanged(); }
         }
         #endregion
-
         #region Methods
         private void ShowNotification(bool success)
         {
-            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 1000);
-            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
+            if (success) _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Dữ liệu người dùng đã được tải lên.", 500);
+            else _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 500);
         }
         private DateOnly StringToDateOnly(string s)
         {

@@ -273,9 +273,9 @@ namespace AcademyManager.AdminViewmodels
         private void ShowNotification(bool success)
         {
             if (success)
-                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Lịch trình học tập và giảng dạy đã được cập nhật.", 1000);
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.SUCCESS, "Cập nhật thành công!", "Lịch trình học tập và giảng dạy đã được cập nhật.", 500);
             else
-                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 1000);
+                _toastProvider.NotificationService.AddNotification(Flattinger.Core.Enums.ToastType.ERROR, "Cập nhật thất bại!", "Dữ liệu không hợp lệ.", 500);
         }
         private void InitializeCommands()
         {
