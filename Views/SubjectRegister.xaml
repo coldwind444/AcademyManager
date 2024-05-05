@@ -87,7 +87,7 @@
                Visibility="{Binding Unfound}"
                FontSize="18" VerticalAlignment="Center"
                HorizontalAlignment="Center" FontStyle="Italic"/>
-        <toast:NotificationContainer Height="100" Width="350"
+        <toast:NotificationContainer Height="80" Width="350"
                                      x:Name="notification" 
                                      Margin="575,73,75,427"/>
     </Grid>

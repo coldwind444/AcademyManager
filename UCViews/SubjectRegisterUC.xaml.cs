@@ -117,17 +117,23 @@ namespace AcademyManager.UCViews
                     button.IsEnabled = true;
                     return;
                 }
-                IsRegisterd = true;
                 StudentUser? user = MainVM.CurrentUser as StudentUser;
                 if (user != null)
                 {
                     bool success = await user.RegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
                     ParentVM.ShowRegisterNotification(success);
-                    if (!success) return;
+                    if (!success)
+                    {
+                        button.IsEnabled = true;
+                        return;
+                    }
                     MainVM.CurrentUser = user;
+                    if (ClassData.Students == null) ClassData.Students = new Dictionary<string, StudentRecord>();
+                    ClassData.Students.Add(user.ID, new StudentRecord(user.ID, user.Fullname, 0, 0, 0, 0, 0));
                     MainVM.UserClassList.Add(ClassData);
+                    IsRegisterd = true;
                 }
-                Icon.Kind = PackIconKind.BoxCancelOutline;
+                Icon.Kind = PackIconKind.BoxCancel;
                 RegisterButton.ToolTip = "Huỷ đăng ký";
             }
             else
@@ -138,12 +144,16 @@ namespace AcademyManager.UCViews
                 {
                     bool success = await user.CancelRegisterClass(ClassData.TermID, ClassData.CourseID, ClassData.ClassID, MainVM.CurrentAccount.UUID);
                     ParentVM.ShowCancelNotification(success);
-                    if (!success) return;
+                    if (!success)
+                    {
+                        button.IsEnabled = true;
+                        return;
+                    }
                     MainVM.CurrentUser = user;
                     Class? cls = MainVM.UserClassList.Find(c => c.TermID == ClassData.TermID && c.CourseID == ClassData.CourseID && c.ClassID == ClassData.ClassID);
                     if (cls != null) MainVM.UserClassList.Remove(cls);
                 }
-                Icon.Kind = PackIconKind.PencilBoxOutline;
+                Icon.Kind = PackIconKind.PencilBox;
                 RegisterButton.ToolTip = "Đăng ký";
             }
             if (button != null) button.IsEnabled = true;

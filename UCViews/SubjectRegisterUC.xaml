@@ -84,8 +84,8 @@
                     x:Name="RegisterButton"
                     Click="RegisterButton_Click">
                 <md:PackIcon Width="40" Height="40"
-                             Foreground="White" x:Name="Icon"
-                             ToolTip="Đăng ký"/>
+                             Foreground="White" 
+                             x:Name="Icon"/>
             </Button>
         </Grid>
     </Border>
