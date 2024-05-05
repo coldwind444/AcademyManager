@@ -99,7 +99,7 @@
                 </TextBlock>
             </StackPanel>
         </Border>
-        <toast:NotificationContainer Height="100" Width="350"
+        <toast:NotificationContainer Height="80" Width="350"
                                      VerticalAlignment="Top"
                                      HorizontalAlignment="Right"
                                      x:Name="noti"
