@@ -26,21 +26,6 @@
             await db.RemoveStudentAsync(termID, courseID, classID, ID);
             return true;
         }
-        public async Task<List<StudentRecord>> ViewScore()
-        {
-            List<StudentRecord> result = new List<StudentRecord>();
-            DatabaseManager database = new DatabaseManager();
-            Term term = null;
-            foreach (ClassIdentifier cid in StudyElements)
-            {
-                if (term != null)
-                    if (term.TermID != cid.TermID) term = await database.GetTermAsync(cid.TermID);
-                    else term = await database.GetTermAsync(cid.TermID);
-                StudentRecord rc = term.Courses[cid.CourseID].Classes[cid.ClassID].Students[ID];
-                result.Add(rc);
-            }
-            return result;
-        }
         public StudentUser(string id, string fullname, string email, DateOnly birthday, string faculty, string avt, string major, double gpa = 0, int credits = 0)
             : base(id, fullname, email, birthday, faculty, avt)
         {

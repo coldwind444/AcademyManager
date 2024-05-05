@@ -183,6 +183,8 @@ namespace AcademyManager.AdminViewmodels
                             Account existacc = await db.GetAccountAsync(std.ID, 1);
                             if (existacc != null)
                             {
+                                StudentUser s = await db.GetStudentByUUIDAsync(existacc.UUID);
+                                std.UpdateInfo(s);
                                 Task<bool> usertask = db.UpdateStudentAsync(existacc.UUID, std);
                                 userbatch.Add(usertask);
                             }
@@ -230,6 +232,8 @@ namespace AcademyManager.AdminViewmodels
                             Account existacc = await db.GetAccountAsync(ins.ID, 1);
                             if (existacc != null)
                             {
+                                InstructorUser i = await db.GetInstructorByUUIDAsync(existacc.UUID);
+                                ins.UpdateInfo(i);
                                 Task<bool> usertask = db.UpdateInstructorAsync(existacc.UUID, ins);
                                 userbatch.Add(usertask);
                             }

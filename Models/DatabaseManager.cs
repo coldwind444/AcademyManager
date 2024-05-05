@@ -127,6 +127,18 @@ namespace AcademyManager.Models
             StudentUser result = response.ResultAs<StudentUser>();
             return result;
         }
+        public async Task<StudentUser> GetStudentByUUIDAsync(string uuid)
+        {
+            if (!NetworkConnection())
+            {
+                CustomedMessageBox customedMessageBox = new CustomedMessageBox();
+                customedMessageBox.ShowDialog();
+                return null;
+            }
+            FirebaseResponse response = await client.GetAsync("Students/" + uuid);
+            StudentUser result = response.ResultAs<StudentUser>();
+            return result;
+        }
         #endregion
         #region Instructors
         public async Task<bool> UpdateInstructorAsync(string uuid, InstructorUser user)
@@ -154,6 +166,18 @@ namespace AcademyManager.Models
             if (account != null) uid = account.UUID;
             else return null;
             FirebaseResponse response = await client.GetAsync("Instructors/" + uid);
+            InstructorUser result = response.ResultAs<InstructorUser>();
+            return result;
+        }
+        public async Task<InstructorUser> GetInstructorByUUIDAsync(string uuid)
+        {
+            if (!NetworkConnection())
+            {
+                CustomedMessageBox customedMessageBox = new CustomedMessageBox();
+                customedMessageBox.ShowDialog();
+                return null;
+            }
+            FirebaseResponse response = await client.GetAsync("Instructors/" + uuid);
             InstructorUser result = response.ResultAs<InstructorUser>();
             return result;
         }
