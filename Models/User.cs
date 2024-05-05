@@ -34,8 +34,8 @@
             if (this.Birthday != user.Birthday) this.Birthday = user.Birthday;
             if (this.Faculty != user.Faculty) this.Faculty = user.Faculty;
             if (this.AvatarBase64 != user.AvatarBase64) this.AvatarBase64 = user.AvatarBase64;
-            this.Notifications = user.Notifications;
-            this.StudyElements = user.StudyElements;
+            this.Notifications = new Dictionary<int, Notification>(user.Notifications);
+            this.StudyElements = new List<ClassIdentifier>(user.StudyElements);
         }
         public User(string id, string fullname, string email, DateOnly birthday, string faculty, string avt)
         {
