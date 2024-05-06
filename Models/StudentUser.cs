@@ -26,6 +26,16 @@
             await db.RemoveStudentAsync(termID, courseID, classID, ID);
             return true;
         }
+        public void UpdateInfo(StudentUser user)
+        {
+            if (user == null) return;
+            if (this.Fullname != user.Fullname) this.Fullname = user.Fullname;
+            if (this.Email != user.Email) this.Email = user.Email;
+            if (this.Birthday != user.Birthday) this.Birthday = user.Birthday;
+            if (this.Faculty != user.Faculty) this.Faculty = user.Faculty;
+            if (this.AvatarBase64 != user.AvatarBase64) this.AvatarBase64 = user.AvatarBase64;
+            if (this.Major != user.Major) this.Major = user.Major;
+        }
         public StudentUser(string id, string fullname, string email, DateOnly birthday, string faculty, string avt, string major, double gpa = 0, int credits = 0)
             : base(id, fullname, email, birthday, faculty, avt)
         {
