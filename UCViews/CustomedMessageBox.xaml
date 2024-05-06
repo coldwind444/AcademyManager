@@ -31,7 +31,7 @@
                         BorderBrush="#089546"
                         Cursor="Hand"
                         Width="100" Margin="0 0 10 0" Click="Button_Click">
-                    Tiếp tục
+                    Thử lại
                 </Button>
                 <Button Background="#089546"
                         BorderBrush="#089546"
