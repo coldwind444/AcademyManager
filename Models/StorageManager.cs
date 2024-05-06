@@ -27,15 +27,23 @@ namespace AcademyManager.Models
                 });
 
             // Upload file to storage
-            var task = firebaseStorage
-                .Child(termID)
-                .Child(courseID)
-                .Child(classID)
-                .Child(filename)
-                .PutAsync(stream);
+            string downloadUrl = null;
+            try
+            {
+                var task = firebaseStorage
+                    .Child(termID)
+                    .Child(courseID)
+                    .Child(classID)
+                    .Child(filename)
+                    .PutAsync(stream);
 
-            // Await the task to wait until upload completes and get the download url
-            var downloadUrl = await task;
+                // Await the task to wait until upload completes and get the download url
+                downloadUrl = await task;
+            }
+            catch
+            {
+                return false;
+            }
             if (downloadUrl != null)
             {
                 DatabaseManager db = new DatabaseManager();
