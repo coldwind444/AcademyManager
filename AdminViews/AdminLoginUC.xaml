@@ -23,7 +23,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10">
+                        <Border CornerRadius="20">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
@@ -57,9 +57,9 @@
                 <Border Width="250" Height="40"
                         BorderThickness="1.5"
                         BorderBrush="Black"
-                        CornerRadius="10" Margin="0 0 0 15">
+                        CornerRadius="20" Margin="0 0 0 15">
                     <TextBox Width="220" Height="30"
-                             Text="{Binding UUID, Mode=TwoWay}"
+                             Text="{Binding UUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              BorderThickness="0" FontSize="16"
                              VerticalContentAlignment="Center"
                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
@@ -70,7 +70,7 @@
                 <Border Width="250" Height="40"
                         BorderThickness="1.5"
                         BorderBrush="Black"
-                        CornerRadius="10" Margin="0 0 0 15">
+                        CornerRadius="20" Margin="0 0 0 15">
                     <PasswordBox Width="220" Height="30"
                                  x:Name="PasswordBox"
                                  BorderThickness="0" FontSize="16"
@@ -92,7 +92,14 @@
                         FontSize="16" IsDefault="True"
                         Command="{Binding LoginCommand}"
                         CommandParameter="{Binding ElementName=adminLogin}">
-                    Đăng nhập
+                    <Grid Width="220">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center">Đăng nhập</TextBlock>
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Height="20" Width="20" Value="0" IsIndeterminate="True"
+                                     Foreground="White" Visibility="{Binding Loading}"
+                                     HorizontalAlignment="Right"></ProgressBar>
+                    </Grid>
                 </Button>
                 <Label HorizontalAlignment="Center"
                        Foreground="DeepPink"

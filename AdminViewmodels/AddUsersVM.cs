@@ -216,7 +216,8 @@ namespace AcademyManager.AdminViewmodels
                         }
                         accbatch.Clear();
                         userbatch.Clear();
-                    }
+                        ShowNotification(!error);
+                    } else ShowNotification(false);
                 }
                 else if (p.SelectedIndex == 1)
                 {
@@ -265,9 +266,10 @@ namespace AcademyManager.AdminViewmodels
                         }
                         accbatch.Clear();
                         userbatch.Clear();
+                        ShowNotification(!error);
                     }
+                    else ShowNotification(false);
                 }
-                ShowNotification(!error);
                 Loading = Visibility.Hidden;
                 Path = String.Empty;
                 _inProcess = false;

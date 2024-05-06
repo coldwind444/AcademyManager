@@ -23,6 +23,16 @@ namespace AcademyManager.AdminViewmodels
         private PasswordBox _passwordBox, _confirmBox;
         private Brush _foreground;
         private Visibility _notificationV;
+        private Visibility _load;
+        public Visibility Loading
+        {
+            get => _load;
+            set
+            {
+                _load = value;
+                OnPropertyChanged();
+            }
+        }
         public Brush Foreground
         {
             get { return _foreground; }
@@ -66,12 +76,14 @@ namespace AcademyManager.AdminViewmodels
 
             SigninCommand = new RelayCommand<object>(p => { return !NullOrEmpty(_password) && !NullOrEmpty(_uuid) && !NullOrEmpty(_passwordConfirm); }, async p =>
             {
+                Loading = Visibility.Visible;
                 DatabaseManager db = new DatabaseManager();
                 Admin ad = await db.GetAdminAsync(_uuid);
                 if (ad != null)
                 {
                     if (ad.Activated())
                     {
+                        Loading = Visibility.Hidden;
                         Notification = "Tài khoản này đã được kích hoạt.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
@@ -80,6 +92,7 @@ namespace AcademyManager.AdminViewmodels
                     }
                     else if (_password.Length < 8)
                     {
+                        Loading = Visibility.Hidden;
                         Notification = "Mật khẩu phải chứa ít nhất 8 kí tự.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
@@ -88,6 +101,7 @@ namespace AcademyManager.AdminViewmodels
                     }
                     else if (_password != _passwordConfirm)
                     {
+                        Loading = Visibility.Hidden;
                         Notification = "Xác nhận mật khẩu không trùng khớp.";
                         Foreground = Brushes.DeepPink;
                         NotificationV = Visibility.Visible;
@@ -100,6 +114,7 @@ namespace AcademyManager.AdminViewmodels
                         bool success = await db.UpdateAdminPassword(newadmin);
                         if (success)
                         {
+                            Loading = Visibility.Hidden;
                             Notification = "Kích hoạt thành công.";
                             Foreground = Brushes.Green;
                             NotificationV = Visibility.Visible;
@@ -108,6 +123,7 @@ namespace AcademyManager.AdminViewmodels
                         }
                         else
                         {
+                            Loading = Visibility.Hidden;
                             Notification = "Lỗi đường truyền.";
                             Foreground = Brushes.OrangeRed;
                             NotificationV = Visibility.Visible;
@@ -118,6 +134,7 @@ namespace AcademyManager.AdminViewmodels
                 }
                 else
                 {
+                    Loading = Visibility.Hidden;
                     NotificationV = Visibility.Hidden;
                     Notification = "Tài khoản chưa được cấp quyền.";
                     Foreground = Brushes.DeepPink;
@@ -135,6 +152,7 @@ namespace AcademyManager.AdminViewmodels
         {
             InitializeCommands();
             NotificationV = Visibility.Hidden;
+            Loading = Visibility.Hidden;
         }
     }
 }

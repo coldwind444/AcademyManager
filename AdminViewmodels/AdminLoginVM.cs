@@ -20,6 +20,16 @@ namespace AcademyManager.AdminViewmodels
         private string _notification;
         private PasswordBox _passwordBox;
         private Visibility _notificationV;
+        private Visibility _load;
+        public Visibility Loading
+        {
+            get => _load;
+            set
+            {
+                _load = value;
+                OnPropertyChanged();
+            }
+        }
         public Visibility NotificationV
         {
             get { return _notificationV; }
@@ -56,6 +66,7 @@ namespace AcademyManager.AdminViewmodels
         {
             LoginCommand = new RelayCommand<AdminLoginUC>(p => { return !NullOrEmpty(_password) && !NullOrEmpty(_uuid); }, async p =>
             {
+                Loading = Visibility.Visible;
                 DatabaseManager db = new DatabaseManager();
                 Admin ad = await db.GetAdminAsync(UUID);
                 if (ad != null)
@@ -64,14 +75,17 @@ namespace AcademyManager.AdminViewmodels
                     {
                         Window w = GetWindowParent(p) as Window;
                         AdminWindow adwd = new AdminWindow();
-                        if (w == null) return;
+                        Loading = Visibility.Hidden;
                         NotificationV = Visibility.Hidden;
                         w.Hide();
                         adwd.ShowDialog();
+                        UUID = String.Empty;
+                        _passwordBox.Clear();
                         w.ShowDialog();
                     }
                     else
                     {
+                        Loading = Visibility.Hidden;
                         Notification = "Sai mật khẩu.";
                         NotificationV = Visibility.Visible;
                         await Task.Delay(1000);
@@ -80,13 +94,13 @@ namespace AcademyManager.AdminViewmodels
                 }
                 else
                 {
+                    Loading = Visibility.Hidden;    
                     Notification = "Tài khoản không tồn tại.";
                     NotificationV = Visibility.Visible;
                     await Task.Delay(1000);
                     NotificationV = Visibility.Hidden;
                 }
-                UUID = String.Empty;
-                _passwordBox.Clear();
+                Loading = Visibility.Hidden;
             });
 
             PasswordChangedCommand = new RelayCommand<PasswordBox>(p => { return true; }, p =>
@@ -100,6 +114,7 @@ namespace AcademyManager.AdminViewmodels
         {
             InitializeCommands();
             NotificationV = Visibility.Hidden;
+            Loading = Visibility.Hidden;
         }
     }
 }
