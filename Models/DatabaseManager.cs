@@ -56,8 +56,6 @@ namespace AcademyManager.Models
                 return true;
             } catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -78,8 +76,7 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
+                return;
             }
         }
         public async Task<Account> GetAccountAsync(string id, int type)
@@ -100,8 +97,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -116,8 +111,6 @@ namespace AcademyManager.Models
                 return true;
             } catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -134,8 +127,6 @@ namespace AcademyManager.Models
                 return result;
             } catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -149,8 +140,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -165,8 +154,6 @@ namespace AcademyManager.Models
                 return false;
             } catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -184,8 +171,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -199,8 +184,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -216,8 +199,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -231,8 +212,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -245,8 +224,6 @@ namespace AcademyManager.Models
                 return result;
             } catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -262,8 +239,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -279,8 +254,6 @@ namespace AcademyManager.Models
            }
             catch
            {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
            }
         }
@@ -295,8 +268,6 @@ namespace AcademyManager.Models
            }
             catch
            {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -312,8 +283,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return null;
             }
         }
@@ -327,8 +296,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -345,8 +312,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -361,8 +326,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -385,8 +348,7 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
+                return;
             }
         }
         public async Task<bool> SendNotificationAsync(string receiverid, int type, Notification n)
@@ -404,8 +366,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }
@@ -422,8 +382,6 @@ namespace AcademyManager.Models
             }
             catch
             {
-                CustomedMessageBox error = new CustomedMessageBox();
-                error.ShowDialog();
                 return false;
             }
         }

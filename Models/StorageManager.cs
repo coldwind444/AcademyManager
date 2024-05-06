@@ -10,7 +10,15 @@ namespace AcademyManager.Models
         public async Task<bool> UploadFileToFirebaseStorage(string localFilePath, string termID, string courseID, string classID, string title)
         {
             // Get a FileStream
-            var stream = File.Open(localFilePath, FileMode.Open);
+            FileStream stream = null;
+            try
+            {
+                stream = File.Open(localFilePath, FileMode.Open);
+            }
+            catch
+            {
+                return false;
+            }
             string filename = Path.GetFileName(localFilePath);
 
             // Authenticate with Firebase Authentication
