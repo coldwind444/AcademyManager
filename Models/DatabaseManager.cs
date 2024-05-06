@@ -21,7 +21,7 @@ namespace AcademyManager.Models
             {
                 using (Ping ping = new Ping())
                 {
-                    PingReply reply = ping.Send("www.google.com");
+                    PingReply reply = ping.Send("www.google.com", 3000);
                     return reply.Status == IPStatus.Success;
                 }
             }
