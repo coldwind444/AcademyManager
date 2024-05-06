@@ -118,8 +118,7 @@ namespace AcademyManager.Viewmodels
                     }
                 }
 
-                if (!error) ShowNotification(!error);
-                else ShowNotification(error);
+                ShowNotification(!error);
                 await SendNotification();
                 Loading = Visibility.Hidden;
                 Files.Clear();
