@@ -122,6 +122,7 @@ namespace AcademyManager.Viewmodels
                 else ShowNotification(error);
                 await SendNotification();
                 Loading = Visibility.Hidden;
+                Files.Clear();
             });
 
             RemoveCommand = new RelayCommand<object>(p => true, p =>
