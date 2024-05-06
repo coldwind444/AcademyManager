@@ -7,8 +7,29 @@ namespace AcademyManager.Models
     public class StorageManager
     {
         public StorageManager() { }
+        public bool IsValidFirebaseKey(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+
+            // List of characters disallowed in Firebase keys.
+            char[] disallowedChars = ['.', '$', '#', '[', ']', '/'];
+
+            foreach (char c in disallowedChars)
+            {
+                if (key.Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
         public async Task<bool> UploadFileToFirebaseStorage(string localFilePath, string termID, string courseID, string classID, string title)
         {
+            if (!IsValidFirebaseKey(title)) return false;
             try
             {
                 // Get a FileStream
