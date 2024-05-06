@@ -48,13 +48,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Margin="20" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-                    <DataGrid ItemsSource="{Binding Files, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGrid ItemsSource="{Binding Files}" 
                               Margin="10" Background="White"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header="#" 
+                            <DataGridCheckBoxColumn Header="#" IsReadOnly="False"
                                                     Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTemplateColumn>
+                            <DataGridTemplateColumn IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding Icon}"/>
@@ -62,6 +63,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Tệp tin"
+                                                IsReadOnly="True"
                                                 Binding="{Binding Path}"/>
                         </DataGrid.Columns>
                     </DataGrid>

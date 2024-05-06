@@ -80,6 +80,7 @@ namespace AcademyManager.Viewmodels
                 {
                     foreach (string filename in openFileDialog.FileNames)
                     {
+                        if (String.IsNullOrEmpty(filename)) return;
                         Icon icon = Icon.ExtractAssociatedIcon(filename);
                         BitmapSource iconImage = Imaging.CreateBitmapSourceFromHIcon(
                             icon.Handle,
@@ -91,7 +92,7 @@ namespace AcademyManager.Viewmodels
                 }
             });
 
-            UploadFilesCommand = new RelayCommand<object>(p => true, async p =>
+            UploadFilesCommand = new RelayCommand<object>(p => Files.Count > 0, async p =>
             {
                 Loading = Visibility.Visible;
                 StorageManager storage = new StorageManager();
