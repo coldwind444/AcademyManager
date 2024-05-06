@@ -96,7 +96,7 @@
                             BorderThickness="1.5">
                         <PasswordBox Width="270" 
                                  Height="30"
-                                 materialDesign:HintAssist.Hint="Mật khẩu"
+                                 materialDesign:HintAssist.Hint="Mật khẩu (ít nhất 8 ký tự)"
                                  x:Name="PWBox"
                                  BorderThickness="0"
                                  materialDesign:TextFieldAssist.HasLeadingIcon="True"
