@@ -47,7 +47,7 @@
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="0" 
-                        CornerRadius="20 10 10 20" 
+                        CornerRadius="20 0 0 20" 
                         Background="#089546" 
                         Grid.RowSpan="3">
 					<StackPanel Orientation="Vertical"
