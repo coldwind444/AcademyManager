@@ -22,6 +22,7 @@ namespace AcademyManager.Viewmodels
         private ToastProvider _toastProvider;
         private string _cid;
         private Visibility _unfound;
+        private bool inProcess;
         public Visibility Unfound
         {
             get => _unfound;
@@ -78,11 +79,13 @@ namespace AcademyManager.Viewmodels
                 ParentVM.LoadClasses();
             });
 
-            SearchCommand = new RelayCommand<StackPanel>(p => _cid != null && _cid.Length > 0, async p =>
+            SearchCommand = new RelayCommand<StackPanel>(p => _cid != null && _cid.Length > 0 && !inProcess, async p =>
             {
+                inProcess = true;
                 bool found = await LoadAvailableCourses(p);
                 if (!found) Unfound = Visibility.Visible;
                 else Unfound = Visibility.Hidden;
+                inProcess = false;
             });
         }
         #endregion
@@ -90,6 +93,7 @@ namespace AcademyManager.Viewmodels
         {
             GParentVM = vm;
             ParentVM = p;
+            inProcess = false;
             _theme = new AppTheme();
             _theme.ChangeTheme(Flattinger.Core.Enums.Theme.LIGHT);
             _toastProvider = new ToastProvider(container);

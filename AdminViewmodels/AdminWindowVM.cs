@@ -106,7 +106,7 @@ namespace AcademyManager.AdminViewmodels
             AddCourses = true;
             AddUsers = false;
             SearchUsers = false;
-            CurrentUrl = "Quản trị viên" + " > Thêm khóa học";
+            CurrentUrl = "Quản trị viên" + " > Thêm lịch trình";
             InitializeCommands();
         }
     }
