@@ -1,12 +1,20 @@
-﻿namespace AcademyManager.Models
+using DotNetEnv;
+
+namespace AcademyManager.Models
 {
-    public class Authentication
+    public static class Authentication
     {
-        public static string DatabaseURL = "https://academymanager-5ea2b-default-rtdb.asia-southeast1.firebasedatabase.app/";
-        public static string DatabaseSecret = "iqPDj0uTvKxojn6BNHUugyHDZSsse6Jcw4AdYOiB";
-        public static string StorageBucket = "academymanager-5ea2b.appspot.com";
-        public static string Email = "tadgroupk22@gmail.com";
-        public static string Password = "academymanager_tad22";
-        public static string APIKey = "AIzaSyBqjSZ0hKy6e1WMKCThIBvmW6fU-UdpxGk";
+        static Authentication()
+        {
+            // Load the .env file on initialization
+            Env.Load();
+        }
+
+        public static string DatabaseURL => Env.GetString("DATABASE_URL");
+        public static string DatabaseSecret => Env.GetString("DATABASE_SECRET");
+        public static string StorageBucket => Env.GetString("STORAGE_BUCKET");
+        public static string Email => Env.GetString("EMAIL");
+        public static string Password => Env.GetString("PASSWORD");
+        public static string APIKey => Env.GetString("API_KEY");
     }
 }
